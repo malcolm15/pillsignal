@@ -1,0 +1,167 @@
+# CLAUDE.md — PillSignal
+
+## Project Overview
+
+PillSignal (pillsignal.com) is a consumer-facing website that makes FDA adverse event data accessible and understandable to regular people. When someone searches for a medication, they can see what real people have actually reported to the FDA — side effects, reactions, outcomes, demographics, and trends over time — presented in clean visualizations with plain-English context.
+
+The data source is the OpenFDA FAERS (FDA Adverse Event Reporting System) API. PillSignal does not use drug label data (which is what WebMD, Drugs.com, and RxList already cover). PillSignal surfaces real-world reported events, which is a fundamentally different and underserved data set.
+
+The goal is to become a top search result for queries like "[drug name] side effects reported," "[drug name] reactions," and "[drug name] adverse events" and monetize through Google AdSense display advertising.
+
+## Legal Requirements — READ THIS FIRST
+
+These are non-negotiable and must be followed in every piece of code, copy, and content generated for this project:
+
+1. **Every page** must include this disclaimer (or a close variation): *"This data reflects voluntary reports submitted to the FDA's Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors."*
+2. **Never editorialize.** No subjective language about whether a drug is "dangerous," "risky," "safe," or "concerning." Present numbers, let users draw conclusions.
+3. **Never rank drugs** as "most dangerous," "worst side effects," or any comparative safety framing.
+4. **Never imply causation.** Use language like "reported with," "associated reports," "events reported by patients taking," not "caused by" or "side effects of."
+5. **Always link to the FDA source.** Every drug page should link to the corresponding OpenFDA query or FDA drug page so users can verify the data themselves.
+6. **No medical advice.** Include a standard notice that PillSignal is not a substitute for professional medical advice and users should consult their healthcare provider.
+7. **First-visit disclaimer banner.** Display a non-blocking, dismissible banner at the top of the site on first visit. Text: "PillSignal presents data from the FDA's voluntary reporting system. This data does not prove that a medication caused any adverse event. Always consult your healthcare provider about your medications." Include an "I understand" button. Use localStorage to remember dismissal so it only shows once. This must NOT be a blocking modal or interstitial — it must not prevent page content from being visible to users or search engine crawlers.
+
+## Tech Stack
+
+- **Data source:** OpenFDA FAERS API (https://open.fda.gov/apis/drug/event/)
+- **Database:** Supabase (Postgres) — stores processed/aggregated data pulled from OpenFDA
+- **Build scripts:** Node.js — two-stage pipeline (fetch → database, database → static HTML)
+- **Frontend:** Vanilla HTML, CSS, JavaScript — no frameworks, no bundler, no build tools for the frontend
+- **Hosting:** GitHub Pages (static files served from `/docs` directory)
+- **CDN/DNS:** Cloudflare (domain: pillsignal.com, DNSSEC enabled, proxy on)
+- **Email:** Cloudflare Email Routing (hello@pillsignal.com, contact@pillsignal.com)
+- **Analytics:** Google Analytics (to be configured)
+- **Monetization:** Google AdSense (to be added once traffic warrants)
+
+## Architecture
+
+### Data Pipeline
+
+**Stage 1: Fetch (Node.js script → Supabase)**
+- Script queries OpenFDA FAERS API for each drug in our drug list
+- Aggregates raw event data into processed summaries: top adverse events with counts, demographic breakdowns (age, gender), outcome severity distribution, quarterly trend data
+- Stores aggregated data in Supabase tables
+- Designed to be run manually or on a schedule; not user-facing
+- Must respect OpenFDA rate limits: 240 requests/minute with API key
+
+**Stage 2: Generate (Supabase → static HTML)**
+- Script reads processed data from Supabase
+- Generates individual static HTML pages for each drug
+- Generates index/listing pages, sitemap.xml, and any aggregate pages
+- Output goes to `/docs` directory for GitHub Pages serving
+- Each generated page is a complete, standalone HTML file with full SEO markup
+
+### Why This Architecture
+
+- Supabase decouples data fetching from page generation — builds are fast and don't depend on FDA API availability
+- Static HTML means every page is instantly indexable by search engines — no JavaScript rendering required
+- GitHub Pages + Cloudflare is free, fast, and battle-tested
+- Scaling from 200 drugs to 13,000+ only requires running the fetch script longer — no architectural changes
+
+### Folder Structure
+
+```
+pillsignal/
+├── CLAUDE.md
+├── .gitignore
+├── .env.example          # Template for required env vars
+├── package.json
+├── scripts/
+│   ├── fetch-data.js     # Stage 1: OpenFDA API → Supabase
+│   ├── generate-pages.js # Stage 2: Supabase → static HTML
+│   └── drug-list.json    # List of drugs to fetch (start with top 200)
+├── templates/
+│   ├── drug-page.html    # Template for individual drug pages
+│   ├── index.html        # Homepage template
+│   └── partials/         # Reusable HTML fragments (header, footer, disclaimer)
+├── docs/                 # GitHub Pages serves from here
+│   ├── index.html
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── search.js     # Client-side drug search functionality
+│   ├── drugs/
+│   │   ├── lexapro.html
+│   │   ├── metformin.html
+│   │   └── ...           # One HTML file per drug
+│   ├── sitemap.xml       # Auto-generated
+│   ├── robots.txt
+│   └── 404.html
+└── sql/
+    └── schema.sql        # Supabase table definitions
+```
+
+## SEO Requirements
+
+SEO is the primary growth channel. Every decision should consider search indexability.
+
+- **Every drug page** gets a unique `<title>` tag: "[Drug Name] — Reported Side Effects & Adverse Events | PillSignal"
+- **Every drug page** gets a unique `<meta name="description">` summarizing that drug's key data
+- **JSON-LD structured data** on every page (Article or Dataset schema as appropriate)
+- **Open Graph and Twitter Card meta tags** on every page
+- **Canonical URLs** on every page
+- **sitemap.xml** auto-generated by the build script, submitted to Google Search Console and Bing Webmaster Tools
+- **robots.txt** allowing all crawlers
+- **Internal cross-linking** between related drugs (same drug class, similar adverse event profiles)
+- **Clean URLs:** `/drugs/lexapro` not `/drugs/lexapro.html` (configure via Cloudflare or .nojekyll + directory structure)
+- **Fast page load:** minimal CSS, no heavy JS frameworks, optimized for Core Web Vitals
+- **Mobile-first:** responsive design, passes Google's mobile-friendly test
+
+## Drug Page Content (Per Drug)
+
+Each drug page should include:
+
+1. **Drug name** (brand and generic) as H1
+2. **Summary line** — e.g., "12,847 adverse event reports submitted to the FDA since [year]"
+3. **Top reported adverse events** — bar chart or table showing the most frequently reported events with counts
+4. **Demographic breakdown** — who is reporting (age groups, gender distribution)
+5. **Outcome severity** — pie or donut chart showing distribution of outcomes (hospitalization, life-threatening, death, other serious, non-serious)
+6. **Trend over time** — line chart showing report volume by quarter/year
+7. **FDA disclaimer** — prominently displayed
+8. **Source link** — direct link to the OpenFDA API query for this drug
+9. **Related drugs** — links to other drugs in the same therapeutic class
+
+## MVP Scope
+
+**Phase 1 (MVP):**
+- Top 200 most commonly prescribed drugs in the US
+- Homepage with search functionality
+- Individual drug pages with all content sections above
+- Full SEO markup on every page
+- Mobile-responsive design
+- Dark mode support
+- Legal disclaimer on every page
+- robots.txt and sitemap.xml
+- Google Analytics configured
+
+**Phase 2 (Post-launch):**
+- Expand to all 13,000+ drugs
+- Blog/content section with data-driven articles
+- Drug comparison feature (side by side, factual data only — no safety judgments)
+- Email alerts for new safety signals on drugs users follow
+- Google AdSense integration
+- FAQ page with JSON-LD FAQPage schema
+
+## Environment Variables
+
+```
+OPENFDA_API_KEY=         # OpenFDA API key for higher rate limits
+SUPABASE_URL=            # Supabase project URL
+SUPABASE_SERVICE_KEY=    # Supabase service role key (never expose client-side)
+```
+
+## Development Principles
+
+- **Think first, build second.** Do not scaffold, generate, or create files without explicit instruction. Ask before acting.
+- **No frameworks on the frontend.** Vanilla HTML, CSS, and JS only. No React, no Vue, no Tailwind, no build tools.
+- **Every page is a real HTML file.** No SPA routing, no client-side rendering of main content. Search engines must be able to read all content without executing JavaScript.
+- **Mobile-first responsive design.** CSS should be written mobile-first with breakpoints scaling up.
+- **Dark mode from the start.** Use CSS custom properties and `prefers-color-scheme` media query, with a manual toggle and localStorage persistence.
+- **Accessibility matters.** Semantic HTML, proper heading hierarchy, alt text, ARIA labels where needed, sufficient color contrast.
+- **Security basics.** Never commit secrets. Use .env for all keys. Parameterized queries for any database interaction. No user-generated content in the MVP.
+
+## Deployment
+
+- Commit and push to `main` branch
+- GitHub Pages serves from the `/docs` directory
+- After deployment, purge Cloudflare cache if needed
+- Verify new/updated pages in Google Search Console
