@@ -4,24 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Effexor (venlafaxine hydrochloride) — Reported Adverse Events | PillSignal</title>
-  <meta name="description" content="129,794 FDA adverse event reports for Effexor (venlafaxine hydrochloride). Most reported: drug ineffective, nausea, fatigue. Data from FDA FAERS via PillSignal.">
+  <title>Effexor — Adverse Events | PillSignal</title>
+  <meta name="description" content="Effexor (venlafaxine hydrochloride): 129,794 adverse event reports submitted to the FDA.">
   <link rel="canonical" href="https://pillsignal.com/drugs/effexor">
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website">
-  <meta property="og:title"       content="Effexor (venlafaxine hydrochloride) — Reported Adverse Events | PillSignal">
-  <meta property="og:description" content="129,794 FDA adverse event reports for Effexor (venlafaxine hydrochloride). Most reported: drug ineffective, nausea, fatigue. Data from FDA FAERS via PillSignal.">
+  <meta property="og:title"       content="Effexor — Adverse Events | PillSignal">
+  <meta property="og:description" content="Effexor (venlafaxine hydrochloride): 129,794 adverse event reports submitted to the FDA.">
   <meta property="og:url"         content="https://pillsignal.com/drugs/effexor">
   <meta property="og:site_name"   content="PillSignal">
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary">
-  <meta name="twitter:title"       content="Effexor (venlafaxine hydrochloride) — Reported Adverse Events | PillSignal">
-  <meta name="twitter:description" content="129,794 FDA adverse event reports for Effexor (venlafaxine hydrochloride). Most reported: drug ineffective, nausea, fatigue. Data from FDA FAERS via PillSignal.">
+  <meta name="twitter:title"       content="Effexor — Adverse Events | PillSignal">
+  <meta name="twitter:description" content="Effexor (venlafaxine hydrochloride): 129,794 adverse event reports submitted to the FDA.">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Effexor (venlafaxine hydrochloride) — FDA Adverse Event Reports","description":"129,794 FDA adverse event reports for Effexor (venlafaxine hydrochloride). Most reported: drug ineffective, nausea, fatigue. Data from FDA FAERS via PillSignal.","url":"https://pillsignal.com/drugs/effexor","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Effexor (venlafaxine hydrochloride) — FDA Adverse Event Reports","description":"Effexor (venlafaxine hydrochloride): 129,794 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/effexor","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -294,6 +294,28 @@
       margin-bottom: 0.75rem;
     }
 
+    /* ─── Related drugs list ──────────────────────────────────────────────────── */
+    .related-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .related-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .related-list li:last-child { border-bottom: none; }
+    .related-list a { font-weight: 500; }
+    .related-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -325,6 +347,15 @@
         document.documentElement.classList.add('banner-seen');
       }
     }());
+  </script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZEDB8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5ZEDB8Z5P');
   </script>
 </head>
 <body>
@@ -447,6 +478,19 @@
         <canvas id="chart-trends" role="img" aria-label="Line chart showing quarterly FAERS report volume for Effexor"></canvas>
       </div>
     </section>
+
+    <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
+    <section class="card" aria-labelledby="related-heading">
+  <h2 id="related-heading">Related Drugs</h2>
+  <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
+  <ul class="related-list">
+    <li><a href="/drugs/lexapro">Lexapro</a><span class="related-count">123,113 reports</span></li>
+    <li><a href="/drugs/prozac">Prozac</a><span class="related-count">61,342 reports</span></li>
+    <li><a href="/drugs/celexa">Celexa</a><span class="related-count">112,320 reports</span></li>
+    <li><a href="/drugs/remeron">Remeron</a><span class="related-count">89,348 reports</span></li>
+    <li><a href="/drugs/xanax">Xanax</a><span class="related-count">202,031 reports</span></li>
+  </ul>
+</section>
 
     <!-- ─── Data source ──────────────────────────────────────────────────────── -->
     <section class="card card--source" aria-labelledby="source-heading">

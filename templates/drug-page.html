@@ -294,6 +294,28 @@
       margin-bottom: 0.75rem;
     }
 
+    /* ─── Related drugs list ──────────────────────────────────────────────────── */
+    .related-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .related-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .related-list li:last-child { border-bottom: none; }
+    .related-list a { font-weight: 500; }
+    .related-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -325,6 +347,15 @@
         document.documentElement.classList.add('banner-seen');
       }
     }());
+  </script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZEDB8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5ZEDB8Z5P');
   </script>
 </head>
 <body>
@@ -447,6 +478,9 @@
         <canvas id="chart-trends" role="img" aria-label="Line chart showing quarterly FAERS report volume for {{BRAND_NAME}}"></canvas>
       </div>
     </section>
+
+    <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
+    {{RELATED_DRUGS_HTML}}
 
     <!-- ─── Data source ──────────────────────────────────────────────────────── -->
     <section class="card card--source" aria-labelledby="source-heading">

@@ -68,6 +68,67 @@ function computeDateRange(trends) {
   return min === max ? String(min) : `${min}–${max}`; // en-dash
 }
 
+// Keep <title> under 60 chars. Try with generic name first, fall back without.
+function buildPageTitle(brandName, genericName) {
+  const full = `${brandName} (${genericName}) — Adverse Events | PillSignal`;
+  if (full.length <= 60) return full;
+  const short = `${brandName} — Adverse Events | PillSignal`;
+  if (short.length <= 60) return short;
+  return `${brandName} — Adverse Events`;
+}
+
+// Keep <meta description> under 160 chars.
+function buildMetaDesc(brandName, genericName, totalReports) {
+  const reports = totalReports.toLocaleString('en-US');
+  const full  = `${brandName} (${genericName}): ${reports} adverse event reports submitted to the FDA.`;
+  if (full.length <= 160) return full;
+  const short = `${brandName}: ${reports} adverse event reports submitted to the FDA.`;
+  return short.length <= 160 ? short : short.slice(0, 157) + '...';
+}
+
+// For each drug, find the 5 others whose top adverse events overlap most.
+function computeRelatedDrugs(drugs, detailsMap) {
+  const aeMap = {};
+  for (const drug of drugs) {
+    aeMap[drug.id] = new Set(
+      (detailsMap[drug.id].adverseEvents || []).map(e => e.event_name.toLowerCase())
+    );
+  }
+
+  const relatedMap = {};
+  for (const drug of drugs) {
+    const mine = aeMap[drug.id];
+    const scores = [];
+    for (const other of drugs) {
+      if (other.id === drug.id) continue;
+      let overlap = 0;
+      for (const ev of mine) {
+        if (aeMap[other.id].has(ev)) overlap++;
+      }
+      if (overlap > 0) scores.push({ drug: other, overlap });
+    }
+    scores.sort((a, b) => b.overlap - a.overlap);
+    relatedMap[drug.id] = scores.slice(0, 5).map(s => s.drug);
+  }
+  return relatedMap;
+}
+
+// Renders the "Related Drugs" card HTML, or empty string if no related drugs.
+function renderRelatedDrugsHtml(relatedDrugs) {
+  if (!relatedDrugs || !relatedDrugs.length) return '';
+  const items = relatedDrugs.map(d =>
+    `    <li><a href="/drugs/${d.slug}">${escapeHtml(d.brand_name)}</a>` +
+    `<span class="related-count">${d.total_reports.toLocaleString('en-US')} reports</span></li>`
+  ).join('\n');
+  return `<section class="card" aria-labelledby="related-heading">
+  <h2 id="related-heading">Related Drugs</h2>
+  <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
+  <ul class="related-list">
+${items}
+  </ul>
+</section>`;
+}
+
 function buildOpenFdaUrl(drug) {
   const term = encodeURIComponent(
     `patient.drug.openfda.brand_name.exact:"${drug.brand_name.toUpperCase()}"`
@@ -98,7 +159,7 @@ function buildJsonLd(drug, canonicalUrl, description) {
 
 // ─── Page renderer ────────────────────────────────────────────────────────────
 
-function renderPage(drug, adverseEvents, demographics, outcomes, trends) {
+function renderPage(drug, adverseEvents, demographics, outcomes, trends, relatedDrugs = []) {
   const { slug, brand_name: brandName, generic_name: genericName, total_reports: totalReports } = drug;
   const canonicalUrl  = `${SITE_URL}/drugs/${slug}`;
   const dateRange     = computeDateRange(trends) ?? 'data available';
@@ -106,17 +167,8 @@ function renderPage(drug, adverseEvents, demographics, outcomes, trends) {
     year: 'numeric', month: 'long', day: 'numeric',
   });
 
-  // Meta description — include top events if available
-  const topEventNames = adverseEvents.length
-    ? adverseEvents.slice(0, 3).map(e => e.event_name.toLowerCase()).join(', ')
-    : null;
-  const metaDesc =
-    `${totalReports.toLocaleString('en-US')} FDA adverse event reports for ${brandName} ` +
-    `(${genericName})` +
-    (topEventNames ? `. Most reported: ${topEventNames}` : '') +
-    `. Data from FDA FAERS via PillSignal.`;
-
-  const pageTitle = `${brandName} (${genericName}) — Reported Adverse Events | PillSignal`;
+  const pageTitle = buildPageTitle(brandName, genericName);
+  const metaDesc  = buildMetaDesc(brandName, genericName, totalReports);
 
   // Build chart-ready data objects
   const aeData = adverseEvents
@@ -156,7 +208,8 @@ function renderPage(drug, adverseEvents, demographics, outcomes, trends) {
     .replaceAll('{{SEX_DATA_JSON}}',        safeJson(sexData))
     .replaceAll('{{AGE_DATA_JSON}}',        safeJson(ageData))
     .replaceAll('{{OUTCOMES_JSON}}',        safeJson(outcomesData))
-    .replaceAll('{{TRENDS_JSON}}',          safeJson(trendsData));
+    .replaceAll('{{TRENDS_JSON}}',          safeJson(trendsData))
+    .replaceAll('{{RELATED_DRUGS_HTML}}',   renderRelatedDrugsHtml(relatedDrugs));
 }
 
 // ─── File writers ─────────────────────────────────────────────────────────────
@@ -239,25 +292,43 @@ async function main() {
 
   mkdirSync(join(DOCS_DIR, 'drugs'), { recursive: true });
 
-  let generated = 0;
-  let skipped   = 0;
-  const generatedDrugs = [];
+  // Phase 1: load all drug details into memory
+  console.log('Phase 1: Loading drug details...');
+  const detailsMap = {};
+  const drugsWithData = [];
+  let skipped = 0;
 
   for (const drug of drugs) {
     const details = await fetchDrugDetails(drug.id);
-
     if (!drug.total_reports && !details.adverseEvents.length) {
       console.log(`  SKIP  ${drug.brand_name} — no data`);
       skipped++;
       continue;
     }
+    detailsMap[drug.id] = details;
+    drugsWithData.push(drug);
+  }
+  console.log(`  ${drugsWithData.length} drugs with data, ${skipped} skipped\n`);
 
+  // Phase 2: compute related drugs via adverse event overlap
+  console.log('Phase 2: Computing related drugs...');
+  const relatedMap = computeRelatedDrugs(drugsWithData, detailsMap);
+  console.log('  Done\n');
+
+  // Phase 3: generate pages
+  console.log('Phase 3: Generating pages...');
+  let generated = 0;
+  const generatedDrugs = [];
+
+  for (const drug of drugsWithData) {
+    const details = detailsMap[drug.id];
     const html = renderPage(
       drug,
       details.adverseEvents,
       details.demographics,
       details.outcomes,
-      details.trends
+      details.trends,
+      relatedMap[drug.id] || []
     );
 
     writeDrugPage(drug.slug, html);
@@ -265,11 +336,11 @@ async function main() {
     generated++;
 
     if (generated % 25 === 0) {
-      console.log(`  ${generated}/${drugs.length} pages written...`);
+      console.log(`  ${generated}/${drugsWithData.length} pages written...`);
     }
   }
 
-  console.log(`  ${generated}/${drugs.length} pages written\n`);
+  console.log(`  ${generated}/${drugsWithData.length} pages written\n`);
 
   writeSitemap(generatedDrugs);
   writeRobotsTxt();

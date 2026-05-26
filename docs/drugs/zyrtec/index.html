@@ -4,24 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Zyrtec (cetirizine hydrochloride) — Reported Adverse Events | PillSignal</title>
-  <meta name="description" content="118,972 FDA adverse event reports for Zyrtec (cetirizine hydrochloride). Most reported: drug ineffective, fatigue, pain. Data from FDA FAERS via PillSignal.">
+  <title>Zyrtec — Adverse Events | PillSignal</title>
+  <meta name="description" content="Zyrtec (cetirizine hydrochloride): 118,972 adverse event reports submitted to the FDA.">
   <link rel="canonical" href="https://pillsignal.com/drugs/zyrtec">
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website">
-  <meta property="og:title"       content="Zyrtec (cetirizine hydrochloride) — Reported Adverse Events | PillSignal">
-  <meta property="og:description" content="118,972 FDA adverse event reports for Zyrtec (cetirizine hydrochloride). Most reported: drug ineffective, fatigue, pain. Data from FDA FAERS via PillSignal.">
+  <meta property="og:title"       content="Zyrtec — Adverse Events | PillSignal">
+  <meta property="og:description" content="Zyrtec (cetirizine hydrochloride): 118,972 adverse event reports submitted to the FDA.">
   <meta property="og:url"         content="https://pillsignal.com/drugs/zyrtec">
   <meta property="og:site_name"   content="PillSignal">
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary">
-  <meta name="twitter:title"       content="Zyrtec (cetirizine hydrochloride) — Reported Adverse Events | PillSignal">
-  <meta name="twitter:description" content="118,972 FDA adverse event reports for Zyrtec (cetirizine hydrochloride). Most reported: drug ineffective, fatigue, pain. Data from FDA FAERS via PillSignal.">
+  <meta name="twitter:title"       content="Zyrtec — Adverse Events | PillSignal">
+  <meta name="twitter:description" content="Zyrtec (cetirizine hydrochloride): 118,972 adverse event reports submitted to the FDA.">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Zyrtec (cetirizine hydrochloride) — FDA Adverse Event Reports","description":"118,972 FDA adverse event reports for Zyrtec (cetirizine hydrochloride). Most reported: drug ineffective, fatigue, pain. Data from FDA FAERS via PillSignal.","url":"https://pillsignal.com/drugs/zyrtec","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Zyrtec (cetirizine hydrochloride) — FDA Adverse Event Reports","description":"Zyrtec (cetirizine hydrochloride): 118,972 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/zyrtec","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -294,6 +294,28 @@
       margin-bottom: 0.75rem;
     }
 
+    /* ─── Related drugs list ──────────────────────────────────────────────────── */
+    .related-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .related-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .related-list li:last-child { border-bottom: none; }
+    .related-list a { font-weight: 500; }
+    .related-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -325,6 +347,15 @@
         document.documentElement.classList.add('banner-seen');
       }
     }());
+  </script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZEDB8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5ZEDB8Z5P');
   </script>
 </head>
 <body>
@@ -447,6 +478,19 @@
         <canvas id="chart-trends" role="img" aria-label="Line chart showing quarterly FAERS report volume for Zyrtec"></canvas>
       </div>
     </section>
+
+    <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
+    <section class="card" aria-labelledby="related-heading">
+  <h2 id="related-heading">Related Drugs</h2>
+  <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
+  <ul class="related-list">
+    <li><a href="/drugs/plaquenil">Plaquenil</a><span class="related-count">89,508 reports</span></li>
+    <li><a href="/drugs/voltaren">Voltaren</a><span class="related-count">147,318 reports</span></li>
+    <li><a href="/drugs/xeljanz">Xeljanz</a><span class="related-count">105,852 reports</span></li>
+    <li><a href="/drugs/fosamax">Fosamax</a><span class="related-count">81,795 reports</span></li>
+    <li><a href="/drugs/kenalog">Kenalog</a><span class="related-count">29,373 reports</span></li>
+  </ul>
+</section>
 
     <!-- ─── Data source ──────────────────────────────────────────────────────── -->
     <section class="card card--source" aria-labelledby="source-heading">
