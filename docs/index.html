@@ -40,19 +40,45 @@
   </script>
 
   <style>
-    /* ─── Custom properties (match drug-page.html exactly) ───────────────────── */
-    :root {
-      --c-bg:             #ffffff;
-      --c-surface:        #f9fafb;
-      --c-border:         #e5e7eb;
-      --c-text:           #111827;
-      --c-text-muted:     #6b7280;
-      --c-primary:        #1d4f8a;
-      --c-primary-light:  #e8f0fb;
-      --c-notice-bg:      #fffbeb;
-      --c-notice-border:  #f59e0b;
-      --c-notice-text:    #78350f;
+    /* ─── Light theme (default) ──────────────────────────────────────────────── */
+    :root, [data-theme="light"] {
+      --c-bg:                   #ffffff;
+      --c-surface:              #f9fafb;
+      --c-border:               #e5e7eb;
+      --c-text:                 #111827;
+      --c-text-muted:           #6b7280;
+      --c-primary:              #1d4f8a;
+      --c-primary-hover:        #163d6b;
+      --c-primary-light:        #e8f0fb;
+      --c-notice-bg:            #fffbeb;
+      --c-notice-border:        #f59e0b;
+      --c-notice-text:          #78350f;
+      --c-notice-link:          #92400e;
+      --c-banner-bg:            #1a3a5c;
+      --c-banner-text:          #d1e0f0;
+      --c-banner-border:        rgba(255,255,255,0.35);
+      --c-banner-btn-hover:     rgba(255,255,255,0.1);
       --font: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+
+    /* ─── Dark theme ─────────────────────────────────────────────────────────── */
+    [data-theme="dark"] {
+      --c-bg:                   #0f172a;
+      --c-surface:              #1e293b;
+      --c-border:               #334155;
+      --c-text:                 #f1f5f9;
+      --c-text-muted:           #94a3b8;
+      --c-primary:              #60a5fa;
+      --c-primary-hover:        #93c5fd;
+      --c-primary-light:        #1e3a5f;
+      --c-notice-bg:            #1c1400;
+      --c-notice-border:        #d97706;
+      --c-notice-text:          #fde68a;
+      --c-notice-link:          #fbbf24;
+      --c-banner-bg:            #0c2340;
+      --c-banner-text:          #bdd5f0;
+      --c-banner-border:        rgba(255,255,255,0.2);
+      --c-banner-btn-hover:     rgba(255,255,255,0.08);
     }
 
     /* ─── Reset ──────────────────────────────────────────────────────────────── */
@@ -63,10 +89,17 @@
       line-height: 1.6;
       color: var(--c-text);
       background: var(--c-bg);
+      transition: background 0.2s, color 0.2s;
     }
     a { color: var(--c-primary); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a:hover { text-decoration: underline; color: var(--c-primary-hover); }
     h1, h2, h3 { line-height: 1.25; }
+
+    /* ─── Scrollbar ───────────────────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--c-surface); }
+    ::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--c-text-muted); }
 
     /* ─── Accessibility ───────────────────────────────────────────────────────── */
     .sr-only {
@@ -79,10 +112,34 @@
       border: 0;
     }
 
-    /* ─── First-visit banner (same as drug pages) ────────────────────────────── */
+    /* ─── Theme toggle ────────────────────────────────────────────────────────── */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: none;
+      border: 1px solid var(--c-border);
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--c-text-muted);
+      padding: 0;
+      flex-shrink: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .theme-toggle:hover {
+      color: var(--c-primary);
+      border-color: var(--c-primary);
+      background: var(--c-primary-light);
+    }
+    [data-theme="light"] .icon-sun  { display: none; }
+    [data-theme="dark"]  .icon-moon { display: none; }
+
+    /* ─── First-visit banner ──────────────────────────────────────────────────── */
     #disclaimer-banner {
-      background: #1a3a5c;
-      color: #d1e0f0;
+      background: var(--c-banner-bg);
+      color: var(--c-banner-text);
       font-size: 0.875rem;
       line-height: 1.5;
     }
@@ -100,8 +157,8 @@
     #banner-btn {
       flex-shrink: 0;
       background: transparent;
-      border: 1px solid rgba(255,255,255,0.35);
-      color: #d1e0f0;
+      border: 1px solid var(--c-banner-border);
+      color: var(--c-banner-text);
       padding: 0.3rem 1rem;
       border-radius: 4px;
       cursor: pointer;
@@ -110,16 +167,20 @@
       white-space: nowrap;
       transition: background 0.15s;
     }
-    #banner-btn:hover { background: rgba(255,255,255,0.1); }
+    #banner-btn:hover { background: var(--c-banner-btn-hover); }
 
-    /* ─── Site header ────────────────────────────────────────────────────────── */
+    /* ─── Site header ─────────────────────────────────────────────────────────── */
     .site-header {
       border-bottom: 1px solid var(--c-border);
       padding: 0.875rem 1rem;
+      background: var(--c-bg);
     }
     .site-header .inner {
       max-width: 900px;
       margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     .logo {
       font-size: 1.1rem;
@@ -127,9 +188,9 @@
       color: var(--c-primary);
       letter-spacing: -0.02em;
     }
-    .logo:hover { text-decoration: none; }
+    .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
 
-    /* ─── Hero ───────────────────────────────────────────────────────────────── */
+    /* ─── Hero ────────────────────────────────────────────────────────────────── */
     .hero {
       background: var(--c-surface);
       border-bottom: 1px solid var(--c-border);
@@ -152,7 +213,7 @@
       margin-right: auto;
     }
 
-    /* ─── Search ─────────────────────────────────────────────────────────────── */
+    /* ─── Search ──────────────────────────────────────────────────────────────── */
     .search-wrap {
       position: relative;
       max-width: 520px;
@@ -177,7 +238,7 @@
     }
     .search-input::placeholder { color: var(--c-text-muted); }
 
-    /* ─── Dropdown ───────────────────────────────────────────────────────────── */
+    /* ─── Dropdown ────────────────────────────────────────────────────────────── */
     .search-dropdown {
       position: absolute;
       top: calc(100% + 4px);
@@ -186,7 +247,7 @@
       background: var(--c-bg);
       border: 1px solid var(--c-border);
       border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
       z-index: 100;
       overflow: hidden;
       display: none;
@@ -213,6 +274,7 @@
       display: block;
       font-size: 0.95rem;
       font-weight: 600;
+      color: var(--c-text);
     }
     .dropdown-item .drug-generic {
       display: block;
@@ -225,14 +287,14 @@
       color: var(--c-text-muted);
     }
 
-    /* ─── Main content ───────────────────────────────────────────────────────── */
+    /* ─── Main content ────────────────────────────────────────────────────────── */
     main {
       max-width: 720px;
       margin: 0 auto;
       padding: 2.5rem 1rem 4rem;
     }
 
-    /* ─── Info sections ──────────────────────────────────────────────────────── */
+    /* ─── Info sections ───────────────────────────────────────────────────────── */
     .info-section { margin-bottom: 2.5rem; }
     .section-title {
       font-size: 1.3rem;
@@ -247,7 +309,7 @@
     }
     .info-section p:last-child { margin-bottom: 0; }
 
-    /* ─── Feature grid ───────────────────────────────────────────────────────── */
+    /* ─── Feature grid ────────────────────────────────────────────────────────── */
     .feature-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -272,7 +334,7 @@
       margin: 0;
     }
 
-    /* ─── Notice boxes (match drug pages) ───────────────────────────────────── */
+    /* ─── Notice boxes ────────────────────────────────────────────────────────── */
     .notice {
       background: var(--c-notice-bg);
       border-left: 4px solid var(--c-notice-border);
@@ -282,7 +344,7 @@
       color: var(--c-notice-text);
       margin-bottom: 1.5rem;
     }
-    .notice a { color: #92400e; font-weight: 500; }
+    .notice a { color: var(--c-notice-link); font-weight: 500; }
     .notice--footer {
       background: var(--c-surface);
       border-left-color: var(--c-border);
@@ -292,40 +354,45 @@
     }
     .notice--footer a { color: var(--c-text-muted); }
 
-    /* ─── Divider ────────────────────────────────────────────────────────────── */
+    /* ─── Divider ─────────────────────────────────────────────────────────────── */
     .divider { border: none; border-top: 1px solid var(--c-border); margin: 2rem 0; }
 
-    /* ─── Footer ─────────────────────────────────────────────────────────────── */
+    /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
       padding: 1.5rem 1rem;
       text-align: center;
       font-size: 0.8rem;
       color: var(--c-text-muted);
+      background: var(--c-bg);
     }
     .site-footer a { color: var(--c-text-muted); }
 
-    /* ─── Responsive ─────────────────────────────────────────────────────────── */
+    /* ─── Responsive ──────────────────────────────────────────────────────────── */
     @media (min-width: 600px) {
       .feature-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 
   <!--
-    Hide banner before first paint for returning visitors — no flash.
-    Same pattern as drug pages.
+    Runs synchronously before CSS loads to prevent any flash of wrong theme or banner.
   -->
   <script>
-    if (localStorage.getItem('pillsignal_disclaimer_dismissed')) {
-      document.documentElement.classList.add('banner-seen');
-    }
+    (function () {
+      var saved = localStorage.getItem('pillsignal_theme');
+      var dark  = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+      if (localStorage.getItem('pillsignal_disclaimer_dismissed')) {
+        document.documentElement.classList.add('banner-seen');
+      }
+    }());
   </script>
 </head>
 <body>
 
   <!-- ─── First-visit disclaimer banner ────────────────────────────────────────
        Always in the DOM so crawlers read the disclaimer. Hidden via CSS class.
-  ──────────────────────────────────────────────────────────────────────────── -->
+  ─────────────────────────────────────────────────────────────────────────────── -->
   <div id="disclaimer-banner" role="note" aria-label="Site disclaimer">
     <div class="banner-inner">
       <p>PillSignal presents data from the FDA's voluntary reporting system. This data does not prove that a medication caused any adverse event. Always consult your healthcare provider about your medications.</p>
@@ -333,14 +400,32 @@
     </div>
   </div>
 
-  <!-- ─── Header ───────────────────────────────────────────────────────────── -->
+  <!-- ─── Header ────────────────────────────────────────────────────────────── -->
   <header class="site-header">
     <div class="inner">
       <a href="/" class="logo">PillSignal</a>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <!-- Sun: shown in dark mode (click to go light) -->
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <line x1="12" y1="2"     x2="12" y2="6"/>
+          <line x1="12" y1="18"    x2="12" y2="22"/>
+          <line x1="4.93" y1="4.93"   x2="7.76"  y2="7.76"/>
+          <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+          <line x1="2"  y1="12"    x2="6"  y2="12"/>
+          <line x1="18" y1="12"    x2="22" y2="12"/>
+          <line x1="4.93" y1="19.07"  x2="7.76"  y2="16.24"/>
+          <line x1="16.24" y1="7.76"  x2="19.07" y2="4.93"/>
+        </svg>
+        <!-- Moon: shown in light mode (click to go dark) -->
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
     </div>
   </header>
 
-  <!-- ─── Hero / search ────────────────────────────────────────────────────── -->
+  <!-- ─── Hero / search ─────────────────────────────────────────────────────── -->
   <section class="hero" aria-label="Drug search">
     <p class="hero-wordmark" aria-hidden="true">PillSignal</p>
     <h1 class="sr-only">PillSignal — FDA Adverse Event Reports</h1>
@@ -364,7 +449,7 @@
     </div>
   </section>
 
-  <!-- ─── Main content ─────────────────────────────────────────────────────── -->
+  <!-- ─── Main content ──────────────────────────────────────────────────────── -->
   <main>
 
     <section class="info-section" aria-labelledby="about-heading">
@@ -410,7 +495,7 @@
 
   </main>
 
-  <!-- ─── Footer ───────────────────────────────────────────────────────────── -->
+  <!-- ─── Footer ────────────────────────────────────────────────────────────── -->
   <footer class="site-footer">
     <p>Data sourced from the <a href="https://open.fda.gov/apis/drug/event/" target="_blank" rel="noopener">FDA Adverse Event Reporting System (FAERS)</a> via OpenFDA. &copy; 2025 PillSignal.</p>
   </footer>
@@ -421,6 +506,22 @@
       localStorage.setItem('pillsignal_disclaimer_dismissed', '1');
       document.documentElement.classList.add('banner-seen');
     });
+
+    // ── Theme toggle ──────────────────────────────────────────────────────────
+    (function () {
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('pillsignal_theme', next);
+      });
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+          if (!localStorage.getItem('pillsignal_theme')) {
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+          }
+        });
+      }
+    }());
 
     // ── Drug search ───────────────────────────────────────────────────────────
     var input     = document.getElementById('drug-search');
@@ -451,7 +552,7 @@
 
     function render(query) {
       var q = query.trim().toLowerCase();
-      if (!q) { close(); return; }
+      if (!q) { closeDropdown(); return; }
 
       var matches = drugs
         .filter(function (d) {
@@ -466,8 +567,8 @@
         .slice(0, 8);
 
       if (!matches.length) {
-        dropdown.innerHTML = '<div class="dropdown-no-results">No results for “' + escHtml(query.trim()) + '”</div>';
-        open();
+        dropdown.innerHTML = '<div class="dropdown-no-results">No results for "' + escHtml(query.trim()) + '"</div>';
+        openDropdown();
         return;
       }
 
@@ -483,15 +584,15 @@
       });
 
       activeIdx = -1;
-      open();
+      openDropdown();
     }
 
-    function open() {
+    function openDropdown() {
       dropdown.classList.add('open');
       input.setAttribute('aria-expanded', 'true');
     }
 
-    function close() {
+    function closeDropdown() {
       dropdown.classList.remove('open');
       dropdown.innerHTML = '';
       input.setAttribute('aria-expanded', 'false');
@@ -521,13 +622,13 @@
       } else if (e.key === 'Enter' && activeIdx >= 0 && items[activeIdx]) {
         navigate(items[activeIdx].dataset.slug);
       } else if (e.key === 'Escape') {
-        close();
+        closeDropdown();
         input.blur();
       }
     });
 
     document.addEventListener('click', function (e) {
-      if (!e.target.closest('.search-wrap')) close();
+      if (!e.target.closest('.search-wrap')) closeDropdown();
     });
   </script>
 </body>

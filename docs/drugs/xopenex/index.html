@@ -24,22 +24,60 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Xopenex (levalbuterol hydrochloride) — FDA Adverse Event Reports","description":"3,293 FDA adverse event reports for Xopenex (levalbuterol hydrochloride). Most reported: dyspnoea, pneumonia, asthma. Data from FDA FAERS via PillSignal.","url":"https://pillsignal.com/drugs/xopenex","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
-    /* ─── Custom properties ───────────────────────────────────────────────── */
-    :root {
-      --c-bg:             #ffffff;
-      --c-surface:        #f9fafb;
-      --c-border:         #e5e7eb;
-      --c-text:           #111827;
-      --c-text-muted:     #6b7280;
-      --c-primary:        #1d4f8a;
-      --c-primary-light:  #e8f0fb;
-      --c-notice-bg:      #fffbeb;
-      --c-notice-border:  #f59e0b;
-      --c-notice-text:    #78350f;
+    /* ─── Light theme (default) ──────────────────────────────────────────────── */
+    :root, [data-theme="light"] {
+      --c-bg:                   #ffffff;
+      --c-surface:              #f9fafb;
+      --c-border:               #e5e7eb;
+      --c-text:                 #111827;
+      --c-text-muted:           #6b7280;
+      --c-primary:              #1d4f8a;
+      --c-primary-hover:        #163d6b;
+      --c-primary-light:        #e8f0fb;
+      --c-notice-bg:            #fffbeb;
+      --c-notice-border:        #f59e0b;
+      --c-notice-text:          #78350f;
+      --c-notice-link:          #92400e;
+      --c-banner-bg:            #1a3a5c;
+      --c-banner-text:          #d1e0f0;
+      --c-banner-border:        rgba(255,255,255,0.35);
+      --c-banner-btn-hover:     rgba(255,255,255,0.1);
+      --c-chart-grid:           #f3f4f6;
+      --c-chart-label:          #6b7280;
+      --c-chart-tooltip-bg:     #ffffff;
+      --c-chart-tooltip-border: #e5e7eb;
+      --c-chart-tooltip-title:  #111827;
+      --c-chart-tooltip-body:   #374151;
       --font: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
     }
 
-    /* ─── Reset ───────────────────────────────────────────────────────────── */
+    /* ─── Dark theme ─────────────────────────────────────────────────────────── */
+    [data-theme="dark"] {
+      --c-bg:                   #0f172a;
+      --c-surface:              #1e293b;
+      --c-border:               #334155;
+      --c-text:                 #f1f5f9;
+      --c-text-muted:           #94a3b8;
+      --c-primary:              #60a5fa;
+      --c-primary-hover:        #93c5fd;
+      --c-primary-light:        #1e3a5f;
+      --c-notice-bg:            #1c1400;
+      --c-notice-border:        #d97706;
+      --c-notice-text:          #fde68a;
+      --c-notice-link:          #fbbf24;
+      --c-banner-bg:            #0c2340;
+      --c-banner-text:          #bdd5f0;
+      --c-banner-border:        rgba(255,255,255,0.2);
+      --c-banner-btn-hover:     rgba(255,255,255,0.08);
+      --c-chart-grid:           #273344;
+      --c-chart-label:          #94a3b8;
+      --c-chart-tooltip-bg:     #1e293b;
+      --c-chart-tooltip-border: #334155;
+      --c-chart-tooltip-title:  #f1f5f9;
+      --c-chart-tooltip-body:   #cbd5e1;
+    }
+
+    /* ─── Reset ──────────────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: var(--font);
@@ -47,20 +85,51 @@
       line-height: 1.6;
       color: var(--c-text);
       background: var(--c-bg);
+      transition: background 0.2s, color 0.2s;
     }
     a { color: var(--c-primary); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a:hover { text-decoration: underline; color: var(--c-primary-hover); }
     h1, h2, h3 { line-height: 1.25; }
 
-    /* ─── First-visit banner ──────────────────────────────────────────────── */
+    /* ─── Scrollbar ───────────────────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--c-surface); }
+    ::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--c-text-muted); }
+
+    /* ─── Theme toggle ────────────────────────────────────────────────────────── */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: none;
+      border: 1px solid var(--c-border);
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--c-text-muted);
+      padding: 0;
+      flex-shrink: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .theme-toggle:hover {
+      color: var(--c-primary);
+      border-color: var(--c-primary);
+      background: var(--c-primary-light);
+    }
+    [data-theme="light"] .icon-sun  { display: none; }
+    [data-theme="dark"]  .icon-moon { display: none; }
+
+    /* ─── First-visit banner ──────────────────────────────────────────────────── */
     /*
      * Banner is always in the DOM so crawlers read the disclaimer.
-     * A script in <head> adds .banner-seen to <html> if localStorage is set,
+     * The head script adds .banner-seen to <html> if localStorage is set,
      * hiding it before the page paints — no flash.
      */
     #disclaimer-banner {
-      background: #1a3a5c;
-      color: #d1e0f0;
+      background: var(--c-banner-bg);
+      color: var(--c-banner-text);
       font-size: 0.875rem;
       line-height: 1.5;
     }
@@ -78,8 +147,8 @@
     #banner-btn {
       flex-shrink: 0;
       background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      color: #d1e0f0;
+      border: 1px solid var(--c-banner-border);
+      color: var(--c-banner-text);
       padding: 0.3rem 1rem;
       border-radius: 4px;
       cursor: pointer;
@@ -88,12 +157,13 @@
       white-space: nowrap;
       transition: background 0.15s;
     }
-    #banner-btn:hover { background: rgba(255, 255, 255, 0.1); }
+    #banner-btn:hover { background: var(--c-banner-btn-hover); }
 
-    /* ─── Site header ─────────────────────────────────────────────────────── */
+    /* ─── Site header ─────────────────────────────────────────────────────────── */
     .site-header {
       border-bottom: 1px solid var(--c-border);
       padding: 0.875rem 1rem;
+      background: var(--c-bg);
     }
     .site-header .inner {
       max-width: 900px;
@@ -108,23 +178,26 @@
       color: var(--c-primary);
       letter-spacing: -0.02em;
     }
-    .logo:hover { text-decoration: none; }
+    .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
     .header-link {
       font-size: 0.875rem;
       color: var(--c-text-muted);
     }
 
-    /* ─── Layout ──────────────────────────────────────────────────────────── */
+    /* ─── Layout ──────────────────────────────────────────────────────────────── */
     main {
       max-width: 900px;
       margin: 0 auto;
       padding: 2rem 1rem 4rem;
     }
 
-    /* ─── Drug hero ───────────────────────────────────────────────────────── */
-    .drug-hero {
-      margin-bottom: 1.5rem;
-    }
+    /* ─── Drug hero ───────────────────────────────────────────────────────────── */
+    .drug-hero { margin-bottom: 1.5rem; }
     .drug-hero h1 {
       font-size: clamp(1.75rem, 4vw, 2.25rem);
       font-weight: 800;
@@ -139,14 +212,10 @@
       letter-spacing: 0;
       margin-top: 0.2rem;
     }
-    .drug-summary {
-      margin-top: 0.5rem;
-      font-size: 1rem;
-      color: var(--c-text-muted);
-    }
+    .drug-summary { margin-top: 0.5rem; font-size: 1rem; color: var(--c-text-muted); }
     .drug-summary strong { color: var(--c-text); }
 
-    /* ─── Notice boxes ────────────────────────────────────────────────────── */
+    /* ─── Notice boxes ────────────────────────────────────────────────────────── */
     .notice {
       background: var(--c-notice-bg);
       border-left: 4px solid var(--c-notice-border);
@@ -156,7 +225,7 @@
       color: var(--c-notice-text);
       margin-bottom: 1.5rem;
     }
-    .notice a { color: #92400e; font-weight: 500; }
+    .notice a { color: var(--c-notice-link); font-weight: 500; }
     .notice--footer {
       background: var(--c-surface);
       border-left-color: var(--c-border);
@@ -166,7 +235,7 @@
     }
     .notice--footer a { color: var(--c-text-muted); }
 
-    /* ─── Section cards ───────────────────────────────────────────────────── */
+    /* ─── Section cards ───────────────────────────────────────────────────────── */
     .card {
       background: var(--c-bg);
       border: 1px solid var(--c-border);
@@ -186,9 +255,7 @@
       line-height: 1.5;
       margin-bottom: 1.25rem;
     }
-    .card--source {
-      background: var(--c-surface);
-    }
+    .card--source { background: var(--c-surface); }
     .card--source p {
       font-size: 0.9rem;
       color: var(--c-text-muted);
@@ -203,27 +270,12 @@
       color: var(--c-primary);
     }
 
-    /* ─── Charts ──────────────────────────────────────────────────────────── */
-    .chart-wrap {
-      position: relative;
-      width: 100%;
-    }
-    /* Adverse events bar: height set in JS based on item count */
-    .chart-wrap--donut {
-      height: 280px;
-      max-width: 320px;
-      margin: 0 auto;
-    }
-    .chart-wrap--donut-lg {
-      height: 300px;
-      max-width: 400px;
-    }
-    .chart-wrap--bar {
-      height: 240px;
-    }
-    .chart-wrap--line {
-      height: 260px;
-    }
+    /* ─── Charts ──────────────────────────────────────────────────────────────── */
+    .chart-wrap { position: relative; width: 100%; }
+    .chart-wrap--donut    { height: 280px; max-width: 320px; margin: 0 auto; }
+    .chart-wrap--donut-lg { height: 300px; max-width: 400px; margin: 0 auto; }
+    .chart-wrap--bar      { height: 240px; }
+    .chart-wrap--line     { height: 260px; }
     .no-data {
       font-size: 0.875rem;
       color: var(--c-text-muted);
@@ -231,12 +283,8 @@
       padding: 2rem 0;
     }
 
-    /* ─── Demographics layout ─────────────────────────────────────────────── */
-    .demo-charts {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
+    /* ─── Demographics layout ─────────────────────────────────────────────────── */
+    .demo-charts { display: flex; flex-direction: column; gap: 2rem; }
     .demo-chart h3 {
       font-size: 0.8rem;
       font-weight: 600;
@@ -246,44 +294,45 @@
       margin-bottom: 0.75rem;
     }
 
-    /* ─── Footer ──────────────────────────────────────────────────────────── */
+    /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
       padding: 1.5rem 1rem;
       text-align: center;
       font-size: 0.8rem;
       color: var(--c-text-muted);
+      background: var(--c-bg);
     }
     .site-footer a { color: var(--c-text-muted); }
 
-    /* ─── Responsive ──────────────────────────────────────────────────────── */
+    /* ─── Responsive ──────────────────────────────────────────────────────────── */
     @media (min-width: 640px) {
-      .demo-charts {
-        flex-direction: row;
-        align-items: flex-start;
-      }
-      .demo-chart {
-        flex: 1;
-      }
+      .demo-charts { flex-direction: row; align-items: flex-start; }
+      .demo-chart  { flex: 1; }
     }
   </style>
 
   <!--
-    Hide the banner immediately (before first paint) if the user already dismissed it.
-    This prevents a flash of the banner for returning visitors.
+    Runs synchronously before CSS loads to prevent any flash of wrong theme or banner.
+    Sets data-theme on <html> and .banner-seen if applicable.
   -->
   <script>
-    if (localStorage.getItem('pillsignal_disclaimer_dismissed')) {
-      document.documentElement.classList.add('banner-seen');
-    }
+    (function () {
+      var saved = localStorage.getItem('pillsignal_theme');
+      var dark  = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+      if (localStorage.getItem('pillsignal_disclaimer_dismissed')) {
+        document.documentElement.classList.add('banner-seen');
+      }
+    }());
   </script>
 </head>
 <body>
 
-  <!-- ─── First-visit disclaimer banner (Legal requirement #7) ─────────────
+  <!-- ─── First-visit disclaimer banner (Legal requirement #7) ──────────────────
        Always rendered in HTML so crawlers read the disclaimer text.
        Hidden via CSS for users who have already dismissed it.
-  ──────────────────────────────────────────────────────────────────────── -->
+  ─────────────────────────────────────────────────────────────────────────────── -->
   <div id="disclaimer-banner" role="note" aria-label="Site disclaimer">
     <div class="banner-inner">
       <p>PillSignal presents data from the FDA's voluntary reporting system. This data does not prove that a medication caused any adverse event. Always consult your healthcare provider about your medications.</p>
@@ -291,15 +340,35 @@
     </div>
   </div>
 
-  <!-- ─── Header ──────────────────────────────────────────────────────────── -->
+  <!-- ─── Header ────────────────────────────────────────────────────────────── -->
   <header class="site-header">
     <div class="inner">
       <a href="/" class="logo">PillSignal</a>
-      <a href="/" class="header-link">← Search drugs</a>
+      <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <!-- Sun: shown in dark mode (click to go light) -->
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <line x1="12" y1="2"     x2="12" y2="6"/>
+            <line x1="12" y1="18"    x2="12" y2="22"/>
+            <line x1="4.93" y1="4.93"   x2="7.76"  y2="7.76"/>
+            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+            <line x1="2"  y1="12"    x2="6"  y2="12"/>
+            <line x1="18" y1="12"    x2="22" y2="12"/>
+            <line x1="4.93" y1="19.07"  x2="7.76"  y2="16.24"/>
+            <line x1="16.24" y1="7.76"  x2="19.07" y2="4.93"/>
+          </svg>
+          <!-- Moon: shown in light mode (click to go dark) -->
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <a href="/" class="header-link">← Search drugs</a>
+      </div>
     </div>
   </header>
 
-  <!-- ─── Main content ────────────────────────────────────────────────────── -->
+  <!-- ─── Main content ──────────────────────────────────────────────────────── -->
   <main>
 
     <!-- Drug hero -->
@@ -317,7 +386,7 @@
       <a href="https://www.fda.gov/drugs/questions-and-answers-fdas-adverse-event-reporting-system-faers/fda-adverse-event-reporting-system-faers-public-dashboard" target="_blank" rel="noopener noreferrer"> Learn more about FAERS.</a>
     </div>
 
-    <!-- ─── Top Adverse Events ──────────────────────────────────────────── -->
+    <!-- ─── Top Adverse Events ──────────────────────────────────────────────── -->
     <section class="card" aria-labelledby="ae-heading">
       <h2 id="ae-heading">Top Reported Adverse Events</h2>
       <p class="section-note">
@@ -330,7 +399,7 @@
       </div>
     </section>
 
-    <!-- ─── Demographics ────────────────────────────────────────────────── -->
+    <!-- ─── Demographics ────────────────────────────────────────────────────── -->
     <section class="card" aria-labelledby="demo-heading">
       <h2 id="demo-heading">Who Is Reporting</h2>
       <p class="section-note">
@@ -353,7 +422,7 @@
       </div>
     </section>
 
-    <!-- ─── Outcomes ────────────────────────────────────────────────────── -->
+    <!-- ─── Outcomes ────────────────────────────────────────────────────────── -->
     <section class="card" aria-labelledby="outcomes-heading">
       <h2 id="outcomes-heading">Reported Outcomes</h2>
       <p class="section-note">
@@ -366,7 +435,7 @@
       </div>
     </section>
 
-    <!-- ─── Trends ──────────────────────────────────────────────────────── -->
+    <!-- ─── Trends ──────────────────────────────────────────────────────────── -->
     <section class="card" aria-labelledby="trends-heading">
       <h2 id="trends-heading">Report Volume Over Time</h2>
       <p class="section-note">
@@ -379,7 +448,7 @@
       </div>
     </section>
 
-    <!-- ─── Data source ──────────────────────────────────────────────────── -->
+    <!-- ─── Data source ──────────────────────────────────────────────────────── -->
     <section class="card card--source" aria-labelledby="source-heading">
       <h2 id="source-heading">Data Source</h2>
       <p>
@@ -401,28 +470,28 @@
 
   </main>
 
-  <!-- ─── Footer ──────────────────────────────────────────────────────────── -->
+  <!-- ─── Footer ────────────────────────────────────────────────────────────── -->
   <footer class="site-footer">
     <p>
       Data sourced from <a href="https://open.fda.gov/" target="_blank" rel="noopener noreferrer">OpenFDA</a>.
       PillSignal is not affiliated with the FDA.
-      Page generated May 25, 2026.
+      Page generated May 26, 2026.
     </p>
   </footer>
 
-  <!-- ─── Chart data (injected by generate-pages.js) ──────────────────────── -->
+  <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
-    const ADVERSE_EVENTS = [{"label":"DYSPNOEA","value":418},{"label":"PNEUMONIA","value":295},{"label":"ASTHMA","value":240},{"label":"DRUG INEFFECTIVE","value":238},{"label":"COUGH","value":225},{"label":"FATIGUE","value":221},{"label":"OFF LABEL USE","value":204},{"label":"NAUSEA","value":183},{"label":"HEADACHE","value":176},{"label":"DEATH","value":167},{"label":"PAIN","value":155},{"label":"DIARRHOEA","value":153},{"label":"PRODUCT DOSE OMISSION ISSUE","value":133},{"label":"FALL","value":125},{"label":"DIZZINESS","value":121}];
-    const SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[2115,938,3]};
-    const AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[263,187,229,492,489,411]};
-    const OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[1254,1230,1198,333,113,38]};
-    const TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q4 2005","Q1 2006","Q3 2007","Q4 2007","Q2 2008","Q1 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[2,1,1,3,2,4,4,2,1,1,1,2,2,1,1,5,6,8,3,5,3,4,3,11,17,12,10,18,12,12,19,24,14,21,29,35,33,25,29,50,70,43,47,59,40,38,56,73,58,53,58,66,45,41,58,54,45,48,39,46,34,67,82,69,71,83,86,94,83,96,118,135,115,106,110,111,119,134,107]};
+    var ADVERSE_EVENTS = [{"label":"DYSPNOEA","value":418},{"label":"PNEUMONIA","value":295},{"label":"ASTHMA","value":240},{"label":"DRUG INEFFECTIVE","value":238},{"label":"COUGH","value":225},{"label":"FATIGUE","value":221},{"label":"OFF LABEL USE","value":204},{"label":"NAUSEA","value":183},{"label":"HEADACHE","value":176},{"label":"DEATH","value":167},{"label":"PAIN","value":155},{"label":"DIARRHOEA","value":153},{"label":"PRODUCT DOSE OMISSION ISSUE","value":133},{"label":"FALL","value":125},{"label":"DIZZINESS","value":121}];
+    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[2115,938,3]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[263,187,229,492,489,411]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[1254,1230,1198,333,113,38]};
+    var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q4 2005","Q1 2006","Q3 2007","Q4 2007","Q2 2008","Q1 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[2,1,1,3,2,4,4,2,1,1,1,2,2,1,1,5,6,8,3,5,3,4,3,11,17,12,10,18,12,12,19,24,14,21,29,35,33,25,29,50,70,43,47,59,40,38,56,73,58,53,58,66,45,41,58,54,45,48,39,46,34,67,82,69,71,83,86,94,83,96,118,135,115,106,110,111,119,134,107]};
   </script>
 
   <!-- Chart.js from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
-  <!-- ─── Charts + banner JS ──────────────────────────────────────────────── -->
+  <!-- ─── App JS ────────────────────────────────────────────────────────────── -->
   <script>
     // ── Banner dismiss ────────────────────────────────────────────────────────
     document.getElementById('banner-btn').addEventListener('click', function () {
@@ -430,26 +499,54 @@
       document.documentElement.classList.add('banner-seen');
     });
 
-    // ── Chart.js defaults ─────────────────────────────────────────────────────
-    Chart.defaults.font.family = "system-ui, -apple-system, 'Segoe UI', sans-serif";
-    Chart.defaults.font.size   = 12;
-    Chart.defaults.color       = '#6b7280';
-
-    // ── Adverse Events — horizontal bar chart ─────────────────────────────────
+    // ── Theme toggle ──────────────────────────────────────────────────────────
     (function () {
-      const wrap = document.getElementById('ae-wrap');
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('pillsignal_theme', next);
+        initAllCharts();
+      });
+      // Stay in sync when OS preference changes, if the user hasn't set a manual override
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+          if (!localStorage.getItem('pillsignal_theme')) {
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            initAllCharts();
+          }
+        });
+      }
+    }());
+
+    // ── Chart helpers ─────────────────────────────────────────────────────────
+    function getCSSVar(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+
+    function isDark() {
+      return document.documentElement.getAttribute('data-theme') === 'dark';
+    }
+
+    var CHARTS = {};
+
+    // ── Chart: Adverse Events (horizontal bar) ────────────────────────────────
+    function initChartAE() {
+      var wrap = document.getElementById('ae-wrap');
+      if (!wrap) return;
+      if (CHARTS.ae) { CHARTS.ae.destroy(); CHARTS.ae = null; }
       if (!ADVERSE_EVENTS.length) {
-        wrap.innerHTML = '<p class="no-data">No adverse event data available.</p>';
+        if (!wrap.querySelector('.no-data'))
+          wrap.innerHTML = '<p class="no-data">No adverse event data available.</p>';
         return;
       }
       wrap.style.height = Math.max(260, ADVERSE_EVENTS.length * 34 + 60) + 'px';
-      new Chart(document.getElementById('chart-ae'), {
+      CHARTS.ae = new Chart(document.getElementById('chart-ae'), {
         type: 'bar',
         data: {
-          labels:   ADVERSE_EVENTS.map(d => d.label),
+          labels:   ADVERSE_EVENTS.map(function (d) { return d.label; }),
           datasets: [{
-            data:            ADVERSE_EVENTS.map(d => d.value),
-            backgroundColor: 'rgba(29, 79, 138, 0.75)',
+            data:            ADVERSE_EVENTS.map(function (d) { return d.value; }),
+            backgroundColor: isDark() ? 'rgba(96,165,250,0.8)' : 'rgba(29,79,138,0.75)',
             borderRadius:    3,
           }]
         },
@@ -457,152 +554,250 @@
           indexAxis:           'y',
           responsive:          true,
           maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: getCSSVar('--c-chart-tooltip-bg'),
+              borderColor:     getCSSVar('--c-chart-tooltip-border'),
+              borderWidth:     1,
+              titleColor:      getCSSVar('--c-chart-tooltip-title'),
+              bodyColor:       getCSSVar('--c-chart-tooltip-body'),
+            }
+          },
           scales: {
-            x: { grid: { color: '#f3f4f6' }, border: { display: false } },
-            y: { grid: { display: false },   border: { display: false } }
+            x: {
+              grid:   { color: getCSSVar('--c-chart-grid') },
+              border: { display: false },
+              ticks:  { color: getCSSVar('--c-chart-label') }
+            },
+            y: {
+              grid:   { display: false },
+              border: { display: false },
+              ticks:  { color: getCSSVar('--c-chart-label') }
+            }
           }
         }
       });
-    }());
+    }
 
-    // ── Sex — donut chart ─────────────────────────────────────────────────────
-    (function () {
-      const canvas = document.getElementById('chart-sex');
+    // ── Chart: Sex (donut) ────────────────────────────────────────────────────
+    function initChartSex() {
+      var canvas = document.getElementById('chart-sex');
+      if (!canvas) return;
+      if (CHARTS.sex) { CHARTS.sex.destroy(); CHARTS.sex = null; }
       if (!SEX_DATA.labels.length) {
         canvas.closest('.chart-wrap').innerHTML = '<p class="no-data">No sex data available.</p>';
         return;
       }
-      new Chart(canvas, {
+      CHARTS.sex = new Chart(canvas, {
         type: 'doughnut',
         data: {
           labels:   SEX_DATA.labels,
           datasets: [{
             data:            SEX_DATA.values,
-            backgroundColor: ['#1d4f8a', '#5b8fc9', '#b8d1ed'],
+            backgroundColor: isDark()
+              ? ['#3b82f6', '#93c5fd', '#4b5563']
+              : ['#1d4f8a', '#5b8fc9', '#b8d1ed'],
             borderWidth:     2,
-            borderColor:     '#ffffff',
+            borderColor:     getCSSVar('--c-bg'),
           }]
         },
         options: {
           responsive:          true,
           maintainAspectRatio: false,
           plugins: {
-            legend: { position: 'bottom', labels: { padding: 14, boxWidth: 12 } }
+            legend: {
+              position: 'bottom',
+              labels: { padding: 14, boxWidth: 12, color: getCSSVar('--c-chart-label') }
+            },
+            tooltip: {
+              backgroundColor: getCSSVar('--c-chart-tooltip-bg'),
+              borderColor:     getCSSVar('--c-chart-tooltip-border'),
+              borderWidth:     1,
+              titleColor:      getCSSVar('--c-chart-tooltip-title'),
+              bodyColor:       getCSSVar('--c-chart-tooltip-body'),
+            }
           }
         }
       });
-    }());
+    }
 
-    // ── Age — vertical bar chart ──────────────────────────────────────────────
-    (function () {
-      const canvas = document.getElementById('chart-age');
+    // ── Chart: Age (vertical bar) ─────────────────────────────────────────────
+    function initChartAge() {
+      var canvas = document.getElementById('chart-age');
+      if (!canvas) return;
+      if (CHARTS.age) { CHARTS.age.destroy(); CHARTS.age = null; }
       if (!AGE_DATA.labels.length) {
         canvas.closest('.chart-wrap').innerHTML = '<p class="no-data">No age data available.</p>';
         return;
       }
-      new Chart(canvas, {
+      CHARTS.age = new Chart(canvas, {
         type: 'bar',
         data: {
           labels:   AGE_DATA.labels,
           datasets: [{
             data:            AGE_DATA.values,
-            backgroundColor: ['#1d3f6e', '#1d4f8a', '#2e6db4', '#5b8fc9', '#8cb5de', '#b8d1ed'],
+            backgroundColor: isDark()
+              ? ['#1e40af', '#2563eb', '#3b82f6', '#60a5fa', '#93c5fd', '#bfdbfe']
+              : ['#1d3f6e', '#1d4f8a', '#2e6db4', '#5b8fc9', '#8cb5de', '#b8d1ed'],
             borderRadius:    3,
           }]
         },
         options: {
           responsive:          true,
           maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: getCSSVar('--c-chart-tooltip-bg'),
+              borderColor:     getCSSVar('--c-chart-tooltip-border'),
+              borderWidth:     1,
+              titleColor:      getCSSVar('--c-chart-tooltip-title'),
+              bodyColor:       getCSSVar('--c-chart-tooltip-body'),
+            }
+          },
           scales: {
-            x: { grid: { display: false }, border: { display: false } },
-            y: { grid: { color: '#f3f4f6' }, border: { display: false }, beginAtZero: true }
+            x: {
+              grid:   { display: false },
+              border: { display: false },
+              ticks:  { color: getCSSVar('--c-chart-label') }
+            },
+            y: {
+              grid:        { color: getCSSVar('--c-chart-grid') },
+              border:      { display: false },
+              beginAtZero: true,
+              ticks:       { color: getCSSVar('--c-chart-label') }
+            }
           }
         }
       });
-    }());
+    }
 
-    // ── Outcomes — donut chart ────────────────────────────────────────────────
+    // ── Chart: Outcomes (donut) ───────────────────────────────────────────────
     // Colors are deliberately neutral — no red. Death is dark gray, not alarm red.
-    (function () {
-      const canvas = document.getElementById('chart-outcomes');
+    // Dark mode uses lighter tones for contrast against the dark background.
+    function initChartOutcomes() {
+      var canvas = document.getElementById('chart-outcomes');
+      if (!canvas) return;
+      if (CHARTS.outcomes) { CHARTS.outcomes.destroy(); CHARTS.outcomes = null; }
       if (!OUTCOMES_DATA.labels.length) {
         canvas.closest('.chart-wrap').innerHTML = '<p class="no-data">No outcome data available.</p>';
         return;
       }
-      // Map label → color for consistent assignment regardless of order
-      const COLOR_MAP = {
-        'Death':                '#374151', // dark gray
-        'Hospitalization':      '#1d4f8a', // dark blue
-        'Life-Threatening':     '#4a80ba', // medium blue
-        'Disability':           '#7aaad1', // lighter blue
-        'Other Serious':        '#a8c8e8', // pale blue
-        'Non-Serious':          '#d6e8f5', // very pale blue
+      var COLOR_MAP = isDark() ? {
+        'Death':            '#64748b',
+        'Hospitalization':  '#3b82f6',
+        'Life-Threatening': '#60a5fa',
+        'Disability':       '#93c5fd',
+        'Other Serious':    '#bfdbfe',
+        'Non-Serious':      '#dbeafe',
+      } : {
+        'Death':            '#374151',
+        'Hospitalization':  '#1d4f8a',
+        'Life-Threatening': '#4a80ba',
+        'Disability':       '#7aaad1',
+        'Other Serious':    '#a8c8e8',
+        'Non-Serious':      '#d6e8f5',
       };
-      const colors = OUTCOMES_DATA.labels.map(l => COLOR_MAP[l] || '#9ca3af');
-      new Chart(canvas, {
+      CHARTS.outcomes = new Chart(canvas, {
         type: 'doughnut',
         data: {
           labels:   OUTCOMES_DATA.labels,
           datasets: [{
             data:            OUTCOMES_DATA.values,
-            backgroundColor: colors,
+            backgroundColor: OUTCOMES_DATA.labels.map(function (l) { return COLOR_MAP[l] || '#9ca3af'; }),
             borderWidth:     2,
-            borderColor:     '#ffffff',
+            borderColor:     getCSSVar('--c-bg'),
           }]
         },
         options: {
           responsive:          true,
           maintainAspectRatio: false,
           plugins: {
-            legend: { position: 'bottom', labels: { padding: 14, boxWidth: 12 } }
+            legend: {
+              position: 'bottom',
+              labels: { padding: 14, boxWidth: 12, color: getCSSVar('--c-chart-label') }
+            },
+            tooltip: {
+              backgroundColor: getCSSVar('--c-chart-tooltip-bg'),
+              borderColor:     getCSSVar('--c-chart-tooltip-border'),
+              borderWidth:     1,
+              titleColor:      getCSSVar('--c-chart-tooltip-title'),
+              bodyColor:       getCSSVar('--c-chart-tooltip-body'),
+            }
           }
         }
       });
-    }());
+    }
 
-    // ── Trends — line chart ───────────────────────────────────────────────────
-    (function () {
-      const canvas = document.getElementById('chart-trends');
+    // ── Chart: Trends (line) ──────────────────────────────────────────────────
+    function initChartTrend() {
+      var canvas = document.getElementById('chart-trends');
+      if (!canvas) return;
+      if (CHARTS.trend) { CHARTS.trend.destroy(); CHARTS.trend = null; }
       if (!TRENDS_DATA.labels.length) {
         canvas.closest('.chart-wrap').innerHTML = '<p class="no-data">No trend data available.</p>';
         return;
       }
-      new Chart(canvas, {
+      CHARTS.trend = new Chart(canvas, {
         type: 'line',
         data: {
           labels:   TRENDS_DATA.labels,
           datasets: [{
-            data:            TRENDS_DATA.values,
-            borderColor:     '#1d4f8a',
-            backgroundColor: 'rgba(29, 79, 138, 0.07)',
-            borderWidth:     2,
-            pointRadius:     2,
+            data:             TRENDS_DATA.values,
+            borderColor:      isDark() ? '#60a5fa' : '#1d4f8a',
+            backgroundColor:  isDark() ? 'rgba(96,165,250,0.08)' : 'rgba(29,79,138,0.07)',
+            borderWidth:      2,
+            pointRadius:      2,
             pointHoverRadius: 4,
-            fill:            true,
-            tension:         0.3,
+            fill:             true,
+            tension:          0.3,
           }]
         },
         options: {
           responsive:          true,
           maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: getCSSVar('--c-chart-tooltip-bg'),
+              borderColor:     getCSSVar('--c-chart-tooltip-border'),
+              borderWidth:     1,
+              titleColor:      getCSSVar('--c-chart-tooltip-title'),
+              bodyColor:       getCSSVar('--c-chart-tooltip-body'),
+            }
+          },
           scales: {
             x: {
-              grid:  { display: false },
+              grid:   { display: false },
               border: { display: false },
-              ticks: { maxTicksLimit: 12 }
+              ticks:  { maxTicksLimit: 12, color: getCSSVar('--c-chart-label') }
             },
             y: {
-              grid:        { color: '#f3f4f6' },
+              grid:        { color: getCSSVar('--c-chart-grid') },
               border:      { display: false },
-              beginAtZero: true
+              beginAtZero: true,
+              ticks:       { color: getCSSVar('--c-chart-label') }
             }
           }
         }
       });
-    }());
+    }
+
+    // ── Initialize / reinitialize all charts ──────────────────────────────────
+    // Called on page load and again whenever the theme changes.
+    function initAllCharts() {
+      Chart.defaults.font.family = "system-ui, -apple-system, 'Segoe UI', sans-serif";
+      Chart.defaults.font.size   = 12;
+      Chart.defaults.color       = getCSSVar('--c-chart-label');
+      initChartAE();
+      initChartSex();
+      initChartAge();
+      initChartOutcomes();
+      initChartTrend();
+    }
+
+    initAllCharts();
   </script>
 
 </body>
