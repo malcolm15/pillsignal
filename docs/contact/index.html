@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contact — PillSignal</title>
+  <meta name="description" content="Contact PillSignal with questions, feedback, or privacy concerns. Reach us at hello@pillsignal.com.">
+  <link rel="canonical" href="https://pillsignal.com/contact">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Contact — PillSignal">
+  <meta property="og:description" content="Contact PillSignal with questions, feedback, or privacy concerns. Reach us at hello@pillsignal.com.">
+  <meta property="og:url"         content="https://pillsignal.com/contact">
+  <meta property="og:site_name"   content="PillSignal">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary">
+  <meta name="twitter:title"       content="Contact — PillSignal">
+  <meta name="twitter:description" content="Contact PillSignal with questions, feedback, or privacy concerns. Reach us at hello@pillsignal.com.">
+
+  <style>
+    :root, [data-theme="light"] {
+      --c-bg:               #ffffff;
+      --c-surface:          #f9fafb;
+      --c-border:           #e5e7eb;
+      --c-text:             #111827;
+      --c-text-muted:       #6b7280;
+      --c-primary:          #1d4f8a;
+      --c-primary-hover:    #163d6b;
+      --c-primary-light:    #e8f0fb;
+      --c-banner-bg:        #1a3a5c;
+      --c-banner-text:      #d1e0f0;
+      --c-banner-border:    rgba(255,255,255,0.35);
+      --c-banner-btn-hover: rgba(255,255,255,0.1);
+      --font: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+    [data-theme="dark"] {
+      --c-bg:               #0f172a;
+      --c-surface:          #1e293b;
+      --c-border:           #334155;
+      --c-text:             #f1f5f9;
+      --c-text-muted:       #94a3b8;
+      --c-primary:          #60a5fa;
+      --c-primary-hover:    #93c5fd;
+      --c-primary-light:    #1e3a5f;
+      --c-banner-bg:        #0c2340;
+      --c-banner-text:      #bdd5f0;
+      --c-banner-border:    rgba(255,255,255,0.2);
+      --c-banner-btn-hover: rgba(255,255,255,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--c-text);
+      background: var(--c-bg);
+      transition: background 0.2s, color 0.2s;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: var(--c-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--c-primary-hover); }
+    h1, h2 { line-height: 1.25; }
+    .theme-toggle {
+      display: flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+      background: none;
+      border: 1px solid var(--c-border);
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--c-text-muted);
+      padding: 0; flex-shrink: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
+    [data-theme="light"] .icon-sun  { display: none; }
+    [data-theme="dark"]  .icon-moon { display: none; }
+    #disclaimer-banner { background: var(--c-banner-bg); color: var(--c-banner-text); font-size: 0.875rem; line-height: 1.5; }
+    .banner-seen #disclaimer-banner { display: none; }
+    .banner-inner { max-width: 900px; margin: 0 auto; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .banner-inner p { flex: 1; min-width: 200px; }
+    #banner-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--c-banner-border); color: var(--c-banner-text); padding: 0.3rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-family: var(--font); white-space: nowrap; transition: background 0.15s; }
+    #banner-btn:hover { background: var(--c-banner-btn-hover); }
+    .site-header { border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); }
+    .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.1rem; font-weight: 700; color: var(--c-primary); letter-spacing: -0.02em; }
+    .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
+    .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .header-link { font-size: 0.875rem; color: var(--c-text-muted); }
+    main { flex: 1; }
+    .prose { max-width: 720px; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
+    .prose h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.03em; color: var(--c-text); margin-bottom: 0.5rem; }
+    .prose .lead { font-size: 1.05rem; color: var(--c-text-muted); margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--c-border); }
+    .prose p { color: var(--c-text-muted); margin-bottom: 1rem; }
+    .contact-email {
+      display: inline-block;
+      margin: 1.5rem 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--c-primary);
+      letter-spacing: -0.01em;
+    }
+    .contact-email:hover { color: var(--c-primary-hover); }
+    .site-footer { border-top: 1px solid var(--c-border); padding: 1.5rem 1rem; text-align: center; font-size: 0.8rem; color: var(--c-text-muted); background: var(--c-bg); }
+    .site-footer a { color: var(--c-text-muted); }
+    .site-footer a:hover { color: var(--c-primary); text-decoration: none; }
+    .footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+  </style>
+
+  <script>
+    (function () {
+      var saved = localStorage.getItem('pillsignal_theme');
+      var dark  = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+      if (localStorage.getItem('pillsignal_disclaimer_dismissed')) {
+        document.documentElement.classList.add('banner-seen');
+      }
+    }());
+  </script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZEDB8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5ZEDB8Z5P');
+  </script>
+</head>
+<body>
+
+  <div id="disclaimer-banner" role="note" aria-label="Site disclaimer">
+    <div class="banner-inner">
+      <p>PillSignal presents data from the FDA's voluntary reporting system. This data does not prove that a medication caused any adverse event. Always consult your healthcare provider about your medications.</p>
+      <button id="banner-btn" type="button">I understand</button>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="inner">
+      <a href="/" class="logo">PillSignal</a>
+      <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>
+            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+            <line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
+            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+          </svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <a href="/" class="header-link">← Search drugs</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <article class="prose">
+      <h1>Contact</h1>
+      <p class="lead">Have a question about the data? Feedback on the site? A privacy concern or data request? We'd love to hear from you.</p>
+
+      <p>Email us at:</p>
+      <a href="mailto:hello@pillsignal.com" class="contact-email">hello@pillsignal.com</a>
+
+      <p>We read every message and typically respond within a few business days.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>Data sourced from the <a href="https://open.fda.gov/apis/drug/event/" target="_blank" rel="noopener noreferrer">FDA Adverse Event Reporting System (FAERS)</a> via OpenFDA. PillSignal is not affiliated with the FDA.</p>
+    <nav class="footer-nav" aria-label="Site links">
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </footer>
+
+  <script>
+    document.getElementById('banner-btn').addEventListener('click', function () {
+      localStorage.setItem('pillsignal_disclaimer_dismissed', '1');
+      document.documentElement.classList.add('banner-seen');
+    });
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('pillsignal_theme', next);
+    });
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+        if (!localStorage.getItem('pillsignal_theme')) {
+          document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

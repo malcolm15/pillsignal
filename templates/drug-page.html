@@ -326,6 +326,8 @@
       background: var(--c-bg);
     }
     .site-footer a { color: var(--c-text-muted); }
+    .site-footer a:hover { color: var(--c-primary); text-decoration: none; }
+    .footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
 
     /* ─── Responsive ──────────────────────────────────────────────────────────── */
     @media (min-width: 640px) {
@@ -511,6 +513,12 @@
       PillSignal is not affiliated with the FDA.
       Page generated {{GENERATED_DATE}}.
     </p>
+    <nav class="footer-nav" aria-label="Site links">
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="/contact">Contact</a>
+    </nav>
   </footer>
 
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
