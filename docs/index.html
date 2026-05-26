@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PillSignal — Explore FDA Adverse Event Reports for Prescription Medications</title>
+  <meta name="description" content="Search FDA adverse event reports for prescription medications. PillSignal makes FAERS data accessible — see reported events, demographics, and trends for 200+ drugs.">
+  <link rel="canonical" href="https://pillsignal.com">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="PillSignal — Explore FDA Adverse Event Reports for Prescription Medications">
+  <meta property="og:description" content="Search FDA adverse event reports for prescription medications. PillSignal makes FAERS data accessible and understandable.">
+  <meta property="og:url"         content="https://pillsignal.com">
+  <meta property="og:site_name"   content="PillSignal">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary">
+  <meta name="twitter:title"       content="PillSignal — Explore FDA Adverse Event Reports">
+  <meta name="twitter:description" content="Search FDA adverse event reports for prescription medications. FAERS data, made accessible.">
+
+  <!-- JSON-LD: WebSite with SearchAction for Google Sitelinks Searchbox -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "PillSignal",
+    "url": "https://pillsignal.com",
+    "description": "Explore FDA adverse event reports for prescription medications.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://pillsignal.com/drugs/{search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <style>
+    /* ─── Custom properties (match drug-page.html exactly) ───────────────────── */
+    :root {
+      --c-bg:             #ffffff;
+      --c-surface:        #f9fafb;
+      --c-border:         #e5e7eb;
+      --c-text:           #111827;
+      --c-text-muted:     #6b7280;
+      --c-primary:        #1d4f8a;
+      --c-primary-light:  #e8f0fb;
+      --c-notice-bg:      #fffbeb;
+      --c-notice-border:  #f59e0b;
+      --c-notice-text:    #78350f;
+      --font: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+
+    /* ─── Reset ──────────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--c-text);
+      background: var(--c-bg);
+    }
+    a { color: var(--c-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1, h2, h3 { line-height: 1.25; }
+
+    /* ─── Accessibility ───────────────────────────────────────────────────────── */
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ─── First-visit banner (same as drug pages) ────────────────────────────── */
+    #disclaimer-banner {
+      background: #1a3a5c;
+      color: #d1e0f0;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+    .banner-seen #disclaimer-banner { display: none; }
+    .banner-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .banner-inner p { flex: 1; min-width: 200px; }
+    #banner-btn {
+      flex-shrink: 0;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: #d1e0f0;
+      padding: 0.3rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-family: var(--font);
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+    #banner-btn:hover { background: rgba(255,255,255,0.1); }
+
+    /* ─── Site header ────────────────────────────────────────────────────────── */
+    .site-header {
+      border-bottom: 1px solid var(--c-border);
+      padding: 0.875rem 1rem;
+    }
+    .site-header .inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--c-primary);
+      letter-spacing: -0.02em;
+    }
+    .logo:hover { text-decoration: none; }
+
+    /* ─── Hero ───────────────────────────────────────────────────────────────── */
+    .hero {
+      background: var(--c-surface);
+      border-bottom: 1px solid var(--c-border);
+      padding: 3.5rem 1rem 3rem;
+      text-align: center;
+    }
+    .hero-wordmark {
+      font-size: clamp(2.25rem, 6vw, 3.25rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--c-primary);
+      margin-bottom: 0.5rem;
+    }
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      color: var(--c-text-muted);
+      margin-bottom: 2rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ─── Search ─────────────────────────────────────────────────────────────── */
+    .search-wrap {
+      position: relative;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .search-input {
+      width: 100%;
+      padding: 0.9rem 1.25rem;
+      font-size: 1rem;
+      font-family: var(--font);
+      color: var(--c-text);
+      background: var(--c-bg);
+      border: 2px solid var(--c-border);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      -webkit-appearance: none;
+    }
+    .search-input:focus {
+      border-color: var(--c-primary);
+      box-shadow: 0 0 0 3px var(--c-primary-light);
+    }
+    .search-input::placeholder { color: var(--c-text-muted); }
+
+    /* ─── Dropdown ───────────────────────────────────────────────────────────── */
+    .search-dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: var(--c-bg);
+      border: 1px solid var(--c-border);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      z-index: 100;
+      overflow: hidden;
+      display: none;
+      text-align: left;
+    }
+    .search-dropdown.open { display: block; }
+    .dropdown-item {
+      display: block;
+      width: 100%;
+      padding: 0.75rem 1.25rem;
+      text-align: left;
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--c-border);
+      cursor: pointer;
+      font-family: var(--font);
+      color: var(--c-text);
+      transition: background 0.1s;
+    }
+    .dropdown-item:last-child { border-bottom: none; }
+    .dropdown-item:hover,
+    .dropdown-item.active { background: var(--c-primary-light); }
+    .dropdown-item .drug-brand {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .dropdown-item .drug-generic {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+    .dropdown-no-results {
+      padding: 0.875rem 1.25rem;
+      font-size: 0.875rem;
+      color: var(--c-text-muted);
+    }
+
+    /* ─── Main content ───────────────────────────────────────────────────────── */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.5rem 1rem 4rem;
+    }
+
+    /* ─── Info sections ──────────────────────────────────────────────────────── */
+    .info-section { margin-bottom: 2.5rem; }
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--c-text);
+      margin-bottom: 0.75rem;
+    }
+    .info-section p {
+      color: var(--c-text-muted);
+      margin-bottom: 0.875rem;
+    }
+    .info-section p:last-child { margin-bottom: 0; }
+
+    /* ─── Feature grid ───────────────────────────────────────────────────────── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .feature-card {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: 8px;
+      padding: 1.125rem 1.25rem;
+    }
+    .feature-card h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--c-text);
+      margin-bottom: 0.3rem;
+    }
+    .feature-card p {
+      font-size: 0.875rem;
+      color: var(--c-text-muted);
+      margin: 0;
+    }
+
+    /* ─── Notice boxes (match drug pages) ───────────────────────────────────── */
+    .notice {
+      background: var(--c-notice-bg);
+      border-left: 4px solid var(--c-notice-border);
+      border-radius: 0 6px 6px 0;
+      padding: 0.875rem 1rem;
+      font-size: 0.875rem;
+      color: var(--c-notice-text);
+      margin-bottom: 1.5rem;
+    }
+    .notice a { color: #92400e; font-weight: 500; }
+    .notice--footer {
+      background: var(--c-surface);
+      border-left-color: var(--c-border);
+      color: var(--c-text-muted);
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .notice--footer a { color: var(--c-text-muted); }
+
+    /* ─── Divider ────────────────────────────────────────────────────────────── */
+    .divider { border: none; border-top: 1px solid var(--c-border); margin: 2rem 0; }
+
+    /* ─── Footer ─────────────────────────────────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid var(--c-border);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+    .site-footer a { color: var(--c-text-muted); }
+
+    /* ─── Responsive ─────────────────────────────────────────────────────────── */
+    @media (min-width: 600px) {
+      .feature-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+
+  <!--
+    Hide banner before first paint for returning visitors — no flash.
+    Same pattern as drug pages.
+  -->
+  <script>
+    if (localStorage.getItem('pillsignal_disclaimer_dismissed')) {
+      document.documentElement.classList.add('banner-seen');
+    }
+  </script>
+</head>
+<body>
+
+  <!-- ─── First-visit disclaimer banner ────────────────────────────────────────
+       Always in the DOM so crawlers read the disclaimer. Hidden via CSS class.
+  ──────────────────────────────────────────────────────────────────────────── -->
+  <div id="disclaimer-banner" role="note" aria-label="Site disclaimer">
+    <div class="banner-inner">
+      <p>PillSignal presents data from the FDA's voluntary reporting system. This data does not prove that a medication caused any adverse event. Always consult your healthcare provider about your medications.</p>
+      <button id="banner-btn" type="button">I understand</button>
+    </div>
+  </div>
+
+  <!-- ─── Header ───────────────────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="inner">
+      <a href="/" class="logo">PillSignal</a>
+    </div>
+  </header>
+
+  <!-- ─── Hero / search ────────────────────────────────────────────────────── -->
+  <section class="hero" aria-label="Drug search">
+    <p class="hero-wordmark" aria-hidden="true">PillSignal</p>
+    <h1 class="sr-only">PillSignal — FDA Adverse Event Reports</h1>
+    <p class="hero-tagline">Explore FDA adverse event reports for prescription medications</p>
+    <div class="search-wrap" role="search">
+      <label for="drug-search" class="sr-only">Search for a medication</label>
+      <input
+        id="drug-search"
+        class="search-input"
+        type="search"
+        autocomplete="off"
+        autocorrect="off"
+        spellcheck="false"
+        placeholder="Search by drug name (e.g. Lipitor, metformin)"
+        aria-label="Search for a medication"
+        aria-autocomplete="list"
+        aria-controls="search-results"
+        aria-expanded="false"
+      >
+      <div id="search-results" class="search-dropdown" role="listbox" aria-label="Search results"></div>
+    </div>
+  </section>
+
+  <!-- ─── Main content ─────────────────────────────────────────────────────── -->
+  <main>
+
+    <section class="info-section" aria-labelledby="about-heading">
+      <h2 class="section-title" id="about-heading">What is PillSignal?</h2>
+      <p>PillSignal makes FDA adverse event data easy to explore. When people experience unexpected reactions while taking a medication, they — or their doctors — can report it to the FDA through the Adverse Event Reporting System (FAERS). These reports are publicly available, but buried in a database most people have never heard of.</p>
+      <p>PillSignal surfaces that data in plain language: how many reports exist for a drug, what events were reported, who reported them, and how the numbers have changed over time.</p>
+      <p>This is real-world data from real patients — different from drug label information, and often more reflective of everyday experience.</p>
+    </section>
+
+    <hr class="divider">
+
+    <section class="info-section" aria-labelledby="features-heading">
+      <h2 class="section-title" id="features-heading">What you'll find on each drug page</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Reported events</h3>
+          <p>The most frequently reported adverse events for the drug, ranked by how often they appear in FDA reports.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Demographics</h3>
+          <p>Breakdown of who is filing reports — by age group and sex — giving context to the reporting population.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Outcome severity</h3>
+          <p>How serious the reported outcomes were: hospitalization, life-threatening events, disability, and more.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Trends over time</h3>
+          <p>Quarterly report volume going back years, showing whether reporting has increased, decreased, or stayed steady.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <div class="notice" role="note">
+      <strong>About this data:</strong> This data reflects voluntary reports submitted to the FDA's Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors. <a href="https://www.fda.gov/drugs/questions-answers/fda-adverse-event-reporting-system-faers-public-dashboard" target="_blank" rel="noopener">Learn more about FAERS</a>.
+    </div>
+
+    <div class="notice notice--footer" role="note">
+      PillSignal is not a substitute for professional medical advice. Always consult your healthcare provider about your medications and health conditions.
+    </div>
+
+  </main>
+
+  <!-- ─── Footer ───────────────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <p>Data sourced from the <a href="https://open.fda.gov/apis/drug/event/" target="_blank" rel="noopener">FDA Adverse Event Reporting System (FAERS)</a> via OpenFDA. &copy; 2025 PillSignal.</p>
+  </footer>
+
+  <script>
+    // ── Banner dismiss ────────────────────────────────────────────────────────
+    document.getElementById('banner-btn').addEventListener('click', function () {
+      localStorage.setItem('pillsignal_disclaimer_dismissed', '1');
+      document.documentElement.classList.add('banner-seen');
+    });
+
+    // ── Drug search ───────────────────────────────────────────────────────────
+    var input     = document.getElementById('drug-search');
+    var dropdown  = document.getElementById('search-results');
+    var drugs     = [];
+    var activeIdx = -1;
+
+    fetch('js/drug-index.json')
+      .then(function (r) { return r.json(); })
+      .then(function (data) { drugs = data; })
+      .catch(function () { /* search unavailable if file is missing */ });
+
+    function navigate(slug) {
+      window.location.href = '/drugs/' + slug;
+    }
+
+    function escHtml(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function highlight(text, query) {
+      var i = text.toLowerCase().indexOf(query);
+      if (i === -1) return escHtml(text);
+      return escHtml(text.slice(0, i)) +
+             '<strong>' + escHtml(text.slice(i, i + query.length)) + '</strong>' +
+             escHtml(text.slice(i + query.length));
+    }
+
+    function render(query) {
+      var q = query.trim().toLowerCase();
+      if (!q) { close(); return; }
+
+      var matches = drugs
+        .filter(function (d) {
+          return d.brand_name.toLowerCase().includes(q) ||
+                 d.generic_name.toLowerCase().includes(q);
+        })
+        .sort(function (a, b) {
+          var aFirst = a.brand_name.toLowerCase().startsWith(q) ? 0 : 1;
+          var bFirst = b.brand_name.toLowerCase().startsWith(q) ? 0 : 1;
+          return aFirst - bFirst;
+        })
+        .slice(0, 8);
+
+      if (!matches.length) {
+        dropdown.innerHTML = '<div class="dropdown-no-results">No results for “' + escHtml(query.trim()) + '”</div>';
+        open();
+        return;
+      }
+
+      dropdown.innerHTML = matches.map(function (d, i) {
+        return '<button class="dropdown-item" role="option" data-slug="' + d.slug + '" data-i="' + i + '">' +
+               '<span class="drug-brand">'   + highlight(d.brand_name,   q) + '</span>' +
+               '<span class="drug-generic">' + highlight(d.generic_name, q) + '</span>' +
+               '</button>';
+      }).join('');
+
+      dropdown.querySelectorAll('.dropdown-item').forEach(function (btn) {
+        btn.addEventListener('click', function () { navigate(this.dataset.slug); });
+      });
+
+      activeIdx = -1;
+      open();
+    }
+
+    function open() {
+      dropdown.classList.add('open');
+      input.setAttribute('aria-expanded', 'true');
+    }
+
+    function close() {
+      dropdown.classList.remove('open');
+      dropdown.innerHTML = '';
+      input.setAttribute('aria-expanded', 'false');
+      activeIdx = -1;
+    }
+
+    function setActive(idx) {
+      var items = dropdown.querySelectorAll('.dropdown-item');
+      items.forEach(function (el) { el.classList.remove('active'); });
+      if (idx >= 0 && idx < items.length) {
+        items[idx].classList.add('active');
+        items[idx].scrollIntoView({ block: 'nearest' });
+      }
+      activeIdx = idx;
+    }
+
+    input.addEventListener('input', function () { render(this.value); });
+
+    input.addEventListener('keydown', function (e) {
+      var items = dropdown.querySelectorAll('.dropdown-item');
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setActive(Math.min(activeIdx + 1, items.length - 1));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setActive(Math.max(activeIdx - 1, -1));
+      } else if (e.key === 'Enter' && activeIdx >= 0 && items[activeIdx]) {
+        navigate(items[activeIdx].dataset.slug);
+      } else if (e.key === 'Escape') {
+        close();
+        input.blur();
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.search-wrap')) close();
+    });
+  </script>
+</body>
+</html>

@@ -146,7 +146,7 @@ Each drug page should include:
 ```
 OPENFDA_API_KEY=         # OpenFDA API key for higher rate limits
 SUPABASE_URL=            # Supabase project URL
-SUPABASE_SERVICE_KEY=    # Supabase service role key (never expose client-side)
+SUPABASE_SERVICE_KEY=    # Supabase secret key (sb_secret_..., never expose client-side)
 ```
 
 ## Development Principles
