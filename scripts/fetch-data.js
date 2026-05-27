@@ -33,6 +33,7 @@ if (!OPENFDA_API_KEY || !SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 
 const FAERS_BASE    = 'https://api.fda.gov/drug/event.json';
+const LABEL_BASE    = 'https://api.fda.gov/drug/label.json';
 const CALL_DELAY_MS = 260; // ~230 req/min — safely under the 240/min API key limit
 
 // ─── CLI flag ─────────────────────────────────────────────────────────────────
@@ -280,9 +281,47 @@ async function fetchTrends(searchField, searchTerm) {
   });
 }
 
+// ─── Drug label / description ─────────────────────────────────────────────────
+
+function cleanDescription(raw) {
+  if (!raw) return null;
+  let text = raw
+    .replace(/^\s*\d*\s*INDICATIONS?\s+AND\s+USAGE\s*[:\n]?\s*/i, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!text) return null;
+  // Try to return the first complete sentence
+  const m = text.match(/^.+?[.!?](?:\s|$)/);
+  if (m) {
+    const sentence = m[0].trim();
+    if (sentence.length <= 200) return sentence;
+  }
+  if (text.length <= 200) return text;
+  // Truncate at a word boundary near 200 chars
+  const sub = text.slice(0, 200);
+  const lastSpace = sub.lastIndexOf(' ');
+  return (lastSpace > 80 ? sub.slice(0, lastSpace) : sub) + '...';
+}
+
+async function fetchDrugLabel(brandName, genericName) {
+  const tryName = async (field, name) => {
+    await sleep(CALL_DELAY_MS);
+    const url = `${LABEL_BASE}?search=${field}:"${encodeURIComponent(name)}"&limit=1&api_key=${OPENFDA_API_KEY}`;
+    const data = await apiFetch(url);
+    const raw  = data?.results?.[0]?.indications_and_usage?.[0];
+    return cleanDescription(raw) || null;
+  };
+
+  return (
+    (await tryName('openfda.brand_name.exact',   brandName.toUpperCase()))   ??
+    (await tryName('openfda.generic_name.exact', genericName.toUpperCase())) ??
+    null
+  );
+}
+
 // ─── Supabase operations ──────────────────────────────────────────────────────
 
-async function upsertDrug(drug, totalReports) {
+async function upsertDrug(drug, totalReports, description) {
   const { data, error } = await supabase
     .from('drugs')
     .upsert(
@@ -291,6 +330,7 @@ async function upsertDrug(drug, totalReports) {
         generic_name:  drug.generic_name,
         slug:          drug.slug,
         total_reports: totalReports,
+        description:   description ?? null,
         last_updated:  new Date().toISOString(),
       },
       { onConflict: 'slug' }
@@ -338,8 +378,9 @@ async function processDrug(drug, index, total) {
   const ageDemographics = await fetchAgeDemographics(field, term);
   const outcomes        = await fetchOutcomes(field, term);
   const trends          = await fetchTrends(field, term);
+  const description     = await fetchDrugLabel(drug.brand_name, drug.generic_name);
 
-  const drugId = await upsertDrug(drug, totalReports);
+  const drugId = await upsertDrug(drug, totalReports, description);
   await clearDrugData(drugId);
 
   await insertRows('adverse_events', drugId, adverseEvents);
@@ -351,7 +392,8 @@ async function processDrug(drug, index, total) {
     `  ${tag} Saved: ${adverseEvents.length} events,` +
     ` ${sexDemographics.length + ageDemographics.length} demographic rows,` +
     ` ${outcomes.length} outcomes,` +
-    ` ${trends.length} trend periods`
+    ` ${trends.length} trend periods,` +
+    ` description: ${description ? 'yes' : 'none'}`
   );
 }
 
@@ -365,8 +407,8 @@ async function main() {
   const cliLimit = getCLILimit();
   const drugs    = cliLimit !== null ? drugList.slice(0, cliLimit) : drugList;
 
-  // Up to 12 API calls per drug: 1–2 for resolution + 9 for data
-  const CALLS_PER_DRUG = 12;
+  // Up to 14 API calls per drug: 1–2 for FAERS resolution + 9 for data + 1–2 for label
+  const CALLS_PER_DRUG = 14;
   const estMinutes = Math.ceil(drugs.length * CALLS_PER_DRUG * CALL_DELAY_MS / 60_000);
 
   console.log('\nPillSignal — Stage 1: Fetch');
