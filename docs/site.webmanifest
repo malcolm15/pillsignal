@@ -1,0 +1,21 @@
+{
+  "name": "PillSignal",
+  "short_name": "PillSignal",
+  "description": "Explore FDA adverse event reports for prescription medications.",
+  "start_url": "/",
+  "display": "browser",
+  "theme_color": "#00A67E",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

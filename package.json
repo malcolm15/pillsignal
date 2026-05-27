@@ -4,12 +4,15 @@
   "description": "FDA adverse event data, made accessible",
   "type": "module",
   "scripts": {
-    "fetch":    "node scripts/fetch-data.js",
+    "fetch": "node scripts/fetch-data.js",
     "generate": "node scripts/generate-pages.js",
-    "build":    "node scripts/fetch-data.js && node scripts/generate-pages.js"
+    "build": "node scripts/fetch-data.js && node scripts/generate-pages.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0",
     "dotenv": "^16.4.1"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
   }
 }

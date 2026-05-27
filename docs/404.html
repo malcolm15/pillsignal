@@ -8,25 +8,32 @@
   <meta name="description" content="The page you're looking for doesn't exist. Search for a drug on PillSignal to explore FDA adverse event reports.">
   <meta name="robots" content="noindex">
 
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#00A67E">
+
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
     :root, [data-theme="light"] {
       --c-bg:               #ffffff;
       --c-surface:          #f9fafb;
       --c-border:           #e5e7eb;
-      --c-text:             #111827;
-      --c-text-muted:       #6b7280;
-      --c-primary:          #1d4f8a;
-      --c-primary-hover:    #163d6b;
-      --c-primary-light:    #e8f0fb;
-      --c-banner-bg:        #1a3a5c;
-      --c-banner-text:      #d1e0f0;
-      --c-banner-border:    rgba(255,255,255,0.35);
-      --c-banner-btn-hover: rgba(255,255,255,0.1);
+      --c-text:             #1a1a2e;
+      --c-text-muted:       #5a5a6e;
+      --c-primary:          #00A67E;
+      --c-primary-hover:    #008F6B;
+      --c-primary-light:    #E6F9F1;
+      --c-banner-bg:        #FFF9F0;
+      --c-banner-text:      #6B4E30;
+      --c-banner-border:    rgba(107,78,48,0.3);
+      --c-banner-btn-hover: rgba(0,0,0,0.05);
       --c-input-bg:         #ffffff;
       --c-input-border:     #d1d5db;
-      --c-input-focus:      #1d4f8a;
-      --c-result-hover:     #f3f6fb;
+      --c-input-focus:      #00A67E;
+      --c-result-hover:     #F0FBF7;
       --font: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
     }
 
@@ -37,17 +44,17 @@
       --c-border:           #334155;
       --c-text:             #f1f5f9;
       --c-text-muted:       #94a3b8;
-      --c-primary:          #60a5fa;
-      --c-primary-hover:    #93c5fd;
-      --c-primary-light:    #1e3a5f;
-      --c-banner-bg:        #0c2340;
-      --c-banner-text:      #bdd5f0;
-      --c-banner-border:    rgba(255,255,255,0.2);
-      --c-banner-btn-hover: rgba(255,255,255,0.08);
+      --c-primary:          #34D1A0;
+      --c-primary-hover:    #2BBD8E;
+      --c-primary-light:    #0D3D2E;
+      --c-banner-bg:        #1C1508;
+      --c-banner-text:      #D4B896;
+      --c-banner-border:    rgba(212,184,150,0.25);
+      --c-banner-btn-hover: rgba(255,255,255,0.06);
       --c-input-bg:         #1e293b;
       --c-input-border:     #475569;
-      --c-input-focus:      #60a5fa;
-      --c-result-hover:     #273344;
+      --c-input-focus:      #34D1A0;
+      --c-result-hover:     #0D2A22;
     }
 
     /* ─── Reset ──────────────────────────────────────────────────────────────── */
