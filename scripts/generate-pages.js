@@ -72,13 +72,18 @@ function computeDateRange(trends) {
   return min === max ? String(min) : `${min}–${max}`; // en-dash
 }
 
-// Keep <title> under 60 chars. Try with generic name first, fall back without.
-function buildPageTitle(brandName, genericName) {
-  const full = `${brandName} (${genericName}) — Adverse Events | PillSignal`;
-  if (full.length <= 60) return full;
-  const short = `${brandName} — Adverse Events | PillSignal`;
-  if (short.length <= 60) return short;
-  return `${brandName} — Adverse Events`;
+const TITLE_MAX = 65;
+
+function buildPageTitle(brandName) {
+  const t1 = `${brandName} — Adverse Events | PillSignal`;
+  if (t1.length <= TITLE_MAX) return t1;
+  const t2 = `${brandName} — Adverse Events`;
+  if (t2.length <= TITLE_MAX) return t2;
+  const t3 = `${brandName} — FDA Reports`;
+  if (t3.length <= TITLE_MAX) return t3;
+  // Truncate brand name to fit "… — FDA Reports" within TITLE_MAX
+  const suffix = '… — FDA Reports';
+  return brandName.slice(0, TITLE_MAX - suffix.length) + suffix;
 }
 
 // Keep <meta description> under 160 chars.
@@ -177,7 +182,7 @@ function renderPage(drug, adverseEvents, demographics, outcomes, trends, related
     year: 'numeric', month: 'long', day: 'numeric',
   });
 
-  const pageTitle = buildPageTitle(brandName, genericName);
+  const pageTitle = buildPageTitle(brandName);
   const metaDesc  = buildMetaDesc(brandName, genericName, totalReports);
 
   // Build chart-ready data objects
