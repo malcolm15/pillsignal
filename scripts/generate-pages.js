@@ -52,6 +52,10 @@ function safeJson(data) {
   return JSON.stringify(data).replace(/<\//g, '<\\/');
 }
 
+function toTitleCase(str) {
+  return str.replace(/\S+/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+}
+
 const AGE_ORDER = ['0-17', '18-34', '35-49', '50-64', '65-74', '75+'];
 
 function sortAgeGroups(rows) {
@@ -277,6 +281,7 @@ function writeBrowsePage(drugs) {
 
   const sections = usedKeys.map(letter => {
     const items = groups[letter].map(d => {
+      const displayName = toTitleCase(d.brand_name);
       const generic = d.generic_name
         ? `<span class="browse-generic">${escapeHtml(d.generic_name)}</span>`
         : '';
@@ -284,8 +289,8 @@ function writeBrowsePage(drugs) {
         ? `<span class="browse-count">${d.total_reports.toLocaleString('en-US')} reports</span>`
         : '';
       return `        <li class="browse-item">` +
-        `<a href="/drugs/${d.slug}/" class="browse-brand">${escapeHtml(d.brand_name)}</a>` +
-        generic + count + `</li>`;
+        `<span class="browse-name-wrap"><a href="/drugs/${d.slug}/" class="browse-brand">${escapeHtml(displayName)}</a>${generic}</span>` +
+        count + `</li>`;
     }).join('\n');
 
     const heading = letter === '#' ? 'Other' : letter;
@@ -386,11 +391,16 @@ function writeBrowsePage(drugs) {
     .letter-section { margin-bottom: 2rem; }
     .letter-heading { font-size: 1.5rem; font-weight: 800; color: var(--c-primary); letter-spacing: -0.02em; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-primary-light); }
     .browse-list { list-style: none; }
-    .browse-item { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.35rem 0; border-bottom: 1px solid var(--c-border); flex-wrap: wrap; }
+    .browse-item { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; padding: 0.35rem 0; border-bottom: 1px solid var(--c-border); min-width: 0; }
     .browse-item:last-child { border-bottom: none; }
-    .browse-brand { font-weight: 600; font-size: 0.95rem; flex-shrink: 0; }
-    .browse-generic { font-size: 0.8rem; color: var(--c-text-muted); flex: 1; min-width: 0; }
-    .browse-count { font-size: 0.75rem; color: var(--c-text-muted); white-space: nowrap; margin-left: auto; }
+    .browse-name-wrap { display: flex; align-items: baseline; gap: 0.4rem; flex: 1; min-width: 0; flex-wrap: wrap; }
+    .browse-brand { font-weight: 600; font-size: 0.95rem; overflow-wrap: break-word; word-break: break-word; min-width: 0; }
+    .browse-generic { font-size: 0.8rem; color: var(--c-text-muted); min-width: 0; overflow-wrap: break-word; }
+    .browse-count { font-size: 0.75rem; color: var(--c-text-muted); white-space: nowrap; flex-shrink: 0; }
+    @media (max-width: 480px) {
+      .browse-item { flex-direction: column; align-items: flex-start; gap: 0.1rem; }
+      .browse-count { font-size: 0.7rem; margin-top: 0.05rem; }
+    }
 
     /* Footer */
     .site-footer { border-top: 1px solid var(--c-border); padding: 1.5rem 1rem; text-align: center; font-size: 0.8rem; color: var(--c-text-muted); background: var(--c-bg); }
