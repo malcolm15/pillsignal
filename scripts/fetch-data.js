@@ -290,17 +290,14 @@ function cleanDescription(raw) {
     .replace(/\s+/g, ' ')
     .trim();
   if (!text) return null;
-  // Try to return the first complete sentence
-  const m = text.match(/^.+?[.!?](?:\s|$)/);
-  if (m) {
-    const sentence = m[0].trim();
-    if (sentence.length <= 200) return sentence;
-  }
-  if (text.length <= 200) return text;
-  // Truncate at a word boundary near 200 chars
-  const sub = text.slice(0, 200);
+  if (text.length <= 500) return text;
+  // Find the last sentence boundary (period followed by space or end) within 500 chars
+  const sub = text.slice(0, 500);
+  const lastPeriod = sub.lastIndexOf('. ');
+  if (lastPeriod > 80) return sub.slice(0, lastPeriod + 1);
+  // No sentence boundary — truncate at last word
   const lastSpace = sub.lastIndexOf(' ');
-  return (lastSpace > 80 ? sub.slice(0, lastSpace) : sub) + '...';
+  return (lastSpace > 80 ? sub.slice(0, lastSpace) : sub) + '…';
 }
 
 async function fetchDrugLabel(brandName, genericName) {

@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>About PillSignal — FDA Adverse Event Data, Explained</title>
-  <meta name="description" content="PillSignal is a free tool for exploring FDA adverse event data. Learn what FAERS is, where the data comes from, and how to interpret it.">
-  <link rel="canonical" href="https://pillsignal.com/about">
+  <title>About PillSignal — Our Data, Methodology, and Mission</title>
+  <meta name="description" content="PillSignal makes FDA adverse event data accessible to everyone. Learn where our data comes from, how it's processed, and what PillSignal is and isn't.">
+  <link rel="canonical" href="https://pillsignal.com/about/">
 
   <!-- Favicon & PWA -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -17,98 +17,76 @@
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website">
-  <meta property="og:title"       content="About PillSignal — FDA Adverse Event Data, Explained">
-  <meta property="og:description" content="PillSignal is a free tool for exploring FDA adverse event data. Learn what FAERS is, where the data comes from, and how to interpret it.">
-  <meta property="og:url"         content="https://pillsignal.com/about">
+  <meta property="og:title"       content="About PillSignal — Our Data, Methodology, and Mission">
+  <meta property="og:description" content="PillSignal makes FDA adverse event data accessible to everyone. Learn where our data comes from, how it's processed, and what PillSignal is and isn't.">
+  <meta property="og:url"         content="https://pillsignal.com/about/">
   <meta property="og:site_name"   content="PillSignal">
   <meta property="og:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="About PillSignal — FDA Adverse Event Data, Explained">
-  <meta name="twitter:description" content="PillSignal is a free tool for exploring FDA adverse event data. Learn what FAERS is, where the data comes from, and how to interpret it.">
+  <meta name="twitter:title"       content="About PillSignal — Our Data, Methodology, and Mission">
+  <meta name="twitter:description" content="PillSignal makes FDA adverse event data accessible to everyone. Learn where our data comes from and how it's processed.">
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <style>
     :root, [data-theme="light"] {
-      --c-bg:               #ffffff;
-      --c-surface:          #f9fafb;
-      --c-border:           #e5e7eb;
-      --c-text:             #1a1a2e;
-      --c-text-muted:       #5a5a6e;
-      --c-primary:          #00A67E;
-      --c-primary-hover:    #008F6B;
-      --c-primary-light:    #E6F9F1;
-      --c-banner-bg:        #FFF9F0;
-      --c-banner-text:      #6B4E30;
-      --c-banner-border:    rgba(107,78,48,0.3);
-      --c-banner-btn-hover: rgba(0,0,0,0.05);
+      --c-bg: #ffffff; --c-surface: #f9fafb; --c-border: #e5e7eb;
+      --c-text: #1a1a2e; --c-text-muted: #5a5a6e;
+      --c-primary: #00A67E; --c-primary-hover: #008F6B; --c-primary-light: #E6F9F1;
+      --c-banner-bg: #FFF9F0; --c-banner-text: #6B4E30;
+      --c-banner-border: rgba(107,78,48,0.3); --c-banner-btn-hover: rgba(0,0,0,0.05);
       --font: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
     }
     [data-theme="dark"] {
-      --c-bg:               #0f172a;
-      --c-surface:          #1e293b;
-      --c-border:           #334155;
-      --c-text:             #f1f5f9;
-      --c-text-muted:       #94a3b8;
-      --c-primary:          #34D1A0;
-      --c-primary-hover:    #2BBD8E;
-      --c-primary-light:    #0D3D2E;
-      --c-banner-bg:        #1C1508;
-      --c-banner-text:      #D4B896;
-      --c-banner-border:    rgba(212,184,150,0.25);
-      --c-banner-btn-hover: rgba(255,255,255,0.06);
+      --c-bg: #0f172a; --c-surface: #1e293b; --c-border: #334155;
+      --c-text: #f1f5f9; --c-text-muted: #94a3b8;
+      --c-primary: #34D1A0; --c-primary-hover: #2BBD8E; --c-primary-light: #0D3D2E;
+      --c-banner-bg: #1C1508; --c-banner-text: #D4B896;
+      --c-banner-border: rgba(212,184,150,0.25); --c-banner-btn-hover: rgba(255,255,255,0.06);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: var(--font);
-      font-size: 1rem;
-      line-height: 1.6;
-      color: var(--c-text);
-      background: var(--c-bg);
-      transition: background 0.2s, color 0.2s;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    body { font-family: var(--font); font-size: 1rem; line-height: 1.6; color: var(--c-text); background: var(--c-bg); transition: background 0.2s, color 0.2s; min-height: 100vh; display: flex; flex-direction: column; }
     a { color: var(--c-primary); text-decoration: none; }
     a:hover { text-decoration: underline; color: var(--c-primary-hover); }
-    h1, h2 { line-height: 1.25; }
-    .theme-toggle {
-      display: flex; align-items: center; justify-content: center;
-      width: 32px; height: 32px;
-      background: none;
-      border: 1px solid var(--c-border);
-      border-radius: 6px;
-      cursor: pointer;
-      color: var(--c-text-muted);
-      padding: 0; flex-shrink: 0;
-      transition: color 0.15s, border-color 0.15s, background 0.15s;
-    }
-    .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
-    [data-theme="light"] .icon-sun  { display: none; }
-    [data-theme="dark"]  .icon-moon { display: none; }
+    h1, h2, h3 { line-height: 1.25; }
+    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--c-surface); } ::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 4px; }
+
+    /* Banner */
     #disclaimer-banner { background: var(--c-banner-bg); color: var(--c-banner-text); font-size: 0.875rem; line-height: 1.5; }
     .banner-seen #disclaimer-banner { display: none; }
     .banner-inner { max-width: 900px; margin: 0 auto; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
     .banner-inner p { flex: 1; min-width: 200px; }
     #banner-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--c-banner-border); color: var(--c-banner-text); padding: 0.3rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-family: var(--font); white-space: nowrap; transition: background 0.15s; }
     #banner-btn:hover { background: var(--c-banner-btn-hover); }
+
+    /* Header */
     .site-header { border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); }
     .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
     .logo { font-size: 1.1rem; font-weight: 700; color: var(--c-primary); letter-spacing: -0.02em; }
     .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
     .header-actions { display: flex; align-items: center; gap: 0.75rem; }
     .header-link { font-size: 0.875rem; color: var(--c-text-muted); }
+    .theme-toggle { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: none; border: 1px solid var(--c-border); border-radius: 6px; cursor: pointer; color: var(--c-text-muted); padding: 0; flex-shrink: 0; transition: color 0.15s, border-color 0.15s, background 0.15s; }
+    .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="dark"]  .icon-moon { display: none; }
+
+    /* Content */
     main { flex: 1; }
     .prose { max-width: 720px; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
-    .prose h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.03em; color: var(--c-text); margin-bottom: 0.5rem; }
+    .prose h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
     .prose .lead { font-size: 1.05rem; color: var(--c-text-muted); margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--c-border); }
-    .prose h2 { font-size: 1.05rem; font-weight: 700; color: var(--c-text); margin: 2rem 0 0.5rem; }
+    .prose h2 { font-size: 1.1rem; font-weight: 700; color: var(--c-text); margin: 2.25rem 0 0.6rem; }
     .prose p { color: var(--c-text-muted); margin-bottom: 1rem; }
-    .prose ul { color: var(--c-text-muted); margin-bottom: 1rem; padding-left: 1.5rem; }
-    .prose li { margin-bottom: 0.35rem; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose ul, .prose ol { color: var(--c-text-muted); margin-bottom: 1rem; padding-left: 1.5rem; }
+    .prose li { margin-bottom: 0.4rem; }
     .prose strong { color: var(--c-text); font-weight: 600; }
+    .prose .update-log { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: 8px; padding: 1rem 1.25rem; margin-top: 0.5rem; }
+    .prose .update-log li { font-size: 0.875rem; list-style: none; padding-left: 0; }
+
+    /* Footer */
     .site-footer { border-top: 1px solid var(--c-border); padding: 1.5rem 1rem; text-align: center; font-size: 0.8rem; color: var(--c-text-muted); background: var(--c-bg); }
     .site-footer a { color: var(--c-text-muted); }
     .site-footer a:hover { color: var(--c-primary); text-decoration: none; }
@@ -168,38 +146,56 @@
   <main>
     <article class="prose">
       <h1>About PillSignal</h1>
-      <p class="lead">PillSignal is a free tool for exploring adverse event data reported to the U.S. Food and Drug Administration. It is designed for patients, caregivers, and anyone who wants to understand what events have been reported in association with prescription medications.</p>
+      <p class="lead">PillSignal is a free, independent tool that makes FDA adverse event data accessible to the general public.</p>
 
-      <h2>Where the data comes from</h2>
-      <p>The data on PillSignal is sourced from the <strong>FDA Adverse Event Reporting System (FAERS)</strong>, a public database maintained by the FDA. We access this data through the <a href="https://open.fda.gov/apis/drug/event/" target="_blank" rel="noopener noreferrer">OpenFDA API</a>, which provides programmatic access to FAERS records. The FAERS database is updated quarterly.</p>
+      <h2>What is PillSignal?</h2>
+      <p>Every day, patients, doctors, and pharmacists submit reports to the FDA about unexpected side effects and adverse events they've experienced while taking medications. These reports are collected in a database called FAERS — the FDA Adverse Event Reporting System. The data is public, but the government's tools for exploring it are designed for researchers and regulators, not for the average person trying to understand their medication.</p>
+      <p>PillSignal changes that by presenting this data in a clear, visual, consumer-friendly format.</p>
 
-      <h2>What is FAERS?</h2>
-      <p>FAERS is a voluntary reporting system. Patients, healthcare providers, pharmacists, and drug manufacturers can submit adverse event reports to the FDA when they observe a reaction that may be associated with a medication. Submission does not require proof that the medication caused the event — only that the reporter suspects a possible connection.</p>
-      <p>Because reporting is voluntary and unverified, FAERS data has important limitations. PillSignal surfaces these limitations on every page so users can interpret the data appropriately.</p>
-
-      <h2>Important context for interpreting this data</h2>
+      <h2>Where does the data come from?</h2>
+      <p>All data on PillSignal comes directly from two official FDA sources:</p>
       <ul>
-        <li><strong>Reports do not prove causation.</strong> An adverse event appearing in FAERS alongside a drug name means someone reported those two things together — not that the drug caused the event.</li>
-        <li><strong>Data may include duplicates.</strong> The same event can be submitted multiple times by the patient, their prescriber, and the drug manufacturer. FAERS does not always deduplicate these.</li>
-        <li><strong>Report volume reflects prescribing volume.</strong> A drug with tens of thousands of reports may simply be one of the most widely prescribed medications in the country. More reports does not mean more risk.</li>
-        <li><strong>Underreporting is common.</strong> Because reporting is voluntary, the absence of reports for a drug does not indicate that it is safe or free of adverse events.</li>
-        <li><strong>Data may contain errors.</strong> Reports are submitted by humans and may include incomplete, inaccurate, or misattributed information.</li>
+        <li><strong>Adverse event reports</strong> are sourced from the <a href="https://open.fda.gov/apis/drug/event/" target="_blank" rel="noopener noreferrer">OpenFDA API</a>, which provides programmatic access to the <a href="https://www.fda.gov/drugs/surveillance/fdas-adverse-event-reporting-system-faers" target="_blank" rel="noopener noreferrer">FAERS database</a>. FAERS contains millions of adverse event reports dating back to 2003, submitted voluntarily by patients, healthcare providers, and drug manufacturers.</li>
+        <li><strong>Drug descriptions</strong> are sourced from FDA-approved drug labeling via the <a href="https://open.fda.gov/data/faers/" target="_blank" rel="noopener noreferrer">OpenFDA drug label API</a>.</li>
       </ul>
+      <p>PillSignal does not collect, modify, or editorialize any of this data. What you see on each drug page is a direct visualization of what the FDA has published.</p>
+
+      <h2>How is the data processed?</h2>
+      <p>For each drug, PillSignal queries the OpenFDA API using the drug's brand name — or its generic name as a fallback — to locate matching adverse event reports in FAERS. Those raw reports are then aggregated into summary statistics:</p>
+      <ul>
+        <li>The most frequently reported adverse events, ranked by occurrence count</li>
+        <li>Demographic breakdowns by patient age group and sex</li>
+        <li>Outcome severity distribution (hospitalization, life-threatening, disability, death, and non-serious)</li>
+        <li>Quarterly report volume trends over time</li>
+      </ul>
+      <p>Data on PillSignal reflects the most recent quarterly FAERS release available through the OpenFDA API. PillSignal currently covers approximately 1,870 medications with adverse event data in the FAERS database.</p>
+
+      <h2>Why PillSignal exists</h2>
+      <p>PillSignal was built on a simple belief: public data should be publicly accessible. The FDA collects adverse event reports to help monitor drug safety, and that data belongs to the public. But accessing it requires navigating technical APIs and analytical dashboards built for researchers. PillSignal bridges that gap by presenting the same data in a format anyone can understand — because everyone deserves to be informed about the medications they take.</p>
 
       <h2>What PillSignal is not</h2>
-      <p><strong>Not medical advice.</strong> Nothing on PillSignal should be used to make healthcare decisions. If you have questions or concerns about your medications, consult your healthcare provider.</p>
-      <p><strong>Not affiliated with the FDA.</strong> PillSignal accesses public data made available through the OpenFDA API but is an independent project with no affiliation with the U.S. Food and Drug Administration.</p>
-      <p><strong>Not a diagnostic tool.</strong> The data presented reflects voluntary reports submitted by individuals. It cannot be used to determine whether a medication is safe or effective for any individual.</p>
+      <ul>
+        <li>Not a medical resource and does not provide medical advice</li>
+        <li>Not affiliated with, endorsed by, or sponsored by the FDA, any pharmaceutical company, or any healthcare organization</li>
+        <li>Should never be used as a substitute for consulting with a qualified healthcare provider</li>
+        <li>Does not recommend starting, stopping, or changing any medication</li>
+      </ul>
 
-      <h2>Questions or feedback?</h2>
-      <p>Reach us at <a href="mailto:hello@pillsignal.com">hello@pillsignal.com</a>.</p>
+      <h2>Contact</h2>
+      <p>Questions, feedback, or concerns? Reach us at <a href="mailto:hello@pillsignal.com">hello@pillsignal.com</a>.</p>
+
+      <h2>Update log</h2>
+      <ul class="update-log">
+        <li>May 2026 — PillSignal launched with coverage of 1,870+ medications</li>
+      </ul>
     </article>
   </main>
 
   <footer class="site-footer">
-    <p>Data sourced from the <a href="https://open.fda.gov/apis/drug/event/" target="_blank" rel="noopener noreferrer">FDA Adverse Event Reporting System (FAERS)</a> via OpenFDA. PillSignal is not affiliated with the FDA.</p>
+    <p>Data sourced from <a href="https://open.fda.gov/" target="_blank" rel="noopener noreferrer">OpenFDA</a>. PillSignal is not affiliated with the FDA.</p>
     <nav class="footer-nav" aria-label="Site links">
       <a href="/about">About</a>
+      <a href="/faq">FAQ</a>
       <a href="/privacy">Privacy Policy</a>
       <a href="/terms">Terms of Service</a>
       <a href="/contact">Contact</a>

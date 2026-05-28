@@ -424,6 +424,8 @@
   <header class="site-header">
     <div class="inner">
       <a href="/" class="logo">PillSignal</a>
+      <div class="header-actions">
+        <a href="/drugs/" style="font-size:0.875rem;color:var(--c-text-muted);">Browse all</a>
       <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
         <!-- Sun: shown in dark mode (click to go light) -->
         <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -442,6 +444,7 @@
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       </button>
+      </div>
     </div>
   </header>
 
@@ -467,6 +470,9 @@
       >
       <div id="search-results" class="search-dropdown" role="listbox" aria-label="Search results"></div>
     </div>
+    <p style="margin-top:1rem;font-size:0.875rem;color:var(--c-text-muted);">
+      or <a href="/drugs/">browse all drugs A–Z</a>
+    </p>
   </section>
 
   <!-- ─── Main content ──────────────────────────────────────────────────────── -->
@@ -506,7 +512,7 @@
     <hr class="divider">
 
     <div class="notice" role="note">
-      <strong>About this data:</strong> This data reflects voluntary reports submitted to the FDA's Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors. <a href="https://www.fda.gov/drugs/questions-answers/fda-adverse-event-reporting-system-faers-public-dashboard" target="_blank" rel="noopener">Learn more about FAERS</a>.
+      <strong>About this data:</strong> This data reflects voluntary reports submitted to the FDA's Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors. <a href="https://www.fda.gov/drugs/surveillance/fdas-adverse-event-reporting-system-faers" target="_blank" rel="noopener">Learn more about FAERS</a>.
     </div>
 
     <div class="notice notice--footer" role="note">
@@ -520,6 +526,7 @@
     <p>Data sourced from the <a href="https://open.fda.gov/apis/drug/event/" target="_blank" rel="noopener noreferrer">FDA Adverse Event Reporting System (FAERS)</a> via OpenFDA. PillSignal is not affiliated with the FDA.</p>
     <nav class="footer-nav" aria-label="Site links">
       <a href="/about">About</a>
+      <a href="/faq">FAQ</a>
       <a href="/privacy">Privacy Policy</a>
       <a href="/terms">Terms of Service</a>
       <a href="/contact">Contact</a>

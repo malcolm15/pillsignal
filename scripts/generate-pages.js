@@ -228,19 +228,276 @@ function writeDrugPage(slug, html) {
 }
 
 function writeSitemap(drugs) {
-  const today    = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split('T')[0];
+
+  const staticUrls = [
+    { loc: `${SITE_URL}/`,         changefreq: 'weekly',  priority: '1.0' },
+    { loc: `${SITE_URL}/drugs/`,   changefreq: 'weekly',  priority: '0.9' },
+    { loc: `${SITE_URL}/about/`,   changefreq: 'monthly', priority: '0.5' },
+    { loc: `${SITE_URL}/faq/`,     changefreq: 'monthly', priority: '0.5' },
+    { loc: `${SITE_URL}/contact/`, changefreq: 'monthly', priority: '0.4' },
+    { loc: `${SITE_URL}/privacy/`, changefreq: 'monthly', priority: '0.3' },
+    { loc: `${SITE_URL}/terms/`,   changefreq: 'monthly', priority: '0.3' },
+  ].map(({ loc, changefreq, priority }) =>
+    `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`
+  ).join('\n');
+
   const drugUrls = drugs.map(d =>
-    `  <url>\n    <loc>${SITE_URL}/drugs/${d.slug}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`
+    `  <url>\n    <loc>${SITE_URL}/drugs/${d.slug}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`
   ).join('\n');
 
   const xml =
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-    `  <url>\n    <loc>${SITE_URL}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>\n` +
-    drugUrls + `\n</urlset>`;
+    staticUrls + '\n' + drugUrls + `\n</urlset>`;
 
   writeFileSync(join(DOCS_DIR, 'sitemap.xml'), xml, 'utf8');
-  console.log(`  sitemap.xml  — ${drugs.length} drug URLs + homepage`);
+  console.log(`  sitemap.xml  — ${drugs.length} drug URLs + 7 static pages`);
+}
+
+function writeBrowsePage(drugs) {
+  // Group alphabetically; non-A-Z names go under '#'
+  const groups = {};
+  for (const drug of drugs) {
+    const first  = drug.brand_name[0].toUpperCase();
+    const bucket = /[A-Z]/.test(first) ? first : '#';
+    if (!groups[bucket]) groups[bucket] = [];
+    groups[bucket].push(drug);
+  }
+
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const usedKeys = Object.keys(groups).sort();
+
+  const letterNav = alphabet.map(l => {
+    if (groups[l]) {
+      return `<a href="#section-${l}" class="lnav-item lnav-item--on">${l}</a>`;
+    }
+    return `<span class="lnav-item lnav-item--off">${l}</span>`;
+  }).join('');
+
+  const sections = usedKeys.map(letter => {
+    const items = groups[letter].map(d => {
+      const generic = d.generic_name
+        ? `<span class="browse-generic">${escapeHtml(d.generic_name)}</span>`
+        : '';
+      const count = d.total_reports
+        ? `<span class="browse-count">${d.total_reports.toLocaleString('en-US')} reports</span>`
+        : '';
+      return `        <li class="browse-item">` +
+        `<a href="/drugs/${d.slug}/" class="browse-brand">${escapeHtml(d.brand_name)}</a>` +
+        generic + count + `</li>`;
+    }).join('\n');
+
+    const heading = letter === '#' ? 'Other' : letter;
+    return `      <section id="section-${letter}" class="letter-section">` +
+      `<h2 class="letter-heading">${heading}</h2>` +
+      `<ul class="browse-list">\n${items}\n      </ul></section>`;
+  }).join('\n\n');
+
+  const total = drugs.length;
+  const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse All Drugs — FDA Adverse Event Reports | PillSignal</title>
+  <meta name="description" content="Browse all ${total.toLocaleString('en-US')} drugs tracked by PillSignal. Alphabetical directory of FDA adverse event report data for prescription medications.">
+  <link rel="canonical" href="${SITE_URL}/drugs/">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#00A67E">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Browse All Drugs — FDA Adverse Event Reports | PillSignal">
+  <meta property="og:description" content="Alphabetical directory of ${total.toLocaleString('en-US')} drugs tracked by PillSignal.">
+  <meta property="og:url"         content="${SITE_URL}/drugs/">
+  <meta property="og:site_name"   content="PillSignal">
+  <meta property="og:image"       content="${SITE_URL}/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Browse All Drugs — FDA Adverse Event Reports | PillSignal">
+  <meta name="twitter:description" content="Alphabetical directory of ${total.toLocaleString('en-US')} drugs with FDA adverse event data.">
+  <meta name="twitter:image"       content="${SITE_URL}/og-image.png">
+
+  <style>
+    :root, [data-theme="light"] {
+      --c-bg: #ffffff; --c-surface: #f9fafb; --c-border: #e5e7eb;
+      --c-text: #1a1a2e; --c-text-muted: #5a5a6e;
+      --c-primary: #00A67E; --c-primary-hover: #008F6B; --c-primary-light: #E6F9F1;
+      --c-banner-bg: #FFF9F0; --c-banner-text: #6B4E30;
+      --c-banner-border: rgba(107,78,48,0.3); --c-banner-btn-hover: rgba(0,0,0,0.05);
+      --font: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+    [data-theme="dark"] {
+      --c-bg: #0f172a; --c-surface: #1e293b; --c-border: #334155;
+      --c-text: #f1f5f9; --c-text-muted: #94a3b8;
+      --c-primary: #34D1A0; --c-primary-hover: #2BBD8E; --c-primary-light: #0D3D2E;
+      --c-banner-bg: #1C1508; --c-banner-text: #D4B896;
+      --c-banner-border: rgba(212,184,150,0.25); --c-banner-btn-hover: rgba(255,255,255,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); font-size: 1rem; line-height: 1.6; color: var(--c-text); background: var(--c-bg); transition: background 0.2s, color 0.2s; }
+    a { color: var(--c-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--c-primary-hover); }
+    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--c-surface); } ::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 4px; }
+
+    /* Banner */
+    #disclaimer-banner { background: var(--c-banner-bg); color: var(--c-banner-text); font-size: 0.875rem; line-height: 1.5; }
+    .banner-seen #disclaimer-banner { display: none; }
+    .banner-inner { max-width: 900px; margin: 0 auto; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .banner-inner p { flex: 1; min-width: 200px; }
+    #banner-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--c-banner-border); color: var(--c-banner-text); padding: 0.3rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-family: var(--font); white-space: nowrap; transition: background 0.15s; }
+    #banner-btn:hover { background: var(--c-banner-btn-hover); }
+
+    /* Header */
+    .site-header { border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); }
+    .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.1rem; font-weight: 700; color: var(--c-primary); letter-spacing: -0.02em; }
+    .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
+    .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .header-link { font-size: 0.875rem; color: var(--c-text-muted); }
+    .theme-toggle { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: none; border: 1px solid var(--c-border); border-radius: 6px; cursor: pointer; color: var(--c-text-muted); padding: 0; flex-shrink: 0; transition: color 0.15s, border-color 0.15s, background 0.15s; }
+    .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="dark"]  .icon-moon { display: none; }
+
+    /* Page header */
+    .page-header { padding: 2rem 1rem 1.5rem; max-width: 900px; margin: 0 auto; }
+    .page-header h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.3rem; }
+    .page-header p { color: var(--c-text-muted); font-size: 0.95rem; }
+
+    /* Letter nav */
+    .lnav { position: sticky; top: 0; z-index: 10; background: var(--c-bg); border-bottom: 1px solid var(--c-border); padding: 0.5rem 1rem; display: flex; flex-wrap: wrap; gap: 2px; max-width: 100%; }
+    .lnav-inner { max-width: 900px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2px; width: 100%; }
+    .lnav-item { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; font-size: 0.8rem; font-weight: 600; border-radius: 4px; }
+    .lnav-item--on { color: var(--c-primary); } .lnav-item--on:hover { background: var(--c-primary-light); text-decoration: none; }
+    .lnav-item--off { color: var(--c-border); cursor: default; }
+
+    /* Browse list */
+    main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+    .letter-section { margin-bottom: 2rem; }
+    .letter-heading { font-size: 1.5rem; font-weight: 800; color: var(--c-primary); letter-spacing: -0.02em; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-primary-light); }
+    .browse-list { list-style: none; }
+    .browse-item { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.35rem 0; border-bottom: 1px solid var(--c-border); flex-wrap: wrap; }
+    .browse-item:last-child { border-bottom: none; }
+    .browse-brand { font-weight: 600; font-size: 0.95rem; flex-shrink: 0; }
+    .browse-generic { font-size: 0.8rem; color: var(--c-text-muted); flex: 1; min-width: 0; }
+    .browse-count { font-size: 0.75rem; color: var(--c-text-muted); white-space: nowrap; margin-left: auto; }
+
+    /* Footer */
+    .site-footer { border-top: 1px solid var(--c-border); padding: 1.5rem 1rem; text-align: center; font-size: 0.8rem; color: var(--c-text-muted); background: var(--c-bg); }
+    .site-footer a { color: var(--c-text-muted); }
+    .site-footer a:hover { color: var(--c-primary); text-decoration: none; }
+    .footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+  </style>
+
+  <script>
+    (function () {
+      var saved = localStorage.getItem('pillsignal_theme');
+      var dark  = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+      if (localStorage.getItem('pillsignal_disclaimer_dismissed')) {
+        document.documentElement.classList.add('banner-seen');
+      }
+    }());
+  </script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZEDB8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5ZEDB8Z5P');
+  </script>
+</head>
+<body>
+
+  <div id="disclaimer-banner" role="note" aria-label="Site disclaimer">
+    <div class="banner-inner">
+      <p>PillSignal presents data from the FDA's voluntary reporting system. This data does not prove that a medication caused any adverse event. Always consult your healthcare provider about your medications.</p>
+      <button id="banner-btn" type="button">I understand</button>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="inner">
+      <a href="/" class="logo">PillSignal</a>
+      <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>
+            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+            <line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
+            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+          </svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <a href="/" class="header-link">← Search drugs</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <h1>Browse All Drugs</h1>
+    <p>${total.toLocaleString('en-US')} medications with FDA adverse event data &mdash; page generated ${today}</p>
+  </div>
+
+  <nav class="lnav" aria-label="Jump to letter">
+    <div class="lnav-inner">${letterNav}</div>
+  </nav>
+
+  <main>
+${sections}
+  </main>
+
+  <footer class="site-footer">
+    <p>Data sourced from <a href="https://open.fda.gov/" target="_blank" rel="noopener noreferrer">OpenFDA</a>. PillSignal is not affiliated with the FDA.</p>
+    <nav class="footer-nav" aria-label="Site links">
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </footer>
+
+  <script>
+    document.getElementById('banner-btn').addEventListener('click', function () {
+      localStorage.setItem('pillsignal_disclaimer_dismissed', '1');
+      document.documentElement.classList.add('banner-seen');
+    });
+    (function () {
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('pillsignal_theme', next);
+      });
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+          if (!localStorage.getItem('pillsignal_theme')) {
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+          }
+        });
+      }
+    }());
+  </script>
+
+</body>
+</html>`;
+
+  writeFileSync(join(DOCS_DIR, 'drugs', 'index.html'), html, 'utf8');
+  console.log(`  drugs/index.html — ${total} drugs across ${usedKeys.length} letter sections`);
 }
 
 function writeRobotsTxt() {
@@ -349,6 +606,7 @@ async function main() {
 
   console.log(`  ${generated}/${drugsWithData.length} pages written\n`);
 
+  writeBrowsePage(generatedDrugs);
   writeSitemap(generatedDrugs);
   writeRobotsTxt();
   writeDrugIndex(generatedDrugs);
