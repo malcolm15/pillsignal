@@ -412,6 +412,12 @@ function writeBrowsePage(drugs) {
     .site-footer a { color: var(--c-text-muted); }
     .site-footer a:hover { color: var(--c-primary); text-decoration: none; }
     .footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+
+    /* Back to top */
+    #back-to-top { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--c-border); background: rgba(255,255,255,0.75); color: var(--c-text-muted); font-size: 1.1rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s, background 0.15s, color 0.15s; z-index: 100; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+    [data-theme="dark"] #back-to-top { background: rgba(30,41,59,0.75); }
+    #back-to-top.visible { opacity: 1; pointer-events: auto; }
+    #back-to-top:hover { background: var(--c-primary-light); color: var(--c-primary); border-color: var(--c-primary); }
   </style>
 
   <script>
@@ -477,6 +483,10 @@ function writeBrowsePage(drugs) {
 ${sections}
   </main>
 
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,10 7,4 12,10"/></svg>
+  </button>
+
   <footer class="site-footer">
     <p>Data sourced from <a href="https://open.fda.gov/" target="_blank" rel="noopener noreferrer">OpenFDA</a>. PillSignal is not affiliated with the FDA.</p>
     <nav class="footer-nav" aria-label="Site links">
@@ -492,6 +502,16 @@ ${sections}
       localStorage.setItem('pillsignal_disclaimer_dismissed', '1');
       document.documentElement.classList.add('banner-seen');
     });
+    (function () {
+      var btn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 500) { btn.classList.add('visible'); }
+        else { btn.classList.remove('visible'); }
+      }, { passive: true });
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }());
     (function () {
       document.getElementById('theme-toggle').addEventListener('click', function () {
         var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
