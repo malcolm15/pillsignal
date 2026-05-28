@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse All Drugs — FDA Adverse Event Reports | PillSignal</title>
+  <meta name="description" content="Browse all 850 drugs tracked by PillSignal. Alphabetical directory of FDA adverse event report data for prescription medications.">
+  <link rel="canonical" href="https://pillsignal.com/drugs/">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#00A67E">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Browse All Drugs — FDA Adverse Event Reports | PillSignal">
+  <meta property="og:description" content="Alphabetical directory of 850 drugs tracked by PillSignal.">
+  <meta property="og:url"         content="https://pillsignal.com/drugs/">
+  <meta property="og:site_name"   content="PillSignal">
+  <meta property="og:image"       content="https://pillsignal.com/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Browse All Drugs — FDA Adverse Event Reports | PillSignal">
+  <meta name="twitter:description" content="Alphabetical directory of 850 drugs with FDA adverse event data.">
+  <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
+
+  <style>
+    :root, [data-theme="light"] {
+      --c-bg: #ffffff; --c-surface: #f9fafb; --c-border: #e5e7eb;
+      --c-text: #1a1a2e; --c-text-muted: #5a5a6e;
+      --c-primary: #00A67E; --c-primary-hover: #008F6B; --c-primary-light: #E6F9F1;
+      --c-banner-bg: #FFF9F0; --c-banner-text: #6B4E30;
+      --c-banner-border: rgba(107,78,48,0.3); --c-banner-btn-hover: rgba(0,0,0,0.05);
+      --font: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+    [data-theme="dark"] {
+      --c-bg: #0f172a; --c-surface: #1e293b; --c-border: #334155;
+      --c-text: #f1f5f9; --c-text-muted: #94a3b8;
+      --c-primary: #34D1A0; --c-primary-hover: #2BBD8E; --c-primary-light: #0D3D2E;
+      --c-banner-bg: #1C1508; --c-banner-text: #D4B896;
+      --c-banner-border: rgba(212,184,150,0.25); --c-banner-btn-hover: rgba(255,255,255,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); font-size: 1rem; line-height: 1.6; color: var(--c-text); background: var(--c-bg); transition: background 0.2s, color 0.2s; }
+    a { color: var(--c-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--c-primary-hover); }
+    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--c-surface); } ::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 4px; }
+
+    /* Banner */
+    #disclaimer-banner { background: var(--c-banner-bg); color: var(--c-banner-text); font-size: 0.875rem; line-height: 1.5; }
+    .banner-seen #disclaimer-banner { display: none; }
+    .banner-inner { max-width: 900px; margin: 0 auto; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .banner-inner p { flex: 1; min-width: 200px; }
+    #banner-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--c-banner-border); color: var(--c-banner-text); padding: 0.3rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-family: var(--font); white-space: nowrap; transition: background 0.15s; }
+    #banner-btn:hover { background: var(--c-banner-btn-hover); }
+
+    /* Header */
+    .site-header { border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); }
+    .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.1rem; font-weight: 700; color: var(--c-primary); letter-spacing: -0.02em; }
+    .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
+    .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .header-link { font-size: 0.875rem; color: var(--c-text-muted); }
+    .theme-toggle { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: none; border: 1px solid var(--c-border); border-radius: 6px; cursor: pointer; color: var(--c-text-muted); padding: 0; flex-shrink: 0; transition: color 0.15s, border-color 0.15s, background 0.15s; }
+    .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="dark"]  .icon-moon { display: none; }
+
+    /* Page header */
+    .page-header { padding: 2rem 1rem 1.5rem; max-width: 900px; margin: 0 auto; }
+    .page-header h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.3rem; }
+    .page-header p { color: var(--c-text-muted); font-size: 0.95rem; }
+
+    /* Letter nav */
+    .lnav { position: sticky; top: 0; z-index: 10; background: var(--c-bg); border-bottom: 1px solid var(--c-border); padding: 0.5rem 1rem; display: flex; flex-wrap: wrap; gap: 2px; max-width: 100%; }
+    .lnav-inner { max-width: 900px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2px; width: 100%; }
+    .lnav-item { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; font-size: 0.8rem; font-weight: 600; border-radius: 4px; }
+    .lnav-item--on { color: var(--c-primary); } .lnav-item--on:hover { background: var(--c-primary-light); text-decoration: none; }
+    .lnav-item--off { color: var(--c-border); cursor: default; }
+
+    /* Browse list */
+    main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+    .letter-section { margin-bottom: 2rem; }
+    .letter-heading { font-size: 1.5rem; font-weight: 800; color: var(--c-primary); letter-spacing: -0.02em; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-primary-light); }
+    .browse-list { list-style: none; }
+    .browse-item { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.35rem 0; border-bottom: 1px solid var(--c-border); flex-wrap: wrap; }
+    .browse-item:last-child { border-bottom: none; }
+    .browse-brand { font-weight: 600; font-size: 0.95rem; flex-shrink: 0; }
+    .browse-generic { font-size: 0.8rem; color: var(--c-text-muted); flex: 1; min-width: 0; }
+    .browse-count { font-size: 0.75rem; color: var(--c-text-muted); white-space: nowrap; margin-left: auto; }
+
+    /* Footer */
+    .site-footer { border-top: 1px solid var(--c-border); padding: 1.5rem 1rem; text-align: center; font-size: 0.8rem; color: var(--c-text-muted); background: var(--c-bg); }
+    .site-footer a { color: var(--c-text-muted); }
+    .site-footer a:hover { color: var(--c-primary); text-decoration: none; }
+    .footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+  </style>
+
+  <script>
+    (function () {
+      var saved = localStorage.getItem('pillsignal_theme');
+      var dark  = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+      if (localStorage.getItem('pillsignal_disclaimer_dismissed')) {
+        document.documentElement.classList.add('banner-seen');
+      }
+    }());
+  </script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZEDB8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5ZEDB8Z5P');
+  </script>
+</head>
+<body>
+
+  <div id="disclaimer-banner" role="note" aria-label="Site disclaimer">
+    <div class="banner-inner">
+      <p>PillSignal presents data from the FDA's voluntary reporting system. This data does not prove that a medication caused any adverse event. Always consult your healthcare provider about your medications.</p>
+      <button id="banner-btn" type="button">I understand</button>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="inner">
+      <a href="/" class="logo">PillSignal</a>
+      <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>
+            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+            <line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
+            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+          </svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <a href="/" class="header-link">← Search drugs</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <h1>Browse All Drugs</h1>
+    <p>850 medications with FDA adverse event data &mdash; page generated May 27, 2026</p>
+  </div>
+
+  <nav class="lnav" aria-label="Jump to letter">
+    <div class="lnav-inner"><a href="#section-A" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'A'})">A</a><a href="#section-B" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'B'})">B</a><a href="#section-C" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'C'})">C</a><a href="#section-D" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'D'})">D</a><a href="#section-E" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'E'})">E</a><a href="#section-F" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'F'})">F</a><a href="#section-G" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'G'})">G</a><a href="#section-H" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'H'})">H</a><a href="#section-I" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'I'})">I</a><a href="#section-J" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'J'})">J</a><a href="#section-K" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'K'})">K</a><a href="#section-L" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'L'})">L</a><a href="#section-M" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'M'})">M</a><a href="#section-N" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'N'})">N</a><a href="#section-O" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'O'})">O</a><a href="#section-P" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'P'})">P</a><a href="#section-Q" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'Q'})">Q</a><a href="#section-R" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'R'})">R</a><a href="#section-S" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'S'})">S</a><a href="#section-T" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'T'})">T</a><a href="#section-U" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'U'})">U</a><a href="#section-V" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'V'})">V</a><a href="#section-W" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'W'})">W</a><a href="#section-X" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'X'})">X</a><a href="#section-Y" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'Y'})">Y</a><a href="#section-Z" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'Z'})">Z</a></div>
+  </nav>
+
+  <main>
+      <section id="section-A" class="letter-section"><h2 class="letter-heading">A</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/abilify/" class="browse-brand">Abilify</a><span class="browse-generic">aripiprazole</span><span class="browse-count">113,915 reports</span></li>
+        <li class="browse-item"><a href="/drugs/abraxane/" class="browse-brand">ABRAXANE</a><span class="browse-count">95,730 reports</span></li>
+        <li class="browse-item"><a href="/drugs/abreva/" class="browse-brand">ABREVA</a><span class="browse-count">14,518 reports</span></li>
+        <li class="browse-item"><a href="/drugs/abreva-rapid-pain-relief/" class="browse-brand">ABREVA RAPID PAIN RELIEF</a><span class="browse-count">13,890 reports</span></li>
+        <li class="browse-item"><a href="/drugs/accutane/" class="browse-brand">ACCUTANE</a><span class="browse-count">28,656 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acetaminophen/" class="browse-brand">ACETAMINOPHEN</a><span class="browse-count">247,272 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acetaminophen-red/" class="browse-brand">ACETAMINOPHEN (RED)</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acetaminophen-caplets/" class="browse-brand">ACETAMINOPHEN CAPLETS</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acetaminophen-easy-tabs-extra-strength/" class="browse-brand">ACETAMINOPHEN EASY TABS EXTRA STRENGTH</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acetaminophen-extended-release/" class="browse-brand">ACETAMINOPHEN EXTENDED-RELEASE</a><span class="browse-count">246,996 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acetaminophen-extra-strength/" class="browse-brand">ACETAMINOPHEN EXTRA STRENGTH</a><span class="browse-count">247,147 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acetaminophen-for-children/" class="browse-brand">ACETAMINOPHEN FOR CHILDREN</a><span class="browse-count">246,994 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acetaminophen-gelcaps/" class="browse-brand">ACETAMINOPHEN GELCAPS</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acetaminophen-gelcaps-extra-strength/" class="browse-brand">ACETAMINOPHEN GELCAPS EXTRA STRENGTH</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acetaminophen-pain-reliever-fever-reducer/" class="browse-brand">ACETAMINOPHEN PAIN RELIEVER FEVER REDUCER</a><span class="browse-count">246,992 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acetaminophen-regular-strength/" class="browse-brand">ACETAMINOPHEN REGULAR STRENGTH</a><span class="browse-count">246,992 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acid-controller/" class="browse-brand">ACID CONTROLLER</a><span class="browse-count">78,891 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acid-controller-original-strength/" class="browse-brand">ACID CONTROLLER ORIGINAL STRENGTH</a><span class="browse-count">73,592 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acid-reducer/" class="browse-brand">ACID REDUCER</a><span class="browse-count">466,430 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acid-reducer-original-strength/" class="browse-brand">ACID REDUCER ORIGINAL STRENGTH</a><span class="browse-count">73,777 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acid-relief/" class="browse-brand">ACID RELIEF</a><span class="browse-count">73,553 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aciphex/" class="browse-brand">Aciphex</a><span class="browse-generic">rabeprazole sodium</span><span class="browse-count">26,956 reports</span></li>
+        <li class="browse-item"><a href="/drugs/actemra/" class="browse-brand">ACTEMRA</a><span class="browse-count">108,697 reports</span></li>
+        <li class="browse-item"><a href="/drugs/actonel/" class="browse-brand">Actonel</a><span class="browse-generic">risedronate sodium</span><span class="browse-count">30,015 reports</span></li>
+        <li class="browse-item"><a href="/drugs/actos/" class="browse-brand">Actos</a><span class="browse-generic">pioglitazone hydrochloride</span><span class="browse-count">42,710 reports</span></li>
+        <li class="browse-item"><a href="/drugs/acyclovir/" class="browse-brand">ACYCLOVIR</a><span class="browse-count">102,517 reports</span></li>
+        <li class="browse-item"><a href="/drugs/adalimumab/" class="browse-brand">ADALIMUMAB</a><span class="browse-count">42,796 reports</span></li>
+        <li class="browse-item"><a href="/drugs/adapalene/" class="browse-brand">ADAPALENE</a><span class="browse-count">5,024 reports</span></li>
+        <li class="browse-item"><a href="/drugs/adcirca/" class="browse-brand">ADCIRCA</a><span class="browse-count">73,504 reports</span></li>
+        <li class="browse-item"><a href="/drugs/adderall/" class="browse-brand">Adderall</a><span class="browse-generic">amphetamine salts</span><span class="browse-count">34,483 reports</span></li>
+        <li class="browse-item"><a href="/drugs/adderall-xr/" class="browse-brand">ADDERALL XR</a><span class="browse-count">40,525 reports</span></li>
+        <li class="browse-item"><a href="/drugs/adrenalin/" class="browse-brand">ADRENALIN</a><span class="browse-count">40,608 reports</span></li>
+        <li class="browse-item"><a href="/drugs/adrenalinum/" class="browse-brand">ADRENALINUM</a><span class="browse-count">40,057 reports</span></li>
+        <li class="browse-item"><a href="/drugs/adult-chewable-aspirin/" class="browse-brand">ADULT CHEWABLE ASPIRIN</a><span class="browse-count">499,943 reports</span></li>
+        <li class="browse-item"><a href="/drugs/adult-low-dose-aspirin/" class="browse-brand">ADULT LOW DOSE ASPIRIN</a><span class="browse-count">499,994 reports</span></li>
+        <li class="browse-item"><a href="/drugs/adult-low-dose-enteric-coated-aspirin/" class="browse-brand">ADULT LOW DOSE ENTERIC COATED ASPIRIN</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/adult-low-dose-pain-reliever/" class="browse-brand">ADULT LOW DOSE PAIN RELIEVER</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/adult-low-strength-aspirin/" class="browse-brand">ADULT LOW STRENGTH ASPIRIN</a><span class="browse-count">499,942 reports</span></li>
+        <li class="browse-item"><a href="/drugs/advair/" class="browse-brand">Advair Diskus</a><span class="browse-generic">fluticasone propionate/salmeterol</span><span class="browse-count">37,008 reports</span></li>
+        <li class="browse-item"><a href="/drugs/advair-hfa/" class="browse-brand">ADVAIR HFA</a><span class="browse-count">59,093 reports</span></li>
+        <li class="browse-item"><a href="/drugs/advil/" class="browse-brand">ADVIL</a><span class="browse-count">235,673 reports</span></li>
+        <li class="browse-item"><a href="/drugs/advil-liqui-gels/" class="browse-brand">ADVIL LIQUI-GELS</a><span class="browse-count">198,868 reports</span></li>
+        <li class="browse-item"><a href="/drugs/advil-migraine/" class="browse-brand">ADVIL MIGRAINE</a><span class="browse-count">195,682 reports</span></li>
+        <li class="browse-item"><a href="/drugs/adwe-childrens-pain-fever/" class="browse-brand">ADWE CHILDRENS PAIN FEVER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/afinitor/" class="browse-brand">AFINITOR</a><span class="browse-count">48,470 reports</span></li>
+        <li class="browse-item"><a href="/drugs/afinitor-disperz/" class="browse-brand">AFINITOR DISPERZ</a><span class="browse-count">48,790 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aflora/" class="browse-brand">AFLORA</a><span class="browse-count">49,470 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ag-x/" class="browse-brand">AG-X</a><span class="browse-count">145,405 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aimovig/" class="browse-brand">AIMOVIG</a><span class="browse-count">53,871 reports</span></li>
+        <li class="browse-item"><a href="/drugs/albuterol/" class="browse-brand">ALBUTEROL</a><span class="browse-count">195,635 reports</span></li>
+        <li class="browse-item"><a href="/drugs/albuterol-sulfate/" class="browse-brand">ALBUTEROL SULFATE</a><span class="browse-count">82,467 reports</span></li>
+        <li class="browse-item"><a href="/drugs/albuterol-sulfate-hfa/" class="browse-brand">ALBUTEROL SULFATE HFA</a><span class="browse-count">83,879 reports</span></li>
+        <li class="browse-item"><a href="/drugs/albuterol-sulfate-inhalation/" class="browse-brand">ALBUTEROL SULFATE INHALATION</a><span class="browse-count">82,472 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aldactone/" class="browse-brand">Aldactone</a><span class="browse-generic">spironolactone</span><span class="browse-count">136,771 reports</span></li>
+        <li class="browse-item"><a href="/drugs/alendronate/" class="browse-brand">ALENDRONATE</a><span class="browse-count">49,158 reports</span></li>
+        <li class="browse-item"><a href="/drugs/alendronate-sodium/" class="browse-brand">ALENDRONATE SODIUM</a><span class="browse-count">31,404 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aleve/" class="browse-brand">ALEVE</a><span class="browse-count">65,379 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aleve-back-and-muscle-pain/" class="browse-brand">ALEVE BACK AND MUSCLE PAIN</a><span class="browse-count">65,930 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aleve-caplets/" class="browse-brand">ALEVE CAPLETS</a><span class="browse-count">65,400 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aleve-caplets-easy-open-arthritis-cap/" class="browse-brand">ALEVE CAPLETS - EASY OPEN ARTHRITIS CAP</a><span class="browse-count">65,379 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aleve-easy-open-arthritis/" class="browse-brand">ALEVE EASY OPEN ARTHRITIS</a><span class="browse-count">65,379 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aleve-easy-open-arthritis-cap/" class="browse-brand">ALEVE EASY OPEN ARTHRITIS CAP</a><span class="browse-count">65,470 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aleve-gelcaps/" class="browse-brand">ALEVE GELCAPS</a><span class="browse-count">65,570 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aleve-headache-pain/" class="browse-brand">ALEVE HEADACHE PAIN</a><span class="browse-count">65,379 reports</span></li>
+        <li class="browse-item"><a href="/drugs/alka-seltzer-cool-action-extra-strength-reliefchews-mint/" class="browse-brand">ALKA-SELTZER COOL ACTION EXTRA STRENGTH RELIEFCHEWS MINT</a><span class="browse-count">45,826 reports</span></li>
+        <li class="browse-item"><a href="/drugs/alka-seltzer-cool-action-heartburn-relief-mint/" class="browse-brand">ALKA-SELTZER COOL ACTION HEARTBURN RELIEF MINT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/alka-seltzer-extra-strength-heartburn-reliefchews/" class="browse-brand">ALKA-SELTZER EXTRA STRENGTH HEARTBURN RELIEFCHEWS</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/alka-seltzer-heartburn-relief-peppermint/" class="browse-brand">ALKA-SELTZER HEARTBURN RELIEF PEPPERMINT</a><span class="browse-count">45,833 reports</span></li>
+        <li class="browse-item"><a href="/drugs/alka-seltzer-heartburn-reliefchews/" class="browse-brand">ALKA-SELTZER HEARTBURN RELIEFCHEWS</a><span class="browse-count">45,861 reports</span></li>
+        <li class="browse-item"><a href="/drugs/alka-seltzer-heartburn-reliefchews-strawberry-and-orange/" class="browse-brand">ALKA-SELTZER HEARTBURN RELIEFCHEWS STRAWBERRY AND ORANGE</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/alka-seltzer-ultra-strength-heartburn-reliefchews/" class="browse-brand">ALKA-SELTZER ULTRA STRENGTH HEARTBURN RELIEFCHEWS</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/alkums-antacid/" class="browse-brand">ALKUMS ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/all-day-allergy-relief/" class="browse-brand">ALL DAY ALLERGY RELIEF</a><span class="browse-count">84,542 reports</span></li>
+        <li class="browse-item"><a href="/drugs/allegra/" class="browse-brand">Allegra</a><span class="browse-generic">fexofenadine hydrochloride</span><span class="browse-count">20,489 reports</span></li>
+        <li class="browse-item"><a href="/drugs/allergy/" class="browse-brand">ALLERGY</a><span class="browse-count">108,833 reports</span></li>
+        <li class="browse-item"><a href="/drugs/allergy-relief/" class="browse-brand">ALLERGY RELIEF</a><span class="browse-count">176,471 reports</span></li>
+        <li class="browse-item"><a href="/drugs/allergy-relief-childrens/" class="browse-brand">ALLERGY RELIEF CHILDRENS</a><span class="browse-count">45,988 reports</span></li>
+        <li class="browse-item"><a href="/drugs/alli/" class="browse-brand">ALLI</a><span class="browse-count">23,377 reports</span></li>
+        <li class="browse-item"><a href="/drugs/allopurinol/" class="browse-brand">ALLOPURINOL</a><span class="browse-count">153,225 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aloprim/" class="browse-brand">ALOPRIM</a><span class="browse-count">153,240 reports</span></li>
+        <li class="browse-item"><a href="/drugs/alprazolam/" class="browse-brand">ALPRAZOLAM</a><span class="browse-count">111,584 reports</span></li>
+        <li class="browse-item"><a href="/drugs/alprazolam-extended-release/" class="browse-brand">ALPRAZOLAM EXTENDED RELEASE</a><span class="browse-count">111,595 reports</span></li>
+        <li class="browse-item"><a href="/drugs/alprazolam-xr/" class="browse-brand">ALPRAZOLAM XR</a><span class="browse-count">111,624 reports</span></li>
+        <li class="browse-item"><a href="/drugs/altace/" class="browse-brand">Altace</a><span class="browse-generic">ramipril</span><span class="browse-count">121,239 reports</span></li>
+        <li class="browse-item"><a href="/drugs/altachlore-sodium-chloride-hypertonicity/" class="browse-brand">ALTACHLORE SODIUM CHLORIDE HYPERTONICITY</a><span class="browse-count">70,395 reports</span></li>
+        <li class="browse-item"><a href="/drugs/amaryl/" class="browse-brand">Amaryl</a><span class="browse-generic">glimepiride</span><span class="browse-count">38,332 reports</span></li>
+        <li class="browse-item"><a href="/drugs/amazon-basic-care-acetaminophen/" class="browse-brand">AMAZON BASIC CARE ACETAMINOPHEN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/amazon-basic-care-acid-reducer/" class="browse-brand">AMAZON BASIC CARE ACID REDUCER</a><span class="browse-count">73,551 reports</span></li>
+        <li class="browse-item"><a href="/drugs/amazon-basic-care-ibuprofen/" class="browse-brand">AMAZON BASIC CARE IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/amazon-basic-care-omeprazole/" class="browse-brand">AMAZON BASIC CARE OMEPRAZOLE</a><span class="browse-count">336,268 reports</span></li>
+        <li class="browse-item"><a href="/drugs/amazon-basics-acetaminophen/" class="browse-brand">AMAZON BASICS ACETAMINOPHEN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/amazon-basics-cherry-antacid-sc/" class="browse-brand">AMAZON BASICS CHERRY ANTACID SC</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/amazon-ultra-strength-antacid/" class="browse-brand">AMAZON ULTRA STRENGTH ANTACID</a><span class="browse-count">45,826 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ambien/" class="browse-brand">Ambien</a><span class="browse-generic">zolpidem tartrate</span><span class="browse-count">81,342 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ambien-cr/" class="browse-brand">AMBIEN CR</a><span class="browse-count">84,705 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ambrisentan/" class="browse-brand">AMBRISENTAN</a><span class="browse-count">61,516 reports</span></li>
+        <li class="browse-item"><a href="/drugs/amlodipine-besylate/" class="browse-brand">AMLODIPINE BESYLATE</a><span class="browse-count">65,672 reports</span></li>
+        <li class="browse-item"><a href="/drugs/amnesteem/" class="browse-brand">AMNESTEEM</a><span class="browse-count">19,891 reports</span></li>
+        <li class="browse-item"><a href="/drugs/amoxicillin/" class="browse-brand">AMOXICILLIN</a><span class="browse-count">74,624 reports</span></li>
+        <li class="browse-item"><a href="/drugs/amoxil/" class="browse-brand">Amoxil</a><span class="browse-generic">amoxicillin</span><span class="browse-count">74,624 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ampyra/" class="browse-brand">AMPYRA</a><span class="browse-count">71,176 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ancient-secrets-breathe-again/" class="browse-brand">ANCIENT SECRETS BREATHE AGAIN</a><span class="browse-count">70,390 reports</span></li>
+        <li class="browse-item"><a href="/drugs/androgel/" class="browse-brand">AndroGel</a><span class="browse-generic">testosterone</span><span class="browse-count">38,673 reports</span></li>
+        <li class="browse-item"><a href="/drugs/antacid/" class="browse-brand">ANTACID</a><span class="browse-count">46,347 reports</span></li>
+        <li class="browse-item"><a href="/drugs/antacid-childrens/" class="browse-brand">ANTACID CHILDRENS</a><span class="browse-count">46,340 reports</span></li>
+        <li class="browse-item"><a href="/drugs/antacid-extra-strength/" class="browse-brand">ANTACID EXTRA STRENGTH</a><span class="browse-count">46,392 reports</span></li>
+        <li class="browse-item"><a href="/drugs/antacid-extra-strength-assorted-berry/" class="browse-brand">ANTACID EXTRA STRENGTH ASSORTED BERRY</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/antacid-extra-strength-wintergreen/" class="browse-brand">ANTACID EXTRA STRENGTH WINTERGREEN</a><span class="browse-count">46,344 reports</span></li>
+        <li class="browse-item"><a href="/drugs/antacid-flavor-chew/" class="browse-brand">ANTACID FLAVOR CHEW</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/antacid-flavor-chews/" class="browse-brand">ANTACID FLAVOR CHEWS</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/antacid-fruit-chews/" class="browse-brand">ANTACID FRUIT CHEWS</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/antacid-relief/" class="browse-brand">ANTACID RELIEF</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/antacid-soft-chew/" class="browse-brand">ANTACID SOFT CHEW</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/antacid-ultra-strength/" class="browse-brand">ANTACID ULTRA STRENGTH</a><span class="browse-count">46,340 reports</span></li>
+        <li class="browse-item"><a href="/drugs/anusol-hc/" class="browse-brand">ANUSOL HC</a><span class="browse-count">69,676 reports</span></li>
+        <li class="browse-item"><a href="/drugs/apap/" class="browse-brand">APAP</a><span class="browse-count">249,230 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aphen/" class="browse-brand">APHEN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/apixaban/" class="browse-brand">APIXABAN</a><span class="browse-count">64,339 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aqua-marina/" class="browse-brand">AQUA MARINA</a><span class="browse-count">70,390 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aranesp/" class="browse-brand">ARANESP</a><span class="browse-count">53,038 reports</span></li>
+        <li class="browse-item"><a href="/drugs/arava/" class="browse-brand">ARAVA</a><span class="browse-count">102,952 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aricept/" class="browse-brand">Aricept</a><span class="browse-generic">donepezil hydrochloride</span><span class="browse-count">19,466 reports</span></li>
+        <li class="browse-item"><a href="/drugs/arimidex/" class="browse-brand">ARIMIDEX</a><span class="browse-count">35,755 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aromatica-hair-acondicionador-romero-con-minoxidil/" class="browse-brand">AROMATICA HAIR ACONDICIONADOR ROMERO CON MINOXIDIL</a><span class="browse-count">32,253 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aromatica-hair-champu/" class="browse-brand">AROMATICA HAIR CHAMPU</a><span class="browse-count">32,253 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aromatica-hair-gota-de-brillo-romero-con-minoxidil/" class="browse-brand">AROMATICA HAIR GOTA DE BRILLO ROMERO CON MINOXIDIL</a><span class="browse-count">32,253 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aromatica-hair-leave-in-romero-con-minoxidil/" class="browse-brand">AROMATICA HAIR LEAVE IN ROMERO CON MINOXIDIL</a><span class="browse-count">32,253 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aromatica-hair-tratamiento-romero-con-minoxidil/" class="browse-brand">AROMATICA HAIR TRATAMIENTO ROMERO CON MINOXIDIL</a><span class="browse-count">32,253 reports</span></li>
+        <li class="browse-item"><a href="/drugs/arthritis-pain/" class="browse-brand">ARTHRITIS PAIN</a><span class="browse-count">247,054 reports</span></li>
+        <li class="browse-item"><a href="/drugs/arthritis-pain-acetaminophen/" class="browse-brand">ARTHRITIS PAIN ACETAMINOPHEN</a><span class="browse-count">246,994 reports</span></li>
+        <li class="browse-item"><a href="/drugs/arthritis-pain-relief/" class="browse-brand">ARTHRITIS PAIN RELIEF</a><span class="browse-count">247,026 reports</span></li>
+        <li class="browse-item"><a href="/drugs/arthritis-pain-reliever/" class="browse-brand">ARTHRITIS PAIN RELIEVER</a><span class="browse-count">272,883 reports</span></li>
+        <li class="browse-item"><a href="/drugs/artificial-eyedrop/" class="browse-brand">ARTIFICIAL EYEDROP</a><span class="browse-count">70,390 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ascor/" class="browse-brand">ASCOR</a><span class="browse-count">22,852 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ascorbic-acid/" class="browse-brand">ASCORBIC ACID</a><span class="browse-count">22,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspi-cor/" class="browse-brand">ASPI-COR</a><span class="browse-count">499,942 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin/" class="browse-brand">ASPIRIN</a><span class="browse-count">500,610 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-325/" class="browse-brand">ASPIRIN 325</a><span class="browse-count">507,144 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-50-ct/" class="browse-brand">ASPIRIN 50 CT</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-81/" class="browse-brand">ASPIRIN 81</a><span class="browse-count">507,144 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-chewable/" class="browse-brand">ASPIRIN CHEWABLE</a><span class="browse-count">500,640 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-chewable-low-dose/" class="browse-brand">ASPIRIN CHEWABLE, LOW DOSE</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-delayed-release/" class="browse-brand">ASPIRIN DELAYED RELEASE</a><span class="browse-count">499,946 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-enteric-coated/" class="browse-brand">ASPIRIN ENTERIC COATED</a><span class="browse-count">500,733 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-enteric-coated-low-dose/" class="browse-brand">ASPIRIN ENTERIC COATED LOW DOSE</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-enteric-coated-regular-strength/" class="browse-brand">ASPIRIN ENTERIC COATED, REGULAR STRENGTH</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-enteric-safety-coated/" class="browse-brand">ASPIRIN ENTERIC SAFETY COATED</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-extra-strength/" class="browse-brand">ASPIRIN EXTRA STRENGTH</a><span class="browse-count">499,942 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-low-dose/" class="browse-brand">ASPIRIN LOW DOSE</a><span class="browse-count">501,116 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-low-dose-chewable/" class="browse-brand">ASPIRIN LOW DOSE CHEWABLE</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-low-dose-chewable-orange/" class="browse-brand">ASPIRIN LOW DOSE CHEWABLE ORANGE</a><span class="browse-count">499,942 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-low-dose-enteric-coated/" class="browse-brand">ASPIRIN LOW DOSE ENTERIC COATED</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-low-dose-safety-coated/" class="browse-brand">ASPIRIN LOW DOSE SAFETY COATED</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-low-strength/" class="browse-brand">ASPIRIN LOW STRENGTH</a><span class="browse-count">499,951 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-nsaid/" class="browse-brand">ASPIRIN NSAID</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-pain-relief/" class="browse-brand">ASPIRIN PAIN RELIEF</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-pain-reliver/" class="browse-brand">ASPIRIN PAIN RELIVER</a><span class="browse-count">499,945 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-regimen/" class="browse-brand">ASPIRIN REGIMEN</a><span class="browse-count">499,951 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirin-regular-strength/" class="browse-brand">ASPIRIN REGULAR STRENGTH</a><span class="browse-count">500,646 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aspirina-caplets/" class="browse-brand">ASPIRINA CAPLETS</a><span class="browse-count">500,658 reports</span></li>
+        <li class="browse-item"><a href="/drugs/assorted-fruit-antacid-chews/" class="browse-brand">ASSORTED FRUIT ANTACID CHEWS</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/assorted-fruit-antacid-flavor-chews/" class="browse-brand">ASSORTED FRUIT ANTACID FLAVOR CHEWS</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/assured/" class="browse-brand">ASSURED</a><span class="browse-count">71,187 reports</span></li>
+        <li class="browse-item"><a href="/drugs/assured-ibuprofen/" class="browse-brand">ASSURED IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/atacand/" class="browse-brand">Atacand</a><span class="browse-generic">candesartan cilexetil</span><span class="browse-count">25,773 reports</span></li>
+        <li class="browse-item"><a href="/drugs/atamel-forte/" class="browse-brand">ATAMEL FORTE</a><span class="browse-count">246,993 reports</span></li>
+        <li class="browse-item"><a href="/drugs/atarax/" class="browse-brand">Atarax</a><span class="browse-generic">hydroxyzine hydrochloride</span><span class="browse-count">12,337 reports</span></li>
+        <li class="browse-item"><a href="/drugs/atenolol/" class="browse-brand">ATENOLOL</a><span class="browse-count">121,968 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ativan/" class="browse-brand">Ativan</a><span class="browse-generic">lorazepam</span><span class="browse-count">176,539 reports</span></li>
+        <li class="browse-item"><a href="/drugs/atorvastatin-calcium/" class="browse-brand">ATORVASTATIN CALCIUM</a><span class="browse-count">67,701 reports</span></li>
+        <li class="browse-item"><a href="/drugs/atrovent-hfa/" class="browse-brand">ATROVENT HFA</a><span class="browse-count">34,823 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aubagio/" class="browse-brand">AUBAGIO</a><span class="browse-count">44,823 reports</span></li>
+        <li class="browse-item"><a href="/drugs/augmentin/" class="browse-brand">Augmentin</a><span class="browse-generic">amoxicillin/clavulanate potassium</span><span class="browse-count">26,550 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aurophen-extra-strength-for-adults/" class="browse-brand">AUROPHEN EXTRA STRENGTH FOR ADULTS</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/aurophen-regular-strength/" class="browse-brand">AUROPHEN REGULAR STRENGTH</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/auvi-q/" class="browse-brand">AUVI-Q</a><span class="browse-count">41,005 reports</span></li>
+        <li class="browse-item"><a href="/drugs/avaclyr/" class="browse-brand">AVACLYR</a><span class="browse-count">102,517 reports</span></li>
+        <li class="browse-item"><a href="/drugs/avapro/" class="browse-brand">Avapro</a><span class="browse-generic">irbesartan</span><span class="browse-count">43,679 reports</span></li>
+        <li class="browse-item"><a href="/drugs/avastin/" class="browse-brand">AVASTIN</a><span class="browse-count">120,853 reports</span></li>
+        <li class="browse-item"><a href="/drugs/avodart/" class="browse-brand">AVODART</a><span class="browse-count">20,875 reports</span></li>
+        <li class="browse-item"><a href="/drugs/avonex/" class="browse-brand">AVONEX</a><span class="browse-count">142,926 reports</span></li>
+        <li class="browse-item"><a href="/drugs/avopef/" class="browse-brand">AVOPEF</a><span class="browse-count">70,525 reports</span></li>
+        <li class="browse-item"><a href="/drugs/avzivi-tnjn/" class="browse-brand">AVZIVI TNJN</a><span class="browse-count">56,834 reports</span></li>
+        <li class="browse-item"><a href="/drugs/azasan/" class="browse-brand">AZASAN</a><span class="browse-count">64,682 reports</span></li>
+        <li class="browse-item"><a href="/drugs/azathioprine/" class="browse-brand">AZATHIOPRINE</a><span class="browse-count">64,420 reports</span></li>
+        <li class="browse-item"><a href="/drugs/azulfidine/" class="browse-brand">AZULFIDINE</a><span class="browse-count">75,765 reports</span></li>
+        <li class="browse-item"><a href="/drugs/azulfidine-en-tabs/" class="browse-brand">AZULFIDINE EN-TABS</a><span class="browse-count">76,998 reports</span></li>
+      </ul></section>
+
+      <section id="section-B" class="letter-section"><h2 class="letter-heading">B</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/back-and-muscle-pain/" class="browse-brand">BACK AND MUSCLE PAIN</a><span class="browse-count">87,510 reports</span></li>
+        <li class="browse-item"><a href="/drugs/baclofen/" class="browse-brand">BACLOFEN</a><span class="browse-count">83,151 reports</span></li>
+        <li class="browse-item"><a href="/drugs/baclofen-intrathecal/" class="browse-brand">BACLOFEN (INTRATHECAL)</a><span class="browse-count">84,433 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bacteriostatic-sodium-chloride/" class="browse-brand">BACTERIOSTATIC SODIUM CHLORIDE</a><span class="browse-count">70,720 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bactimicina-childrens-pain-and-fever/" class="browse-brand">BACTIMICINA CHILDRENS PAIN AND FEVER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bactrim/" class="browse-brand">Bactrim</a><span class="browse-generic">sulfamethoxazole/trimethoprim</span><span class="browse-count">68,095 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bactroban/" class="browse-brand">Bactroban</a><span class="browse-generic">mupirocin</span><span class="browse-count">13,054 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basaglar-kwikpen/" class="browse-brand">BASAGLAR KWIKPEN</a><span class="browse-count">43,394 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basaglar-tempo-pen/" class="browse-brand">BASAGLAR TEMPO PEN</a><span class="browse-count">42,713 reports</span></li>
+        <li class="browse-item"><a href="/drugs/base-laboratories-saline/" class="browse-brand">BASE LABORATORIES SALINE</a><span class="browse-count">70,390 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-acetaminophen/" class="browse-brand">BASIC CARE ACETAMINOPHEN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-acid-reducer/" class="browse-brand">BASIC CARE ACID REDUCER</a><span class="browse-count">78,854 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-allergy-relief/" class="browse-brand">BASIC CARE ALLERGY RELIEF</a><span class="browse-count">71,227 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-antacid-fruit-chews/" class="browse-brand">BASIC CARE ANTACID FRUIT CHEWS</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-aspirin/" class="browse-brand">BASIC CARE ASPIRIN</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-berry-antacid-hbg/" class="browse-brand">BASIC CARE BERRY ANTACID HBG</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-childrens-allergy-relief/" class="browse-brand">BASIC CARE CHILDRENS ALLERGY RELIEF</a><span class="browse-count">56,034 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-childrens-ibuprofen/" class="browse-brand">BASIC CARE CHILDRENS IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-childrens-pain-and-fever/" class="browse-brand">BASIC CARE CHILDRENS PAIN AND FEVER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-esomeprazole-magnesium/" class="browse-brand">BASIC CARE ESOMEPRAZOLE MAGNESIUM</a><span class="browse-count">46,292 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-hair-regrowth-treatment/" class="browse-brand">BASIC CARE HAIR REGROWTH TREATMENT</a><span class="browse-count">32,253 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-heartburn-prevention/" class="browse-brand">BASIC CARE HEARTBURN PREVENTION</a><span class="browse-count">73,551 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-ibuprofen/" class="browse-brand">BASIC CARE IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-infants-ibuprofen/" class="browse-brand">BASIC CARE INFANTS IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-infants-pain-and-fever/" class="browse-brand">BASIC CARE INFANTS PAIN AND FEVER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-lansoprazole/" class="browse-brand">BASIC CARE LANSOPRAZOLE</a><span class="browse-count">104,027 reports</span></li>
+        <li class="browse-item"><a href="/drugs/basic-care-omeprazole/" class="browse-brand">BASIC CARE OMEPRAZOLE</a><span class="browse-count">339,249 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bayer/" class="browse-brand">BAYER</a><span class="browse-count">500,121 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bayer-aspirin-original-cvp-health/" class="browse-brand">BAYER ASPIRIN ORIGINAL, CVP HEALTH</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bayer-aspirin-original-travel-basix/" class="browse-brand">BAYER ASPIRIN ORIGINAL, TRAVEL BASIX</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bayer-aspirin-regimen-chewable-low-dose-aspirin-orange/" class="browse-brand">BAYER ASPIRIN REGIMEN CHEWABLE LOW DOSE ASPIRIN ORANGE</a><span class="browse-count">499,967 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bayer-aspirin-regimen-enteric-coated/" class="browse-brand">BAYER ASPIRIN REGIMEN ENTERIC COATED</a><span class="browse-count">499,960 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bayer-genuine-aspirin/" class="browse-brand">BAYER GENUINE ASPIRIN</a><span class="browse-count">500,767 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bayer-low-dose/" class="browse-brand">BAYER LOW DOSE</a><span class="browse-count">504,758 reports</span></li>
+        <li class="browse-item"><a href="/drugs/beizray/" class="browse-brand">BEIZRAY</a><span class="browse-count">65,994 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bella-v-antacid-extra-strength-berries-flavor/" class="browse-brand">BELLA V ANTACID EXTRA STRENGTH BERRIES FLAVOR</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/belmora-melox-agrura/" class="browse-brand">BELMORA MELOX AGRURA</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/benadryl/" class="browse-brand">Benadryl</a><span class="browse-generic">diphenhydramine hydrochloride</span><span class="browse-count">91,712 reports</span></li>
+        <li class="browse-item"><a href="/drugs/benicar/" class="browse-brand">Benicar</a><span class="browse-generic">olmesartan medoxomil</span><span class="browse-count">35,335 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bentyl/" class="browse-brand">Bentyl</a><span class="browse-generic">dicyclomine hydrochloride</span><span class="browse-count">13,768 reports</span></li>
+        <li class="browse-item"><a href="/drugs/berkley-and-jensen-acetaminophen/" class="browse-brand">BERKLEY AND JENSEN ACETAMINOPHEN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/berkley-and-jensen-allergy-relief/" class="browse-brand">BERKLEY AND JENSEN ALLERGY RELIEF</a><span class="browse-count">67,972 reports</span></li>
+        <li class="browse-item"><a href="/drugs/berkley-and-jensen-famotidine/" class="browse-brand">BERKLEY AND JENSEN FAMOTIDINE</a><span class="browse-count">73,551 reports</span></li>
+        <li class="browse-item"><a href="/drugs/berkley-and-jensen-heartburn-treatment/" class="browse-brand">BERKLEY AND JENSEN HEARTBURN TREATMENT</a><span class="browse-count">46,292 reports</span></li>
+        <li class="browse-item"><a href="/drugs/berkley-and-jensen-minoxidil/" class="browse-brand">BERKLEY AND JENSEN MINOXIDIL</a><span class="browse-count">32,253 reports</span></li>
+        <li class="browse-item"><a href="/drugs/berkley-and-jensen-omeprazole/" class="browse-brand">BERKLEY AND JENSEN OMEPRAZOLE</a><span class="browse-count">336,268 reports</span></li>
+        <li class="browse-item"><a href="/drugs/berkley-and-jensen-pain-relief/" class="browse-brand">BERKLEY AND JENSEN PAIN RELIEF</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/berkley-and-jensen-rapid-release-acetaminophen/" class="browse-brand">BERKLEY AND JENSEN RAPID RELEASE ACETAMINOPHEN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/best-choice-assorted-fruit/" class="browse-brand">BEST CHOICE ASSORTED FRUIT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/best-choice-effervescent-pain-reliever-36/" class="browse-brand">BEST CHOICE EFFERVESCENT PAIN RELIEVER 36</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/best-choice-extra-strength-assorted-berry/" class="browse-brand">BEST CHOICE EXTRA STRENGTH ASSORTED BERRY</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/best-choice-extra-strength-tropical-fruit/" class="browse-brand">BEST CHOICE EXTRA STRENGTH TROPICAL FRUIT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/best-choice-regular-strength/" class="browse-brand">BEST CHOICE REGULAR STRENGTH</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bestmade-natural-products-calcium-carbonate-calc-carb/" class="browse-brand">BESTMADE NATURAL PRODUCTS CALCIUM CARBONATE (CALC CARB)</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/betaseron/" class="browse-brand">BETASERON</a><span class="browse-count">19,028 reports</span></li>
+        <li class="browse-item"><a href="/drugs/betr-pain-relief/" class="browse-brand">BETR PAIN RELIEF</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/betr-remedies-ibuprofen/" class="browse-brand">BETR REMEDIES IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/better-living-brands-childrens-fever-and-pain-reliver/" class="browse-brand">BETTER LIVING BRANDS CHILDRENS FEVER AND PAIN RELIVER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bi-mart-extra-strength-antacid-assorted-berry/" class="browse-brand">BI-MART EXTRA STRENGTH ANTACID ASSORTED BERRY</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bi-mart-extra-strength-antacid-assorted-fruit/" class="browse-brand">BI-MART EXTRA STRENGTH ANTACID ASSORTED FRUIT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bi-mart-regular-strength-antacid/" class="browse-brand">BI-MART REGULAR STRENGTH ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bi-mart-regular-strength-antacid-peppermint/" class="browse-brand">BI-MART REGULAR STRENGTH ANTACID PEPPERMINT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bi-mart-ultra-strength-antacid-assorted-fruit/" class="browse-brand">BI-MART ULTRA STRENGTH ANTACID ASSORTED FRUIT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bi-mart-ultra-strength-antacid-peppermint/" class="browse-brand">BI-MART ULTRA STRENGTH ANTACID PEPPERMINT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bimzelx/" class="browse-brand">BIMZELX</a><span class="browse-count">16,071 reports</span></li>
+        <li class="browse-item"><a href="/drugs/binosto/" class="browse-brand">BINOSTO</a><span class="browse-count">31,528 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bisoprolol/" class="browse-brand">BISOPROLOL</a><span class="browse-count">132,268 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bisoprolol-fumarate/" class="browse-brand">BISOPROLOL FUMARATE</a><span class="browse-count">34,372 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bm-calcium-carbonate-calc-carb/" class="browse-brand">BM CALCIUM CARBONATE (CALC CARB)</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/boniva/" class="browse-brand">Boniva</a><span class="browse-generic">ibandronate sodium</span><span class="browse-count">3,004 reports</span></li>
+        <li class="browse-item"><a href="/drugs/botox-cosmetic/" class="browse-brand">BOTOX COSMETIC</a><span class="browse-count">38,867 reports</span></li>
+        <li class="browse-item"><a href="/drugs/brilinta/" class="browse-brand">Brilinta</a><span class="browse-generic">ticagrelor</span><span class="browse-count">31,314 reports</span></li>
+        <li class="browse-item"><a href="/drugs/buffered-aspirin/" class="browse-brand">BUFFERED ASPIRIN</a><span class="browse-count">499,999 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bufferin-regular-strength-pain-relief/" class="browse-brand">BUFFERIN REGULAR STRENGTH PAIN RELIEF</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bunee-hair-growth-serum/" class="browse-brand">BUNEE HAIR GROWTH SERUM</a><span class="browse-count">32,253 reports</span></li>
+        <li class="browse-item"><a href="/drugs/burble/" class="browse-brand">BURBLE</a><span class="browse-count">70,390 reports</span></li>
+        <li class="browse-item"><a href="/drugs/butrans/" class="browse-brand">BUTRANS</a><span class="browse-count">83,431 reports</span></li>
+        <li class="browse-item"><a href="/drugs/bye-zero/" class="browse-brand">BYE ZERO</a><span class="browse-count">79,299 reports</span></li>
+        <li class="browse-item"><a href="/drugs/byetta/" class="browse-brand">Byetta</a><span class="browse-generic">exenatide</span><span class="browse-count">52,308 reports</span></li>
+      </ul></section>
+
+      <section id="section-C" class="letter-section"><h2 class="letter-heading">C</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/cabinet-pain-reliever-and-fever-reducer/" class="browse-brand">CABINET PAIN RELIEVER AND FEVER REDUCER</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cabinet-pain-reliever-and-fever-reducer-refill-acetaminophen/" class="browse-brand">CABINET PAIN RELIEVER AND FEVER REDUCER REFILL ACETAMINOPHEN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cabometyx/" class="browse-brand">CABOMETYX</a><span class="browse-count">44,604 reports</span></li>
+        <li class="browse-item"><a href="/drugs/calcium-antacid/" class="browse-brand">CALCIUM ANTACID</a><span class="browse-count">46,213 reports</span></li>
+        <li class="browse-item"><a href="/drugs/calcium-antacidextra-strength-extra-strength/" class="browse-brand">CALCIUM ANTACIDEXTRA STRENGTH EXTRA STRENGTH</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/calcium-carbonate/" class="browse-brand">CALCIUM CARBONATE</a><span class="browse-count">46,340 reports</span></li>
+        <li class="browse-item"><a href="/drugs/calcium-carbonate-antacid-assorted-berries/" class="browse-brand">CALCIUM CARBONATE ANTACID ASSORTED BERRIES</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/calcium-carbonate-chewable-antacid/" class="browse-brand">CALCIUM CARBONATE CHEWABLE ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/calcium-gluconate/" class="browse-brand">CALCIUM GLUCONATE</a><span class="browse-count">11,777 reports</span></li>
+        <li class="browse-item"><a href="/drugs/calcium-gluconate-in-sodium-chloride/" class="browse-brand">CALCIUM GLUCONATE IN SODIUM CHLORIDE</a><span class="browse-count">11,778 reports</span></li>
+        <li class="browse-item"><a href="/drugs/caldolor/" class="browse-brand">CALDOLOR</a><span class="browse-count">195,126 reports</span></li>
+        <li class="browse-item"><a href="/drugs/calmicid-ac-acid-reducer/" class="browse-brand">CALMICID AC ACID REDUCER</a><span class="browse-count">73,552 reports</span></li>
+        <li class="browse-item"><a href="/drugs/capecitabine/" class="browse-brand">CAPECITABINE</a><span class="browse-count">52,838 reports</span></li>
+        <li class="browse-item"><a href="/drugs/carbamazepin/" class="browse-brand">CARBAMAZEPIN</a><span class="browse-count">36,262 reports</span></li>
+        <li class="browse-item"><a href="/drugs/carbamazepine/" class="browse-brand">CARBAMAZEPINE</a><span class="browse-count">35,547 reports</span></li>
+        <li class="browse-item"><a href="/drugs/carbamazepine-er/" class="browse-brand">CARBAMAZEPINE ER</a><span class="browse-count">35,624 reports</span></li>
+        <li class="browse-item"><a href="/drugs/carbatrol/" class="browse-brand">CARBATROL</a><span class="browse-count">36,767 reports</span></li>
+        <li class="browse-item"><a href="/drugs/carboplatin/" class="browse-brand">CARBOPLATIN</a><span class="browse-count">122,600 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cardinal-extra-strength-smooth-antacid-assorted-fruits/" class="browse-brand">CARDINAL EXTRA STRENGTH SMOOTH ANTACID ASSORTED FRUITS</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cardinalextra-strength-antacid-wintergreen-flavor/" class="browse-brand">CARDINALEXTRA STRENGTH ANTACID WINTERGREEN FLAVOR</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cardizem/" class="browse-brand">Cardizem</a><span class="browse-generic">diltiazem hydrochloride</span><span class="browse-count">22,672 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cardura/" class="browse-brand">Cardura</a><span class="browse-generic">doxazosin mesylate</span><span class="browse-count">27,472 reports</span></li>
+        <li class="browse-item"><a href="/drugs/care-one-arthritis-pain-relief/" class="browse-brand">CARE ONE ARTHRITIS PAIN RELIEF</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/care-one-ibuprofen/" class="browse-brand">CARE ONE IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/care-one-ibuprofen-childrens/" class="browse-brand">CARE ONE IBUPROFEN CHILDRENS</a><span class="browse-count">195,031 reports</span></li>
+        <li class="browse-item"><a href="/drugs/care-one-omeprazole/" class="browse-brand">CARE ONE OMEPRAZOLE</a><span class="browse-count">336,268 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careall-acetaminophen/" class="browse-brand">CAREALL ACETAMINOPHEN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careall-acetaminophen-extra-strength/" class="browse-brand">CAREALL ACETAMINOPHEN EXTRA STRENGTH</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careall-allergy-relief/" class="browse-brand">CAREALL ALLERGY RELIEF</a><span class="browse-count">75,369 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careall-aspirin/" class="browse-brand">CAREALL ASPIRIN</a><span class="browse-count">499,951 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careall-ibuprofen/" class="browse-brand">CAREALL IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careall-non-aspirin-extra-strength/" class="browse-brand">CAREALL NON ASPIRIN EXTRA STRENGTH</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careone-8-hour-pain-relief/" class="browse-brand">CAREONE 8 HOUR PAIN RELIEF</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careone-acetaminophen/" class="browse-brand">CAREONE ACETAMINOPHEN</a><span class="browse-count">246,992 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careone-acid-reducer/" class="browse-brand">CAREONE ACID REDUCER</a><span class="browse-count">104,027 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careone-acid-relief/" class="browse-brand">CAREONE ACID RELIEF</a><span class="browse-count">73,552 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careone-allergy-relief/" class="browse-brand">CAREONE ALLERGY RELIEF</a><span class="browse-count">146,062 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careone-childrens-acetaminophen/" class="browse-brand">CAREONE CHILDRENS ACETAMINOPHEN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careone-childrens-allergy-relief/" class="browse-brand">CAREONE CHILDRENS ALLERGY RELIEF</a><span class="browse-count">90,379 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careone-childrens-ibuprofen/" class="browse-brand">CAREONE CHILDRENS IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careone-esomeprazole-magnesium/" class="browse-brand">CAREONE ESOMEPRAZOLE MAGNESIUM</a><span class="browse-count">46,292 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careone-extra-strength-assorted-fruits/" class="browse-brand">CAREONE EXTRA STRENGTH ASSORTED FRUITS</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careone-ibuprofen/" class="browse-brand">CAREONE IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careone-infants-acetaminophen/" class="browse-brand">CAREONE INFANTS ACETAMINOPHEN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careone-omeprazole/" class="browse-brand">CAREONE OMEPRAZOLE</a><span class="browse-count">336,268 reports</span></li>
+        <li class="browse-item"><a href="/drugs/careone-regular-strength-calcium-antacid/" class="browse-brand">CAREONE REGULAR STRENGTH CALCIUM ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/carvedilol/" class="browse-brand">CARVEDILOL</a><span class="browse-count">97,231 reports</span></li>
+        <li class="browse-item"><a href="/drugs/catapres/" class="browse-brand">Catapres</a><span class="browse-generic">clonidine hydrochloride</span><span class="browse-count">5,315 reports</span></li>
+        <li class="browse-item"><a href="/drugs/celebrex/" class="browse-brand">Celebrex</a><span class="browse-generic">celecoxib</span><span class="browse-count">129,430 reports</span></li>
+        <li class="browse-item"><a href="/drugs/celecoxib/" class="browse-brand">CELECOXIB</a><span class="browse-count">33,828 reports</span></li>
+        <li class="browse-item"><a href="/drugs/celexa/" class="browse-brand">Celexa</a><span class="browse-generic">citalopram hydrobromide</span><span class="browse-count">112,320 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cellcept/" class="browse-brand">CELLCEPT</a><span class="browse-count">131,737 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cequa/" class="browse-brand">CEQUA</a><span class="browse-count">57,556 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cetafen/" class="browse-brand">CETAFEN</a><span class="browse-count">246,993 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cetafen-extra/" class="browse-brand">CETAFEN EXTRA</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cetirizine/" class="browse-brand">CETIRIZINE</a><span class="browse-count">67,104 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cetirizine-hydrochloride/" class="browse-brand">CETIRIZINE HYDROCHLORIDE</a><span class="browse-count">67,118 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cetirizine-hydrochloride-hives-relief/" class="browse-brand">CETIRIZINE HYDROCHLORIDE HIVES RELIEF</a><span class="browse-count">67,105 reports</span></li>
+        <li class="browse-item"><a href="/drugs/chantix/" class="browse-brand">CHANTIX</a><span class="browse-count">76,439 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cherry-antacid/" class="browse-brand">CHERRY ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cherry-antacid-relief-chew/" class="browse-brand">CHERRY ANTACID RELIEF CHEW</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cherry-antacid-soft-chew/" class="browse-brand">CHERRY ANTACID SOFT CHEW</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cherry-antacid-soft-chews/" class="browse-brand">CHERRY ANTACID SOFT CHEWS</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/chewable-acetaminophen-childrens/" class="browse-brand">CHEWABLE ACETAMINOPHEN CHILDRENS</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/chewable-aspirin/" class="browse-brand">CHEWABLE ASPIRIN</a><span class="browse-count">499,974 reports</span></li>
+        <li class="browse-item"><a href="/drugs/chewable-low-dose-aspirin/" class="browse-brand">CHEWABLE LOW DOSE ASPIRIN</a><span class="browse-count">499,942 reports</span></li>
+        <li class="browse-item"><a href="/drugs/children-acetaminophen/" class="browse-brand">CHILDREN ACETAMINOPHEN</a><span class="browse-count">246,992 reports</span></li>
+        <li class="browse-item"><a href="/drugs/children-claritin-allergy/" class="browse-brand">CHILDREN CLARITIN ALLERGY</a><span class="browse-count">49,219 reports</span></li>
+        <li class="browse-item"><a href="/drugs/children-pain-and-fever-reliever/" class="browse-brand">CHILDREN PAIN AND FEVER RELIEVER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/children-pain-and-fever-reliver/" class="browse-brand">CHILDREN PAIN AND FEVER RELIVER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-acetaminophen/" class="browse-brand">CHILDRENS ACETAMINOPHEN</a><span class="browse-count">247,008 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-acetaminophen-dye-free-grape/" class="browse-brand">CHILDRENS ACETAMINOPHEN DYE FREE GRAPE</a><span class="browse-count">247,008 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-acetaminophen-oral-liquid-grape-flavor/" class="browse-brand">CHILDRENS ACETAMINOPHEN ORAL LIQUID GRAPE FLAVOR</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-advil/" class="browse-brand">CHILDRENS ADVIL</a><span class="browse-count">196,219 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-allergy/" class="browse-brand">CHILDRENS ALLERGY</a><span class="browse-count">136,329 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-allergy-relief/" class="browse-brand">CHILDRENS ALLERGY RELIEF</a><span class="browse-count">137,926 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-antacid/" class="browse-brand">CHILDRENS ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-antacid-extra-strength/" class="browse-brand">CHILDRENS ANTACID EXTRA STRENGTH</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-aspirin/" class="browse-brand">CHILDRENS ASPIRIN</a><span class="browse-count">500,096 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-chewable-acetaminophen/" class="browse-brand">CHILDRENS CHEWABLE ACETAMINOPHEN</a><span class="browse-count">246,992 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-chewables/" class="browse-brand">CHILDRENS CHEWABLES</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-dye-free-allergy-relief/" class="browse-brand">CHILDRENS DYE FREE ALLERGY RELIEF</a><span class="browse-count">16,218 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-fever-reducer-and-pain-reliever/" class="browse-brand">CHILDRENS FEVER REDUCER AND PAIN RELIEVER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-flanax-oral/" class="browse-brand">CHILDRENS FLANAX ORAL</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-ibuprofen/" class="browse-brand">CHILDRENS IBUPROFEN</a><span class="browse-count">195,515 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-ibuprofen-100/" class="browse-brand">CHILDRENS IBUPROFEN 100</a><span class="browse-count">195,031 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-ibuprofen-100-dye-free/" class="browse-brand">CHILDRENS IBUPROFEN 100 DYE FREE</a><span class="browse-count">195,031 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-ibuprofen-572/" class="browse-brand">CHILDRENS IBUPROFEN 572</a><span class="browse-count">195,031 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-ibuprofen-blue-raspberry/" class="browse-brand">CHILDRENS IBUPROFEN BLUE RASPBERRY</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-ibuprofen-bubblegum/" class="browse-brand">CHILDRENS IBUPROFEN BUBBLEGUM</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-ibuprofen-fruit/" class="browse-brand">CHILDRENS IBUPROFEN FRUIT</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-ibuprofen-grape/" class="browse-brand">CHILDRENS IBUPROFEN GRAPE</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-mapap/" class="browse-brand">CHILDRENS MAPAP</a><span class="browse-count">246,992 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-motrin/" class="browse-brand">CHILDRENS MOTRIN</a><span class="browse-count">197,853 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-pain-and-fever/" class="browse-brand">CHILDRENS PAIN AND FEVER</a><span class="browse-count">247,007 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-pain-and-fever-cherry-flavor/" class="browse-brand">CHILDRENS PAIN AND FEVER CHERRY FLAVOR</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-pain-and-fever-dissolve-packs/" class="browse-brand">CHILDRENS PAIN AND FEVER DISSOLVE PACKS</a><span class="browse-count">247,007 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-pain-and-fever-dye-free/" class="browse-brand">CHILDRENS PAIN AND FEVER DYE FREE</a><span class="browse-count">247,007 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-pain-and-fever-relief/" class="browse-brand">CHILDRENS PAIN AND FEVER RELIEF</a><span class="browse-count">246,992 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-pain-and-fever-grape-flavor/" class="browse-brand">CHILDRENS PAIN AND FEVER, GRAPE FLAVOR</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-pain-plus-fever-relief/" class="browse-brand">CHILDRENS PAIN PLUS FEVER RELIEF</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-pain-relief/" class="browse-brand">CHILDRENS PAIN RELIEF</a><span class="browse-count">247,010 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-pain-reliever/" class="browse-brand">CHILDRENS PAIN RELIEVER</a><span class="browse-count">246,992 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-pain-reliever-and-fever-reducer-cherry/" class="browse-brand">CHILDRENS PAIN RELIEVER AND FEVER REDUCER CHERRY</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-pain-reliever-and-fever-reducer-grape/" class="browse-brand">CHILDRENS PAIN RELIEVER AND FEVER REDUCER GRAPE</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-stomach-relief/" class="browse-brand">CHILDRENS STOMACH RELIEF</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-stomach-relief-antacid/" class="browse-brand">CHILDRENS STOMACH RELIEF ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-tukol-acetaminophen-fever-reducer-pain-reducer/" class="browse-brand">CHILDRENS TUKOL ACETAMINOPHEN FEVER REDUCER PAIN REDUCER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-tummy-relief/" class="browse-brand">CHILDRENS TUMMY RELIEF</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/childrens-tylenol/" class="browse-brand">CHILDRENS TYLENOL</a><span class="browse-count">248,846 reports</span></li>
+        <li class="browse-item"><a href="/drugs/chooz/" class="browse-brand">CHOOZ</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cialis/" class="browse-brand">CIALIS</a><span class="browse-count">52,724 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cimzia/" class="browse-brand">CIMZIA</a><span class="browse-count">114,573 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cipro/" class="browse-brand">Cipro</a><span class="browse-generic">ciprofloxacin hydrochloride</span><span class="browse-count">95,259 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ciprofloxacin/" class="browse-brand">CIPROFLOXACIN</a><span class="browse-count">75,368 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ciprofloxacin-in-dextrose/" class="browse-brand">CIPROFLOXACIN IN DEXTROSE</a><span class="browse-count">70,306 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ciprofloxacin-otic/" class="browse-brand">CIPROFLOXACIN OTIC</a><span class="browse-count">70,299 reports</span></li>
+        <li class="browse-item"><a href="/drugs/circle-k-aspirin-325/" class="browse-brand">CIRCLE K ASPIRIN 325</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/circle-k-ibuprofen/" class="browse-brand">CIRCLE K IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/circle-k-pain-reliever-extra-strength/" class="browse-brand">CIRCLE K PAIN RELIEVER EXTRA STRENGTH</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cisplatin/" class="browse-brand">CISPLATIN</a><span class="browse-count">76,218 reports</span></li>
+        <li class="browse-item"><a href="/drugs/citalopram/" class="browse-brand">CITALOPRAM</a><span class="browse-count">105,399 reports</span></li>
+        <li class="browse-item"><a href="/drugs/citalopram-hydrobromide/" class="browse-brand">CITALOPRAM HYDROBROMIDE</a><span class="browse-count">105,399 reports</span></li>
+        <li class="browse-item"><a href="/drugs/citrus-flavored-antacid/" class="browse-brand">CITRUS FLAVORED ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/claravis/" class="browse-brand">CLARAVIS</a><span class="browse-count">22,166 reports</span></li>
+        <li class="browse-item"><a href="/drugs/claritin/" class="browse-brand">Claritin</a><span class="browse-generic">loratadine</span><span class="browse-count">99,620 reports</span></li>
+        <li class="browse-item"><a href="/drugs/claritin-allergy/" class="browse-brand">CLARITIN ALLERGY</a><span class="browse-count">99,660 reports</span></li>
+        <li class="browse-item"><a href="/drugs/claritin-liqui-gels/" class="browse-brand">CLARITIN LIQUI-GELS</a><span class="browse-count">100,325 reports</span></li>
+        <li class="browse-item"><a href="/drugs/claritin-reditabs/" class="browse-brand">CLARITIN REDITABS</a><span class="browse-count">101,317 reports</span></li>
+        <li class="browse-item"><a href="/drugs/clear-choice-regular-strength-pain-reliever/" class="browse-brand">CLEAR CHOICE REGULAR STRENGTH PAIN RELIEVER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cleocin/" class="browse-brand">Cleocin</a><span class="browse-generic">clindamycin hydrochloride</span><span class="browse-count">4,720 reports</span></li>
+        <li class="browse-item"><a href="/drugs/climara/" class="browse-brand">CLIMARA</a><span class="browse-count">46,989 reports</span></li>
+        <li class="browse-item"><a href="/drugs/clonazepam/" class="browse-brand">CLONAZEPAM</a><span class="browse-count">116,079 reports</span></li>
+        <li class="browse-item"><a href="/drugs/clonidine/" class="browse-brand">CLONIDINE</a><span class="browse-count">49,383 reports</span></li>
+        <li class="browse-item"><a href="/drugs/clonidine-transdermal-system/" class="browse-brand">CLONIDINE TRANSDERMAL SYSTEM</a><span class="browse-count">50,141 reports</span></li>
+        <li class="browse-item"><a href="/drugs/clopidogrel/" class="browse-brand">CLOPIDOGREL</a><span class="browse-count">99,961 reports</span></li>
+        <li class="browse-item"><a href="/drugs/clopidogrel-bisulfate/" class="browse-brand">CLOPIDOGREL BISULFATE</a><span class="browse-count">14,537 reports</span></li>
+        <li class="browse-item"><a href="/drugs/clozapine/" class="browse-brand">CLOZAPINE</a><span class="browse-count">75,269 reports</span></li>
+        <li class="browse-item"><a href="/drugs/clozaril/" class="browse-brand">CLOZARIL</a><span class="browse-count">123,167 reports</span></li>
+        <li class="browse-item"><a href="/drugs/coated-aspirin/" class="browse-brand">COATED ASPIRIN</a><span class="browse-count">500,042 reports</span></li>
+        <li class="browse-item"><a href="/drugs/colace/" class="browse-brand">COLACE</a><span class="browse-count">51,314 reports</span></li>
+        <li class="browse-item"><a href="/drugs/colcrys/" class="browse-brand">Colcrys</a><span class="browse-generic">colchicine</span><span class="browse-count">25,610 reports</span></li>
+        <li class="browse-item"><a href="/drugs/concentrated-ibuprofen-infants/" class="browse-brand">CONCENTRATED IBUPROFEN INFANTS</a><span class="browse-count">195,037 reports</span></li>
+        <li class="browse-item"><a href="/drugs/concerta/" class="browse-brand">Concerta</a><span class="browse-generic">methylphenidate hydrochloride</span><span class="browse-count">23,807 reports</span></li>
+        <li class="browse-item"><a href="/drugs/conzip/" class="browse-brand">CONZIP</a><span class="browse-count">36,742 reports</span></li>
+        <li class="browse-item"><a href="/drugs/copaxone/" class="browse-brand">COPAXONE</a><span class="browse-count">53,192 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cordarone/" class="browse-brand">Cordarone</a><span class="browse-generic">amiodarone hydrochloride</span><span class="browse-count">10,891 reports</span></li>
+        <li class="browse-item"><a href="/drugs/coreg/" class="browse-brand">Coreg</a><span class="browse-generic">carvedilol</span><span class="browse-count">132,644 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cortef/" class="browse-brand">CORTEF</a><span class="browse-count">67,630 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cortisone/" class="browse-brand">CORTISONE</a><span class="browse-count">81,133 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cortizone-10/" class="browse-brand">CORTIZONE 10</a><span class="browse-count">65,490 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cosentyx/" class="browse-brand">COSENTYX</a><span class="browse-count">158,767 reports</span></li>
+        <li class="browse-item"><a href="/drugs/coumadin/" class="browse-brand">Coumadin</a><span class="browse-generic">warfarin sodium</span><span class="browse-count">45,852 reports</span></li>
+        <li class="browse-item"><a href="/drugs/counteract-ib/" class="browse-brand">COUNTERACT IB</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/counteract-pain/" class="browse-brand">COUNTERACT PAIN</a><span class="browse-count">246,992 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cozaar/" class="browse-brand">Cozaar</a><span class="browse-generic">losartan potassium</span><span class="browse-count">76,525 reports</span></li>
+        <li class="browse-item"><a href="/drugs/crestor/" class="browse-brand">Crestor</a><span class="browse-generic">rosuvastatin calcium</span><span class="browse-count">198,888 reports</span></li>
+        <li class="browse-item"><a href="/drugs/crocin-max/" class="browse-brand">CROCIN MAX</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/curist-acne-relief/" class="browse-brand">CURIST ACNE RELIEF</a><span class="browse-count">5,024 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cvs-acetaminophen/" class="browse-brand">CVS ACETAMINOPHEN</a><span class="browse-count">246,997 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cvs-childrens-pain-plus-fever-relief/" class="browse-brand">CVS CHILDRENS PAIN PLUS FEVER RELIEF</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cvs-effervescent-pain-reliever/" class="browse-brand">CVS EFFERVESCENT PAIN RELIEVER</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cvs-extra-strength-smooth/" class="browse-brand">CVS EXTRA STRENGTH SMOOTH</a><span class="browse-count">45,849 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cvs-health-sterile-saline-mist/" class="browse-brand">CVS HEALTH STERILE SALINE MIST</a><span class="browse-count">70,390 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cvs-health-sterile-saline-mist-live-better/" class="browse-brand">CVS HEALTH STERILE SALINE MIST LIVE BETTER</a><span class="browse-count">70,390 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cvs-ibuprofen/" class="browse-brand">CVS IBUPROFEN</a><span class="browse-count">195,047 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cvs-mixed-berry-antacid-hbg-28ct/" class="browse-brand">CVS MIXED BERRY ANTACID HBG 28CT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cvs-mixed-berry-antacid-hbg-54ct/" class="browse-brand">CVS MIXED BERRY ANTACID HBG 54CT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cvs-naturals/" class="browse-brand">CVS NATURALS</a><span class="browse-count">45,849 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cvs-pharmacy-assorted-berry-antacid/" class="browse-brand">CVS PHARMACY ASSORTED BERRY ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cvs-pharmacy-assorted-fruit-antacid/" class="browse-brand">CVS PHARMACY ASSORTED FRUIT ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cvs-wild-berry-antacid-chews/" class="browse-brand">CVS WILD BERRY ANTACID CHEWS</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cyclophosphamide/" class="browse-brand">CYCLOPHOSPHAMIDE</a><span class="browse-count">172,249 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cyclosporine/" class="browse-brand">CYCLOSPORINE</a><span class="browse-count">53,894 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cyclosporine-modified/" class="browse-brand">CYCLOSPORINE MODIFIED</a><span class="browse-count">54,382 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cyclosporine-modfied/" class="browse-brand">CYCLOSPORINE, MODFIED</a><span class="browse-count">53,895 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cymbalta/" class="browse-brand">Cymbalta</a><span class="browse-generic">duloxetine hydrochloride</span><span class="browse-count">136,755 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cytarabine/" class="browse-brand">CYTARABINE</a><span class="browse-count">58,624 reports</span></li>
+        <li class="browse-item"><a href="/drugs/cytomel/" class="browse-brand">Cytomel</a><span class="browse-generic">liothyronine sodium</span><span class="browse-count">8,542 reports</span></li>
+      </ul></section>
+
+      <section id="section-D" class="letter-section"><h2 class="letter-heading">D</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/d-125/" class="browse-brand">D-125</a><span class="browse-count">90,690 reports</span></li>
+        <li class="browse-item"><a href="/drugs/d-129/" class="browse-brand">D-129</a><span class="browse-count">70,873 reports</span></li>
+        <li class="browse-item"><a href="/drugs/d-cal/" class="browse-brand">D-CAL</a><span class="browse-count">45,834 reports</span></li>
+        <li class="browse-item"><a href="/drugs/d-cal-kids/" class="browse-brand">D-CAL KIDS</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dapagliflozin/" class="browse-brand">DAPAGLIFLOZIN</a><span class="browse-count">28,642 reports</span></li>
+        <li class="browse-item"><a href="/drugs/davimet/" class="browse-brand">DAVIMET</a><span class="browse-count">49,470 reports</span></li>
+        <li class="browse-item"><a href="/drugs/davimet-m/" class="browse-brand">DAVIMET-M</a><span class="browse-count">49,470 reports</span></li>
+        <li class="browse-item"><a href="/drugs/daytrana/" class="browse-brand">DAYTRANA</a><span class="browse-count">28,181 reports</span></li>
+        <li class="browse-item"><a href="/drugs/deltasone/" class="browse-brand">Deltasone</a><span class="browse-generic">prednisone</span><span class="browse-count">491,124 reports</span></li>
+        <li class="browse-item"><a href="/drugs/depakote/" class="browse-brand">Depakote</a><span class="browse-generic">divalproex sodium</span><span class="browse-count">41,550 reports</span></li>
+        <li class="browse-item"><a href="/drugs/depakote-er/" class="browse-brand">DEPAKOTE ER</a><span class="browse-count">45,702 reports</span></li>
+        <li class="browse-item"><a href="/drugs/depakote-sprinkles/" class="browse-brand">DEPAKOTE SPRINKLES</a><span class="browse-count">41,624 reports</span></li>
+        <li class="browse-item"><a href="/drugs/depo-provera/" class="browse-brand">DEPO-PROVERA</a><span class="browse-count">22,463 reports</span></li>
+        <li class="browse-item"><a href="/drugs/depo-subq-provera/" class="browse-brand">DEPO-SUBQ PROVERA</a><span class="browse-count">9,615 reports</span></li>
+        <li class="browse-item"><a href="/drugs/desyrel/" class="browse-brand">Desyrel</a><span class="browse-generic">trazodone hydrochloride</span><span class="browse-count">15,321 reports</span></li>
+        <li class="browse-item"><a href="/drugs/detox-toc-toc/" class="browse-brand">DETOX TOC TOC</a><span class="browse-count">79,299 reports</span></li>
+        <li class="browse-item"><a href="/drugs/detrol/" class="browse-brand">Detrol</a><span class="browse-generic">tolterodine tartrate</span><span class="browse-count">8,880 reports</span></li>
+        <li class="browse-item"><a href="/drugs/detrol-la/" class="browse-brand">DETROL LA</a><span class="browse-count">10,393 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dexamethasone/" class="browse-brand">DEXAMETHASONE</a><span class="browse-count">286,386 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dexatran/" class="browse-brand">DEXATRAN</a><span class="browse-count">49,470 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dexilant/" class="browse-brand">DEXILANT</a><span class="browse-count">41,123 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dextenza/" class="browse-brand">DEXTENZA</a><span class="browse-count">286,510 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dexycu/" class="browse-brand">DEXYCU</a><span class="browse-count">286,672 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-8-hour-pain-relief/" class="browse-brand">DG HEALTH 8 HOUR PAIN RELIEF</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-8-hr-arthritis-pain-relief/" class="browse-brand">DG HEALTH 8 HR ARTHRITIS PAIN RELIEF</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-acid-reducer/" class="browse-brand">DG HEALTH ACID REDUCER</a><span class="browse-count">73,552 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-aspirin/" class="browse-brand">DG HEALTH ASPIRIN</a><span class="browse-count">499,942 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-childrens-ibuprofen/" class="browse-brand">DG HEALTH CHILDRENS IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-childrens-pain-and-fever/" class="browse-brand">DG HEALTH CHILDRENS PAIN AND FEVER</a><span class="browse-count">246,992 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-esomeprazole-magnesium/" class="browse-brand">DG HEALTH ESOMEPRAZOLE MAGNESIUM</a><span class="browse-count">46,292 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-extra-strength-antacid/" class="browse-brand">DG HEALTH EXTRA STRENGTH ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-extra-strength-antacid-wintergreen-flavor/" class="browse-brand">DG HEALTH EXTRA STRENGTH ANTACID WINTERGREEN FLAVOR</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-extra-strength-assorted-fruits-antacid/" class="browse-brand">DG HEALTH EXTRA STRENGTH ASSORTED FRUITS ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-heartburn-prevention/" class="browse-brand">DG HEALTH HEARTBURN PREVENTION</a><span class="browse-count">73,551 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-heartburn-prevention-original-strength/" class="browse-brand">DG HEALTH HEARTBURN PREVENTION ORIGINAL STRENGTH</a><span class="browse-count">73,551 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-ibuprofen/" class="browse-brand">DG HEALTH IBUPROFEN</a><span class="browse-count">195,032 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-lansoprazole/" class="browse-brand">DG HEALTH LANSOPRAZOLE</a><span class="browse-count">104,027 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-omeprazole/" class="browse-brand">DG HEALTH OMEPRAZOLE</a><span class="browse-count">336,268 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-omperazole/" class="browse-brand">DG HEALTH OMPERAZOLE</a><span class="browse-count">336,269 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-pain-relief/" class="browse-brand">DG HEALTH PAIN RELIEF</a><span class="browse-count">246,992 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-regular-strength-antacid/" class="browse-brand">DG HEALTH REGULAR STRENGTH ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-sterile-saline-mist/" class="browse-brand">DG HEALTH STERILE SALINE MIST</a><span class="browse-count">70,390 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-ultra-strength-assorted-berry-antacid/" class="browse-brand">DG HEALTH ULTRA STRENGTH ASSORTED BERRY ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dg-health-ultra-strength-assorted-fruit-antacid/" class="browse-brand">DG HEALTH ULTRA STRENGTH ASSORTED FRUIT ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/diabeta/" class="browse-brand">DiaBeta</a><span class="browse-generic">glyburide</span><span class="browse-count">23,967 reports</span></li>
+        <li class="browse-item"><a href="/drugs/diazepam/" class="browse-brand">DIAZEPAM</a><span class="browse-count">87,175 reports</span></li>
+        <li class="browse-item"><a href="/drugs/diclofenac/" class="browse-brand">DICLOFENAC</a><span class="browse-count">83,778 reports</span></li>
+        <li class="browse-item"><a href="/drugs/diclofenac-sodium/" class="browse-brand">DICLOFENAC SODIUM</a><span class="browse-count">83,807 reports</span></li>
+        <li class="browse-item"><a href="/drugs/differin/" class="browse-brand">DIFFERIN</a><span class="browse-count">6,000 reports</span></li>
+        <li class="browse-item"><a href="/drugs/diflucan/" class="browse-brand">Diflucan</a><span class="browse-generic">fluconazole</span><span class="browse-count">68,737 reports</span></li>
+        <li class="browse-item"><a href="/drugs/digoxin/" class="browse-brand">DIGOXIN</a><span class="browse-count">61,801 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dilantin/" class="browse-brand">Dilantin</a><span class="browse-generic">phenytoin sodium</span><span class="browse-count">16,519 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dilaudid/" class="browse-brand">DILAUDID</a><span class="browse-count">91,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/diovan/" class="browse-brand">Diovan</a><span class="browse-generic">valsartan</span><span class="browse-count">103,299 reports</span></li>
+        <li class="browse-item"><a href="/drugs/diovan-hct/" class="browse-brand">DIOVAN HCT</a><span class="browse-count">13,446 reports</span></li>
+        <li class="browse-item"><a href="/drugs/diphenhydramine/" class="browse-brand">DIPHENHYDRAMINE</a><span class="browse-count">79,188 reports</span></li>
+        <li class="browse-item"><a href="/drugs/diprivan/" class="browse-brand">DIPRIVAN</a><span class="browse-count">35,664 reports</span></li>
+        <li class="browse-item"><a href="/drugs/direct-safety-aspirin/" class="browse-brand">DIRECT SAFETY ASPIRIN</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/direct-safety-aspirin-free/" class="browse-brand">DIRECT SAFETY ASPIRIN FREE</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/direct-safety-extra-strength-aspirin-free/" class="browse-brand">DIRECT SAFETY EXTRA STRENGTH ASPIRIN FREE</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/direct-safety-ibuprofen/" class="browse-brand">DIRECT SAFETY IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ditropan/" class="browse-brand">Ditropan</a><span class="browse-generic">oxybutynin chloride</span><span class="browse-count">8,547 reports</span></li>
+        <li class="browse-item"><a href="/drugs/divigel/" class="browse-brand">DIVIGEL</a><span class="browse-count">43,748 reports</span></li>
+        <li class="browse-item"><a href="/drugs/docetaxel/" class="browse-brand">DOCETAXEL</a><span class="browse-count">66,018 reports</span></li>
+        <li class="browse-item"><a href="/drugs/docivyx/" class="browse-brand">DOCIVYX</a><span class="browse-count">66,020 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dolex-children/" class="browse-brand">DOLEX CHILDREN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dolex-children-pain-and-fever/" class="browse-brand">DOLEX CHILDREN PAIN AND FEVER</a><span class="browse-count">247,060 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dolex-flex/" class="browse-brand">DOLEX FLEX</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dollar-general-effervescent-pain-reliever/" class="browse-brand">DOLLAR GENERAL EFFERVESCENT PAIN RELIEVER</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dolo-neurobion/" class="browse-brand">DOLO-NEUROBION</a><span class="browse-count">247,007 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dotti/" class="browse-brand">DOTTI</a><span class="browse-count">43,174 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dover-addaprin/" class="browse-brand">DOVER ADDAPRIN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dover-aminofen/" class="browse-brand">DOVER AMINOFEN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dover-aminophen/" class="browse-brand">DOVER AMINOPHEN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/doxorubicin-hydrochloride/" class="browse-brand">DOXORUBICIN HYDROCHLORIDE</a><span class="browse-count">86,434 reports</span></li>
+        <li class="browse-item"><a href="/drugs/doxycycline/" class="browse-brand">DOXYCYCLINE</a><span class="browse-count">65,218 reports</span></li>
+        <li class="browse-item"><a href="/drugs/doxycycline-hyclate/" class="browse-brand">DOXYCYCLINE HYCLATE</a><span class="browse-count">65,221 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dr-kids-pain-and-fever/" class="browse-brand">DR KIDS PAIN AND FEVER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dr-simi-pain-relief/" class="browse-brand">DR SIMI PAIN RELIEF</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dr-simi-pain-relief-100/" class="browse-brand">DR SIMI PAIN RELIEF 100</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dr-bosley-minoxidil-for-men-hair-regrowth-treatment/" class="browse-brand">DR. BOSLEY MINOXIDIL (FOR MEN) HAIR REGROWTH TREATMENT</a><span class="browse-count">32,253 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dr-cocoa-for-children-pain-and-fever/" class="browse-brand">DR. COCOA FOR CHILDREN PAIN AND FEVER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dr-sana-pain-and-fever-for-children/" class="browse-brand">DR. SANA PAIN AND FEVER FOR CHILDREN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/drug-mart-effervescent-pain-relief/" class="browse-brand">DRUG MART EFFERVESCENT PAIN RELIEF</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/drx-choice-regular-strength/" class="browse-brand">DRX CHOICE REGULAR STRENGTH</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/duloxetine/" class="browse-brand">DULOXETINE</a><span class="browse-count">67,126 reports</span></li>
+        <li class="browse-item"><a href="/drugs/duloxetine-delayed-release/" class="browse-brand">DULOXETINE DELAYED-RELEASE</a><span class="browse-count">67,145 reports</span></li>
+        <li class="browse-item"><a href="/drugs/duloxetine-hydrochloride/" class="browse-brand">DULOXETINE HYDROCHLORIDE</a><span class="browse-count">67,126 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dupixent/" class="browse-brand">DUPIXENT</a><span class="browse-count">438,499 reports</span></li>
+        <li class="browse-item"><a href="/drugs/duragesic/" class="browse-brand">Duragesic</a><span class="browse-generic">fentanyl</span><span class="browse-count">96,515 reports</span></li>
+        <li class="browse-item"><a href="/drugs/duralgina/" class="browse-brand">DURALGINA</a><span class="browse-count">246,992 reports</span></li>
+        <li class="browse-item"><a href="/drugs/duramorph/" class="browse-brand">DURAMORPH</a><span class="browse-count">66,228 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dye-free-childrens-acetaminophen/" class="browse-brand">DYE FREE CHILDRENS ACETAMINOPHEN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dye-free-childrens-ibuprofen/" class="browse-brand">DYE FREE CHILDRENS IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dye-free-ibuprofen/" class="browse-brand">DYE FREE IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dye-free-infants-pain-and-fever/" class="browse-brand">DYE FREE INFANTS PAIN AND FEVER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dye-free-pain-and-fever-childrens/" class="browse-brand">DYE FREE PAIN AND FEVER CHILDRENS</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dye-free-pain-reliever-childrens/" class="browse-brand">DYE FREE PAIN RELIEVER CHILDRENS</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dye-freeinfants-pain-and-fever/" class="browse-brand">DYE FREEINFANTS PAIN AND FEVER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dye-free-aspirin-81/" class="browse-brand">DYE-FREE ASPIRIN 81</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dye-free-ibuprofen-200/" class="browse-brand">DYE-FREE IBUPROFEN 200</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/dye-free-pain-relief/" class="browse-brand">DYE-FREE PAIN RELIEF</a><span class="browse-count">195,030 reports</span></li>
+      </ul></section>
+
+      <section id="section-E" class="letter-section"><h2 class="letter-heading">E</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/easyfast/" class="browse-brand">EASYFAST</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ecotrin/" class="browse-brand">ECOTRIN</a><span class="browse-count">507,345 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ecotrin-regular-strength/" class="browse-brand">ECOTRIN REGULAR STRENGTH</a><span class="browse-count">499,949 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ed-apap/" class="browse-brand">ED APAP</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/effaclar/" class="browse-brand">EFFACLAR</a><span class="browse-count">5,028 reports</span></li>
+        <li class="browse-item"><a href="/drugs/effexor/" class="browse-brand">Effexor</a><span class="browse-generic">venlafaxine hydrochloride</span><span class="browse-count">129,794 reports</span></li>
+        <li class="browse-item"><a href="/drugs/effexor-xr/" class="browse-brand">EFFEXOR XR</a><span class="browse-count">75,568 reports</span></li>
+        <li class="browse-item"><a href="/drugs/effient/" class="browse-brand">Effient</a><span class="browse-generic">prasugrel</span><span class="browse-count">10,033 reports</span></li>
+        <li class="browse-item"><a href="/drugs/efudex/" class="browse-brand">EFUDEX</a><span class="browse-count">74,965 reports</span></li>
+        <li class="browse-item"><a href="/drugs/eight-hour-pain-relief/" class="browse-brand">EIGHT HOUR PAIN RELIEF</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/elestrin/" class="browse-brand">ELESTRIN</a><span class="browse-count">43,182 reports</span></li>
+        <li class="browse-item"><a href="/drugs/elevate-hair-growth-serum/" class="browse-brand">ELEVATE HAIR GROWTH SERUM</a><span class="browse-count">32,253 reports</span></li>
+        <li class="browse-item"><a href="/drugs/elevate-hair-regrowth-treatment-5/" class="browse-brand">ELEVATE HAIR REGROWTH TREATMENT 5</a><span class="browse-count">32,253 reports</span></li>
+        <li class="browse-item"><a href="/drugs/eligard/" class="browse-brand">ELIGARD</a><span class="browse-count">51,985 reports</span></li>
+        <li class="browse-item"><a href="/drugs/eliquis/" class="browse-brand">Eliquis</a><span class="browse-generic">apixaban</span><span class="browse-count">64,339 reports</span></li>
+        <li class="browse-item"><a href="/drugs/elyxyb-celecoxib/" class="browse-brand">ELYXYB - CELECOXIB</a><span class="browse-count">33,828 reports</span></li>
+        <li class="browse-item"><a href="/drugs/emgality/" class="browse-brand">EMGALITY</a><span class="browse-count">30,356 reports</span></li>
+        <li class="browse-item"><a href="/drugs/enablex/" class="browse-brand">Enablex</a><span class="browse-generic">darifenacin hydrobromide</span><span class="browse-count">854 reports</span></li>
+        <li class="browse-item"><a href="/drugs/enalapril-maleate/" class="browse-brand">ENALAPRIL MALEATE</a><span class="browse-count">54,796 reports</span></li>
+        <li class="browse-item"><a href="/drugs/enbrel/" class="browse-brand">Enbrel</a><span class="browse-generic">etanercept</span><span class="browse-count">592,884 reports</span></li>
+        <li class="browse-item"><a href="/drugs/endocet/" class="browse-brand">ENDOCET</a><span class="browse-count">22,916 reports</span></li>
+        <li class="browse-item"><a href="/drugs/enteric-aspirin/" class="browse-brand">ENTERIC ASPIRIN</a><span class="browse-count">500,179 reports</span></li>
+        <li class="browse-item"><a href="/drugs/enteric-coated-aspirin/" class="browse-brand">ENTERIC COATED ASPIRIN</a><span class="browse-count">500,148 reports</span></li>
+        <li class="browse-item"><a href="/drugs/enteric-coated-aspirin-regular-strength/" class="browse-brand">ENTERIC COATED ASPIRIN REGULAR STRENGTH</a><span class="browse-count">500,148 reports</span></li>
+        <li class="browse-item"><a href="/drugs/entresto/" class="browse-brand">Entresto</a><span class="browse-generic">sacubitril/valsartan</span><span class="browse-count">114,605 reports</span></li>
+        <li class="browse-item"><a href="/drugs/entyvio/" class="browse-brand">ENTYVIO</a><span class="browse-count">83,506 reports</span></li>
+        <li class="browse-item"><a href="/drugs/entyvio-pen/" class="browse-brand">ENTYVIO PEN</a><span class="browse-count">58,753 reports</span></li>
+        <li class="browse-item"><a href="/drugs/envarsus-xr/" class="browse-brand">ENVARSUS XR</a><span class="browse-count">124,302 reports</span></li>
+        <li class="browse-item"><a href="/drugs/epaned/" class="browse-brand">EPANED</a><span class="browse-count">19,024 reports</span></li>
+        <li class="browse-item"><a href="/drugs/epinephrine/" class="browse-brand">EPINEPHRINE</a><span class="browse-count">40,057 reports</span></li>
+        <li class="browse-item"><a href="/drugs/epinephrine-1553/" class="browse-brand">EPINEPHRINE 1553</a><span class="browse-count">40,074 reports</span></li>
+        <li class="browse-item"><a href="/drugs/epipen/" class="browse-brand">EPIPEN</a><span class="browse-count">60,536 reports</span></li>
+        <li class="browse-item"><a href="/drugs/epipen-jr/" class="browse-brand">EPIPEN JR</a><span class="browse-count">41,261 reports</span></li>
+        <li class="browse-item"><a href="/drugs/epitol/" class="browse-brand">EPITOL</a><span class="browse-count">35,774 reports</span></li>
+        <li class="browse-item"><a href="/drugs/epivir/" class="browse-brand">EPIVIR</a><span class="browse-count">30,530 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equ-ultra-strength-antacid-assorted-fruit-171af/" class="browse-brand">EQU ULTRA STRENGTH ANTACID ASSORTED FRUIT 171AF</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equaline-acetaminophen/" class="browse-brand">EQUALINE ACETAMINOPHEN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equaline-childrens-acetaminophen/" class="browse-brand">EQUALINE CHILDRENS ACETAMINOPHEN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equaline-childrens-ibuprofen/" class="browse-brand">EQUALINE CHILDRENS IBUPROFEN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equaline-effervescent-pain-reliever/" class="browse-brand">EQUALINE EFFERVESCENT PAIN RELIEVER</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equaline-extra-strength-assorted-berry-antacid/" class="browse-brand">EQUALINE EXTRA STRENGTH ASSORTED BERRY ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equaline-heartburn-prevention/" class="browse-brand">EQUALINE HEARTBURN PREVENTION</a><span class="browse-count">73,551 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equaline-ibuprofen/" class="browse-brand">EQUALINE IBUPROFEN</a><span class="browse-count">195,031 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equaline-ibuprofen-childrens/" class="browse-brand">EQUALINE IBUPROFEN CHILDRENS</a><span class="browse-count">195,031 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equaline-lansoprazole/" class="browse-brand">EQUALINE LANSOPRAZOLE</a><span class="browse-count">104,027 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equaline-omeprazole/" class="browse-brand">EQUALINE OMEPRAZOLE</a><span class="browse-count">336,268 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equaline-regular-strength-antacid-peppermint/" class="browse-brand">EQUALINE REGULAR STRENGTH ANTACID PEPPERMINT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-8hr-arthritis-pain-relief/" class="browse-brand">EQUATE 8HR ARTHRITIS PAIN RELIEF</a><span class="browse-count">247,001 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-allergy-relief/" class="browse-brand">EQUATE ALLERGY RELIEF</a><span class="browse-count">120,752 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-aspirin/" class="browse-brand">EQUATE ASPIRIN</a><span class="browse-count">499,984 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-aspirin-chewable/" class="browse-brand">EQUATE ASPIRIN CHEWABLE</a><span class="browse-count">499,985 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-childrens-allergy-relief/" class="browse-brand">EQUATE CHILDRENS ALLERGY RELIEF</a><span class="browse-count">57,784 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-childrens-pain-and-fever/" class="browse-brand">EQUATE CHILDRENS PAIN AND FEVER</a><span class="browse-count">246,993 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-esomeprazole-magnesium/" class="browse-brand">EQUATE ESOMEPRAZOLE MAGNESIUM</a><span class="browse-count">46,353 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-extra-strength-antacid/" class="browse-brand">EQUATE EXTRA STRENGTH ANTACID</a><span class="browse-count">45,842 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-famotidine/" class="browse-brand">EQUATE FAMOTIDINE</a><span class="browse-count">73,553 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-hair-regrowth-treatment/" class="browse-brand">EQUATE HAIR REGROWTH TREATMENT</a><span class="browse-count">32,260 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-ibuprofen/" class="browse-brand">EQUATE IBUPROFEN</a><span class="browse-count">195,115 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-ibuprofen-childrens/" class="browse-brand">EQUATE IBUPROFEN CHILDRENS</a><span class="browse-count">195,123 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-infants-pain-and-fever/" class="browse-brand">EQUATE INFANTS PAIN AND FEVER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-lansoprazole/" class="browse-brand">EQUATE LANSOPRAZOLE</a><span class="browse-count">104,027 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-lansoprazole-delayed-release/" class="browse-brand">EQUATE LANSOPRAZOLE DELAYED RELEASE</a><span class="browse-count">104,027 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-menstrual-pain-relief/" class="browse-brand">EQUATE MENSTRUAL PAIN RELIEF</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-omeprazole/" class="browse-brand">EQUATE OMEPRAZOLE</a><span class="browse-count">339,254 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-omeprazole-delayed-release-acid-reducer/" class="browse-brand">EQUATE OMEPRAZOLE DELAYED RELEASE ACID REDUCER</a><span class="browse-count">336,273 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-pain-and-fever-childrens/" class="browse-brand">EQUATE PAIN AND FEVER CHILDRENS</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-pain-and-fever-infants/" class="browse-brand">EQUATE PAIN AND FEVER INFANTS</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-pain-reliever/" class="browse-brand">EQUATE PAIN RELIEVER</a><span class="browse-count">247,025 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-sterile-saline-mist/" class="browse-brand">EQUATE STERILE SALINE MIST</a><span class="browse-count">70,390 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-ultra-stregth-antacid/" class="browse-brand">EQUATE ULTRA STREGTH ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equate-wild-berry-antacid-chews/" class="browse-brand">EQUATE WILD BERRY ANTACID CHEWS</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equetro/" class="browse-brand">EQUETRO</a><span class="browse-count">35,716 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equqline-extra-strength-antacid-assorted-fruit/" class="browse-brand">EQUQLINE EXTRA STRENGTH ANTACID ASSORTED FRUIT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/equqline-regular-strength-antacid/" class="browse-brand">EQUQLINE REGULAR STRENGTH ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/erbitux/" class="browse-brand">ERBITUX</a><span class="browse-count">30,785 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ermeza/" class="browse-brand">ERMEZA</a><span class="browse-count">97,325 reports</span></li>
+        <li class="browse-item"><a href="/drugs/esalon-hair-regrowth-treatment-womens-minoxidil/" class="browse-brand">ESALON HAIR REGROWTH TREATMENT WOMENS MINOXIDIL</a><span class="browse-count">32,253 reports</span></li>
+        <li class="browse-item"><a href="/drugs/esbriet/" class="browse-brand">ESBRIET</a><span class="browse-count">40,089 reports</span></li>
+        <li class="browse-item"><a href="/drugs/escitalopram/" class="browse-brand">ESCITALOPRAM</a><span class="browse-count">70,619 reports</span></li>
+        <li class="browse-item"><a href="/drugs/escitalopram-oxalate/" class="browse-brand">ESCITALOPRAM OXALATE</a><span class="browse-count">70,619 reports</span></li>
+        <li class="browse-item"><a href="/drugs/esomeprazole/" class="browse-brand">ESOMEPRAZOLE</a><span class="browse-count">59,737 reports</span></li>
+        <li class="browse-item"><a href="/drugs/esomeprazole-magnesium/" class="browse-brand">ESOMEPRAZOLE MAGNESIUM</a><span class="browse-count">59,796 reports</span></li>
+        <li class="browse-item"><a href="/drugs/estrace/" class="browse-brand">Estrace</a><span class="browse-generic">estradiol</span><span class="browse-count">53,401 reports</span></li>
+        <li class="browse-item"><a href="/drugs/estradiol/" class="browse-brand">ESTRADIOL</a><span class="browse-count">43,080 reports</span></li>
+        <li class="browse-item"><a href="/drugs/estradiol-1557/" class="browse-brand">ESTRADIOL 1557</a><span class="browse-count">43,067 reports</span></li>
+        <li class="browse-item"><a href="/drugs/estradiol-transdermal-system/" class="browse-brand">ESTRADIOL TRANSDERMAL SYSTEM</a><span class="browse-count">48,793 reports</span></li>
+        <li class="browse-item"><a href="/drugs/estradiol-vaginal/" class="browse-brand">ESTRADIOL VAGINAL</a><span class="browse-count">43,343 reports</span></li>
+        <li class="browse-item"><a href="/drugs/estradiol-vaginal-inserts/" class="browse-brand">ESTRADIOL VAGINAL INSERTS</a><span class="browse-count">43,083 reports</span></li>
+        <li class="browse-item"><a href="/drugs/estring/" class="browse-brand">ESTRING</a><span class="browse-count">47,397 reports</span></li>
+        <li class="browse-item"><a href="/drugs/estrogel/" class="browse-brand">ESTROGEL</a><span class="browse-count">44,771 reports</span></li>
+        <li class="browse-item"><a href="/drugs/estrogen-4x/" class="browse-brand">ESTROGEN 4X</a><span class="browse-count">45,881 reports</span></li>
+        <li class="browse-item"><a href="/drugs/estrogen-phenolic/" class="browse-brand">ESTROGEN PHENOLIC</a><span class="browse-count">43,060 reports</span></li>
+        <li class="browse-item"><a href="/drugs/etoposide/" class="browse-brand">ETOPOSIDE</a><span class="browse-count">70,525 reports</span></li>
+        <li class="browse-item"><a href="/drugs/euthyrox/" class="browse-brand">EUTHYROX</a><span class="browse-count">109,328 reports</span></li>
+        <li class="browse-item"><a href="/drugs/evamist/" class="browse-brand">EVAMIST</a><span class="browse-count">43,621 reports</span></li>
+        <li class="browse-item"><a href="/drugs/evista/" class="browse-brand">Evista</a><span class="browse-generic">raloxifene hydrochloride</span><span class="browse-count">14,491 reports</span></li>
+        <li class="browse-item"><a href="/drugs/excedrin-migraine/" class="browse-brand">EXCEDRIN MIGRAINE</a><span class="browse-count">16,903 reports</span></li>
+        <li class="browse-item"><a href="/drugs/excedrin-rapid-relief/" class="browse-brand">EXCEDRIN RAPID RELIEF</a><span class="browse-count">253,918 reports</span></li>
+        <li class="browse-item"><a href="/drugs/exchange-select-allergy-relief/" class="browse-brand">EXCHANGE SELECT ALLERGY RELIEF</a><span class="browse-count">75,398 reports</span></li>
+        <li class="browse-item"><a href="/drugs/exchange-select-antacid-soft-chews-cherry-flavor/" class="browse-brand">EXCHANGE SELECT ANTACID SOFT CHEWS CHERRY FLAVOR</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/exchange-select-antacid-tropical-fruit/" class="browse-brand">EXCHANGE SELECT ANTACID TROPICAL FRUIT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/exchange-select-esomeprazole-magnesium/" class="browse-brand">EXCHANGE SELECT ESOMEPRAZOLE MAGNESIUM</a><span class="browse-count">46,292 reports</span></li>
+        <li class="browse-item"><a href="/drugs/exchange-select-extra-strength-antacid-assorted-berries/" class="browse-brand">EXCHANGE SELECT EXTRA STRENGTH ANTACID ASSORTED BERRIES</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/exchange-select-omeprazole/" class="browse-brand">EXCHANGE SELECT OMEPRAZOLE</a><span class="browse-count">336,268 reports</span></li>
+        <li class="browse-item"><a href="/drugs/exchange-select-ultra-strength-antacid-assorted-fruit/" class="browse-brand">EXCHANGE SELECT ULTRA STRENGTH ANTACID ASSORTED FRUIT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/exjade/" class="browse-brand">EXJADE</a><span class="browse-count">22,717 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strenght-saline-mist-rite-aid/" class="browse-brand">EXTRA STRENGHT SALINE MIST RITE AID</a><span class="browse-count">70,390 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength/" class="browse-brand">EXTRA STRENGTH</a><span class="browse-count">45,836 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-acetaminohpen-adult-rapid-burst-cherry/" class="browse-brand">EXTRA STRENGTH ACETAMINOHPEN ADULT RAPID BURST CHERRY</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-acetaminophen/" class="browse-brand">EXTRA STRENGTH ACETAMINOPHEN</a><span class="browse-count">247,031 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-antacid/" class="browse-brand">EXTRA STRENGTH ANTACID</a><span class="browse-count">45,842 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-antacid-assorted-berries/" class="browse-brand">EXTRA STRENGTH ANTACID ASSORTED BERRIES</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-antacid-assorted-fruit/" class="browse-brand">EXTRA STRENGTH ANTACID ASSORTED FRUIT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-antacid-smooth-dissolve-assorted-fruit/" class="browse-brand">EXTRA STRENGTH ANTACID SMOOTH DISSOLVE ASSORTED FRUIT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-antacid-smooth-dissolving-assorted-fruit/" class="browse-brand">EXTRA STRENGTH ANTACID SMOOTH DISSOLVING - ASSORTED FRUIT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-antacid-tropical-fruit/" class="browse-brand">EXTRA STRENGTH ANTACID TROPICAL FRUIT</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-aspirin/" class="browse-brand">EXTRA STRENGTH ASPIRIN</a><span class="browse-count">499,944 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-assorted-berry/" class="browse-brand">EXTRA STRENGTH ASSORTED BERRY</a><span class="browse-count">45,827 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-assorted-berry-antacid/" class="browse-brand">EXTRA STRENGTH ASSORTED BERRY ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-assorted-fruit-antacid/" class="browse-brand">EXTRA STRENGTH ASSORTED FRUIT ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-mini-softgels-pain-reliever/" class="browse-brand">EXTRA STRENGTH MINI SOFTGELS PAIN RELIEVER</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-natural-antacid/" class="browse-brand">EXTRA STRENGTH NATURAL ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-no-pain/" class="browse-brand">EXTRA STRENGTH NO-PAIN</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-pain-releif/" class="browse-brand">EXTRA STRENGTH PAIN RELEIF</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-pain-relief/" class="browse-brand">EXTRA STRENGTH PAIN RELIEF</a><span class="browse-count">247,005 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-pain-reliever/" class="browse-brand">EXTRA STRENGTH PAIN RELIEVER</a><span class="browse-count">247,182 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-smooth/" class="browse-brand">EXTRA STRENGTH SMOOTH</a><span class="browse-count">45,831 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-smooth-antacid/" class="browse-brand">EXTRA STRENGTH SMOOTH ANTACID</a><span class="browse-count">45,831 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-smooth-antacid-assorted-berries/" class="browse-brand">EXTRA STRENGTH SMOOTH ANTACID ASSORTED BERRIES</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-smooth-antacid-assorted-fruit/" class="browse-brand">EXTRA STRENGTH SMOOTH ANTACID ASSORTED FRUIT</a><span class="browse-count">46,213 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-smooth-antacid-assorted-fruits/" class="browse-brand">EXTRA STRENGTH SMOOTH ANTACID ASSORTED FRUITS</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-smooth-assorted-fruit-antacid/" class="browse-brand">EXTRA STRENGTH SMOOTH ASSORTED FRUIT ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-smooth-peppermint-antacid/" class="browse-brand">EXTRA STRENGTH SMOOTH PEPPERMINT ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extra-strength-sugar-free-antacid/" class="browse-brand">EXTRA STRENGTH SUGAR FREE ANTACID</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/extraneal/" class="browse-brand">EXTRANEAL</a><span class="browse-count">30,670 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ezallor-sprinkle/" class="browse-brand">EZALLOR SPRINKLE</a><span class="browse-count">79,491 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ezetimibe/" class="browse-brand">EZETIMIBE</a><span class="browse-count">35,911 reports</span></li>
+      </ul></section>
+
+      <section id="section-F" class="letter-section"><h2 class="letter-heading">F</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/family-care-saline/" class="browse-brand">FAMILY CARE SALINE</a><span class="browse-count">70,390 reports</span></li>
+        <li class="browse-item"><a href="/drugs/family-wellness-antacid-relief-chews/" class="browse-brand">FAMILY WELLNESS ANTACID RELIEF CHEWS</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/family-wellness-childrens-pain-reliever-574/" class="browse-brand">FAMILY WELLNESS CHILDRENS PAIN RELIEVER 574</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/family-wellness-extra-strength-smooth-antacid-173bf/" class="browse-brand">FAMILY WELLNESS EXTRA STRENGTH SMOOTH ANTACID 173BF</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/family-wellness-pain-reliever/" class="browse-brand">FAMILY WELLNESS PAIN RELIEVER</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/family-wellness-ultra-stregth-antacid-171ab/" class="browse-brand">FAMILY WELLNESS ULTRA STREGTH ANTACID 171AB</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/famotidine/" class="browse-brand">FAMOTIDINE</a><span class="browse-count">73,551 reports</span></li>
+        <li class="browse-item"><a href="/drugs/farxiga/" class="browse-brand">Farxiga</a><span class="browse-generic">dapagliflozin</span><span class="browse-count">53,578 reports</span></li>
+        <li class="browse-item"><a href="/drugs/fast-acting-heartburn-relief-peppermint-flavor/" class="browse-brand">FAST ACTING HEARTBURN RELIEF PEPPERMINT FLAVOR</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/fast-acting-pedia-crae/" class="browse-brand">FAST ACTING PEDIA CRAE</a><span class="browse-count">246,992 reports</span></li>
+        <li class="browse-item"><a href="/drugs/fast-pain-relief/" class="browse-brand">FAST PAIN RELIEF</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/favlyxa/" class="browse-brand">FAVLYXA</a><span class="browse-count">74,019 reports</span></li>
+        <li class="browse-item"><a href="/drugs/femara/" class="browse-brand">FEMARA</a><span class="browse-count">60,076 reports</span></li>
+        <li class="browse-item"><a href="/drugs/fentanyl/" class="browse-brand">FENTANYL</a><span class="browse-count">96,515 reports</span></li>
+        <li class="browse-item"><a href="/drugs/fentanyl-system/" class="browse-brand">FENTANYL SYSTEM</a><span class="browse-count">96,515 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ferrous-sulfate/" class="browse-brand">FERROUS SULFATE</a><span class="browse-count">48,897 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ferrum-metallicum/" class="browse-brand">FERRUM METALLICUM</a><span class="browse-count">65,136 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ferrum-metallicum-6x/" class="browse-brand">FERRUM METALLICUM 6X</a><span class="browse-count">65,135 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ferrum-sulphuricum/" class="browse-brand">FERRUM SULPHURICUM</a><span class="browse-count">48,897 reports</span></li>
+        <li class="browse-item"><a href="/drugs/fete-health-hair-regrowth-treatment-for-women/" class="browse-brand">FETE HEALTH HAIR REGROWTH TREATMENT FOR WOMEN</a><span class="browse-count">32,253 reports</span></li>
+        <li class="browse-item"><a href="/drugs/fever-reducing-childrens/" class="browse-brand">FEVER REDUCING CHILDRENS</a><span class="browse-count">246,991 reports</span></li>
+        <li class="browse-item"><a href="/drugs/feverall/" class="browse-brand">FEVERALL</a><span class="browse-count">247,527 reports</span></li>
+        <li class="browse-item"><a href="/drugs/feverall-childrens/" class="browse-brand">FEVERALL CHILDRENS</a><span class="browse-count">247,542 reports</span></li>
+        <li class="browse-item"><a href="/drugs/feverall-infants/" class="browse-brand">FEVERALL INFANTS</a><span class="browse-count">247,565 reports</span></li>
+        <li class="browse-item"><a href="/drugs/feverall-jr-strength/" class="browse-brand">FEVERALL JR. STRENGTH</a><span class="browse-count">247,530 reports</span></li>
+        <li class="browse-item"><a href="/drugs/fevia-acid-control/" class="browse-brand">FEVIA ACID CONTROL</a><span class="browse-count">45,825 reports</span></li>
+        <li class="browse-item"><a href="/drugs/finasteride/" class="browse-brand">FINASTERIDE</a><span class="browse-count">46,830 reports</span></li>
+        <li class="browse-item"><a href="/drugs/first-aid-direct-chewable-aspirin/" class="browse-brand">FIRST AID DIRECT CHEWABLE ASPIRIN</a><span class="browse-count">499,941 reports</span></li>
+        <li class="browse-item"><a href="/drugs/flagyl/" class="browse-brand">Flagyl</a><span class="browse-generic">metronidazole</span><span class="browse-count">62,197 reports</span></li>
+        <li class="browse-item"><a href="/drugs/fleqsuvy/" class="browse-brand">FLEQSUVY</a><span class="browse-count">83,161 reports</span></li>
+        <li class="browse-item"><a href="/drugs/flex-prin/" class="browse-brand">FLEX-PRIN</a><span class="browse-count">195,030 reports</span></li>
+        <li class="browse-item"><a href="/drugs/flexeril/" class="browse-brand">Flexeril</a><span class="browse-generic">cyclobenzaprine hydrochloride</span><span class="browse-count">8,401 reports</span></li>
+        <li class="browse-item"><a href="/drugs/flomax/" class="browse-brand">Flomax</a><span class="browse-generic">tamsulosin hydrochloride</span><span class="browse-count">19,414 reports</span></li>
+        <li class="browse-item"><a href="/drugs/flonase/" class="browse-brand">Flonase</a><span class="browse-generic">fluticasone propionate</span><span class="browse-count">92,309 reports</span></li>
+        <li class="browse-item"><a href="/drugs/flonase-allergy-relief/" class="browse-brand">FLONASE ALLERGY RELIEF</a><span class="browse-count">89,442 reports</span></li>
+        <li class="browse-item"><a href="/drugs/flonase-headache-and-allergy-relief/" class="browse-brand">FLONASE HEADACHE AND ALLERGY RELIEF</a><span class="browse-count">48,761 reports</span></li>
+        <li class="browse-item"><a href="/drugs/flovent/" class="browse-brand">Flovent</a><span class="browse-generic">fluticasone propionate</span><span class="browse-count">92,309 reports</span></li>
+        <li class="browse-item"><a href="/drugs/forteo/" class="browse-brand">Forteo</a><span class="browse-generic">teriparatide</span><span class="browse-count">111,630 reports</span></li>
+        <li class="browse-item"><a href="/drugs/fosamax/" class="browse-brand">Fosamax</a><span class="browse-generic">alendronate sodium</span><span class="browse-count">81,795 reports</span></li>
+      </ul></section>
+
+      <section id="section-G" class="letter-section"><h2 class="letter-heading">G</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/glucophage/" class="browse-brand">Glucophage</a><span class="browse-generic">metformin hydrochloride</span><span class="browse-count">56,881 reports</span></li>
+        <li class="browse-item"><a href="/drugs/glucotrol/" class="browse-brand">Glucotrol</a><span class="browse-generic">glipizide</span><span class="browse-count">60,043 reports</span></li>
+      </ul></section>
+
+      <section id="section-H" class="letter-section"><h2 class="letter-heading">H</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/humalog/" class="browse-brand">Humalog</a><span class="browse-generic">insulin lispro</span><span class="browse-count">121,278 reports</span></li>
+        <li class="browse-item"><a href="/drugs/humira/" class="browse-brand">Humira</a><span class="browse-generic">adalimumab</span><span class="browse-count">699,271 reports</span></li>
+        <li class="browse-item"><a href="/drugs/humulin-n/" class="browse-brand">Humulin N</a><span class="browse-generic">insulin isophane human</span><span class="browse-count">20,746 reports</span></li>
+        <li class="browse-item"><a href="/drugs/hyzaar/" class="browse-brand">Hyzaar</a><span class="browse-generic">losartan potassium/hydrochlorothiazide</span><span class="browse-count">11,486 reports</span></li>
+      </ul></section>
+
+      <section id="section-I" class="letter-section"><h2 class="letter-heading">I</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/imdur/" class="browse-brand">Imdur</a><span class="browse-generic">isosorbide mononitrate</span><span class="browse-count">20,264 reports</span></li>
+        <li class="browse-item"><a href="/drugs/imitrex/" class="browse-brand">Imitrex</a><span class="browse-generic">sumatriptan succinate</span><span class="browse-count">37,204 reports</span></li>
+        <li class="browse-item"><a href="/drugs/invega/" class="browse-brand">Invega</a><span class="browse-generic">paliperidone</span><span class="browse-count">22,986 reports</span></li>
+        <li class="browse-item"><a href="/drugs/invokana/" class="browse-brand">Invokana</a><span class="browse-generic">canagliflozin</span><span class="browse-count">29,639 reports</span></li>
+      </ul></section>
+
+      <section id="section-J" class="letter-section"><h2 class="letter-heading">J</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/janumet/" class="browse-brand">Janumet</a><span class="browse-generic">sitagliptin phosphate/metformin hydrochloride</span><span class="browse-count">19,273 reports</span></li>
+        <li class="browse-item"><a href="/drugs/januvia/" class="browse-brand">Januvia</a><span class="browse-generic">sitagliptin phosphate</span><span class="browse-count">70,967 reports</span></li>
+        <li class="browse-item"><a href="/drugs/jardiance/" class="browse-brand">Jardiance</a><span class="browse-generic">empagliflozin</span><span class="browse-count">64,248 reports</span></li>
+      </ul></section>
+
+      <section id="section-K" class="letter-section"><h2 class="letter-heading">K</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/keflex/" class="browse-brand">Keflex</a><span class="browse-generic">cephalexin</span><span class="browse-count">21,105 reports</span></li>
+        <li class="browse-item"><a href="/drugs/kenalog/" class="browse-brand">Kenalog</a><span class="browse-generic">triamcinolone acetonide</span><span class="browse-count">29,373 reports</span></li>
+        <li class="browse-item"><a href="/drugs/keppra/" class="browse-brand">Keppra</a><span class="browse-generic">levetiracetam</span><span class="browse-count">128,927 reports</span></li>
+        <li class="browse-item"><a href="/drugs/klonopin/" class="browse-brand">Klonopin</a><span class="browse-generic">clonazepam</span><span class="browse-count">157,183 reports</span></li>
+      </ul></section>
+
+      <section id="section-L" class="letter-section"><h2 class="letter-heading">L</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/lamictal/" class="browse-brand">Lamictal</a><span class="browse-generic">lamotrigine</span><span class="browse-count">127,852 reports</span></li>
+        <li class="browse-item"><a href="/drugs/lamisil/" class="browse-brand">Lamisil</a><span class="browse-generic">terbinafine hydrochloride</span><span class="browse-count">8,649 reports</span></li>
+        <li class="browse-item"><a href="/drugs/lantus/" class="browse-brand">Lantus</a><span class="browse-generic">insulin glargine</span><span class="browse-count">145,083 reports</span></li>
+        <li class="browse-item"><a href="/drugs/lasix/" class="browse-brand">Lasix</a><span class="browse-generic">furosemide</span><span class="browse-count">392,822 reports</span></li>
+        <li class="browse-item"><a href="/drugs/latuda/" class="browse-brand">Latuda</a><span class="browse-generic">lurasidone hydrochloride</span><span class="browse-count">20,655 reports</span></li>
+        <li class="browse-item"><a href="/drugs/levaquin/" class="browse-brand">Levaquin</a><span class="browse-generic">levofloxacin</span><span class="browse-count">59,042 reports</span></li>
+        <li class="browse-item"><a href="/drugs/levemir/" class="browse-brand">Levemir</a><span class="browse-generic">insulin detemir</span><span class="browse-count">38,855 reports</span></li>
+        <li class="browse-item"><a href="/drugs/lexapro/" class="browse-brand">Lexapro</a><span class="browse-generic">escitalopram oxalate</span><span class="browse-count">123,113 reports</span></li>
+        <li class="browse-item"><a href="/drugs/linzess/" class="browse-brand">Linzess</a><span class="browse-generic">linaclotide</span><span class="browse-count">25,697 reports</span></li>
+        <li class="browse-item"><a href="/drugs/lipitor/" class="browse-brand">Lipitor</a><span class="browse-generic">atorvastatin calcium</span><span class="browse-count">242,949 reports</span></li>
+        <li class="browse-item"><a href="/drugs/lithobid/" class="browse-brand">Lithobid</a><span class="browse-generic">lithium carbonate</span><span class="browse-count">16,609 reports</span></li>
+        <li class="browse-item"><a href="/drugs/livalo/" class="browse-brand">Livalo</a><span class="browse-generic">pitavastatin</span><span class="browse-count">8,391 reports</span></li>
+        <li class="browse-item"><a href="/drugs/lopressor/" class="browse-brand">Lopressor</a><span class="browse-generic">metoprolol tartrate</span><span class="browse-count">83,858 reports</span></li>
+        <li class="browse-item"><a href="/drugs/lotrel/" class="browse-brand">Lotrel</a><span class="browse-generic">amlodipine/benazepril hydrochloride</span><span class="browse-count">9,152 reports</span></li>
+        <li class="browse-item"><a href="/drugs/lumigan/" class="browse-brand">Lumigan</a><span class="browse-generic">bimatoprost</span><span class="browse-count">19,001 reports</span></li>
+        <li class="browse-item"><a href="/drugs/lunesta/" class="browse-brand">Lunesta</a><span class="browse-generic">eszopiclone</span><span class="browse-count">25,087 reports</span></li>
+        <li class="browse-item"><a href="/drugs/lyrica/" class="browse-brand">Lyrica</a><span class="browse-generic">pregabalin</span><span class="browse-count">266,948 reports</span></li>
+      </ul></section>
+
+      <section id="section-M" class="letter-section"><h2 class="letter-heading">M</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/macrobid/" class="browse-brand">Macrobid</a><span class="browse-generic">nitrofurantoin monohydrate/macrocrystals</span><span class="browse-count">5,749 reports</span></li>
+        <li class="browse-item"><a href="/drugs/maxalt/" class="browse-brand">Maxalt</a><span class="browse-generic">rizatriptan benzoate</span><span class="browse-count">9,211 reports</span></li>
+        <li class="browse-item"><a href="/drugs/medrol/" class="browse-brand">Medrol</a><span class="browse-generic">methylprednisolone</span><span class="browse-count">119,509 reports</span></li>
+        <li class="browse-item"><a href="/drugs/micardis/" class="browse-brand">Micardis</a><span class="browse-generic">telmisartan</span><span class="browse-count">34,175 reports</span></li>
+        <li class="browse-item"><a href="/drugs/microzide/" class="browse-brand">Microzide</a><span class="browse-generic">hydrochlorothiazide</span><span class="browse-count">142,391 reports</span></li>
+        <li class="browse-item"><a href="/drugs/mobic/" class="browse-brand">Mobic</a><span class="browse-generic">meloxicam</span><span class="browse-count">56,730 reports</span></li>
+        <li class="browse-item"><a href="/drugs/multaq/" class="browse-brand">Multaq</a><span class="browse-generic">dronedarone</span><span class="browse-count">10,014 reports</span></li>
+      </ul></section>
+
+      <section id="section-N" class="letter-section"><h2 class="letter-heading">N</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/namenda/" class="browse-brand">Namenda</a><span class="browse-generic">memantine hydrochloride</span><span class="browse-count">13,229 reports</span></li>
+        <li class="browse-item"><a href="/drugs/naprosyn/" class="browse-brand">Naprosyn</a><span class="browse-generic">naproxen</span><span class="browse-count">76,930 reports</span></li>
+        <li class="browse-item"><a href="/drugs/nasonex/" class="browse-brand">Nasonex</a><span class="browse-generic">mometasone furoate</span><span class="browse-count">31,752 reports</span></li>
+        <li class="browse-item"><a href="/drugs/neurontin/" class="browse-brand">Neurontin</a><span class="browse-generic">gabapentin</span><span class="browse-count">353,599 reports</span></li>
+        <li class="browse-item"><a href="/drugs/nexium/" class="browse-brand">Nexium</a><span class="browse-generic">esomeprazole magnesium</span><span class="browse-count">183,151 reports</span></li>
+        <li class="browse-item"><a href="/drugs/nitrostat/" class="browse-brand">Nitrostat</a><span class="browse-generic">nitroglycerin</span><span class="browse-count">49,218 reports</span></li>
+        <li class="browse-item"><a href="/drugs/nolvadex/" class="browse-brand">Nolvadex</a><span class="browse-generic">tamoxifen citrate</span><span class="browse-count">5,668 reports</span></li>
+        <li class="browse-item"><a href="/drugs/norvasc/" class="browse-brand">Norvasc</a><span class="browse-generic">amlodipine besylate</span><span class="browse-count">143,285 reports</span></li>
+        <li class="browse-item"><a href="/drugs/nuvaring/" class="browse-brand">Nuvaring</a><span class="browse-generic">etonogestrel/ethinyl estradiol</span><span class="browse-count">21,181 reports</span></li>
+      </ul></section>
+
+      <section id="section-O" class="letter-section"><h2 class="letter-heading">O</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/oxycontin/" class="browse-brand">OxyContin</a><span class="browse-generic">oxycodone hydrochloride</span><span class="browse-count">209,754 reports</span></li>
+        <li class="browse-item"><a href="/drugs/ozempic/" class="browse-brand">Ozempic</a><span class="browse-generic">semaglutide</span><span class="browse-count">62,885 reports</span></li>
+      </ul></section>
+
+      <section id="section-P" class="letter-section"><h2 class="letter-heading">P</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/paxil/" class="browse-brand">Paxil</a><span class="browse-generic">paroxetine hydrochloride</span><span class="browse-count">53,559 reports</span></li>
+        <li class="browse-item"><a href="/drugs/pepcid/" class="browse-brand">Pepcid</a><span class="browse-generic">famotidine</span><span class="browse-count">102,237 reports</span></li>
+        <li class="browse-item"><a href="/drugs/percocet/" class="browse-brand">Percocet</a><span class="browse-generic">oxycodone hydrochloride/acetaminophen</span><span class="browse-count">86,877 reports</span></li>
+        <li class="browse-item"><a href="/drugs/plaquenil/" class="browse-brand">Plaquenil</a><span class="browse-generic">hydroxychloroquine sulfate</span><span class="browse-count">89,508 reports</span></li>
+        <li class="browse-item"><a href="/drugs/plavix/" class="browse-brand">Plavix</a><span class="browse-generic">clopidogrel bisulfate</span><span class="browse-count">194,885 reports</span></li>
+        <li class="browse-item"><a href="/drugs/pradaxa/" class="browse-brand">Pradaxa</a><span class="browse-generic">dabigatran etexilate</span><span class="browse-count">73,380 reports</span></li>
+        <li class="browse-item"><a href="/drugs/pravachol/" class="browse-brand">Pravachol</a><span class="browse-generic">pravastatin sodium</span><span class="browse-count">19,325 reports</span></li>
+        <li class="browse-item"><a href="/drugs/premarin/" class="browse-brand">Premarin</a><span class="browse-generic">conjugated estrogens</span><span class="browse-count">58,862 reports</span></li>
+        <li class="browse-item"><a href="/drugs/prevacid/" class="browse-brand">Prevacid</a><span class="browse-generic">lansoprazole</span><span class="browse-count">171,882 reports</span></li>
+        <li class="browse-item"><a href="/drugs/prilosec/" class="browse-brand">Prilosec</a><span class="browse-generic">omeprazole</span><span class="browse-count">106,424 reports</span></li>
+        <li class="browse-item"><a href="/drugs/prinivil/" class="browse-brand">Prinivil</a><span class="browse-generic">lisinopril</span><span class="browse-count">300,901 reports</span></li>
+        <li class="browse-item"><a href="/drugs/pristiq/" class="browse-brand">Pristiq</a><span class="browse-generic">desvenlafaxine succinate</span><span class="browse-count">26,508 reports</span></li>
+        <li class="browse-item"><a href="/drugs/proair/" class="browse-brand">ProAir HFA</a><span class="browse-generic">albuterol sulfate</span><span class="browse-count">287,358 reports</span></li>
+        <li class="browse-item"><a href="/drugs/procardia/" class="browse-brand">Procardia</a><span class="browse-generic">nifedipine</span><span class="browse-count">46,184 reports</span></li>
+        <li class="browse-item"><a href="/drugs/propecia/" class="browse-brand">Propecia</a><span class="browse-generic">finasteride</span><span class="browse-count">51,508 reports</span></li>
+        <li class="browse-item"><a href="/drugs/protonix/" class="browse-brand">Protonix</a><span class="browse-generic">pantoprazole sodium</span><span class="browse-count">144,619 reports</span></li>
+        <li class="browse-item"><a href="/drugs/provera/" class="browse-brand">Provera</a><span class="browse-generic">medroxyprogesterone acetate</span><span class="browse-count">27,920 reports</span></li>
+        <li class="browse-item"><a href="/drugs/prozac/" class="browse-brand">Prozac</a><span class="browse-generic">fluoxetine hydrochloride</span><span class="browse-count">61,342 reports</span></li>
+        <li class="browse-item"><a href="/drugs/pulmicort/" class="browse-brand">Pulmicort</a><span class="browse-generic">budesonide</span><span class="browse-count">57,447 reports</span></li>
+      </ul></section>
+
+      <section id="section-Q" class="letter-section"><h2 class="letter-heading">Q</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/qvar/" class="browse-brand">Qvar</a><span class="browse-generic">beclomethasone dipropionate</span><span class="browse-count">7,133 reports</span></li>
+      </ul></section>
+
+      <section id="section-R" class="letter-section"><h2 class="letter-heading">R</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/ranexa/" class="browse-brand">Ranexa</a><span class="browse-generic">ranolazine</span><span class="browse-count">10,189 reports</span></li>
+        <li class="browse-item"><a href="/drugs/remeron/" class="browse-brand">Remeron</a><span class="browse-generic">mirtazapine</span><span class="browse-count">89,348 reports</span></li>
+        <li class="browse-item"><a href="/drugs/restasis/" class="browse-brand">Restasis</a><span class="browse-generic">cyclosporine</span><span class="browse-count">87,041 reports</span></li>
+        <li class="browse-item"><a href="/drugs/retin-a/" class="browse-brand">Retin-A</a><span class="browse-generic">tretinoin</span><span class="browse-count">7,438 reports</span></li>
+        <li class="browse-item"><a href="/drugs/rhinocort/" class="browse-brand">Rhinocort</a><span class="browse-generic">budesonide</span><span class="browse-count">57,447 reports</span></li>
+        <li class="browse-item"><a href="/drugs/risperdal/" class="browse-brand">Risperdal</a><span class="browse-generic">risperidone</span><span class="browse-count">119,126 reports</span></li>
+        <li class="browse-item"><a href="/drugs/rybelsus/" class="browse-brand">Rybelsus</a><span class="browse-generic">semaglutide</span><span class="browse-count">6,782 reports</span></li>
+      </ul></section>
+
+      <section id="section-S" class="letter-section"><h2 class="letter-heading">S</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/savaysa/" class="browse-brand">Savaysa</a><span class="browse-generic">edoxaban</span><span class="browse-count">6,303 reports</span></li>
+        <li class="browse-item"><a href="/drugs/seroquel/" class="browse-brand">Seroquel</a><span class="browse-generic">quetiapine fumarate</span><span class="browse-count">153,189 reports</span></li>
+        <li class="browse-item"><a href="/drugs/singulair/" class="browse-brand">Singulair</a><span class="browse-generic">montelukast sodium</span><span class="browse-count">118,895 reports</span></li>
+        <li class="browse-item"><a href="/drugs/soma/" class="browse-brand">Soma</a><span class="browse-generic">carisoprodol</span><span class="browse-count">18,888 reports</span></li>
+        <li class="browse-item"><a href="/drugs/spiriva/" class="browse-brand">Spiriva</a><span class="browse-generic">tiotropium bromide</span><span class="browse-count">135,604 reports</span></li>
+        <li class="browse-item"><a href="/drugs/strattera/" class="browse-brand">Strattera</a><span class="browse-generic">atomoxetine hydrochloride</span><span class="browse-count">23,432 reports</span></li>
+        <li class="browse-item"><a href="/drugs/suboxone/" class="browse-brand">Suboxone</a><span class="browse-generic">buprenorphine/naloxone</span><span class="browse-count">23,840 reports</span></li>
+        <li class="browse-item"><a href="/drugs/symbicort/" class="browse-brand">Symbicort</a><span class="browse-generic">budesonide/formoterol fumarate dihydrate</span><span class="browse-count">95,180 reports</span></li>
+        <li class="browse-item"><a href="/drugs/synthroid/" class="browse-brand">Synthroid</a><span class="browse-generic">levothyroxine sodium</span><span class="browse-count">276,227 reports</span></li>
+      </ul></section>
+
+      <section id="section-T" class="letter-section"><h2 class="letter-heading">T</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/tamiflu/" class="browse-brand">Tamiflu</a><span class="browse-generic">oseltamivir phosphate</span><span class="browse-count">17,902 reports</span></li>
+        <li class="browse-item"><a href="/drugs/tegretol/" class="browse-brand">Tegretol</a><span class="browse-generic">carbamazepine</span><span class="browse-count">62,610 reports</span></li>
+        <li class="browse-item"><a href="/drugs/tekturna/" class="browse-brand">Tekturna</a><span class="browse-generic">aliskiren hemifumarate</span><span class="browse-count">3,805 reports</span></li>
+        <li class="browse-item"><a href="/drugs/temovate/" class="browse-brand">Temovate</a><span class="browse-generic">clobetasol propionate</span><span class="browse-count">10,767 reports</span></li>
+        <li class="browse-item"><a href="/drugs/tenormin/" class="browse-brand">Tenormin</a><span class="browse-generic">atenolol</span><span class="browse-count">131,694 reports</span></li>
+        <li class="browse-item"><a href="/drugs/topamax/" class="browse-brand">Topamax</a><span class="browse-generic">topiramate</span><span class="browse-count">89,511 reports</span></li>
+        <li class="browse-item"><a href="/drugs/toprol-xl/" class="browse-brand">Toprol XL</a><span class="browse-generic">metoprolol succinate</span><span class="browse-count">83,918 reports</span></li>
+        <li class="browse-item"><a href="/drugs/trexall/" class="browse-brand">Trexall</a><span class="browse-generic">methotrexate</span><span class="browse-count">408,345 reports</span></li>
+        <li class="browse-item"><a href="/drugs/trileptal/" class="browse-brand">Trileptal</a><span class="browse-generic">oxcarbazepine</span><span class="browse-count">30,888 reports</span></li>
+        <li class="browse-item"><a href="/drugs/trintellix/" class="browse-brand">Trintellix</a><span class="browse-generic">vortioxetine</span><span class="browse-count">16,627 reports</span></li>
+        <li class="browse-item"><a href="/drugs/trulicity/" class="browse-brand">Trulicity</a><span class="browse-generic">dulaglutide</span><span class="browse-count">86,770 reports</span></li>
+      </ul></section>
+
+      <section id="section-U" class="letter-section"><h2 class="letter-heading">U</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/uloric/" class="browse-brand">Uloric</a><span class="browse-generic">febuxostat</span><span class="browse-count">16,333 reports</span></li>
+      </ul></section>
+
+      <section id="section-V" class="letter-section"><h2 class="letter-heading">V</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/valium/" class="browse-brand">Valium</a><span class="browse-generic">diazepam</span><span class="browse-count">118,723 reports</span></li>
+        <li class="browse-item"><a href="/drugs/valtrex/" class="browse-brand">Valtrex</a><span class="browse-generic">valacyclovir hydrochloride</span><span class="browse-count">44,610 reports</span></li>
+        <li class="browse-item"><a href="/drugs/vasotec/" class="browse-brand">Vasotec</a><span class="browse-generic">enalapril maleate</span><span class="browse-count">24,426 reports</span></li>
+        <li class="browse-item"><a href="/drugs/vesicare/" class="browse-brand">VESIcare</a><span class="browse-generic">solifenacin succinate</span><span class="browse-count">25,860 reports</span></li>
+        <li class="browse-item"><a href="/drugs/vibramycin/" class="browse-brand">Vibramycin</a><span class="browse-generic">doxycycline hyclate</span><span class="browse-count">65,452 reports</span></li>
+        <li class="browse-item"><a href="/drugs/victoza/" class="browse-brand">Victoza</a><span class="browse-generic">liraglutide</span><span class="browse-count">41,734 reports</span></li>
+        <li class="browse-item"><a href="/drugs/voltaren/" class="browse-brand">Voltaren</a><span class="browse-generic">diclofenac sodium</span><span class="browse-count">147,318 reports</span></li>
+        <li class="browse-item"><a href="/drugs/vraylar/" class="browse-brand">Vraylar</a><span class="browse-generic">cariprazine</span><span class="browse-count">8,903 reports</span></li>
+        <li class="browse-item"><a href="/drugs/vyvanse/" class="browse-brand">Vyvanse</a><span class="browse-generic">lisdexamfetamine dimesylate</span><span class="browse-count">32,167 reports</span></li>
+      </ul></section>
+
+      <section id="section-W" class="letter-section"><h2 class="letter-heading">W</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/wegovy/" class="browse-brand">Wegovy</a><span class="browse-generic">semaglutide</span><span class="browse-count">19,958 reports</span></li>
+        <li class="browse-item"><a href="/drugs/wellbutrin/" class="browse-brand">Wellbutrin</a><span class="browse-generic">bupropion hydrochloride</span><span class="browse-count">96,765 reports</span></li>
+      </ul></section>
+
+      <section id="section-X" class="letter-section"><h2 class="letter-heading">X</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/xanax/" class="browse-brand">Xanax</a><span class="browse-generic">alprazolam</span><span class="browse-count">202,031 reports</span></li>
+        <li class="browse-item"><a href="/drugs/xarelto/" class="browse-brand">Xarelto</a><span class="browse-generic">rivaroxaban</span><span class="browse-count">205,037 reports</span></li>
+        <li class="browse-item"><a href="/drugs/xeljanz/" class="browse-brand">Xeljanz</a><span class="browse-generic">tofacitinib citrate</span><span class="browse-count">105,852 reports</span></li>
+        <li class="browse-item"><a href="/drugs/xopenex/" class="browse-brand">Xopenex</a><span class="browse-generic">levalbuterol hydrochloride</span><span class="browse-count">3,293 reports</span></li>
+      </ul></section>
+
+      <section id="section-Y" class="letter-section"><h2 class="letter-heading">Y</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/yaz/" class="browse-brand">Yaz</a><span class="browse-generic">drospirenone/ethinyl estradiol</span><span class="browse-count">31,193 reports</span></li>
+      </ul></section>
+
+      <section id="section-Z" class="letter-section"><h2 class="letter-heading">Z</h2><ul class="browse-list">
+        <li class="browse-item"><a href="/drugs/zanaflex/" class="browse-brand">Zanaflex</a><span class="browse-generic">tizanidine hydrochloride</span><span class="browse-count">17,611 reports</span></li>
+        <li class="browse-item"><a href="/drugs/zestril/" class="browse-brand">Zestril</a><span class="browse-generic">lisinopril</span><span class="browse-count">300,871 reports</span></li>
+        <li class="browse-item"><a href="/drugs/zetia/" class="browse-brand">Zetia</a><span class="browse-generic">ezetimibe</span><span class="browse-count">72,434 reports</span></li>
+        <li class="browse-item"><a href="/drugs/zithromax/" class="browse-brand">Zithromax</a><span class="browse-generic">azithromycin</span><span class="browse-count">18,866 reports</span></li>
+        <li class="browse-item"><a href="/drugs/zocor/" class="browse-brand">Zocor</a><span class="browse-generic">simvastatin</span><span class="browse-count">247,112 reports</span></li>
+        <li class="browse-item"><a href="/drugs/zofran/" class="browse-brand">Zofran</a><span class="browse-generic">ondansetron hydrochloride</span><span class="browse-count">118,450 reports</span></li>
+        <li class="browse-item"><a href="/drugs/zoloft/" class="browse-brand">Zoloft</a><span class="browse-generic">sertraline hydrochloride</span><span class="browse-count">103,626 reports</span></li>
+        <li class="browse-item"><a href="/drugs/zovirax/" class="browse-brand">Zovirax</a><span class="browse-generic">acyclovir</span><span class="browse-count">111,698 reports</span></li>
+        <li class="browse-item"><a href="/drugs/zyloprim/" class="browse-brand">Zyloprim</a><span class="browse-generic">allopurinol</span><span class="browse-count">153,240 reports</span></li>
+        <li class="browse-item"><a href="/drugs/zyprexa/" class="browse-brand">Zyprexa</a><span class="browse-generic">olanzapine</span><span class="browse-count">104,379 reports</span></li>
+        <li class="browse-item"><a href="/drugs/zyrtec/" class="browse-brand">Zyrtec</a><span class="browse-generic">cetirizine hydrochloride</span><span class="browse-count">118,972 reports</span></li>
+      </ul></section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Data sourced from <a href="https://open.fda.gov/" target="_blank" rel="noopener noreferrer">OpenFDA</a>. PillSignal is not affiliated with the FDA.</p>
+    <nav class="footer-nav" aria-label="Site links">
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </footer>
+
+  <script>
+    document.getElementById('banner-btn').addEventListener('click', function () {
+      localStorage.setItem('pillsignal_disclaimer_dismissed', '1');
+      document.documentElement.classList.add('banner-seen');
+    });
+    (function () {
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('pillsignal_theme', next);
+        if (typeof gtag === 'function') gtag('event', 'dark_mode_toggle', { new_theme: next });
+      });
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+          if (!localStorage.getItem('pillsignal_theme')) {
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+          }
+        });
+      }
+    }());
+  </script>
+
+</body>
+</html>

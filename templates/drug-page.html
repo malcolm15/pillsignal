@@ -541,6 +541,7 @@
 
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
+    var DRUG_NAME      = "{{BRAND_NAME}}";
     var ADVERSE_EVENTS = {{ADVERSE_EVENTS_JSON}};
     var SEX_DATA       = {{SEX_DATA_JSON}};
     var AGE_DATA       = {{AGE_DATA_JSON}};
@@ -565,9 +566,9 @@
         var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
         localStorage.setItem('pillsignal_theme', next);
+        if (typeof gtag === 'function') gtag('event', 'dark_mode_toggle', { new_theme: next });
         initAllCharts();
       });
-      // Stay in sync when OS preference changes, if the user hasn't set a manual override
       if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
           if (!localStorage.getItem('pillsignal_theme')) {
@@ -577,6 +578,28 @@
         });
       }
     }());
+
+    // ── GA4: related drug clicks ──────────────────────────────────────────────
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('.related-list a');
+      if (link && typeof gtag === 'function') {
+        gtag('event', 'related_drug_click', {
+          source_drug: DRUG_NAME,
+          target_drug: link.textContent.trim(),
+        });
+      }
+    });
+
+    // ── GA4: FDA / OpenFDA link clicks ────────────────────────────────────────
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('a[href]');
+      if (link && /fda\.gov/i.test(link.href) && typeof gtag === 'function') {
+        gtag('event', 'fda_source_click', {
+          drug_name:       DRUG_NAME,
+          destination_url: link.href,
+        });
+      }
+    });
 
     // ── Chart helpers ─────────────────────────────────────────────────────────
     function getCSSVar(name) {

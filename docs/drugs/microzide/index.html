@@ -411,7 +411,8 @@
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
         </button>
-        <a href="/" class="header-link">← Search drugs</a>
+        <a href="/drugs/" class="header-link">Browse all</a>
+        <a href="/" class="header-link">← Search</a>
       </div>
     </div>
   </header>
@@ -432,7 +433,7 @@
     <!-- Inline disclaimer — always visible (Legal requirement #1) -->
     <div class="notice" role="note">
       This data reflects voluntary reports submitted to the FDA's Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors.
-      <a href="https://www.fda.gov/drugs/questions-and-answers-fdas-adverse-event-reporting-system-faers/fda-adverse-event-reporting-system-faers-public-dashboard" target="_blank" rel="noopener noreferrer"> Learn more about FAERS.</a>
+      <a href="https://www.fda.gov/drugs/surveillance/fdas-adverse-event-reporting-system-faers" target="_blank" rel="noopener noreferrer"> Learn more about FAERS.</a>
     </div>
 
     <!-- ─── Top Adverse Events ──────────────────────────────────────────────── -->
@@ -505,8 +506,8 @@
     <li><a href="/drugs/cozaar">Cozaar</a><span class="related-count">76,525 reports</span></li>
     <li><a href="/drugs/lopressor">Lopressor</a><span class="related-count">83,858 reports</span></li>
     <li><a href="/drugs/norvasc">Norvasc</a><span class="related-count">143,285 reports</span></li>
-    <li><a href="/drugs/crestor">Crestor</a><span class="related-count">198,888 reports</span></li>
-    <li><a href="/drugs/diovan">Diovan</a><span class="related-count">103,299 reports</span></li>
+    <li><a href="/drugs/amazon-basic-care-omeprazole">AMAZON BASIC CARE OMEPRAZOLE</a><span class="related-count">336,268 reports</span></li>
+    <li><a href="/drugs/atenolol">ATENOLOL</a><span class="related-count">121,968 reports</span></li>
   </ul>
 </section>
 
@@ -515,7 +516,7 @@
       <h2 id="source-heading">Data Source</h2>
       <p>
         This data is sourced from the
-        <a href="https://www.fda.gov/drugs/questions-and-answers-fdas-adverse-event-reporting-system-faers/fda-adverse-event-reporting-system-faers-public-dashboard" target="_blank" rel="noopener noreferrer">FDA Adverse Event Reporting System (FAERS)</a>
+        <a href="https://www.fda.gov/drugs/surveillance/fdas-adverse-event-reporting-system-faers" target="_blank" rel="noopener noreferrer">FDA Adverse Event Reporting System (FAERS)</a>
         via the <a href="https://open.fda.gov/apis/drug/event/" target="_blank" rel="noopener noreferrer">OpenFDA API</a>.
         PillSignal is not affiliated with the FDA.
       </p>
@@ -537,10 +538,11 @@
     <p>
       Data sourced from <a href="https://open.fda.gov/" target="_blank" rel="noopener noreferrer">OpenFDA</a>.
       PillSignal is not affiliated with the FDA.
-      Page generated May 26, 2026.
+      Page generated May 27, 2026.
     </p>
     <nav class="footer-nav" aria-label="Site links">
       <a href="/about">About</a>
+      <a href="/faq">FAQ</a>
       <a href="/privacy">Privacy Policy</a>
       <a href="/terms">Terms of Service</a>
       <a href="/contact">Contact</a>
@@ -549,6 +551,7 @@
 
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
+    var DRUG_NAME      = "Microzide";
     var ADVERSE_EVENTS = [{"label":"FATIGUE","value":10161},{"label":"NAUSEA","value":9827},{"label":"DRUG INEFFECTIVE","value":9469},{"label":"DIARRHOEA","value":8434},{"label":"PAIN","value":7756},{"label":"DYSPNOEA","value":7666},{"label":"HEADACHE","value":7635},{"label":"DIZZINESS","value":7381},{"label":"ARTHRALGIA","value":6150},{"label":"OFF LABEL USE","value":5801},{"label":"ASTHENIA","value":5686},{"label":"FALL","value":5642},{"label":"VOMITING","value":5598},{"label":"MALAISE","value":5266},{"label":"ACUTE KIDNEY INJURY","value":4914}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[84546,48286,179]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[858,1894,9928,31619,27234,23893]};
@@ -573,9 +576,9 @@
         var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
         localStorage.setItem('pillsignal_theme', next);
+        if (typeof gtag === 'function') gtag('event', 'dark_mode_toggle', { new_theme: next });
         initAllCharts();
       });
-      // Stay in sync when OS preference changes, if the user hasn't set a manual override
       if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
           if (!localStorage.getItem('pillsignal_theme')) {
@@ -585,6 +588,28 @@
         });
       }
     }());
+
+    // ── GA4: related drug clicks ──────────────────────────────────────────────
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('.related-list a');
+      if (link && typeof gtag === 'function') {
+        gtag('event', 'related_drug_click', {
+          source_drug: DRUG_NAME,
+          target_drug: link.textContent.trim(),
+        });
+      }
+    });
+
+    // ── GA4: FDA / OpenFDA link clicks ────────────────────────────────────────
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('a[href]');
+      if (link && /fda\.gov/i.test(link.href) && typeof gtag === 'function') {
+        gtag('event', 'fda_source_click', {
+          drug_name:       DRUG_NAME,
+          destination_url: link.href,
+        });
+      }
+    });
 
     // ── Chart helpers ─────────────────────────────────────────────────────────
     function getCSSVar(name) {
@@ -684,6 +709,13 @@
               borderWidth:     1,
               titleColor:      getCSSVar('--c-chart-tooltip-title'),
               bodyColor:       getCSSVar('--c-chart-tooltip-body'),
+              callbacks: {
+                label: function (ctx) {
+                  var total = ctx.dataset.data.reduce(function (a, b) { return a + b; }, 0);
+                  var pct   = total > 0 ? (ctx.parsed / total * 100).toFixed(1) : '0.0';
+                  return ' ' + ctx.label + ': ' + ctx.parsed.toLocaleString() + ' (' + pct + '%)';
+                }
+              }
             }
           }
         }
@@ -792,6 +824,13 @@
               borderWidth:     1,
               titleColor:      getCSSVar('--c-chart-tooltip-title'),
               bodyColor:       getCSSVar('--c-chart-tooltip-body'),
+              callbacks: {
+                label: function (ctx) {
+                  var total = ctx.dataset.data.reduce(function (a, b) { return a + b; }, 0);
+                  var pct   = total > 0 ? (ctx.parsed / total * 100).toFixed(1) : '0.0';
+                  return ' ' + ctx.label + ': ' + ctx.parsed.toLocaleString() + ' (' + pct + '%)';
+                }
+              }
             }
           }
         }

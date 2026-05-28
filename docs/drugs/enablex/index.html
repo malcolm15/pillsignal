@@ -411,7 +411,8 @@
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
         </button>
-        <a href="/" class="header-link">← Search drugs</a>
+        <a href="/drugs/" class="header-link">Browse all</a>
+        <a href="/" class="header-link">← Search</a>
       </div>
     </div>
   </header>
@@ -422,7 +423,7 @@
     <!-- Drug hero -->
     <div class="drug-hero">
       <h1>Enablex<small>darifenacin hydrobromide</small></h1>
-      
+      <p class="drug-description"><strong>According to the FDA label:</strong> Darifenacin extended-release tablets are muscarinic antagonist indicated for the treatment of overactive bladder with symptoms of urge urinary incontinence, urgency and frequency. Darifenacin is a muscarinic antagonist indicated for the treatment of overactive bladder with symptoms of urge urinary incontinence, urgency and frequency. ( 1 )</p>
       <p class="drug-summary">
         <strong>854</strong> adverse event reports submitted to the FDA
         (2005–2026)
@@ -432,7 +433,7 @@
     <!-- Inline disclaimer — always visible (Legal requirement #1) -->
     <div class="notice" role="note">
       This data reflects voluntary reports submitted to the FDA's Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors.
-      <a href="https://www.fda.gov/drugs/questions-and-answers-fdas-adverse-event-reporting-system-faers/fda-adverse-event-reporting-system-faers-public-dashboard" target="_blank" rel="noopener noreferrer"> Learn more about FAERS.</a>
+      <a href="https://www.fda.gov/drugs/surveillance/fdas-adverse-event-reporting-system-faers" target="_blank" rel="noopener noreferrer"> Learn more about FAERS.</a>
     </div>
 
     <!-- ─── Top Adverse Events ──────────────────────────────────────────────── -->
@@ -503,10 +504,10 @@
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/deltasone">Deltasone</a><span class="related-count">491,124 reports</span></li>
-    <li><a href="/drugs/celebrex">Celebrex</a><span class="related-count">129,430 reports</span></li>
-    <li><a href="/drugs/humira">Humira</a><span class="related-count">699,271 reports</span></li>
-    <li><a href="/drugs/trexall">Trexall</a><span class="related-count">408,345 reports</span></li>
-    <li><a href="/drugs/actonel">Actonel</a><span class="related-count">30,015 reports</span></li>
+    <li><a href="/drugs/back-and-muscle-pain">BACK AND MUSCLE PAIN</a><span class="related-count">87,510 reports</span></li>
+    <li><a href="/drugs/basic-care-allergy-relief">BASIC CARE ALLERGY RELIEF</a><span class="related-count">71,227 reports</span></li>
+    <li><a href="/drugs/berkley-and-jensen-allergy-relief">BERKLEY AND JENSEN ALLERGY RELIEF</a><span class="related-count">67,972 reports</span></li>
+    <li><a href="/drugs/careall-allergy-relief">CAREALL ALLERGY RELIEF</a><span class="related-count">75,369 reports</span></li>
   </ul>
 </section>
 
@@ -515,7 +516,7 @@
       <h2 id="source-heading">Data Source</h2>
       <p>
         This data is sourced from the
-        <a href="https://www.fda.gov/drugs/questions-and-answers-fdas-adverse-event-reporting-system-faers/fda-adverse-event-reporting-system-faers-public-dashboard" target="_blank" rel="noopener noreferrer">FDA Adverse Event Reporting System (FAERS)</a>
+        <a href="https://www.fda.gov/drugs/surveillance/fdas-adverse-event-reporting-system-faers" target="_blank" rel="noopener noreferrer">FDA Adverse Event Reporting System (FAERS)</a>
         via the <a href="https://open.fda.gov/apis/drug/event/" target="_blank" rel="noopener noreferrer">OpenFDA API</a>.
         PillSignal is not affiliated with the FDA.
       </p>
@@ -537,10 +538,11 @@
     <p>
       Data sourced from <a href="https://open.fda.gov/" target="_blank" rel="noopener noreferrer">OpenFDA</a>.
       PillSignal is not affiliated with the FDA.
-      Page generated May 26, 2026.
+      Page generated May 27, 2026.
     </p>
     <nav class="footer-nav" aria-label="Site links">
       <a href="/about">About</a>
+      <a href="/faq">FAQ</a>
       <a href="/privacy">Privacy Policy</a>
       <a href="/terms">Terms of Service</a>
       <a href="/contact">Contact</a>
@@ -549,6 +551,7 @@
 
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
+    var DRUG_NAME      = "Enablex";
     var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":183},{"label":"HERPES ZOSTER","value":136},{"label":"PERIPHERAL SWELLING","value":135},{"label":"PNEUMONIA VIRAL","value":117},{"label":"ARTHRALGIA","value":113},{"label":"SYNOVITIS","value":107},{"label":"ANAEMIA","value":102},{"label":"FIBROMYALGIA","value":100},{"label":"ARTHRITIS","value":98},{"label":"JOINT SWELLING","value":97},{"label":"BLOOD CHOLESTEROL INCREASED","value":96},{"label":"LEUKOPENIA","value":96},{"label":"LIVER FUNCTION TEST ABNORMAL","value":89},{"label":"INFECTION","value":87},{"label":"ORAL PAIN","value":80}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[591,180,3]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1,12,46,112,115,253]};
@@ -573,9 +576,9 @@
         var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
         localStorage.setItem('pillsignal_theme', next);
+        if (typeof gtag === 'function') gtag('event', 'dark_mode_toggle', { new_theme: next });
         initAllCharts();
       });
-      // Stay in sync when OS preference changes, if the user hasn't set a manual override
       if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
           if (!localStorage.getItem('pillsignal_theme')) {
@@ -585,6 +588,28 @@
         });
       }
     }());
+
+    // ── GA4: related drug clicks ──────────────────────────────────────────────
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('.related-list a');
+      if (link && typeof gtag === 'function') {
+        gtag('event', 'related_drug_click', {
+          source_drug: DRUG_NAME,
+          target_drug: link.textContent.trim(),
+        });
+      }
+    });
+
+    // ── GA4: FDA / OpenFDA link clicks ────────────────────────────────────────
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('a[href]');
+      if (link && /fda\.gov/i.test(link.href) && typeof gtag === 'function') {
+        gtag('event', 'fda_source_click', {
+          drug_name:       DRUG_NAME,
+          destination_url: link.href,
+        });
+      }
+    });
 
     // ── Chart helpers ─────────────────────────────────────────────────────────
     function getCSSVar(name) {
@@ -684,6 +709,13 @@
               borderWidth:     1,
               titleColor:      getCSSVar('--c-chart-tooltip-title'),
               bodyColor:       getCSSVar('--c-chart-tooltip-body'),
+              callbacks: {
+                label: function (ctx) {
+                  var total = ctx.dataset.data.reduce(function (a, b) { return a + b; }, 0);
+                  var pct   = total > 0 ? (ctx.parsed / total * 100).toFixed(1) : '0.0';
+                  return ' ' + ctx.label + ': ' + ctx.parsed.toLocaleString() + ' (' + pct + '%)';
+                }
+              }
             }
           }
         }
@@ -792,6 +824,13 @@
               borderWidth:     1,
               titleColor:      getCSSVar('--c-chart-tooltip-title'),
               bodyColor:       getCSSVar('--c-chart-tooltip-body'),
+              callbacks: {
+                label: function (ctx) {
+                  var total = ctx.dataset.data.reduce(function (a, b) { return a + b; }, 0);
+                  var pct   = total > 0 ? (ctx.parsed / total * 100).toFixed(1) : '0.0';
+                  return ' ' + ctx.label + ': ' + ctx.parsed.toLocaleString() + ' (' + pct + '%)';
+                }
+              }
             }
           }
         }

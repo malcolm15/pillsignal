@@ -411,7 +411,8 @@
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
         </button>
-        <a href="/" class="header-link">← Search drugs</a>
+        <a href="/drugs/" class="header-link">Browse all</a>
+        <a href="/" class="header-link">← Search</a>
       </div>
     </div>
   </header>
@@ -422,7 +423,7 @@
     <!-- Drug hero -->
     <div class="drug-hero">
       <h1>Advair Diskus<small>fluticasone propionate/salmeterol</small></h1>
-      
+      <p class="drug-description"><strong>According to the FDA label:</strong> ADVAIR DISKUS is a combination product containing a corticosteroid and a long-acting beta 2 -adrenergic agonist (LABA) indicated for: • Twice-daily treatment of asthma in patients aged 4 years and older. ( 1.1 ) • Maintenance treatment of airflow obstruction and reducing exacerbations in patients with chronic obstructive pulmonary disease (COPD). ( 1.2 ) Important limitation of use: Not indicated for relief of acute bronchospasm.</p>
       <p class="drug-summary">
         <strong>37,008</strong> adverse event reports submitted to the FDA
         (2003–2026)
@@ -432,7 +433,7 @@
     <!-- Inline disclaimer — always visible (Legal requirement #1) -->
     <div class="notice" role="note">
       This data reflects voluntary reports submitted to the FDA's Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors.
-      <a href="https://www.fda.gov/drugs/questions-and-answers-fdas-adverse-event-reporting-system-faers/fda-adverse-event-reporting-system-faers-public-dashboard" target="_blank" rel="noopener noreferrer"> Learn more about FAERS.</a>
+      <a href="https://www.fda.gov/drugs/surveillance/fdas-adverse-event-reporting-system-faers" target="_blank" rel="noopener noreferrer"> Learn more about FAERS.</a>
     </div>
 
     <!-- ─── Top Adverse Events ──────────────────────────────────────────────── -->
@@ -504,9 +505,9 @@
   <ul class="related-list">
     <li><a href="/drugs/symbicort">Symbicort</a><span class="related-count">95,180 reports</span></li>
     <li><a href="/drugs/proair">ProAir HFA</a><span class="related-count">287,358 reports</span></li>
+    <li><a href="/drugs/advair-hfa">ADVAIR HFA</a><span class="related-count">59,093 reports</span></li>
     <li><a href="/drugs/spiriva">Spiriva</a><span class="related-count">135,604 reports</span></li>
-    <li><a href="/drugs/singulair">Singulair</a><span class="related-count">118,895 reports</span></li>
-    <li><a href="/drugs/xopenex">Xopenex</a><span class="related-count">3,293 reports</span></li>
+    <li><a href="/drugs/albuterol">ALBUTEROL</a><span class="related-count">195,635 reports</span></li>
   </ul>
 </section>
 
@@ -515,7 +516,7 @@
       <h2 id="source-heading">Data Source</h2>
       <p>
         This data is sourced from the
-        <a href="https://www.fda.gov/drugs/questions-and-answers-fdas-adverse-event-reporting-system-faers/fda-adverse-event-reporting-system-faers-public-dashboard" target="_blank" rel="noopener noreferrer">FDA Adverse Event Reporting System (FAERS)</a>
+        <a href="https://www.fda.gov/drugs/surveillance/fdas-adverse-event-reporting-system-faers" target="_blank" rel="noopener noreferrer">FDA Adverse Event Reporting System (FAERS)</a>
         via the <a href="https://open.fda.gov/apis/drug/event/" target="_blank" rel="noopener noreferrer">OpenFDA API</a>.
         PillSignal is not affiliated with the FDA.
       </p>
@@ -537,10 +538,11 @@
     <p>
       Data sourced from <a href="https://open.fda.gov/" target="_blank" rel="noopener noreferrer">OpenFDA</a>.
       PillSignal is not affiliated with the FDA.
-      Page generated May 26, 2026.
+      Page generated May 27, 2026.
     </p>
     <nav class="footer-nav" aria-label="Site links">
       <a href="/about">About</a>
+      <a href="/faq">FAQ</a>
       <a href="/privacy">Privacy Policy</a>
       <a href="/terms">Terms of Service</a>
       <a href="/contact">Contact</a>
@@ -549,6 +551,7 @@
 
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
+    var DRUG_NAME      = "Advair Diskus";
     var ADVERSE_EVENTS = [{"label":"DYSPNOEA","value":5823},{"label":"DRUG INEFFECTIVE","value":4350},{"label":"PRODUCT QUALITY ISSUE","value":2508},{"label":"COUGH","value":2222},{"label":"PRODUCT DOSE OMISSION ISSUE","value":2104},{"label":"PNEUMONIA","value":2051},{"label":"DRUG DOSE OMISSION","value":1996},{"label":"ASTHMA","value":1901},{"label":"MALAISE","value":1508},{"label":"WRONG TECHNIQUE IN DEVICE USAGE PROCESS","value":1472},{"label":"DEVICE USE ERROR","value":1444},{"label":"CHRONIC OBSTRUCTIVE PULMONARY DISEASE","value":1304},{"label":"UNDERDOSE","value":1241},{"label":"OFF LABEL USE","value":1179},{"label":"DYSPHONIA","value":1177}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[23688,11717,96]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[275,737,1822,5506,4623,4472]};
@@ -573,9 +576,9 @@
         var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
         localStorage.setItem('pillsignal_theme', next);
+        if (typeof gtag === 'function') gtag('event', 'dark_mode_toggle', { new_theme: next });
         initAllCharts();
       });
-      // Stay in sync when OS preference changes, if the user hasn't set a manual override
       if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
           if (!localStorage.getItem('pillsignal_theme')) {
@@ -585,6 +588,28 @@
         });
       }
     }());
+
+    // ── GA4: related drug clicks ──────────────────────────────────────────────
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('.related-list a');
+      if (link && typeof gtag === 'function') {
+        gtag('event', 'related_drug_click', {
+          source_drug: DRUG_NAME,
+          target_drug: link.textContent.trim(),
+        });
+      }
+    });
+
+    // ── GA4: FDA / OpenFDA link clicks ────────────────────────────────────────
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('a[href]');
+      if (link && /fda\.gov/i.test(link.href) && typeof gtag === 'function') {
+        gtag('event', 'fda_source_click', {
+          drug_name:       DRUG_NAME,
+          destination_url: link.href,
+        });
+      }
+    });
 
     // ── Chart helpers ─────────────────────────────────────────────────────────
     function getCSSVar(name) {
@@ -684,6 +709,13 @@
               borderWidth:     1,
               titleColor:      getCSSVar('--c-chart-tooltip-title'),
               bodyColor:       getCSSVar('--c-chart-tooltip-body'),
+              callbacks: {
+                label: function (ctx) {
+                  var total = ctx.dataset.data.reduce(function (a, b) { return a + b; }, 0);
+                  var pct   = total > 0 ? (ctx.parsed / total * 100).toFixed(1) : '0.0';
+                  return ' ' + ctx.label + ': ' + ctx.parsed.toLocaleString() + ' (' + pct + '%)';
+                }
+              }
             }
           }
         }
@@ -792,6 +824,13 @@
               borderWidth:     1,
               titleColor:      getCSSVar('--c-chart-tooltip-title'),
               bodyColor:       getCSSVar('--c-chart-tooltip-body'),
+              callbacks: {
+                label: function (ctx) {
+                  var total = ctx.dataset.data.reduce(function (a, b) { return a + b; }, 0);
+                  var pct   = total > 0 ? (ctx.parsed / total * 100).toFixed(1) : '0.0';
+                  return ' ' + ctx.label + ': ' + ctx.parsed.toLocaleString() + ' (' + pct + '%)';
+                }
+              }
             }
           }
         }

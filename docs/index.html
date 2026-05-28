@@ -546,6 +546,7 @@
         var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
         localStorage.setItem('pillsignal_theme', next);
+        if (typeof gtag === 'function') gtag('event', 'dark_mode_toggle', { new_theme: next });
       });
       if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
@@ -606,14 +607,20 @@
       }
 
       dropdown.innerHTML = matches.map(function (d, i) {
-        return '<button class="dropdown-item" role="option" data-slug="' + d.slug + '" data-i="' + i + '">' +
+        return '<button class="dropdown-item" role="option" data-slug="' + d.slug + '" data-name="' + escHtml(d.brand_name) + '" data-i="' + i + '">' +
                '<span class="drug-brand">'   + highlight(d.brand_name,   q) + '</span>' +
                '<span class="drug-generic">' + highlight(d.generic_name, q) + '</span>' +
                '</button>';
       }).join('');
 
       dropdown.querySelectorAll('.dropdown-item').forEach(function (btn) {
-        btn.addEventListener('click', function () { navigate(this.dataset.slug); });
+        btn.addEventListener('click', function () {
+          if (typeof gtag === 'function') gtag('event', 'search_result_click', {
+            drug_name: this.dataset.name,
+            drug_slug: this.dataset.slug,
+          });
+          navigate(this.dataset.slug);
+        });
       });
 
       activeIdx = -1;
@@ -642,7 +649,19 @@
       activeIdx = idx;
     }
 
-    input.addEventListener('input', function () { render(this.value); });
+    var _sqTimer = null;
+    var _sqLast  = '';
+    input.addEventListener('input', function () {
+      render(this.value);
+      var term = this.value.trim();
+      if (term.length >= 3 && term !== _sqLast) {
+        clearTimeout(_sqTimer);
+        _sqTimer = setTimeout(function () {
+          _sqLast = term;
+          if (typeof gtag === 'function') gtag('event', 'search_query', { search_term: term });
+        }, 500);
+      }
+    });
 
     input.addEventListener('keydown', function (e) {
       var items = dropdown.querySelectorAll('.dropdown-item');

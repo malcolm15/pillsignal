@@ -382,6 +382,19 @@
       var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('pillsignal_theme', next);
+      if (typeof gtag === 'function') gtag('event', 'dark_mode_toggle', { new_theme: next });
+    });
+
+    // ── GA4: FAQ accordion open ───────────────────────────────────────────────
+    document.querySelectorAll('details').forEach(function (el) {
+      el.addEventListener('toggle', function () {
+        if (this.open && typeof gtag === 'function') {
+          var q = this.querySelector('summary');
+          gtag('event', 'faq_open', {
+            question_text: q ? q.textContent.trim().slice(0, 50) : '',
+          });
+        }
+      });
     });
     if (window.matchMedia) {
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {

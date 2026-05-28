@@ -270,7 +270,7 @@ function writeBrowsePage(drugs) {
 
   const letterNav = alphabet.map(l => {
     if (groups[l]) {
-      return `<a href="#section-${l}" class="lnav-item lnav-item--on">${l}</a>`;
+      return `<a href="#section-${l}" class="lnav-item lnav-item--on" onclick="if(typeof gtag==='function')gtag('event','browse_letter_click',{letter:'${l}'})">${l}</a>`;
     }
     return `<span class="lnav-item lnav-item--off">${l}</span>`;
   }).join('');
@@ -482,6 +482,7 @@ ${sections}
         var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
         localStorage.setItem('pillsignal_theme', next);
+        if (typeof gtag === 'function') gtag('event', 'dark_mode_toggle', { new_theme: next });
       });
       if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
