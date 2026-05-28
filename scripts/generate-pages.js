@@ -524,12 +524,23 @@ function writeDrugIndex(drugs) {
 // ─── Supabase queries ─────────────────────────────────────────────────────────
 
 async function fetchAllDrugs() {
-  const { data, error } = await supabase
-    .from('drugs')
-    .select('*')
-    .order('brand_name');
-  if (error) throw new Error(`Failed to fetch drugs: ${error.message}`);
-  return data;
+  const all   = [];
+  const batch = 1000;
+  let   from  = 0;
+
+  while (true) {
+    const { data, error } = await supabase
+      .from('drugs')
+      .select('*')
+      .order('brand_name')
+      .range(from, from + batch - 1);
+    if (error) throw new Error(`Failed to fetch drugs: ${error.message}`);
+    all.push(...data);
+    if (data.length < batch) break;
+    from += batch;
+  }
+
+  return all;
 }
 
 async function fetchDrugDetails(drugId) {
