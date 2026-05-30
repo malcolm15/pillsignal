@@ -122,10 +122,13 @@ function computeRelatedDrugs(drugs, detailsMap) {
   return relatedMap;
 }
 
-// Renders the FDA label description, or empty string if null/empty.
-function renderDrugDescription(description) {
+// Renders the FDA label description + MedlinePlus link, or empty string if null/empty.
+function renderDrugDescription(description, genericName) {
   if (!description) return '';
-  return `<p class="drug-description"><strong>According to the FDA label:</strong> ${escapeHtml(description)}</p>`;
+  const query       = encodeURIComponent(genericName || '');
+  const medlineUrl  = `https://medlineplus.gov/search/?query=${query}`;
+  return `<p class="drug-description"><strong>According to the FDA label:</strong> ${escapeHtml(description)}</p>` +
+    `<p class="drug-description-link"><a href="${medlineUrl}" target="_blank" rel="noopener noreferrer">Learn more on MedlinePlus →</a></p>`;
 }
 
 // Renders the "Related Drugs" card HTML, or empty string if no related drugs.
@@ -213,7 +216,7 @@ function renderPage(drug, adverseEvents, demographics, outcomes, trends, related
     .replaceAll('{{OG_DESCRIPTION}}',       escapeHtml(metaDesc))
     .replaceAll('{{OG_URL}}',               canonicalUrl)
     .replaceAll('{{JSON_LD}}',              safeJson(buildJsonLd(drug, canonicalUrl, metaDesc)))
-    .replaceAll('{{DRUG_DESCRIPTION}}',      renderDrugDescription(drug.description))
+    .replaceAll('{{DRUG_DESCRIPTION}}',      renderDrugDescription(drug.description, genericName))
     .replaceAll('{{BRAND_NAME}}',           escapeHtml(brandName))
     .replaceAll('{{GENERIC_NAME}}',         escapeHtml(genericName))
     .replaceAll('{{TOTAL_REPORTS}}',        totalReports.toLocaleString('en-US'))
