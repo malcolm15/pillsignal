@@ -93,6 +93,45 @@ function ogSvg() {
 </svg>`;
 }
 
+// ─── Twitter/X banner SVG (1500×500) ─────────────────────────────────────────
+
+function twitterBannerSvg() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="500" viewBox="0 0 1500 500">
+  <!-- Background -->
+  <rect width="1500" height="500" fill="#00A67E"/>
+  <!-- Subtle vignette for depth -->
+  <radialGradient id="vg" cx="50%" cy="50%" r="75%">
+    <stop offset="0%" stop-color="rgba(255,255,255,0.07)"/>
+    <stop offset="100%" stop-color="rgba(0,0,0,0.14)"/>
+  </radialGradient>
+  <rect width="1500" height="500" fill="url(#vg)"/>
+
+  <!-- Wordmark -->
+  <text
+    x="750" y="228"
+    text-anchor="middle"
+    dominant-baseline="auto"
+    fill="#ffffff"
+    font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+    font-size="148"
+    font-weight="800"
+    letter-spacing="-3">PillSignal</text>
+
+  <!-- Divider dot -->
+  <circle cx="750" cy="268" r="4" fill="rgba(255,255,255,0.5)"/>
+
+  <!-- Tagline -->
+  <text
+    x="750" y="320"
+    text-anchor="middle"
+    fill="rgba(255,255,255,0.82)"
+    font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif"
+    font-size="44"
+    font-weight="400"
+    letter-spacing="0.5">Explore FDA Adverse Event Reports</text>
+</svg>`;
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -118,6 +157,10 @@ async function main() {
   // OG image
   await sharp(Buffer.from(ogSvg())).png().toFile(join(DOCS, 'og-image.png'));
   console.log('  og-image.png (1200×630)');
+
+  // Twitter/X banner
+  await sharp(Buffer.from(twitterBannerSvg())).png().toFile(join(DOCS, 'twitter-banner.png'));
+  console.log('  twitter-banner.png (1500×500)');
 
   console.log('\nDone.\n');
 }
