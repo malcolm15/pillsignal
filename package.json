@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0",
-    "dotenv": "^16.4.1"
+    "dotenv": "^16.4.1",
+    "twitter-api-v2": "^1.18.0"
   },
   "devDependencies": {
     "sharp": "^0.34.5"
