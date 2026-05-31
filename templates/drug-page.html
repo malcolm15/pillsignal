@@ -229,6 +229,12 @@
     }
     .drug-summary { margin-top: 0.5rem; font-size: 1rem; color: var(--c-text-muted); }
     .drug-summary strong { color: var(--c-text); }
+    .share-row { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.9rem; position: relative; flex-wrap: wrap; }
+    .share-label { font-size: 0.72rem; color: var(--c-text-muted); font-weight: 500; margin-right: 0.1rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .share-btn { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 6px; border: 1px solid var(--c-border); color: var(--c-text-muted); background: none; cursor: pointer; padding: 0; text-decoration: none; transition: color 0.15s, border-color 0.15s, background 0.15s; flex-shrink: 0; font-family: inherit; }
+    .share-btn:hover, .share-btn.share-copied { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); text-decoration: none; }
+    .share-copy-tip { font-size: 0.72rem; color: var(--c-primary); font-weight: 500; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+    .share-copy-tip.visible { opacity: 1; }
 
     /* ─── Notice boxes ────────────────────────────────────────────────────────── */
     .notice {
@@ -428,6 +434,7 @@
         <strong>{{TOTAL_REPORTS}}</strong> adverse event reports submitted to the FDA
         ({{DATE_RANGE}})
       </p>
+      {{SHARE_BUTTONS}}
     </div>
 
     <!-- Inline disclaimer — always visible (Legal requirement #1) -->
