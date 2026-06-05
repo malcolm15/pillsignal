@@ -278,6 +278,8 @@ function writeSitemap(drugs) {
   const staticUrls = [
     { loc: `${SITE_URL}/`,         changefreq: 'weekly',  priority: '1.0' },
     { loc: `${SITE_URL}/drugs/`,   changefreq: 'weekly',  priority: '0.9' },
+    { loc: `${SITE_URL}/guides/`,  changefreq: 'monthly', priority: '0.7' },
+    { loc: `${SITE_URL}/guides/how-to-read-fda-adverse-event-reports/`, changefreq: 'monthly', priority: '0.7' },
     { loc: `${SITE_URL}/about/`,   changefreq: 'monthly', priority: '0.5' },
     { loc: `${SITE_URL}/faq/`,     changefreq: 'monthly', priority: '0.5' },
     { loc: `${SITE_URL}/contact/`, changefreq: 'monthly', priority: '0.4' },
@@ -297,7 +299,7 @@ function writeSitemap(drugs) {
     staticUrls + '\n' + drugUrls + `\n</urlset>`;
 
   writeFileSync(join(DOCS_DIR, 'sitemap.xml'), xml, 'utf8');
-  console.log(`  sitemap.xml  — ${drugs.length} drug URLs + 7 static pages`);
+  console.log(`  sitemap.xml  — ${drugs.length} drug URLs + 9 static pages`);
 }
 
 function writeBrowsePage(drugs) {
@@ -528,6 +530,7 @@ ${sections}
   <footer class="site-footer">
     <p>Data sourced from <a href="https://open.fda.gov/" target="_blank" rel="noopener noreferrer">OpenFDA</a>. PillSignal is not affiliated with the FDA.</p>
     <nav class="footer-nav" aria-label="Site links">
+      <a href="/guides/">Guides</a>
       <a href="/about">About</a>
       <a href="/privacy">Privacy Policy</a>
       <a href="/terms">Terms of Service</a>
