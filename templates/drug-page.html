@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 
   <title>{{PAGE_TITLE}}</title>
   <meta name="description" content="{{META_DESCRIPTION}}">
@@ -904,7 +904,7 @@
     // ── Initialize / reinitialize all charts ──────────────────────────────────
     // Called on page load and again whenever the theme changes.
     function initAllCharts() {
-      Chart.defaults.font.family = "system-ui, -apple-system, 'Segoe UI', sans-serif";
+      Chart.defaults.font.family = "'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif";
       Chart.defaults.font.size   = 12;
       Chart.defaults.color       = getCSSVar('--c-chart-label');
       initChartAE();
