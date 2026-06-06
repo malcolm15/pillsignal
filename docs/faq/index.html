@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
 
   <title>FAQ — Common Questions About PillSignal and FDA Adverse Event Data</title>
   <meta name="description" content="Answers to common questions about PillSignal, the FDA FAERS database, adverse events, and how to interpret drug safety data.">
@@ -126,7 +129,8 @@
       --c-primary: #00A67E; --c-primary-hover: #008F6B; --c-primary-light: #E6F9F1;
       --c-banner-bg: #FFF9F0; --c-banner-text: #6B4E30;
       --c-banner-border: rgba(107,78,48,0.3); --c-banner-btn-hover: rgba(0,0,0,0.05);
-      --font: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-heading: "Fraunces", Georgia, serif;
     }
     [data-theme="dark"] {
       --c-bg: #0f172a; --c-surface: #1e293b; --c-border: #334155;
@@ -152,7 +156,7 @@
     /* Header */
     .site-header { border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); }
     .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-    .logo { font-size: 1.1rem; font-weight: 700; color: var(--c-primary); letter-spacing: -0.02em; }
+    .logo { font-size: 1.1rem; font-weight: 600; font-family: var(--font-heading); color: var(--c-primary); letter-spacing: 0; }
     .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
     .header-actions { display: flex; align-items: center; gap: 0.75rem; }
     .header-link { font-size: 0.875rem; color: var(--c-text-muted); }
@@ -164,7 +168,7 @@
     /* Content */
     main { flex: 1; }
     .prose { max-width: 720px; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
-    .prose h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    .prose h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 600; letter-spacing: 0; margin-bottom: 0.5rem; }
     .prose .lead { font-size: 1.05rem; color: var(--c-text-muted); margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--c-border); }
 
     /* FAQ items */

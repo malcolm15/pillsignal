@@ -13,7 +13,7 @@ The goal is to become a top search result for queries like "[drug name] side eff
 These are non-negotiable and must be followed in every piece of code, copy, and content generated for this project:
 
 1. **Every page** must include this disclaimer (or a close variation): *"This data reflects voluntary reports submitted to the FDA's Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors."*
-2. **Never editorialize.** No subjective language about whether a drug is "dangerous," "risky," "safe," or "concerning." Present numbers, let users draw conclusions.
+2. **Never editorialize on drug data pages.** Drug pages present numbers only — no voice, no interpretation, no commentary. The data speaks for itself. In `/guides/` editorial content, an original first-hand voice is encouraged — but only ever anchored to factual findings. "The most-reported reaction was X" is a finding and is allowed. The governing line is **judgment vs. finding**: findings, data analysis, and an editorial voice built on them are permitted in guides; but safety judgments ("dangerous," "risky," "safe," "concerning"), comparative rankings ("most dangerous"), and causation language ("caused by," "side effect of") remain strictly forbidden everywhere, including in editorial content.
 3. **Never rank drugs** as "most dangerous," "worst side effects," or any comparative safety framing.
 4. **Never imply causation.** Use language like "reported with," "associated reports," "events reported by patients taking," not "caused by" or "side effects of."
 5. **Always link to the FDA source.** Every drug page should link to the corresponding OpenFDA query or FDA drug page so users can verify the data themselves.
@@ -26,6 +26,7 @@ These are non-negotiable and must be followed in every piece of code, copy, and 
 - **Database:** Supabase (Postgres) — stores processed/aggregated data pulled from OpenFDA
 - **Build scripts:** Node.js — two-stage pipeline (fetch → database, database → static HTML)
 - **Frontend:** Vanilla HTML, CSS, JavaScript — no frameworks, no bundler, no build tools for the frontend
+- **Typography:** Fraunces (weight 600, serif) for all headings via `--font-heading`; Source Sans 3 (weights 400 + 600, sans-serif) for body via `--font`. Loaded via Google Fonts with preconnect + `font-display:swap`. System stacks as fallback. Heading `letter-spacing` stays near 0 (not negative) to suit Fraunces's optical character. Do not use `font-weight: 800` or tight negative tracking on headings — it crushes the serif.
 - **Hosting:** GitHub Pages (static files served from `/docs` directory)
 - **CDN/DNS:** Cloudflare (domain: pillsignal.com, DNSSEC enabled, proxy on)
 - **Email:** Cloudflare Email Routing (hello@pillsignal.com, contact@pillsignal.com)

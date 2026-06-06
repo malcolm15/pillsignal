@@ -350,6 +350,9 @@ function writeBrowsePage(drugs) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
   <title>Browse All Drugs — FDA Adverse Event Reports | PillSignal</title>
   <meta name="description" content="Browse all ${total.toLocaleString('en-US')} drugs tracked by PillSignal. Alphabetical directory of FDA adverse event report data for prescription medications.">
   <link rel="canonical" href="${SITE_URL}/drugs/">
@@ -382,7 +385,8 @@ function writeBrowsePage(drugs) {
       --c-primary: #00A67E; --c-primary-hover: #008F6B; --c-primary-light: #E6F9F1;
       --c-banner-bg: #FFF9F0; --c-banner-text: #6B4E30;
       --c-banner-border: rgba(107,78,48,0.3); --c-banner-btn-hover: rgba(0,0,0,0.05);
-      --font: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-heading: "Fraunces", Georgia, serif;
     }
     [data-theme="dark"] {
       --c-bg: #0f172a; --c-surface: #1e293b; --c-border: #334155;
@@ -395,6 +399,7 @@ function writeBrowsePage(drugs) {
     body { font-family: var(--font); font-size: 1rem; line-height: 1.6; color: var(--c-text); background: var(--c-bg); transition: background 0.2s, color 0.2s; }
     a { color: var(--c-primary); text-decoration: none; }
     a:hover { text-decoration: underline; color: var(--c-primary-hover); }
+    h1, h2, h3 { font-family: var(--font-heading); }
     ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--c-surface); } ::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 4px; }
 
     /* Banner */
@@ -408,7 +413,7 @@ function writeBrowsePage(drugs) {
     /* Header */
     .site-header { border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); }
     .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-    .logo { font-size: 1.1rem; font-weight: 700; color: var(--c-primary); letter-spacing: -0.02em; }
+    .logo { font-size: 1.1rem; font-weight: 600; font-family: var(--font-heading); color: var(--c-primary); letter-spacing: 0; }
     .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
     .header-actions { display: flex; align-items: center; gap: 0.75rem; }
     .header-link { font-size: 0.875rem; color: var(--c-text-muted); }
@@ -419,7 +424,7 @@ function writeBrowsePage(drugs) {
 
     /* Page header */
     .page-header { padding: 2rem 1rem 1.5rem; max-width: 900px; margin: 0 auto; }
-    .page-header h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.3rem; }
+    .page-header h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 600; letter-spacing: 0; margin-bottom: 0.3rem; }
     .page-header p { color: var(--c-text-muted); font-size: 0.95rem; }
 
     /* Letter nav */
@@ -432,7 +437,7 @@ function writeBrowsePage(drugs) {
     /* Browse list */
     main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
     .letter-section { margin-bottom: 2rem; }
-    .letter-heading { font-size: 1.5rem; font-weight: 800; color: var(--c-primary); letter-spacing: -0.02em; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-primary-light); }
+    .letter-heading { font-size: 1.5rem; font-weight: 600; color: var(--c-primary); letter-spacing: 0; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-primary-light); }
     .browse-list { list-style: none; }
     .browse-item { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; padding: 0.35rem 0; border-bottom: 1px solid var(--c-border); min-width: 0; }
     .browse-item:last-child { border-bottom: none; }
