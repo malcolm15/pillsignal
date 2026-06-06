@@ -636,8 +636,8 @@
       dropdown.querySelectorAll('.dropdown-item').forEach(function (btn) {
         btn.addEventListener('click', function () {
           if (typeof gtag === 'function') gtag('event', 'search_result_click', {
-            drug_name: this.dataset.name,
-            drug_slug: this.dataset.slug,
+            item_name: this.dataset.name,
+            item_slug: this.dataset.slug,
           });
           navigate(this.dataset.slug);
         });

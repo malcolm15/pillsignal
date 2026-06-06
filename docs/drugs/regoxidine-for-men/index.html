@@ -613,9 +613,9 @@
     document.addEventListener('click', function (e) {
       var link = e.target.closest('.related-list a');
       if (link && typeof gtag === 'function') {
-        gtag('event', 'related_drug_click', {
-          source_drug: DRUG_NAME,
-          target_drug: link.textContent.trim(),
+        gtag('event', 'related_item_click', {
+          source_item: DRUG_NAME,
+          target_item: link.textContent.trim(),
         });
       }
     });
@@ -625,7 +625,7 @@
       var link = e.target.closest('a[href]');
       if (link && /fda\.gov/i.test(link.href) && typeof gtag === 'function') {
         gtag('event', 'fda_source_click', {
-          drug_name:       DRUG_NAME,
+          item_name:       DRUG_NAME,
           destination_url: link.href,
         });
       }

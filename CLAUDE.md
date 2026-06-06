@@ -160,6 +160,19 @@ SUPABASE_SERVICE_KEY=    # Supabase secret key (sb_secret_..., never expose clie
 - **Accessibility matters.** Semantic HTML, proper heading hierarchy, alt text, ARIA labels where needed, sufficient color contrast.
 - **Security basics.** Never commit secrets. Use .env for all keys. Parameterized queries for any database interaction. No user-generated content in the MVP.
 
+## GA4 Event Schema
+
+All `gtag('event', ...)` calls use a shared generic param naming convention. Do not introduce `drug_*` param names — use the generic equivalents below.
+
+| Event | Where fired | Key params |
+|---|---|---|
+| `search_result_click` | Homepage search dropdown | `item_name`, `item_slug` |
+| `search_query` | Homepage search (debounced) | `search_term` |
+| `related_item_click` | Drug page → related drugs section | `source_item` (current drug), `target_item` (clicked drug) |
+| `fda_source_click` | Drug page → FDA/OpenFDA links | `item_name`, `destination_url` |
+| `dark_mode_toggle` | Any page theme toggle | `new_theme` |
+| `browse_letter_click` | Browse A–Z page letter nav | `letter` |
+
 ## Deployment
 
 - Commit and push to `main` branch
