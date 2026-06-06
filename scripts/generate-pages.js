@@ -281,6 +281,7 @@ function writeSitemap(drugs) {
     { loc: `${SITE_URL}/guides/`,  changefreq: 'monthly', priority: '0.7' },
     { loc: `${SITE_URL}/guides/how-to-read-fda-adverse-event-reports/`, changefreq: 'monthly', priority: '0.7' },
     { loc: `${SITE_URL}/guides/what-fda-drug-reports-show/`,            changefreq: 'monthly', priority: '0.7' },
+    { loc: `${SITE_URL}/guides/how-to-report-drug-side-effect-fda/`,   changefreq: 'monthly', priority: '0.7' },
     { loc: `${SITE_URL}/about/`,   changefreq: 'monthly', priority: '0.5' },
     { loc: `${SITE_URL}/faq/`,     changefreq: 'monthly', priority: '0.5' },
     { loc: `${SITE_URL}/contact/`, changefreq: 'monthly', priority: '0.4' },
@@ -300,7 +301,7 @@ function writeSitemap(drugs) {
     staticUrls + '\n' + drugUrls + `\n</urlset>`;
 
   writeFileSync(join(DOCS_DIR, 'sitemap.xml'), xml, 'utf8');
-  console.log(`  sitemap.xml  — ${drugs.length} drug URLs + 10 static pages`);
+  console.log(`  sitemap.xml  — ${drugs.length} drug URLs + 11 static pages`);
 }
 
 function writeBrowsePage(drugs) {
