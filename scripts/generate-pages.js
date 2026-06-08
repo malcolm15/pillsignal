@@ -416,7 +416,7 @@ function writeBrowsePage(drugs) {
     #banner-btn:hover { background: var(--c-banner-btn-hover); }
 
     /* Header */
-    .site-header { border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); }
+    .site-header { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
     .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
     .logo { font-size: 1.25rem; font-weight: 600; font-family: var(--font-heading); color: var(--c-primary); letter-spacing: 0; }
     .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
@@ -433,7 +433,7 @@ function writeBrowsePage(drugs) {
     .page-header p { color: var(--c-text-muted); font-size: 0.95rem; }
 
     /* Letter nav */
-    .lnav { position: sticky; top: 0; z-index: 10; background: var(--c-bg); border-bottom: 1px solid var(--c-border); padding: 0.5rem 1rem; display: flex; flex-wrap: wrap; gap: 2px; max-width: 100%; }
+    .lnav { position: sticky; top: 3.75rem; z-index: 90; background: var(--c-bg); border-bottom: 1px solid var(--c-border); padding: 0.5rem 1rem; display: flex; flex-wrap: wrap; gap: 2px; max-width: 100%; }
     .lnav-inner { max-width: 900px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2px; width: 100%; }
     .lnav-item { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; font-size: 0.8rem; font-weight: 600; border-radius: 4px; }
     .lnav-item--on { color: var(--c-primary); } .lnav-item--on:hover { background: var(--c-primary-light); text-decoration: none; }

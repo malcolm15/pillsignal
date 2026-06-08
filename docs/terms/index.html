@@ -98,7 +98,7 @@
     .banner-inner p { flex: 1; min-width: 200px; }
     #banner-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--c-banner-border); color: var(--c-banner-text); padding: 0.3rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-family: var(--font); white-space: nowrap; transition: background 0.15s; }
     #banner-btn:hover { background: var(--c-banner-btn-hover); }
-    .site-header { border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); }
+    .site-header { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
     .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
     .logo { font-size: 1.25rem; font-weight: 600; font-family: var(--font-heading); color: var(--c-primary); letter-spacing: 0; }
     .logo:hover { text-decoration: none; color: var(--c-primary-hover); }

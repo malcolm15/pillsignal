@@ -175,9 +175,13 @@
 
     /* ─── Site header ─────────────────────────────────────────────────────────── */
     .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
       border-bottom: 1px solid var(--c-border);
       padding: 0.875rem 1rem;
       background: var(--c-bg);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     }
     .site-header .inner {
       max-width: 900px;
@@ -554,7 +558,7 @@
     <p>
       Data sourced from <a href="https://open.fda.gov/" target="_blank" rel="noopener noreferrer">OpenFDA</a>.
       PillSignal is not affiliated with the FDA.
-      Page generated June 7, 2026.
+      Page generated June 8, 2026.
     </p>
     <nav class="footer-nav" aria-label="Site links">
       <a href="/guides/">Guides</a>
