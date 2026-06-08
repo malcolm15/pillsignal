@@ -7,8 +7,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 
-  <title>What 135 Million FDA Drug Reports Actually Show | PillSignal</title>
-  <meta name="description" content="We analyzed 135M+ FDA adverse event reports across 1,163 medications. The biggest patterns reveal more about reporting than about drug safety.">
+  <title>What FDA Drug Reports Actually Show | PillSignal</title>
+  <meta name="description" content="The most-reported event in the FDA's adverse event data isn't a side effect. What 78 million reports across 849 medications reveal, and what they don't.">
   <link rel="canonical" href="https://pillsignal.com/guides/what-fda-drug-reports-show/">
   <link rel="me" href="https://x.com/PillSignal">
 
@@ -21,16 +21,16 @@
 
   <!-- Open Graph -->
   <meta property="og:type"        content="article">
-  <meta property="og:title"       content="What 135 Million FDA Drug Reports Actually Show | PillSignal">
-  <meta property="og:description" content="We analyzed 135M+ FDA adverse event reports across 1,163 medications. The biggest patterns reveal more about reporting than about drug safety.">
+  <meta property="og:title"       content="What FDA Drug Reports Actually Show | PillSignal">
+  <meta property="og:description" content="The most-reported event in the FDA's adverse event data isn't a side effect. What 78 million reports across 849 medications reveal, and what they don't.">
   <meta property="og:url"         content="https://pillsignal.com/guides/what-fda-drug-reports-show/">
   <meta property="og:site_name"   content="PillSignal">
   <meta property="og:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="What 135 Million FDA Drug Reports Actually Show | PillSignal">
-  <meta name="twitter:description" content="We analyzed 135M+ FDA adverse event reports across 1,163 medications. The biggest patterns reveal more about reporting than about drug safety.">
+  <meta name="twitter:title"       content="What FDA Drug Reports Actually Show | PillSignal">
+  <meta name="twitter:description" content="The most-reported event in the FDA's adverse event data isn't a side effect. What 78 million reports across 849 medications reveal, and what they don't.">
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- Article JSON-LD -->
@@ -38,11 +38,11 @@
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "What 135 Million FDA Drug Reports Actually Show",
-    "description": "We analyzed 135M+ FDA adverse event reports across 1,163 medications. The biggest patterns reveal more about reporting than about drug safety.",
+    "headline": "What FDA Drug Reports Actually Show",
+    "description": "The most-reported event in the FDA's adverse event data isn't a side effect. What 78 million reports across 849 medications reveal, and what they don't.",
     "url": "https://pillsignal.com/guides/what-fda-drug-reports-show/",
     "datePublished": "2026-06-06",
-    "dateModified": "2026-06-06",
+    "dateModified": "2026-06-08",
     "author": {
       "@type": "Organization",
       "name": "PillSignal",
@@ -207,6 +207,13 @@
     }
     .article-body ol li { margin-bottom: 0.25rem; }
 
+    .article-body ul {
+      margin: 0.5rem 0 1rem 1.5rem;
+      color: var(--c-text-muted);
+      line-height: 1.75;
+    }
+    .article-body ul li { margin-bottom: 0.25rem; }
+
     /* ─── Callout box ─────────────────────────────────────────────────────────── */
     .callout {
       background: var(--c-primary-light);
@@ -296,88 +303,84 @@
   <div class="page-header">
     <div class="inner">
       <p class="breadcrumb">
-        <a href="/">Home</a><span aria-hidden="true"> › </span><a href="/guides/">Guides</a><span aria-hidden="true"> › </span>What 135 Million FDA Drug Reports Actually Show
+        <a href="/">Home</a><span aria-hidden="true"> › </span><a href="/guides/">Guides</a><span aria-hidden="true"> › </span>What FDA Drug Reports Actually Show
       </p>
-      <h1>What 135 Million FDA Drug Reports Actually Show</h1>
+      <h1>What FDA Drug Reports Actually Show</h1>
       <p class="subtitle">The patterns say more about how people report than about which drugs are dangerous.</p>
     </div>
   </div>
 
   <div class="article-wrap">
-    <article class="article-body" aria-label="Guide: What 135 Million FDA Drug Reports Actually Show">
+    <article class="article-body" aria-label="Guide: What FDA Drug Reports Actually Show">
 
-      <p>Of the five things people report to the FDA most often about their medications, two of them are not side effects at all.</p>
+      <p>If you sat down expecting the FDA's adverse event data to be a catalog of dramatic, dangerous side effects, the real numbers would surprise you. The most frequently reported event across every medication we track is not a rash, a heart problem, or anything a doctor would call a reaction. It is "drug ineffective," the formal way of recording that a medication simply did not work.</p>
 
-      <p>The single most-reported event in the entire database is <a href="/guides/how-to-read-fda-adverse-event-reports/">"drug ineffective."</a> Not nausea, not dizziness, not anything you would find printed on a warning label. Just: it did not work. It shows up more than 9.5 million times, and it lands in the top three reported events for over half of every medication we track — 591 of 1,163 drugs, to be exact. The fourth most-reported event, "off label use," is not a reaction either. It is simply a note that a drug was used for something other than its approved purpose.</p>
+      <p>It shows up more than 6 million times. And it is not alone near the top. Of the five most-reported events in the data, two are not bodily reactions at all.</p>
 
-      <p>We went through the reports behind all 1,163 medications on <a href="/">PillSignal</a>, more than 135 million in total, to see what the data looks like when you zoom all the way out. The big picture is less a catalog of dangers than a portrait of how people interact with their medications, and of the reporting system that collects all of it. Here is what stood out.</p>
+      <p>We pulled together the FDA's adverse event reports for 849 medications and looked at the patterns across all of them. The system that holds this data is now the FDA's Adverse Event Monitoring System (AEMS), formerly FAERS. Here is what stood out.</p>
 
-      <h2>The most-reported events are surprisingly ordinary</h2>
+      <h2>The most common "adverse event" is that the drug didn't work</h2>
 
-      <p>Here are the ten most-reported events across the entire dataset:</p>
+      <p>Across the 849 medications, the five most frequently reported events are:</p>
 
       <ol>
-        <li>Drug ineffective (9.6 million)</li>
-        <li>Fatigue (8.9 million)</li>
-        <li>Nausea (8.0 million)</li>
-        <li>Off label use (7.7 million)</li>
-        <li>Pain (7.2 million)</li>
-        <li>Dyspnoea, meaning shortness of breath (6.9 million)</li>
-        <li>Diarrhoea (6.9 million)</li>
-        <li>Headache (6.6 million)</li>
-        <li>Vomiting (5.4 million)</li>
-        <li>Arthralgia, meaning joint pain (5.2 million)</li>
+        <li>Drug ineffective, about 6.1 million reports</li>
+        <li>Fatigue, about 4.9 million</li>
+        <li>Off label use, about 4.6 million</li>
+        <li>Nausea, about 4.4 million</li>
+        <li>Pain, about 4.1 million</li>
       </ol>
 
-      <p>Notice what is not there. No rare, frightening, headline-grabbing reactions. The leaders are the most common human complaints there are: being tired, feeling sick, hurting somewhere. These are the things people notice and bother to report, and they are also things that happen to people for a thousand reasons that have nothing to do with any medication.</p>
+      <p>"Drug ineffective" and "off label use" are the two that are not side effects in the way most people picture them. The first means someone reported that the medication did not do its job. The second means it was used for something other than its FDA-approved purpose, which is extremely common, often perfectly appropriate medical practice, and still gets logged. "Drug ineffective" is a top-three event for just over half of the medications we track — 429 of the 849.</p>
 
-      <p>That is the first thing to understand about this data. FAERS, the FDA's Adverse Event Reporting System, is a record of everything someone observed while taking a medication. It mixes genuine reactions, coincidences, the underlying illness the drug was meant to treat, and plain disappointment that a drug did not work — all into one pile. The fact that "drug ineffective" tops the list is the clearest possible proof: the database is a collection of complaints and observations, not a vetted list of a drug's effects.</p>
+      <p>This is the first instinct to bring to all of this data: a lot of what gets reported is not harm. People report when a drug fails them, not only when it hurts them. So a large pile of reports for a medication tells you it has generated a lot of reporting activity, not that it is dangerous.</p>
 
-      <h2>The 2004 cliff, and why a big number never means a dangerous drug</h2>
+      <h2>The 2004 cliff</h2>
 
       <div class="callout">
         <strong>Key finding:</strong> The most dramatic change in this entire dataset — a thousandfold spike in reports — happened in a single year and had nothing to do with medication safety. It was a change in paperwork.
       </div>
 
-      <p>Across the fifteen years from 1989 through 2003, the entire database holds fewer than 2,000 reports. Then, in 2004 alone, it jumped to roughly 1.5 million. In a single year, reporting went up by a factor of nearly a thousand.</p>
+      <p>If you chart the reports by year, the most striking feature has nothing to do with any drug. It is a cliff in 2004.</p>
 
-      <p>No wave of newly dangerous drugs caused that. What happened in 2004 was administrative: the FDA moved toward mandatory electronic submission, and reports that had trickled in on paper suddenly poured in digitally. From there, volume kept climbing — roughly sevenfold — to a peak of about 10.7 million reports in 2022, where it has roughly plateaued since.</p>
+      <p>Before 2004, the data shows almost nothing — under 2,000 reports a year. Then in 2004 it leaps to more than 800,000, and it climbs steadily from there: about 4.1 million reports in 2015, 5.6 million in 2018, and somewhere between 5.7 and 6 million a year from 2019 through 2025.</p>
 
-      <p>Sit with what that means. The most dramatic change in this entire dataset had nothing to do with medication safety and everything to do with paperwork. This is the trap nearly everyone falls into when they look at adverse event data: they see a drug with a huge number and assume it must be dangerous. But report counts track the reporting system — how many people take a drug, how long it has been on the market, and how much attention it is getting — far more than they track real-world risk.</p>
+      <p>This is not because medications suddenly became more dangerous in 2004. It is roughly when the FDA moved to electronic submission, and reporting volume exploded as a result. This matters enormously for reading any trend. If you see a drug's reports rising over the years, a large part of that rise may simply be that the whole system started capturing far more reports over time. The shape of the data is driven by how reporting works, not only by what is happening to patients.</p>
 
-      <p>Our own data shows this in miniature. More than a dozen aspirin brand variants each sit at roughly 500,000 reports, all bumping against the same ceiling, because aspirin is sold under countless names and taken by tens of millions of people. The reports get split across "Bayer," "Ecotrin," "Equate Aspirin," and a dozen others. None of that says anything about aspirin compared to a less common drug. It says aspirin is everywhere. <a href="/drugs/humira/">Humira</a>, one of the most widely prescribed biologics in the world, tops our dataset at 699,271 reports — largely because of how many patients take it, not because it is uniquely dangerous. This is why, across PillSignal, we report counts and never rates, and never rank drugs against each other. The numbers simply do not support that kind of comparison.</p>
+      <h2>Who shows up in the reports</h2>
 
-      <h2>Who is doing the reporting</h2>
+      <p>Across the roughly 70 million reports that record a patient's sex, about 60 percent are women and about 40 percent are men. By age, around 70 percent of reports involve people 50 or older, with the 50-to-64 group the single largest at roughly 29 percent.</p>
 
-      <p>When demographic information is included, a clear pattern emerges. Of the roughly 123 million reports that recorded a patient's sex, 59 percent were female and 41 percent male.</p>
+      <p>It is tempting to read something dramatic into that, but the careful reading is more boring and more accurate. These splits mostly reflect who takes more medications and who files more reports, not who is secretly at greater risk. Older adults are on more prescriptions. Patterns in who seeks care and who reports differ by sex. The data describes the people in the reports, not the entire population taking these drugs.</p>
 
-      <p>Age skews older still. People aged 50 and above account for about 70 percent of all age-tagged reports, with the 50-to-64 group the single largest at roughly 28.5 percent, followed closely by the 65-to-74 group at 22.4 percent.</p>
+      <h2>What happened to the people in the reports</h2>
 
-      <p>It is tempting to read these splits as a statement about who a medication affects. It is not. They mostly reflect who takes medications and who files reports. Older adults take more drugs, see doctors more often, and have more medical encounters where an adverse event might be recorded — so they generate more reports. The female skew has been observed in FAERS for years and likely reflects a mix of prescribing patterns and reporting behavior. These numbers describe the reporters, not the risk.</p>
+      <p>The FDA codes each report for outcomes, and a single report can carry more than one. Across all the outcome codes in the data:</p>
 
-      <h2>How serious the reports are, and why that word needs care</h2>
+      <ul>
+        <li>Other serious outcomes: about 36 percent</li>
+        <li>Hospitalization: about 26 percent</li>
+        <li>Non-serious: about 22 percent</li>
+        <li>Death: about 9 percent</li>
+        <li>Life-threatening: about 4 percent</li>
+        <li>Disability: about 3 percent</li>
+      </ul>
 
-      <p>Each report can be tagged with one or more outcomes, using categories the FDA defines — not us. Across roughly 176 million outcome tags:</p>
+      <p>At a glance, the heavy share of "serious" outcomes looks alarming. Here is the context that changes how you read it: serious events are far more likely to be reported in the first place. A mild, expected side effect rarely prompts anyone to file a report, while a hospitalization often does. So the high proportion of serious outcomes reflects what motivates people to report, not the true rate of serious harm among everyone who takes these medications.</p>
 
-      <ol>
-        <li>About 35.8 percent are "other serious"</li>
-        <li>About 27.6 percent involve hospitalization</li>
-        <li>About 20.7 percent are non-serious</li>
-        <li>About 8.7 percent record a death</li>
-        <li>The remainder are life-threatening or disability outcomes</li>
-      </ol>
+      <p>The death figure deserves the most care of all. A report coded as a death means someone who was taking the medication died and a report was filed. It does not mean the medication caused the death, and the data cannot tell you that it did. People who take medications are often already seriously ill, and a death recorded alongside a drug is not evidence the drug was responsible.</p>
 
-      <p>A large share of reports fall into "serious" buckets, but it is worth knowing that "serious," in FDA terms, is a broad regulatory category that captures any outcome involving hospitalization, significant disability, or similar thresholds. It is not a judgment about a specific drug.</p>
+      <h2>A note on the numbers</h2>
 
-      <p>The death figure deserves the most care of all. When a report records a death, it means a death was reported alongside a medication. It does not mean the medication caused it. Many reports involve gravely ill patients taking several drugs at once, where the underlying illness is the obvious and likely cause. A report is a flag for the FDA to investigate, not a finding of fault. Reading these counts as a measure of how deadly a drug is would be a serious mistake — and the kind of mistake this whole piece exists to prevent.</p>
+      <p>The 78 million figure is the sum of report counts across the 849 medications we track. It is deliberately not presented as the number of unique reports in the FDA's system, and it is larger than that true total, for a straightforward reason: a single report often names more than one medication, and the same report then appears under each drug it mentions. We also curated the data before counting, removing duplicate store-brand listings and entries that were not really medications, so that each drug is represented once rather than dozens of times. Read 78 million as a measure of how much reporting activity these medications have collectively drawn, not as a headcount of individual people or events.</p>
 
-      <h2>What to actually do with this</h2>
+      <h2>How to actually use this</h2>
 
-      <p>Zoomed all the way out, the lesson of 135 million reports is humbling: this data is far better at describing how people report than at telling you whether a given medication is safe for you. The biggest patterns in it — the 2004 cliff, the aspirin pile-up, the older and more female reporter base — are artifacts of how the system works, not signals about which drugs to fear.</p>
+      <p>The value of this data is not in any single big number. It is in learning to read it with the right instincts: that reports include failures and off-label use, not just harm; that long-term trends are shaped by how reporting itself changed; that the demographics describe who reports; and that even serious-looking outcomes reflect reporting behavior more than true rates, with death counts especially prone to misreading.</p>
 
-      <p>That does not make the data useless. It makes it a starting point for better questions. If you <a href="/drugs/">look up your medication on PillSignal</a> and see a reaction reported often, that is not a reason to stop taking anything. It is a reason to ask someone who knows your full medical history a specific, well-informed question. "I saw that a lot of people reported this with my medication — is that something I should watch for given my situation?" is a far better conversation than a quiet, frightened decision made alone.</p>
+      <p>Read that way, the FDA's data is a genuinely useful starting point. It can show you what other people have reported about a medication you have been prescribed, which is a good thing to know walking into a conversation with your doctor or pharmacist. What it cannot do is tell you whether a drug is safe for you, or whether it caused anything. Those are questions for a professional who knows your situation, with this data as one input among many.</p>
 
-      <p>Talk to your doctor or pharmacist before acting on anything here. The data is a way to walk into that conversation informed. It is not a substitute for it. For a deeper look at how to read any individual drug page, see our <a href="/guides/how-to-read-fda-adverse-event-reports/">guide to reading FDA adverse event reports →</a></p>
+      <p>To go deeper on reading a single drug's page, see our guide on <a href="/guides/how-to-read-fda-adverse-event-reports/">how to read FDA adverse event reports</a>. And if you are wondering why the system is now called AEMS, we explain that change in our <a href="/guides/what-is-aems/">guide on what AEMS is</a>.</p>
 
       <hr class="divider">
 
@@ -387,8 +390,10 @@
 
       <p style="font-size:0.875rem;color:var(--c-text-muted);margin-top:0.75rem;">Ready to look up a medication? <a href="/">Search PillSignal →</a></p>
 
+      <p style="font-size:0.875rem;color:var(--c-text-muted);margin-top:0.75rem;">Last updated: June 2026</p>
+
       <div class="notice" role="note">
-        <strong>About this data:</strong> This data reflects voluntary reports submitted to the FDA's Adverse Event Monitoring System (AEMS), formerly the FDA Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors. Statistics in this article are based on PillSignal's full dataset of 1,163 medications as of June 2026. <a href="https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems" target="_blank" rel="noopener noreferrer">Learn more about AEMS</a>. PillSignal is not a substitute for professional medical advice. Always consult your healthcare provider.
+        <strong>About this data:</strong> This data reflects voluntary reports submitted to the FDA's Adverse Event Monitoring System (AEMS), formerly the FDA Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors. Statistics in this article are based on PillSignal's full dataset of 849 medications as of June 2026. <a href="https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems" target="_blank" rel="noopener noreferrer">Learn more about AEMS</a>. PillSignal is not a substitute for professional medical advice. Always consult your healthcare provider.
       </div>
 
     </article>
