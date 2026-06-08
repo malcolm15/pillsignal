@@ -370,6 +370,19 @@ async function processDrug(drug, index, total) {
   const { field, term, totalReports, method } = resolved;
   console.log(`  ${tag} ${drug.brand_name} — matched via ${method} ("${term}", ${totalReports.toLocaleString()} reports)`);
 
+  // Warn when a drug matched only via generic_name fallback, not its brand name.
+  // This is the root cause of duplicate-content clusters: every store-brand variant
+  // that fails a brand-name lookup falls back to the generic and ingests the same
+  // full generic dataset, creating pages that are clones of each other.
+  if (method === 'generic_name') {
+    console.warn(
+      `  ${tag} ⚠  GENERIC FALLBACK: "${drug.brand_name}" has no brand-specific ` +
+      `FAERS data — fell back to generic "${term}". ` +
+      `If this drug is a store-label or variant of a generic, it will produce ` +
+      `a duplicate-content page. Consider removing it from drug-list.json.`
+    );
+  }
+
   const adverseEvents   = await fetchAdverseEvents(field, term);
   const sexDemographics = await fetchSexDemographics(field, term);
   const ageDemographics = await fetchAgeDemographics(field, term);

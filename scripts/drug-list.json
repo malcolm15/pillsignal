@@ -15,11 +15,6 @@
     "slug": "abreva"
   },
   {
-    "brand_name": "ABREVA RAPID PAIN RELIEF",
-    "generic_name": "",
-    "slug": "abreva-rapid-pain-relief"
-  },
-  {
     "brand_name": "ACCUTANE",
     "generic_name": "",
     "slug": "accutane"
@@ -28,11 +23,6 @@
     "brand_name": "ACETAMINOPHEN",
     "generic_name": "",
     "slug": "acetaminophen"
-  },
-  {
-    "brand_name": "ACETAMINOPHEN (RED)",
-    "generic_name": "",
-    "slug": "acetaminophen-red"
   },
   {
     "brand_name": "ACETAMINOPHEN CAPLETS",
@@ -58,11 +48,6 @@
     "brand_name": "ACETAMINOPHEN FOR CHILDREN",
     "generic_name": "",
     "slug": "acetaminophen-for-children"
-  },
-  {
-    "brand_name": "ACETAMINOPHEN GELCAPS",
-    "generic_name": "",
-    "slug": "acetaminophen-gelcaps"
   },
   {
     "brand_name": "ACETAMINOPHEN GELCAPS EXTRA STRENGTH",
@@ -235,11 +220,6 @@
     "slug": "afinitor-disperz"
   },
   {
-    "brand_name": "AFLORA",
-    "generic_name": "",
-    "slug": "aflora"
-  },
-  {
     "brand_name": "AG-X",
     "generic_name": "",
     "slug": "ag-x"
@@ -300,16 +280,6 @@
     "slug": "aleve-caplets"
   },
   {
-    "brand_name": "ALEVE CAPLETS - EASY OPEN ARTHRITIS CAP",
-    "generic_name": "",
-    "slug": "aleve-caplets-easy-open-arthritis-cap"
-  },
-  {
-    "brand_name": "ALEVE EASY OPEN ARTHRITIS",
-    "generic_name": "",
-    "slug": "aleve-easy-open-arthritis"
-  },
-  {
     "brand_name": "ALEVE EASY OPEN ARTHRITIS CAP",
     "generic_name": "",
     "slug": "aleve-easy-open-arthritis-cap"
@@ -320,24 +290,9 @@
     "slug": "aleve-gelcaps"
   },
   {
-    "brand_name": "ALEVE HEADACHE PAIN",
-    "generic_name": "",
-    "slug": "aleve-headache-pain"
-  },
-  {
     "brand_name": "ALKA-SELTZER COOL ACTION EXTRA STRENGTH RELIEFCHEWS MINT",
     "generic_name": "",
     "slug": "alka-seltzer-cool-action-extra-strength-reliefchews-mint"
-  },
-  {
-    "brand_name": "ALKA-SELTZER COOL ACTION HEARTBURN RELIEF MINT",
-    "generic_name": "",
-    "slug": "alka-seltzer-cool-action-heartburn-relief-mint"
-  },
-  {
-    "brand_name": "ALKA-SELTZER EXTRA STRENGTH HEARTBURN RELIEFCHEWS",
-    "generic_name": "",
-    "slug": "alka-seltzer-extra-strength-heartburn-reliefchews"
   },
   {
     "brand_name": "ALKA-SELTZER HEARTBURN RELIEF PEPPERMINT",
@@ -348,16 +303,6 @@
     "brand_name": "ALKA-SELTZER HEARTBURN RELIEFCHEWS",
     "generic_name": "",
     "slug": "alka-seltzer-heartburn-reliefchews"
-  },
-  {
-    "brand_name": "ALKA-SELTZER HEARTBURN RELIEFCHEWS STRAWBERRY AND ORANGE",
-    "generic_name": "",
-    "slug": "alka-seltzer-heartburn-reliefchews-strawberry-and-orange"
-  },
-  {
-    "brand_name": "ALKA-SELTZER ULTRA STRENGTH HEARTBURN RELIEFCHEWS",
-    "generic_name": "",
-    "slug": "alka-seltzer-ultra-strength-heartburn-reliefchews"
   },
   {
     "brand_name": "ALKUMS ANTACID",
@@ -435,29 +380,9 @@
     "slug": "amaryl"
   },
   {
-    "brand_name": "AMAZON BASIC CARE ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "amazon-basic-care-acetaminophen"
-  },
-  {
     "brand_name": "AMAZON BASIC CARE ACID REDUCER",
     "generic_name": "",
     "slug": "amazon-basic-care-acid-reducer"
-  },
-  {
-    "brand_name": "AMAZON BASIC CARE IBUPROFEN",
-    "generic_name": "",
-    "slug": "amazon-basic-care-ibuprofen"
-  },
-  {
-    "brand_name": "AMAZON BASIC CARE OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "amazon-basic-care-omeprazole"
-  },
-  {
-    "brand_name": "AMAZON BASICS ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "amazon-basics-acetaminophen"
   },
   {
     "brand_name": "AMAZON BASICS CHERRY ANTACID SC",
@@ -508,11 +433,6 @@
     "brand_name": "AMPYRA",
     "generic_name": "",
     "slug": "ampyra"
-  },
-  {
-    "brand_name": "ANCIENT SECRETS BREATHE AGAIN",
-    "generic_name": "",
-    "slug": "ancient-secrets-breathe-again"
   },
   {
     "brand_name": "AndroGel",
@@ -585,19 +505,9 @@
     "slug": "apap"
   },
   {
-    "brand_name": "APHEN",
-    "generic_name": "",
-    "slug": "aphen"
-  },
-  {
     "brand_name": "APIXABAN",
     "generic_name": "",
     "slug": "apixaban"
-  },
-  {
-    "brand_name": "AQUA MARINA",
-    "generic_name": "",
-    "slug": "aqua-marina"
   },
   {
     "brand_name": "ARANESP",
@@ -623,11 +533,6 @@
     "brand_name": "AROMATICA HAIR ACONDICIONADOR ROMERO CON MINOXIDIL",
     "generic_name": "",
     "slug": "aromatica-hair-acondicionador-romero-con-minoxidil"
-  },
-  {
-    "brand_name": "AROMATICA HAIR CHAMPU",
-    "generic_name": "",
-    "slug": "aromatica-hair-champu"
   },
   {
     "brand_name": "AROMATICA HAIR GOTA DE BRILLO ROMERO CON MINOXIDIL",
@@ -665,11 +570,6 @@
     "slug": "arthritis-pain-reliever"
   },
   {
-    "brand_name": "ARTIFICIAL EYEDROP",
-    "generic_name": "",
-    "slug": "artificial-eyedrop"
-  },
-  {
     "brand_name": "ASCOR",
     "generic_name": "",
     "slug": "ascor"
@@ -680,11 +580,6 @@
     "slug": "ascorbic-acid"
   },
   {
-    "brand_name": "ASPI-COR",
-    "generic_name": "",
-    "slug": "aspi-cor"
-  },
-  {
     "brand_name": "ASPIRIN",
     "generic_name": "",
     "slug": "aspirin"
@@ -693,11 +588,6 @@
     "brand_name": "ASPIRIN 325",
     "generic_name": "",
     "slug": "aspirin-325"
-  },
-  {
-    "brand_name": "ASPIRIN 50 CT",
-    "generic_name": "",
-    "slug": "aspirin-50-ct"
   },
   {
     "brand_name": "ASPIRIN 81",
@@ -735,11 +625,6 @@
     "slug": "aspirin-enteric-coated-regular-strength"
   },
   {
-    "brand_name": "ASPIRIN ENTERIC SAFETY COATED",
-    "generic_name": "",
-    "slug": "aspirin-enteric-safety-coated"
-  },
-  {
     "brand_name": "ASPIRIN EXTRA STRENGTH",
     "generic_name": "",
     "slug": "aspirin-extra-strength"
@@ -775,11 +660,6 @@
     "slug": "aspirin-low-strength"
   },
   {
-    "brand_name": "ASPIRIN NSAID",
-    "generic_name": "",
-    "slug": "aspirin-nsaid"
-  },
-  {
     "brand_name": "ASPIRIN PAIN RELIEF",
     "generic_name": "",
     "slug": "aspirin-pain-relief"
@@ -788,11 +668,6 @@
     "brand_name": "ASPIRIN PAIN RELIVER",
     "generic_name": "",
     "slug": "aspirin-pain-reliver"
-  },
-  {
-    "brand_name": "ASPIRIN REGIMEN",
-    "generic_name": "",
-    "slug": "aspirin-regimen"
   },
   {
     "brand_name": "ASPIRIN REGULAR STRENGTH",
@@ -815,24 +690,9 @@
     "slug": "assorted-fruit-antacid-flavor-chews"
   },
   {
-    "brand_name": "ASSURED",
-    "generic_name": "",
-    "slug": "assured"
-  },
-  {
-    "brand_name": "ASSURED IBUPROFEN",
-    "generic_name": "",
-    "slug": "assured-ibuprofen"
-  },
-  {
     "brand_name": "Atacand",
     "generic_name": "candesartan cilexetil",
     "slug": "atacand"
-  },
-  {
-    "brand_name": "ATAMEL FORTE",
-    "generic_name": "",
-    "slug": "atamel-forte"
   },
   {
     "brand_name": "Atarax",
@@ -985,16 +845,6 @@
     "slug": "basaglar-tempo-pen"
   },
   {
-    "brand_name": "BASE LABORATORIES SALINE",
-    "generic_name": "",
-    "slug": "base-laboratories-saline"
-  },
-  {
-    "brand_name": "BASIC CARE ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "basic-care-acetaminophen"
-  },
-  {
     "brand_name": "BASIC CARE ACID REDUCER",
     "generic_name": "",
     "slug": "basic-care-acid-reducer"
@@ -1008,11 +858,6 @@
     "brand_name": "BASIC CARE ANTACID FRUIT CHEWS",
     "generic_name": "",
     "slug": "basic-care-antacid-fruit-chews"
-  },
-  {
-    "brand_name": "BASIC CARE ASPIRIN",
-    "generic_name": "",
-    "slug": "basic-care-aspirin"
   },
   {
     "brand_name": "BASIC CARE BERRY ANTACID HBG",
@@ -1035,11 +880,6 @@
     "slug": "basic-care-childrens-pain-and-fever"
   },
   {
-    "brand_name": "BASIC CARE ESOMEPRAZOLE MAGNESIUM",
-    "generic_name": "",
-    "slug": "basic-care-esomeprazole-magnesium"
-  },
-  {
     "brand_name": "BASIC CARE HAIR REGROWTH TREATMENT",
     "generic_name": "",
     "slug": "basic-care-hair-regrowth-treatment"
@@ -1048,11 +888,6 @@
     "brand_name": "BASIC CARE HEARTBURN PREVENTION",
     "generic_name": "",
     "slug": "basic-care-heartburn-prevention"
-  },
-  {
-    "brand_name": "BASIC CARE IBUPROFEN",
-    "generic_name": "",
-    "slug": "basic-care-ibuprofen"
   },
   {
     "brand_name": "BASIC CARE INFANTS IBUPROFEN",
@@ -1065,29 +900,9 @@
     "slug": "basic-care-infants-pain-and-fever"
   },
   {
-    "brand_name": "BASIC CARE LANSOPRAZOLE",
-    "generic_name": "",
-    "slug": "basic-care-lansoprazole"
-  },
-  {
-    "brand_name": "BASIC CARE OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "basic-care-omeprazole"
-  },
-  {
     "brand_name": "BAYER",
     "generic_name": "",
     "slug": "bayer"
-  },
-  {
-    "brand_name": "BAYER ASPIRIN ORIGINAL, CVP HEALTH",
-    "generic_name": "",
-    "slug": "bayer-aspirin-original-cvp-health"
-  },
-  {
-    "brand_name": "BAYER ASPIRIN ORIGINAL, TRAVEL BASIX",
-    "generic_name": "",
-    "slug": "bayer-aspirin-original-travel-basix"
   },
   {
     "brand_name": "BAYER ASPIRIN REGIMEN CHEWABLE LOW DOSE ASPIRIN ORANGE",
@@ -1120,11 +935,6 @@
     "slug": "bella-v-antacid-extra-strength-berries-flavor"
   },
   {
-    "brand_name": "BELMORA MELOX AGRURA",
-    "generic_name": "",
-    "slug": "belmora-melox-agrura"
-  },
-  {
     "brand_name": "Benadryl",
     "generic_name": "diphenhydramine hydrochloride",
     "slug": "benadryl"
@@ -1140,34 +950,14 @@
     "slug": "bentyl"
   },
   {
-    "brand_name": "BERKLEY AND JENSEN ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "berkley-and-jensen-acetaminophen"
-  },
-  {
     "brand_name": "BERKLEY AND JENSEN ALLERGY RELIEF",
     "generic_name": "",
     "slug": "berkley-and-jensen-allergy-relief"
   },
   {
-    "brand_name": "BERKLEY AND JENSEN FAMOTIDINE",
-    "generic_name": "",
-    "slug": "berkley-and-jensen-famotidine"
-  },
-  {
     "brand_name": "BERKLEY AND JENSEN HEARTBURN TREATMENT",
     "generic_name": "",
     "slug": "berkley-and-jensen-heartburn-treatment"
-  },
-  {
-    "brand_name": "BERKLEY AND JENSEN MINOXIDIL",
-    "generic_name": "",
-    "slug": "berkley-and-jensen-minoxidil"
-  },
-  {
-    "brand_name": "BERKLEY AND JENSEN OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "berkley-and-jensen-omeprazole"
   },
   {
     "brand_name": "BERKLEY AND JENSEN PAIN RELIEF",
@@ -1178,11 +968,6 @@
     "brand_name": "BERKLEY AND JENSEN RAPID RELEASE ACETAMINOPHEN",
     "generic_name": "",
     "slug": "berkley-and-jensen-rapid-release-acetaminophen"
-  },
-  {
-    "brand_name": "BEST CHOICE ASSORTED FRUIT",
-    "generic_name": "",
-    "slug": "best-choice-assorted-fruit"
   },
   {
     "brand_name": "BEST CHOICE EFFERVESCENT PAIN RELIEVER 36",
@@ -1218,11 +1003,6 @@
     "brand_name": "BETR PAIN RELIEF",
     "generic_name": "",
     "slug": "betr-pain-relief"
-  },
-  {
-    "brand_name": "BETR REMEDIES IBUPROFEN",
-    "generic_name": "",
-    "slug": "betr-remedies-ibuprofen"
   },
   {
     "brand_name": "BETTER LIVING BRANDS CHILDRENS FEVER AND PAIN RELIVER",
@@ -1325,24 +1105,9 @@
     "slug": "bufferin-regular-strength-pain-relief"
   },
   {
-    "brand_name": "BUNEE HAIR GROWTH SERUM",
-    "generic_name": "",
-    "slug": "bunee-hair-growth-serum"
-  },
-  {
-    "brand_name": "BURBLE",
-    "generic_name": "",
-    "slug": "burble"
-  },
-  {
     "brand_name": "BUTRANS",
     "generic_name": "",
     "slug": "butrans"
-  },
-  {
-    "brand_name": "BYE ZERO",
-    "generic_name": "",
-    "slug": "bye-zero"
   },
   {
     "brand_name": "Byetta",
@@ -1465,24 +1230,9 @@
     "slug": "care-one-arthritis-pain-relief"
   },
   {
-    "brand_name": "CARE ONE IBUPROFEN",
-    "generic_name": "",
-    "slug": "care-one-ibuprofen"
-  },
-  {
     "brand_name": "CARE ONE IBUPROFEN CHILDRENS",
     "generic_name": "",
     "slug": "care-one-ibuprofen-childrens"
-  },
-  {
-    "brand_name": "CARE ONE OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "care-one-omeprazole"
-  },
-  {
-    "brand_name": "CAREALL ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "careall-acetaminophen"
   },
   {
     "brand_name": "CAREALL ACETAMINOPHEN EXTRA STRENGTH",
@@ -1495,16 +1245,6 @@
     "slug": "careall-allergy-relief"
   },
   {
-    "brand_name": "CAREALL ASPIRIN",
-    "generic_name": "",
-    "slug": "careall-aspirin"
-  },
-  {
-    "brand_name": "CAREALL IBUPROFEN",
-    "generic_name": "",
-    "slug": "careall-ibuprofen"
-  },
-  {
     "brand_name": "CAREALL NON ASPIRIN EXTRA STRENGTH",
     "generic_name": "",
     "slug": "careall-non-aspirin-extra-strength"
@@ -1513,11 +1253,6 @@
     "brand_name": "CAREONE 8 HOUR PAIN RELIEF",
     "generic_name": "",
     "slug": "careone-8-hour-pain-relief"
-  },
-  {
-    "brand_name": "CAREONE ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "careone-acetaminophen"
   },
   {
     "brand_name": "CAREONE ACID REDUCER",
@@ -1550,29 +1285,14 @@
     "slug": "careone-childrens-ibuprofen"
   },
   {
-    "brand_name": "CAREONE ESOMEPRAZOLE MAGNESIUM",
-    "generic_name": "",
-    "slug": "careone-esomeprazole-magnesium"
-  },
-  {
     "brand_name": "CAREONE EXTRA STRENGTH ASSORTED FRUITS",
     "generic_name": "",
     "slug": "careone-extra-strength-assorted-fruits"
   },
   {
-    "brand_name": "CAREONE IBUPROFEN",
-    "generic_name": "",
-    "slug": "careone-ibuprofen"
-  },
-  {
     "brand_name": "CAREONE INFANTS ACETAMINOPHEN",
     "generic_name": "",
     "slug": "careone-infants-acetaminophen"
-  },
-  {
-    "brand_name": "CAREONE OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "careone-omeprazole"
   },
   {
     "brand_name": "CAREONE REGULAR STRENGTH CALCIUM ANTACID",
@@ -1613,16 +1333,6 @@
     "brand_name": "CEQUA",
     "generic_name": "",
     "slug": "cequa"
-  },
-  {
-    "brand_name": "CETAFEN",
-    "generic_name": "",
-    "slug": "cetafen"
-  },
-  {
-    "brand_name": "CETAFEN EXTRA",
-    "generic_name": "",
-    "slug": "cetafen-extra"
   },
   {
     "brand_name": "CETIRIZINE",
@@ -1920,11 +1630,6 @@
     "slug": "childrens-tylenol"
   },
   {
-    "brand_name": "CHOOZ",
-    "generic_name": "",
-    "slug": "chooz"
-  },
-  {
     "brand_name": "CIALIS",
     "generic_name": "",
     "slug": "cialis"
@@ -1955,16 +1660,6 @@
     "slug": "ciprofloxacin-otic"
   },
   {
-    "brand_name": "CIRCLE K ASPIRIN 325",
-    "generic_name": "",
-    "slug": "circle-k-aspirin-325"
-  },
-  {
-    "brand_name": "CIRCLE K IBUPROFEN",
-    "generic_name": "",
-    "slug": "circle-k-ibuprofen"
-  },
-  {
     "brand_name": "CIRCLE K PAIN RELIEVER EXTRA STRENGTH",
     "generic_name": "",
     "slug": "circle-k-pain-reliever-extra-strength"
@@ -1978,11 +1673,6 @@
     "brand_name": "CITALOPRAM",
     "generic_name": "",
     "slug": "citalopram"
-  },
-  {
-    "brand_name": "CITALOPRAM HYDROBROMIDE",
-    "generic_name": "",
-    "slug": "citalopram-hydrobromide"
   },
   {
     "brand_name": "CITRUS FLAVORED ANTACID",
@@ -2145,11 +1835,6 @@
     "slug": "coumadin"
   },
   {
-    "brand_name": "COUNTERACT IB",
-    "generic_name": "",
-    "slug": "counteract-ib"
-  },
-  {
     "brand_name": "COUNTERACT PAIN",
     "generic_name": "",
     "slug": "counteract-pain"
@@ -2165,19 +1850,9 @@
     "slug": "crestor"
   },
   {
-    "brand_name": "CROCIN MAX",
-    "generic_name": "",
-    "slug": "crocin-max"
-  },
-  {
     "brand_name": "CURIST ACNE RELIEF",
     "generic_name": "",
     "slug": "curist-acne-relief"
-  },
-  {
-    "brand_name": "CVS ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "cvs-acetaminophen"
   },
   {
     "brand_name": "CVS CHILDRENS PAIN PLUS FEVER RELIEF",
@@ -2205,11 +1880,6 @@
     "slug": "cvs-health-sterile-saline-mist-live-better"
   },
   {
-    "brand_name": "CVS IBUPROFEN",
-    "generic_name": "",
-    "slug": "cvs-ibuprofen"
-  },
-  {
     "brand_name": "CVS MIXED BERRY ANTACID HBG 28CT",
     "generic_name": "",
     "slug": "cvs-mixed-berry-antacid-hbg-28ct"
@@ -2218,11 +1888,6 @@
     "brand_name": "CVS MIXED BERRY ANTACID HBG 54CT",
     "generic_name": "",
     "slug": "cvs-mixed-berry-antacid-hbg-54ct"
-  },
-  {
-    "brand_name": "CVS NATURALS",
-    "generic_name": "",
-    "slug": "cvs-naturals"
   },
   {
     "brand_name": "CVS ORANGE",
@@ -2295,24 +1960,9 @@
     "slug": "d-cal"
   },
   {
-    "brand_name": "D-CAL KIDS",
-    "generic_name": "",
-    "slug": "d-cal-kids"
-  },
-  {
     "brand_name": "DAPAGLIFLOZIN",
     "generic_name": "",
     "slug": "dapagliflozin"
-  },
-  {
-    "brand_name": "DAVIMET",
-    "generic_name": "",
-    "slug": "davimet"
-  },
-  {
-    "brand_name": "DAVIMET-M",
-    "generic_name": "",
-    "slug": "davimet-m"
   },
   {
     "brand_name": "DAVV MINOXIDIL TOPICAL",
@@ -2360,11 +2010,6 @@
     "slug": "desyrel"
   },
   {
-    "brand_name": "DETOX TOC TOC",
-    "generic_name": "",
-    "slug": "detox-toc-toc"
-  },
-  {
     "brand_name": "Detrol",
     "generic_name": "tolterodine tartrate",
     "slug": "detrol"
@@ -2378,11 +2023,6 @@
     "brand_name": "DEXAMETHASONE",
     "generic_name": "",
     "slug": "dexamethasone"
-  },
-  {
-    "brand_name": "DEXATRAN",
-    "generic_name": "",
-    "slug": "dexatran"
   },
   {
     "brand_name": "DEXILANT",
@@ -2415,11 +2055,6 @@
     "slug": "dg-health-acid-reducer"
   },
   {
-    "brand_name": "DG HEALTH ASPIRIN",
-    "generic_name": "",
-    "slug": "dg-health-aspirin"
-  },
-  {
     "brand_name": "DG HEALTH CHILDRENS IBUPROFEN",
     "generic_name": "",
     "slug": "dg-health-childrens-ibuprofen"
@@ -2428,11 +2063,6 @@
     "brand_name": "DG HEALTH CHILDRENS PAIN AND FEVER",
     "generic_name": "",
     "slug": "dg-health-childrens-pain-and-fever"
-  },
-  {
-    "brand_name": "DG HEALTH ESOMEPRAZOLE MAGNESIUM",
-    "generic_name": "",
-    "slug": "dg-health-esomeprazole-magnesium"
   },
   {
     "brand_name": "DG HEALTH EXTRA STRENGTH ANTACID",
@@ -2458,26 +2088,6 @@
     "brand_name": "DG HEALTH HEARTBURN PREVENTION ORIGINAL STRENGTH",
     "generic_name": "",
     "slug": "dg-health-heartburn-prevention-original-strength"
-  },
-  {
-    "brand_name": "DG HEALTH IBUPROFEN",
-    "generic_name": "",
-    "slug": "dg-health-ibuprofen"
-  },
-  {
-    "brand_name": "DG HEALTH LANSOPRAZOLE",
-    "generic_name": "",
-    "slug": "dg-health-lansoprazole"
-  },
-  {
-    "brand_name": "DG HEALTH OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "dg-health-omeprazole"
-  },
-  {
-    "brand_name": "DG HEALTH OMPERAZOLE",
-    "generic_name": "",
-    "slug": "dg-health-omperazole"
   },
   {
     "brand_name": "DG HEALTH PAIN RELIEF",
@@ -2570,24 +2180,9 @@
     "slug": "diprivan"
   },
   {
-    "brand_name": "DIRECT SAFETY ASPIRIN",
-    "generic_name": "",
-    "slug": "direct-safety-aspirin"
-  },
-  {
-    "brand_name": "DIRECT SAFETY ASPIRIN FREE",
-    "generic_name": "",
-    "slug": "direct-safety-aspirin-free"
-  },
-  {
     "brand_name": "DIRECT SAFETY EXTRA STRENGTH ASPIRIN FREE",
     "generic_name": "",
     "slug": "direct-safety-extra-strength-aspirin-free"
-  },
-  {
-    "brand_name": "DIRECT SAFETY IBUPROFEN",
-    "generic_name": "",
-    "slug": "direct-safety-ibuprofen"
   },
   {
     "brand_name": "Ditropan",
@@ -2610,19 +2205,9 @@
     "slug": "docivyx"
   },
   {
-    "brand_name": "DOLEX CHILDREN",
-    "generic_name": "",
-    "slug": "dolex-children"
-  },
-  {
     "brand_name": "DOLEX CHILDREN PAIN AND FEVER",
     "generic_name": "",
     "slug": "dolex-children-pain-and-fever"
-  },
-  {
-    "brand_name": "DOLEX FLEX",
-    "generic_name": "",
-    "slug": "dolex-flex"
   },
   {
     "brand_name": "DOLLAR GENERAL EFFERVESCENT PAIN RELIEVER",
@@ -2648,21 +2233,6 @@
     "brand_name": "DOTTI",
     "generic_name": "",
     "slug": "dotti"
-  },
-  {
-    "brand_name": "DOVER ADDAPRIN",
-    "generic_name": "",
-    "slug": "dover-addaprin"
-  },
-  {
-    "brand_name": "DOVER AMINOFEN",
-    "generic_name": "",
-    "slug": "dover-aminofen"
-  },
-  {
-    "brand_name": "DOVER AMINOPHEN",
-    "generic_name": "",
-    "slug": "dover-aminophen"
   },
   {
     "brand_name": "DOXORUBICIN HYDROCHLORIDE",
@@ -2730,11 +2300,6 @@
     "slug": "duloxetine-delayed-release"
   },
   {
-    "brand_name": "DULOXETINE HYDROCHLORIDE",
-    "generic_name": "",
-    "slug": "duloxetine-hydrochloride"
-  },
-  {
     "brand_name": "DUPIXENT",
     "generic_name": "",
     "slug": "dupixent"
@@ -2743,11 +2308,6 @@
     "brand_name": "Duragesic",
     "generic_name": "fentanyl",
     "slug": "duragesic"
-  },
-  {
-    "brand_name": "DURALGINA",
-    "generic_name": "",
-    "slug": "duralgina"
   },
   {
     "brand_name": "DURAMORPH",
@@ -2763,11 +2323,6 @@
     "brand_name": "DYE FREE CHILDRENS IBUPROFEN",
     "generic_name": "",
     "slug": "dye-free-childrens-ibuprofen"
-  },
-  {
-    "brand_name": "DYE FREE IBUPROFEN",
-    "generic_name": "",
-    "slug": "dye-free-ibuprofen"
   },
   {
     "brand_name": "DYE FREE INFANTS PAIN AND FEVER",
@@ -2790,24 +2345,9 @@
     "slug": "dye-freeinfants-pain-and-fever"
   },
   {
-    "brand_name": "DYE-FREE ASPIRIN 81",
-    "generic_name": "",
-    "slug": "dye-free-aspirin-81"
-  },
-  {
-    "brand_name": "DYE-FREE IBUPROFEN 200",
-    "generic_name": "",
-    "slug": "dye-free-ibuprofen-200"
-  },
-  {
     "brand_name": "DYE-FREE PAIN RELIEF",
     "generic_name": "",
     "slug": "dye-free-pain-relief"
-  },
-  {
-    "brand_name": "EASYFAST",
-    "generic_name": "",
-    "slug": "easyfast"
   },
   {
     "brand_name": "ECOTRIN",
@@ -2818,11 +2358,6 @@
     "brand_name": "ECOTRIN REGULAR STRENGTH",
     "generic_name": "",
     "slug": "ecotrin-regular-strength"
-  },
-  {
-    "brand_name": "ED APAP",
-    "generic_name": "",
-    "slug": "ed-apap"
   },
   {
     "brand_name": "EFFACLAR",
@@ -2863,11 +2398,6 @@
     "brand_name": "ELESTRIN",
     "generic_name": "",
     "slug": "elestrin"
-  },
-  {
-    "brand_name": "ELEVATE HAIR GROWTH SERUM",
-    "generic_name": "",
-    "slug": "elevate-hair-growth-serum"
   },
   {
     "brand_name": "ELEVATE HAIR REGROWTH TREATMENT 5",
@@ -3000,11 +2530,6 @@
     "slug": "equ-ultra-strength-antacid-assorted-fruit-171af"
   },
   {
-    "brand_name": "EQUALINE ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "equaline-acetaminophen"
-  },
-  {
     "brand_name": "EQUALINE CHILDRENS ACETAMINOPHEN",
     "generic_name": "",
     "slug": "equaline-childrens-acetaminophen"
@@ -3030,24 +2555,9 @@
     "slug": "equaline-heartburn-prevention"
   },
   {
-    "brand_name": "EQUALINE IBUPROFEN",
-    "generic_name": "",
-    "slug": "equaline-ibuprofen"
-  },
-  {
     "brand_name": "EQUALINE IBUPROFEN CHILDRENS",
     "generic_name": "",
     "slug": "equaline-ibuprofen-childrens"
-  },
-  {
-    "brand_name": "EQUALINE LANSOPRAZOLE",
-    "generic_name": "",
-    "slug": "equaline-lansoprazole"
-  },
-  {
-    "brand_name": "EQUALINE OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "equaline-omeprazole"
   },
   {
     "brand_name": "EQUALINE REGULAR STRENGTH ANTACID PEPPERMINT",
@@ -3065,11 +2575,6 @@
     "slug": "equate-allergy-relief"
   },
   {
-    "brand_name": "EQUATE ASPIRIN",
-    "generic_name": "",
-    "slug": "equate-aspirin"
-  },
-  {
     "brand_name": "EQUATE ASPIRIN CHEWABLE",
     "generic_name": "",
     "slug": "equate-aspirin-chewable"
@@ -3085,11 +2590,6 @@
     "slug": "equate-childrens-pain-and-fever"
   },
   {
-    "brand_name": "EQUATE ESOMEPRAZOLE MAGNESIUM",
-    "generic_name": "",
-    "slug": "equate-esomeprazole-magnesium"
-  },
-  {
     "brand_name": "EQUATE EXTRA STRENGTH ANTACID",
     "generic_name": "",
     "slug": "equate-extra-strength-antacid"
@@ -3098,16 +2598,6 @@
     "brand_name": "EQUATE FAMOTIDINE",
     "generic_name": "",
     "slug": "equate-famotidine"
-  },
-  {
-    "brand_name": "EQUATE HAIR REGROWTH TREATMENT",
-    "generic_name": "",
-    "slug": "equate-hair-regrowth-treatment"
-  },
-  {
-    "brand_name": "EQUATE IBUPROFEN",
-    "generic_name": "",
-    "slug": "equate-ibuprofen"
   },
   {
     "brand_name": "EQUATE IBUPROFEN CHILDRENS",
@@ -3120,24 +2610,9 @@
     "slug": "equate-infants-pain-and-fever"
   },
   {
-    "brand_name": "EQUATE LANSOPRAZOLE",
-    "generic_name": "",
-    "slug": "equate-lansoprazole"
-  },
-  {
-    "brand_name": "EQUATE LANSOPRAZOLE DELAYED RELEASE",
-    "generic_name": "",
-    "slug": "equate-lansoprazole-delayed-release"
-  },
-  {
     "brand_name": "EQUATE MENSTRUAL PAIN RELIEF",
     "generic_name": "",
     "slug": "equate-menstrual-pain-relief"
-  },
-  {
-    "brand_name": "EQUATE OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "equate-omeprazole"
   },
   {
     "brand_name": "EQUATE OMEPRAZOLE DELAYED RELEASE ACID REDUCER",
@@ -3163,11 +2638,6 @@
     "brand_name": "EQUATE PAIN RELIEVER ACETAMINOPHEN FOR ADULTS",
     "generic_name": "",
     "slug": "equate-pain-reliever-acetaminophen-for-adults"
-  },
-  {
-    "brand_name": "EQUATE STERILE SALINE MIST",
-    "generic_name": "",
-    "slug": "equate-sterile-saline-mist"
   },
   {
     "brand_name": "EQUATE ULTRA STREGTH ANTACID",
@@ -3218,11 +2688,6 @@
     "brand_name": "ESCITALOPRAM",
     "generic_name": "",
     "slug": "escitalopram"
-  },
-  {
-    "brand_name": "ESCITALOPRAM OXALATE",
-    "generic_name": "",
-    "slug": "escitalopram-oxalate"
   },
   {
     "brand_name": "ESOMEPRAZOLE",
@@ -3330,19 +2795,9 @@
     "slug": "exchange-select-antacid-tropical-fruit"
   },
   {
-    "brand_name": "EXCHANGE SELECT ESOMEPRAZOLE MAGNESIUM",
-    "generic_name": "",
-    "slug": "exchange-select-esomeprazole-magnesium"
-  },
-  {
     "brand_name": "EXCHANGE SELECT EXTRA STRENGTH ANTACID ASSORTED BERRIES",
     "generic_name": "",
     "slug": "exchange-select-extra-strength-antacid-assorted-berries"
-  },
-  {
-    "brand_name": "EXCHANGE SELECT OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "exchange-select-omeprazole"
   },
   {
     "brand_name": "EXCHANGE SELECT ULTRA STRENGTH ANTACID ASSORTED FRUIT",
@@ -3525,11 +2980,6 @@
     "slug": "ezetimibe"
   },
   {
-    "brand_name": "FAMILY CARE SALINE",
-    "generic_name": "",
-    "slug": "family-care-saline"
-  },
-  {
     "brand_name": "FAMILY WELLNESS ANTACID RELIEF CHEWS",
     "generic_name": "",
     "slug": "family-wellness-antacid-relief-chews"
@@ -3570,11 +3020,6 @@
     "slug": "fast-acting-heartburn-relief-peppermint-flavor"
   },
   {
-    "brand_name": "FAST ACTING PEDIA CRAE",
-    "generic_name": "",
-    "slug": "fast-acting-pedia-crae"
-  },
-  {
     "brand_name": "FAST PAIN RELIEF",
     "generic_name": "",
     "slug": "fast-pain-relief"
@@ -3595,11 +3040,6 @@
     "slug": "fentanyl"
   },
   {
-    "brand_name": "FENTANYL SYSTEM",
-    "generic_name": "",
-    "slug": "fentanyl-system"
-  },
-  {
     "brand_name": "FERROUS SULFATE",
     "generic_name": "",
     "slug": "ferrous-sulfate"
@@ -3608,16 +3048,6 @@
     "brand_name": "FERRUM METALLICUM",
     "generic_name": "",
     "slug": "ferrum-metallicum"
-  },
-  {
-    "brand_name": "FERRUM METALLICUM 6X",
-    "generic_name": "",
-    "slug": "ferrum-metallicum-6x"
-  },
-  {
-    "brand_name": "FERRUM SULPHURICUM",
-    "generic_name": "",
-    "slug": "ferrum-sulphuricum"
   },
   {
     "brand_name": "FETE HEALTH HAIR REGROWTH TREATMENT FOR WOMEN",
@@ -3675,11 +3105,6 @@
     "slug": "fleqsuvy"
   },
   {
-    "brand_name": "FLEX-PRIN",
-    "generic_name": "",
-    "slug": "flex-prin"
-  },
-  {
     "brand_name": "Flexeril",
     "generic_name": "cyclobenzaprine hydrochloride",
     "slug": "flexeril"
@@ -3693,16 +3118,6 @@
     "brand_name": "Flonase",
     "generic_name": "fluticasone propionate",
     "slug": "flonase"
-  },
-  {
-    "brand_name": "FLONASE ALLERGY RELIEF",
-    "generic_name": "",
-    "slug": "flonase-allergy-relief"
-  },
-  {
-    "brand_name": "FLONASE HEADACHE AND ALLERGY RELIEF",
-    "generic_name": "",
-    "slug": "flonase-headache-and-allergy-relief"
   },
   {
     "brand_name": "Flovent",
@@ -3725,34 +3140,9 @@
     "slug": "fluoxetine"
   },
   {
-    "brand_name": "FOLARTEX",
-    "generic_name": "",
-    "slug": "folartex"
-  },
-  {
-    "brand_name": "FOLATEN",
-    "generic_name": "",
-    "slug": "folaten"
-  },
-  {
-    "brand_name": "FOLCYTEINE",
-    "generic_name": "",
-    "slug": "folcyteine"
-  },
-  {
     "brand_name": "FOLIC ACID",
     "generic_name": "",
     "slug": "folic-acid"
-  },
-  {
-    "brand_name": "FOLIXIA",
-    "generic_name": "",
-    "slug": "folixia"
-  },
-  {
-    "brand_name": "FOLYRA",
-    "generic_name": "",
-    "slug": "folyra"
   },
   {
     "brand_name": "Forteo",
@@ -3775,11 +3165,6 @@
     "slug": "foster-and-thrive-allergy-relief"
   },
   {
-    "brand_name": "FOSTER AND THRIVE ASPIRIN",
-    "generic_name": "",
-    "slug": "foster-and-thrive-aspirin"
-  },
-  {
     "brand_name": "FOSTER AND THRIVE CHILDRENS ALLERGY RELIEF",
     "generic_name": "",
     "slug": "foster-and-thrive-childrens-allergy-relief"
@@ -3800,11 +3185,6 @@
     "slug": "foster-and-thrive-extra-strength-sugar-free-antacid-orange"
   },
   {
-    "brand_name": "FOSTER AND THRIVE IBUPROFEN",
-    "generic_name": "",
-    "slug": "foster-and-thrive-ibuprofen"
-  },
-  {
     "brand_name": "FOSTER AND THRIVE INFANTS IBUPROFEN",
     "generic_name": "",
     "slug": "foster-and-thrive-infants-ibuprofen"
@@ -3813,11 +3193,6 @@
     "brand_name": "FOSTER AND THRIVE INFANTS PAIN AND FEVER",
     "generic_name": "",
     "slug": "foster-and-thrive-infants-pain-and-fever"
-  },
-  {
-    "brand_name": "FOSTER AND THRIVE OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "foster-and-thrive-omeprazole"
   },
   {
     "brand_name": "FOSTER AND THRIVE PAIN RELIEVER",
@@ -3853,11 +3228,6 @@
     "brand_name": "FW EXTRA STRENGTH AF SMOOTH ANTACID",
     "generic_name": "",
     "slug": "fw-extra-strength-af-smooth-antacid"
-  },
-  {
-    "brand_name": "GABA 300-EZS",
-    "generic_name": "",
-    "slug": "gaba-300-ezs"
   },
   {
     "brand_name": "GABAPENTIN",
@@ -3930,16 +3300,6 @@
     "slug": "gericare-liquid-pain-relief"
   },
   {
-    "brand_name": "GERITREX ASPIRIN",
-    "generic_name": "",
-    "slug": "geritrex-aspirin"
-  },
-  {
-    "brand_name": "GESTEIRA",
-    "generic_name": "",
-    "slug": "gesteira"
-  },
-  {
     "brand_name": "GILENYA",
     "generic_name": "",
     "slug": "gilenya"
@@ -4000,11 +3360,6 @@
     "slug": "good-neighbor-pharmacy-antacid-regular-strength"
   },
   {
-    "brand_name": "GOOD NEIGHBOR PHARMACY ASPIRIN",
-    "generic_name": "",
-    "slug": "good-neighbor-pharmacy-aspirin"
-  },
-  {
     "brand_name": "GOOD NEIGHBOR PHARMACY CHILDRENS IBUPROFEN",
     "generic_name": "",
     "slug": "good-neighbor-pharmacy-childrens-ibuprofen"
@@ -4020,11 +3375,6 @@
     "slug": "good-neighbor-pharmacy-esomeprazole-magnesium"
   },
   {
-    "brand_name": "GOOD NEIGHBOR PHARMACY IBUPROFEN",
-    "generic_name": "",
-    "slug": "good-neighbor-pharmacy-ibuprofen"
-  },
-  {
     "brand_name": "GOOD NEIGHBOR PHARMACY IBUPROFEN CHILDRENS",
     "generic_name": "",
     "slug": "good-neighbor-pharmacy-ibuprofen-childrens"
@@ -4035,16 +3385,6 @@
     "slug": "good-neighbor-pharmacy-infants-pain-and-fever"
   },
   {
-    "brand_name": "GOOD NEIGHBOR PHARMACY LANSOPRAZOLE",
-    "generic_name": "",
-    "slug": "good-neighbor-pharmacy-lansoprazole"
-  },
-  {
-    "brand_name": "GOOD NEIGHBOR PHARMACY OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "good-neighbor-pharmacy-omeprazole"
-  },
-  {
     "brand_name": "GOOD NEIGHBOR PHARMACY PAIN AND FEVER CHILDRENS",
     "generic_name": "",
     "slug": "good-neighbor-pharmacy-pain-and-fever-childrens"
@@ -4053,11 +3393,6 @@
     "brand_name": "GOOD NEIGHBOR PHARMACY PAIN RELIEF",
     "generic_name": "",
     "slug": "good-neighbor-pharmacy-pain-relief"
-  },
-  {
-    "brand_name": "GOOD NOW OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "good-now-omeprazole"
   },
   {
     "brand_name": "GOOD REMEDIES IBUPROFEN",
@@ -4078,11 +3413,6 @@
     "brand_name": "GOOD SENSE ANTACID SOFT CHEW",
     "generic_name": "",
     "slug": "good-sense-antacid-soft-chew"
-  },
-  {
-    "brand_name": "GOOD SENSE ASPIRIN",
-    "generic_name": "",
-    "slug": "good-sense-aspirin"
   },
   {
     "brand_name": "GOOD SENSE CHILDRENS IBUPROFEN",
@@ -4110,11 +3440,6 @@
     "slug": "good-sense-hair-regrowth-treatment"
   },
   {
-    "brand_name": "GOOD SENSE IBUPROFEN",
-    "generic_name": "",
-    "slug": "good-sense-ibuprofen"
-  },
-  {
     "brand_name": "GOOD SENSE IBUPROFEN CHILDRENS",
     "generic_name": "",
     "slug": "good-sense-ibuprofen-childrens"
@@ -4128,16 +3453,6 @@
     "brand_name": "GOOD SENSE INFANTS IBUPROFEN",
     "generic_name": "",
     "slug": "good-sense-infants-ibuprofen"
-  },
-  {
-    "brand_name": "GOOD SENSE LANSOPRAZOLE",
-    "generic_name": "",
-    "slug": "good-sense-lansoprazole"
-  },
-  {
-    "brand_name": "GOOD SENSE OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "good-sense-omeprazole"
   },
   {
     "brand_name": "GOOD SENSE OMEPRAZOLE DELAYED RELEASE",
@@ -4275,19 +3590,9 @@
     "slug": "guardian-ultra-strength-antacid-assorted-fruit"
   },
   {
-    "brand_name": "HAIR ACONDICIONADOR",
-    "generic_name": "",
-    "slug": "hair-acondicionador"
-  },
-  {
     "brand_name": "HAIR BEARDGROWTH FOAM",
     "generic_name": "",
     "slug": "hair-beardgrowth-foam"
-  },
-  {
-    "brand_name": "HAIR CHAMPU",
-    "generic_name": "",
-    "slug": "hair-champu"
   },
   {
     "brand_name": "HAIR GROWTH",
@@ -4303,11 +3608,6 @@
     "brand_name": "HAIR GROWTH SERUM ROLL-ON",
     "generic_name": "",
     "slug": "hair-growth-serum-roll-on"
-  },
-  {
-    "brand_name": "HAIR LEAVE IN",
-    "generic_name": "",
-    "slug": "hair-leave-in"
   },
   {
     "brand_name": "HAIR REGEN HAIR GROWTH TREATMENT",
@@ -4328,11 +3628,6 @@
     "brand_name": "HAIR REGROWTH TREATMENT FOR MEN",
     "generic_name": "",
     "slug": "hair-regrowth-treatment-for-men"
-  },
-  {
-    "brand_name": "HAIR TREATMENT",
-    "generic_name": "",
-    "slug": "hair-treatment"
   },
   {
     "brand_name": "HAIRFX HAIR GROWTH FOAM",
@@ -4378,11 +3673,6 @@
     "brand_name": "HEARTBURN RELIEF ORIGINAL STRENGTH",
     "generic_name": "",
     "slug": "heartburn-relief-original-strength"
-  },
-  {
-    "brand_name": "HEB",
-    "generic_name": "",
-    "slug": "heb"
   },
   {
     "brand_name": "HEB ANTACID CALCIUM ASSORTED BERRY",
@@ -4455,16 +3745,6 @@
     "slug": "hemady"
   },
   {
-    "brand_name": "HENRY SCHEIN ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "henry-schein-acetaminophen"
-  },
-  {
-    "brand_name": "HENRY SCHEIN IBUPROFEN",
-    "generic_name": "",
-    "slug": "henry-schein-ibuprofen"
-  },
-  {
     "brand_name": "HEPARIN SODIUM",
     "generic_name": "",
     "slug": "heparin-sodium"
@@ -4488,11 +3768,6 @@
     "brand_name": "HERS HAIR REGROWTH TREATMENT",
     "generic_name": "",
     "slug": "hers-hair-regrowth-treatment"
-  },
-  {
-    "brand_name": "HIMS HAIR REGROWTH TREATMENT",
-    "generic_name": "",
-    "slug": "hims-hair-regrowth-treatment"
   },
   {
     "brand_name": "HISTAPRIN",
@@ -4550,11 +3825,6 @@
     "slug": "humulin-n"
   },
   {
-    "brand_name": "HYDRA NEB",
-    "generic_name": "",
-    "slug": "hydra-neb"
-  },
-  {
     "brand_name": "HYDROCHLOROTHIAZIDE",
     "generic_name": "",
     "slug": "hydrochlorothiazide"
@@ -4580,11 +3850,6 @@
     "slug": "hydroxychloroquine-sulfate"
   },
   {
-    "brand_name": "HYPERTONIC SALINE",
-    "generic_name": "",
-    "slug": "hypertonic-saline"
-  },
-  {
     "brand_name": "HYSINGLA ER",
     "generic_name": "",
     "slug": "hysingla-er"
@@ -4608,11 +3873,6 @@
     "brand_name": "IBU",
     "generic_name": "",
     "slug": "ibu"
-  },
-  {
-    "brand_name": "IBUPAK",
-    "generic_name": "",
-    "slug": "ibupak"
   },
   {
     "brand_name": "IBUPROFEN",
@@ -4645,29 +3905,14 @@
     "slug": "ibuprofen-250"
   },
   {
-    "brand_name": "IBUPROFEN CA",
-    "generic_name": "",
-    "slug": "ibuprofen-ca"
-  },
-  {
     "brand_name": "IBUPROFEN CHILDRENS",
     "generic_name": "",
     "slug": "ibuprofen-childrens"
   },
   {
-    "brand_name": "IBUPROFEN DYE FREE",
-    "generic_name": "",
-    "slug": "ibuprofen-dye-free"
-  },
-  {
     "brand_name": "IBUPROFEN FAST RELIEF MEDICINE FOR PAIN",
     "generic_name": "",
     "slug": "ibuprofen-fast-relief-medicine-for-pain"
-  },
-  {
-    "brand_name": "IBUPROFEN IB",
-    "generic_name": "",
-    "slug": "ibuprofen-ib"
   },
   {
     "brand_name": "IBUPROFEN IMMEDIATE RELEASE",
@@ -4680,19 +3925,9 @@
     "slug": "ibuprofen-infants"
   },
   {
-    "brand_name": "IBUPROFEN MIGRAINE",
-    "generic_name": "",
-    "slug": "ibuprofen-migraine"
-  },
-  {
     "brand_name": "IBUPROFEN MINI DYE FREE ADVIL",
     "generic_name": "",
     "slug": "ibuprofen-mini-dye-free-advil"
-  },
-  {
-    "brand_name": "IBUPROFEN MINIS",
-    "generic_name": "",
-    "slug": "ibuprofen-minis"
   },
   {
     "brand_name": "IBUPROFEN PAIN RELEIVER/ FEVER REDUCER",
@@ -4705,26 +3940,6 @@
     "slug": "ibuprofen-pain-relieverfever-reducer"
   },
   {
-    "brand_name": "IBUPROFEN THOMPSON",
-    "generic_name": "",
-    "slug": "ibuprofen-thompson"
-  },
-  {
-    "brand_name": "IBUPROFEN, CASEYS, 50CT",
-    "generic_name": "",
-    "slug": "ibuprofen-caseys-50ct"
-  },
-  {
-    "brand_name": "IBUPROFEN, CIRCLE K, 50CT",
-    "generic_name": "",
-    "slug": "ibuprofen-circle-k-50ct"
-  },
-  {
-    "brand_name": "IBUPROFEN, LIL DRUG STORE",
-    "generic_name": "",
-    "slug": "ibuprofen-lil-drug-store"
-  },
-  {
     "brand_name": "IBUPROFEN, LIL DRUG STORE, 24CT",
     "generic_name": "",
     "slug": "ibuprofen-lil-drug-store-24ct"
@@ -4733,11 +3948,6 @@
     "brand_name": "IBUPROFEN, LIL DRUG STORE, 50CT",
     "generic_name": "",
     "slug": "ibuprofen-lil-drug-store-50ct"
-  },
-  {
-    "brand_name": "IBUWIN FORTE",
-    "generic_name": "",
-    "slug": "ibuwin-forte"
   },
   {
     "brand_name": "IMBRUVICA",
@@ -4828,11 +4038,6 @@
     "brand_name": "INFANTS TYLENOL",
     "generic_name": "",
     "slug": "infants-tylenol"
-  },
-  {
-    "brand_name": "INFLAMEX",
-    "generic_name": "",
-    "slug": "inflamex"
   },
   {
     "brand_name": "INFLIXIMAB",
@@ -4935,21 +4140,6 @@
     "slug": "kaletra"
   },
   {
-    "brand_name": "KALI MURIATICUM",
-    "generic_name": "",
-    "slug": "kali-muriaticum"
-  },
-  {
-    "brand_name": "KALI MURIATICUM KIT REFILL",
-    "generic_name": "",
-    "slug": "kali-muriaticum-kit-refill"
-  },
-  {
-    "brand_name": "KALIUM MURIATICUM 6X",
-    "generic_name": "",
-    "slug": "kalium-muriaticum-6x"
-  },
-  {
     "brand_name": "KAPSPARGO",
     "generic_name": "",
     "slug": "kapspargo"
@@ -4958,11 +4148,6 @@
     "brand_name": "KATERZIA",
     "generic_name": "",
     "slug": "katerzia"
-  },
-  {
-    "brand_name": "KEEPS MINOXIDIL TOPICAL",
-    "generic_name": "",
-    "slug": "keeps-minoxidil-topical"
   },
   {
     "brand_name": "Keflex",
@@ -5000,11 +4185,6 @@
     "slug": "keytruda"
   },
   {
-    "brand_name": "KI NO SIN",
-    "generic_name": "",
-    "slug": "ki-no-sin"
-  },
-  {
     "brand_name": "KIDS ANTACID",
     "generic_name": "",
     "slug": "kids-antacid"
@@ -5030,36 +4210,6 @@
     "slug": "kirkland-signature-acid-controller"
   },
   {
-    "brand_name": "KIRKLAND SIGNATURE ESOMEPRAZOLE MAGNESIUM",
-    "generic_name": "",
-    "slug": "kirkland-signature-esomeprazole-magnesium"
-  },
-  {
-    "brand_name": "KIRKLAND SIGNATURE IBUPROFEN",
-    "generic_name": "",
-    "slug": "kirkland-signature-ibuprofen"
-  },
-  {
-    "brand_name": "KIRKLAND SIGNATURE IBUPROFEN IB",
-    "generic_name": "",
-    "slug": "kirkland-signature-ibuprofen-ib"
-  },
-  {
-    "brand_name": "KIRKLAND SIGNATURE LANSOPRAZOLE",
-    "generic_name": "",
-    "slug": "kirkland-signature-lansoprazole"
-  },
-  {
-    "brand_name": "KIRKLAND SIGNATURE MINOXIDIL",
-    "generic_name": "",
-    "slug": "kirkland-signature-minoxidil"
-  },
-  {
-    "brand_name": "KIRKLAND SIGNATURE OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "kirkland-signature-omeprazole"
-  },
-  {
     "brand_name": "KIRKLAND ULTRA STREGTH ANTACID 171AB",
     "generic_name": "",
     "slug": "kirkland-ultra-stregth-antacid-171ab"
@@ -5078,11 +4228,6 @@
     "brand_name": "KLOR-CON M",
     "generic_name": "",
     "slug": "klor-con-m"
-  },
-  {
-    "brand_name": "KOSHER MEDS",
-    "generic_name": "",
-    "slug": "kosher-meds"
   },
   {
     "brand_name": "KOSHER MEDS ANTACID",
@@ -5240,19 +4385,9 @@
     "slug": "leader-8hr-arthritis-pain-relief"
   },
   {
-    "brand_name": "LEADER ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "leader-acetaminophen"
-  },
-  {
     "brand_name": "LEADER ACID REDUCER",
     "generic_name": "",
     "slug": "leader-acid-reducer"
-  },
-  {
-    "brand_name": "LEADER ASPIRIN",
-    "generic_name": "",
-    "slug": "leader-aspirin"
   },
   {
     "brand_name": "LEADER CHILDRENS ALLERGY RELIEF",
@@ -5270,19 +4405,9 @@
     "slug": "leader-childrens-pain-and-fever"
   },
   {
-    "brand_name": "LEADER ESOMEPRAZOLE MAGNESIUM",
-    "generic_name": "",
-    "slug": "leader-esomeprazole-magnesium"
-  },
-  {
     "brand_name": "LEADER EXTRA STRENGTH ANTACID",
     "generic_name": "",
     "slug": "leader-extra-strength-antacid"
-  },
-  {
-    "brand_name": "LEADER IBUPROFEN",
-    "generic_name": "",
-    "slug": "leader-ibuprofen"
   },
   {
     "brand_name": "LEADER INFANTS IBUPROFEN",
@@ -5293,16 +4418,6 @@
     "brand_name": "LEADER INFANTS PAIN AND FEVER",
     "generic_name": "",
     "slug": "leader-infants-pain-and-fever"
-  },
-  {
-    "brand_name": "LEADER MINOXIDIL",
-    "generic_name": "",
-    "slug": "leader-minoxidil"
-  },
-  {
-    "brand_name": "LEADER OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "leader-omeprazole"
   },
   {
     "brand_name": "LEADER ULTRA STRENGTH ANTACID",
@@ -5385,16 +4500,6 @@
     "slug": "lexapro"
   },
   {
-    "brand_name": "LICEFREEE",
-    "generic_name": "",
-    "slug": "licefreee"
-  },
-  {
-    "brand_name": "LICEFREEE EVERYDAY",
-    "generic_name": "",
-    "slug": "licefreee-everyday"
-  },
-  {
     "brand_name": "LIDOCAINE",
     "generic_name": "",
     "slug": "lidocaine"
@@ -5410,16 +4515,6 @@
     "slug": "lil-drug-store-childrens-pain-and-fever"
   },
   {
-    "brand_name": "LIL DRUG STORE IBUPROFEN",
-    "generic_name": "",
-    "slug": "lil-drug-store-ibuprofen"
-  },
-  {
-    "brand_name": "LILIVERA HAIR REGROWTH KIT",
-    "generic_name": "",
-    "slug": "lilivera-hair-regrowth-kit"
-  },
-  {
     "brand_name": "Linzess",
     "generic_name": "linaclotide",
     "slug": "linzess"
@@ -5433,11 +4528,6 @@
     "brand_name": "Lipitor",
     "generic_name": "atorvastatin calcium",
     "slug": "lipitor"
-  },
-  {
-    "brand_name": "LIQUICAL PLUS",
-    "generic_name": "",
-    "slug": "liquical-plus"
   },
   {
     "brand_name": "LIQUID ACETAMINOPHEN",
@@ -5488,11 +4578,6 @@
     "brand_name": "Livalo",
     "generic_name": "pitavastatin",
     "slug": "livalo"
-  },
-  {
-    "brand_name": "LLORENS CARE CHILDREN ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "llorens-care-children-acetaminophen"
   },
   {
     "brand_name": "LMX4",
@@ -5555,11 +4640,6 @@
     "slug": "low-dose-aspirin-enteric-safety-coated"
   },
   {
-    "brand_name": "LOW DOSE ASPIRIUN",
-    "generic_name": "",
-    "slug": "low-dose-aspiriun"
-  },
-  {
     "brand_name": "LOW DOSE CHEWABLE ASPIRIN",
     "generic_name": "",
     "slug": "low-dose-chewable-aspirin"
@@ -5580,19 +4660,9 @@
     "slug": "lucentis"
   },
   {
-    "brand_name": "LUMAVEX",
-    "generic_name": "",
-    "slug": "lumavex"
-  },
-  {
     "brand_name": "Lumigan",
     "generic_name": "bimatoprost",
     "slug": "lumigan"
-  },
-  {
-    "brand_name": "LUNAVIRA",
-    "generic_name": "",
-    "slug": "lunavira"
   },
   {
     "brand_name": "Lunesta",
@@ -5635,11 +4705,6 @@
     "slug": "macrobid"
   },
   {
-    "brand_name": "MAJOR ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "major-acetaminophen"
-  },
-  {
     "brand_name": "MAJOR EXTRA STRENGTH ACETAMINOPHEN LIQUID",
     "generic_name": "",
     "slug": "major-extra-strength-acetaminophen-liquid"
@@ -5658,11 +4723,6 @@
     "brand_name": "MARC GLASSMAN EXTRA STRENGTH",
     "generic_name": "",
     "slug": "marc-glassman-extra-strength"
-  },
-  {
-    "brand_name": "MARC GLASSMAN ULTRA STRENGTH",
-    "generic_name": "",
-    "slug": "marc-glassman-ultra-strength"
   },
   {
     "brand_name": "MARKET BASKET EFFERVESCENT PAIN RELIEF",
@@ -5715,19 +4775,9 @@
     "slug": "maximum-strength-pepcid-ac-icy-cool-mint"
   },
   {
-    "brand_name": "MCKESSON ACETAMINOPHEN 325",
-    "generic_name": "",
-    "slug": "mckesson-acetaminophen-325"
-  },
-  {
     "brand_name": "MCKESSON ANTACID CALCIUM CARBONATE",
     "generic_name": "",
     "slug": "mckesson-antacid-calcium-carbonate"
-  },
-  {
-    "brand_name": "MCKESSON ASPIRIN",
-    "generic_name": "",
-    "slug": "mckesson-aspirin"
   },
   {
     "brand_name": "MCKESSON IBUPROFEN",
@@ -5750,24 +4800,9 @@
     "slug": "medi-first-antacid"
   },
   {
-    "brand_name": "MEDI-FIRST ASPIRIN",
-    "generic_name": "",
-    "slug": "medi-first-aspirin"
-  },
-  {
     "brand_name": "MEDI-FIRST EXTRA STRENGTH NON ASPIRIN",
     "generic_name": "",
     "slug": "medi-first-extra-strength-non-aspirin"
-  },
-  {
-    "brand_name": "MEDI-FIRST IBUPROFEN",
-    "generic_name": "",
-    "slug": "medi-first-ibuprofen"
-  },
-  {
-    "brand_name": "MEDI-FIRST NON-ASPIRIN",
-    "generic_name": "",
-    "slug": "medi-first-non-aspirin"
   },
   {
     "brand_name": "MEDI-FIRST NON-ASPIRIN EXTRA STRENGTH",
@@ -5780,19 +4815,9 @@
     "slug": "medi-first-plus-antacid"
   },
   {
-    "brand_name": "MEDI-FIRST PLUS ASPIRIN",
-    "generic_name": "",
-    "slug": "medi-first-plus-aspirin"
-  },
-  {
     "brand_name": "MEDI-FIRST PLUS EXTRA STRENGTH NON ASPIRIN",
     "generic_name": "",
     "slug": "medi-first-plus-extra-strength-non-aspirin"
-  },
-  {
-    "brand_name": "MEDI-FIRST PLUS IBUPROFEN",
-    "generic_name": "",
-    "slug": "medi-first-plus-ibuprofen"
   },
   {
     "brand_name": "MEDICAL AIR",
@@ -5800,44 +4825,9 @@
     "slug": "medical-air"
   },
   {
-    "brand_name": "MEDICAL GASSEOUS OXYGEN CYLINDERS",
-    "generic_name": "",
-    "slug": "medical-gasseous-oxygen-cylinders"
-  },
-  {
-    "brand_name": "MEDICAL OXYGEN COMPRESSED",
-    "generic_name": "",
-    "slug": "medical-oxygen-compressed"
-  },
-  {
-    "brand_name": "MEDIQUE ALCALAK",
-    "generic_name": "",
-    "slug": "medique-alcalak"
-  },
-  {
-    "brand_name": "MEDIQUE APAP",
-    "generic_name": "",
-    "slug": "medique-apap"
-  },
-  {
     "brand_name": "MEDIQUE APAP EXTRA STRENGTH",
     "generic_name": "",
     "slug": "medique-apap-extra-strength"
-  },
-  {
-    "brand_name": "MEDIQUE AT HOME APAP",
-    "generic_name": "",
-    "slug": "medique-at-home-apap"
-  },
-  {
-    "brand_name": "MEDIQUE AT HOME ASPIRIN",
-    "generic_name": "",
-    "slug": "medique-at-home-aspirin"
-  },
-  {
-    "brand_name": "MEDIQUE AT HOME IPRIN",
-    "generic_name": "",
-    "slug": "medique-at-home-iprin"
   },
   {
     "brand_name": "MEDIQUE BAN-ACID MAXIMUM STRENGTH 750",
@@ -5848,16 +4838,6 @@
     "brand_name": "MEDIQUE EXTRA STRENGTH APAP",
     "generic_name": "",
     "slug": "medique-extra-strength-apap"
-  },
-  {
-    "brand_name": "MEDIQUE IPRIN",
-    "generic_name": "",
-    "slug": "medique-iprin"
-  },
-  {
-    "brand_name": "MEDIQUE PRODUCTS ASPIRIN",
-    "generic_name": "",
-    "slug": "medique-products-aspirin"
   },
   {
     "brand_name": "MEDIQUE PRODUCTS CHEWABLE LOW DOSE ASPIRIN",
@@ -5940,11 +4920,6 @@
     "slug": "meijer-extra-strength-wintergreen-flavor"
   },
   {
-    "brand_name": "MEIJER LOW DOSE ASPIRIN",
-    "generic_name": "",
-    "slug": "meijer-low-dose-aspirin"
-  },
-  {
     "brand_name": "MEIJER REGULAR STRENGTH ASSORTED FRUIT",
     "generic_name": "",
     "slug": "meijer-regular-strength-assorted-fruit"
@@ -5965,29 +4940,9 @@
     "slug": "meijer-wild-berry-antacid-chews"
   },
   {
-    "brand_name": "MEJORALITO",
-    "generic_name": "",
-    "slug": "mejoralito"
-  },
-  {
-    "brand_name": "MEJORALITO CHILDREN CHILDREN",
-    "generic_name": "",
-    "slug": "mejoralito-children-children"
-  },
-  {
-    "brand_name": "MELAO HAIR GROWTH MOUSSE",
-    "generic_name": "",
-    "slug": "melao-hair-growth-mousse"
-  },
-  {
     "brand_name": "MELOXICAM",
     "generic_name": "",
     "slug": "meloxicam"
-  },
-  {
-    "brand_name": "MEMBERS MARK ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "members-mark-acetaminophen"
   },
   {
     "brand_name": "MEMBERS MARK ACID PEP",
@@ -6005,24 +4960,9 @@
     "slug": "members-mark-arthritis-pain"
   },
   {
-    "brand_name": "MEMBERS MARK ESOMEPRAZOLE MAGNESIUM",
-    "generic_name": "",
-    "slug": "members-mark-esomeprazole-magnesium"
-  },
-  {
     "brand_name": "MEMBERS MARK HAIR REGROWTH TREATMENT",
     "generic_name": "",
     "slug": "members-mark-hair-regrowth-treatment"
-  },
-  {
-    "brand_name": "MEMBERS MARK LANSOPRAZOLE",
-    "generic_name": "",
-    "slug": "members-mark-lansoprazole"
-  },
-  {
-    "brand_name": "MEMBERS MARK OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "members-mark-omeprazole"
   },
   {
     "brand_name": "MENOSTAR",
@@ -6175,11 +5115,6 @@
     "slug": "minoxidil-extra-strength-for-men"
   },
   {
-    "brand_name": "MINOXIDIL HAIR GROWTH SERUM",
-    "generic_name": "",
-    "slug": "minoxidil-hair-growth-serum"
-  },
-  {
     "brand_name": "MINOXIDIL HAIR REGROWTH",
     "generic_name": "",
     "slug": "minoxidil-hair-regrowth"
@@ -6270,16 +5205,6 @@
     "slug": "motrin-ib-migraine"
   },
   {
-    "brand_name": "MOTRIN IB, CVP HEALTH",
-    "generic_name": "",
-    "slug": "motrin-ib-cvp-health"
-  },
-  {
-    "brand_name": "MOTRIN IB, TRAVEL BASIX",
-    "generic_name": "",
-    "slug": "motrin-ib-travel-basix"
-  },
-  {
     "brand_name": "MOTRIN INFANTS",
     "generic_name": "",
     "slug": "motrin-infants"
@@ -6305,16 +5230,6 @@
     "slug": "multaq"
   },
   {
-    "brand_name": "MULTITAM",
-    "generic_name": "",
-    "slug": "multitam"
-  },
-  {
-    "brand_name": "MULTIVITAMIN",
-    "generic_name": "",
-    "slug": "multivitamin"
-  },
-  {
     "brand_name": "MURO 128",
     "generic_name": "",
     "slug": "muro-128"
@@ -6335,11 +5250,6 @@
     "slug": "myhibbin"
   },
   {
-    "brand_name": "NA MI CAL",
-    "generic_name": "",
-    "slug": "na-mi-cal"
-  },
-  {
     "brand_name": "Namenda",
     "generic_name": "memantine hydrochloride",
     "slug": "namenda"
@@ -6355,59 +5265,9 @@
     "slug": "naproxen"
   },
   {
-    "brand_name": "NASAL RINES SALT",
-    "generic_name": "",
-    "slug": "nasal-rines-salt"
-  },
-  {
-    "brand_name": "NASOCALM",
-    "generic_name": "",
-    "slug": "nasocalm"
-  },
-  {
     "brand_name": "Nasonex",
     "generic_name": "mometasone furoate",
     "slug": "nasonex"
-  },
-  {
-    "brand_name": "NAT MUR",
-    "generic_name": "",
-    "slug": "nat-mur"
-  },
-  {
-    "brand_name": "NAT MUR 6X",
-    "generic_name": "",
-    "slug": "nat-mur-6x"
-  },
-  {
-    "brand_name": "NATRIUM MURIATICUM 6X",
-    "generic_name": "",
-    "slug": "natrium-muriaticum-6x"
-  },
-  {
-    "brand_name": "NATRUM MURIATICUM",
-    "generic_name": "",
-    "slug": "natrum-muriaticum"
-  },
-  {
-    "brand_name": "NATRUM MURIATICUM 6X",
-    "generic_name": "",
-    "slug": "natrum-muriaticum-6x"
-  },
-  {
-    "brand_name": "NATURAL LIQUIDGROUND WATER SALT",
-    "generic_name": "",
-    "slug": "natural-liquidground-water-salt"
-  },
-  {
-    "brand_name": "NATURAL LIQUIDMINERAL",
-    "generic_name": "",
-    "slug": "natural-liquidmineral"
-  },
-  {
-    "brand_name": "NATURAL LIQUIDMINERALSPRAY",
-    "generic_name": "",
-    "slug": "natural-liquidmineralspray"
   },
   {
     "brand_name": "NEFFY",
@@ -6418,11 +5278,6 @@
     "brand_name": "NEMLUVIO",
     "generic_name": "",
     "slug": "nemluvio"
-  },
-  {
-    "brand_name": "NEO-LUBRINA",
-    "generic_name": "",
-    "slug": "neo-lubrina"
   },
   {
     "brand_name": "NEORAL",
@@ -6478,11 +5333,6 @@
     "brand_name": "NICORETTE",
     "generic_name": "",
     "slug": "nicorette"
-  },
-  {
-    "brand_name": "NICORETTE CHERRY PEPPERMINT",
-    "generic_name": "",
-    "slug": "nicorette-cherry-peppermint"
   },
   {
     "brand_name": "NICORETTE CINNAMON SURGE",
@@ -6610,11 +5460,6 @@
     "slug": "norliqva"
   },
   {
-    "brand_name": "NORMAL SALT",
-    "generic_name": "",
-    "slug": "normal-salt"
-  },
-  {
     "brand_name": "NORTHERA",
     "generic_name": "",
     "slug": "northera"
@@ -6675,11 +5520,6 @@
     "slug": "nuplazid"
   },
   {
-    "brand_name": "NUTRALYN",
-    "generic_name": "",
-    "slug": "nutralyn"
-  },
-  {
     "brand_name": "Nuvaring",
     "generic_name": "etonogestrel/ethinyl estradiol",
     "slug": "nuvaring"
@@ -6695,16 +5535,6 @@
     "slug": "ocrevus"
   },
   {
-    "brand_name": "OHTRUST ARTIFICAL EYEDROP",
-    "generic_name": "",
-    "slug": "ohtrust-artifical-eyedrop"
-  },
-  {
-    "brand_name": "OIMMAL GENTLE EYE WASH",
-    "generic_name": "",
-    "slug": "oimmal-gentle-eye-wash"
-  },
-  {
     "brand_name": "OLANZAPINE",
     "generic_name": "",
     "slug": "olanzapine"
@@ -6713,11 +5543,6 @@
     "brand_name": "OLANZAPINE INTRAMUSCULAR",
     "generic_name": "",
     "slug": "olanzapine-intramuscular"
-  },
-  {
-    "brand_name": "OLIVITA MINOXIDIL",
-    "generic_name": "",
-    "slug": "olivita-minoxidil"
   },
   {
     "brand_name": "OMEGAVEN",
@@ -6738,11 +5563,6 @@
     "brand_name": "ONDANSETRON",
     "generic_name": "",
     "slug": "ondansetron"
-  },
-  {
-    "brand_name": "ONESSIP ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "onessip-acetaminophen"
   },
   {
     "brand_name": "OPIUM",
@@ -6825,11 +5645,6 @@
     "slug": "oxygen"
   },
   {
-    "brand_name": "OXYGEN 64889-0001",
-    "generic_name": "",
-    "slug": "oxygen-64889-0001"
-  },
-  {
     "brand_name": "OXYGEN COMPRESSED GAS",
     "generic_name": "",
     "slug": "oxygen-compressed-gas"
@@ -6853,51 +5668,6 @@
     "brand_name": "OXYGEN REFRIGERATED LIQUID U.S.P",
     "generic_name": "",
     "slug": "oxygen-refrigerated-liquid-usp"
-  },
-  {
-    "brand_name": "OXYGEN SIZE 400",
-    "generic_name": "",
-    "slug": "oxygen-size-400"
-  },
-  {
-    "brand_name": "OXYGEN SIZE B",
-    "generic_name": "",
-    "slug": "oxygen-size-b"
-  },
-  {
-    "brand_name": "OXYGEN SIZE C",
-    "generic_name": "",
-    "slug": "oxygen-size-c"
-  },
-  {
-    "brand_name": "OXYGEN SIZE D",
-    "generic_name": "",
-    "slug": "oxygen-size-d"
-  },
-  {
-    "brand_name": "OXYGEN SIZE E",
-    "generic_name": "",
-    "slug": "oxygen-size-e"
-  },
-  {
-    "brand_name": "OXYGEN SIZE F",
-    "generic_name": "",
-    "slug": "oxygen-size-f"
-  },
-  {
-    "brand_name": "OXYGEN SIZE H",
-    "generic_name": "",
-    "slug": "oxygen-size-h"
-  },
-  {
-    "brand_name": "OXYGEN SIZE M",
-    "generic_name": "",
-    "slug": "oxygen-size-m"
-  },
-  {
-    "brand_name": "OXYGEN SIZE T",
-    "generic_name": "",
-    "slug": "oxygen-size-t"
   },
   {
     "brand_name": "OXYMORPHONE HYDROCHLORIDE",
@@ -7180,11 +5950,6 @@
     "slug": "pharbetol-regular-strength"
   },
   {
-    "brand_name": "PHYSICIANS CARE ASPIRIN",
-    "generic_name": "",
-    "slug": "physicians-care-aspirin"
-  },
-  {
     "brand_name": "PHYSICIANSCARE NON ASPIRIN EXTRA STRENGTH",
     "generic_name": "",
     "slug": "physicianscare-non-aspirin-extra-strength"
@@ -7203,16 +5968,6 @@
     "brand_name": "Plavix",
     "generic_name": "clopidogrel bisulfate",
     "slug": "plavix"
-  },
-  {
-    "brand_name": "POKONZA",
-    "generic_name": "",
-    "slug": "pokonza"
-  },
-  {
-    "brand_name": "POKONZA POTASSIUM CHLORIDE",
-    "generic_name": "",
-    "slug": "pokonza-potassium-chloride"
   },
   {
     "brand_name": "POMALYST",
@@ -7283,11 +6038,6 @@
     "brand_name": "PREMPRO",
     "generic_name": "",
     "slug": "prempro"
-  },
-  {
-    "brand_name": "PRENATOL-M",
-    "generic_name": "",
-    "slug": "prenatol-m"
   },
   {
     "brand_name": "Prevacid",
@@ -7380,11 +6130,6 @@
     "slug": "proctocort"
   },
   {
-    "brand_name": "PROFEN IB",
-    "generic_name": "",
-    "slug": "profen-ib"
-  },
-  {
     "brand_name": "PROFEN IB CHILDRENS",
     "generic_name": "",
     "slug": "profen-ib-childrens"
@@ -7445,11 +6190,6 @@
     "slug": "prozac"
   },
   {
-    "brand_name": "PSALMONICA HAIR GROWTH SERUM",
-    "generic_name": "",
-    "slug": "psalmonica-hair-growth-serum"
-  },
-  {
     "brand_name": "PUBLIX FAST RELIEF EFFERVESCENT - ORIGINAL FLAVOR",
     "generic_name": "",
     "slug": "publix-fast-relief-effervescent-original-flavor"
@@ -7463,16 +6203,6 @@
     "brand_name": "PULMICORT FLEXHALER",
     "generic_name": "",
     "slug": "pulmicort-flexhaler"
-  },
-  {
-    "brand_name": "PUREGEN LABS ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "puregen-labs-acetaminophen"
-  },
-  {
-    "brand_name": "QAMZOVA",
-    "generic_name": "",
-    "slug": "qamzova"
   },
   {
     "brand_name": "QBRELIS",
@@ -7490,11 +6220,6 @@
     "slug": "quality-choice-effervescent-pain-relief"
   },
   {
-    "brand_name": "QUALITY CHOICE SALINE",
-    "generic_name": "",
-    "slug": "quality-choice-saline"
-  },
-  {
     "brand_name": "QUETIAPINE",
     "generic_name": "",
     "slug": "quetiapine"
@@ -7508,11 +6233,6 @@
     "brand_name": "QUETIAPINE FUMARATE",
     "generic_name": "",
     "slug": "quetiapine-fumarate"
-  },
-  {
-    "brand_name": "QUIOFIC",
-    "generic_name": "",
-    "slug": "quiofic"
   },
   {
     "brand_name": "Qvar",
@@ -7560,19 +6280,9 @@
     "slug": "rapidol-500-extra-strength"
   },
   {
-    "brand_name": "RAPIDOL ASPIRIN",
-    "generic_name": "",
-    "slug": "rapidol-aspirin"
-  },
-  {
     "brand_name": "RASUVO",
     "generic_name": "",
     "slug": "rasuvo"
-  },
-  {
-    "brand_name": "REAL SUMMER",
-    "generic_name": "",
-    "slug": "real-summer"
   },
   {
     "brand_name": "REBIF",
@@ -7595,24 +6305,9 @@
     "slug": "regenivade-hair-growth-foam"
   },
   {
-    "brand_name": "REGENPURE PRECISION",
-    "generic_name": "",
-    "slug": "regenpure-precision"
-  },
-  {
     "brand_name": "REGLAN",
     "generic_name": "",
     "slug": "reglan"
-  },
-  {
-    "brand_name": "REGOXIDINE (FOR MEN)",
-    "generic_name": "",
-    "slug": "regoxidine-for-men"
-  },
-  {
-    "brand_name": "REGOXIDINE (FOR WOMEN)",
-    "generic_name": "",
-    "slug": "regoxidine-for-women"
   },
   {
     "brand_name": "REGROWTHX HAIR REGROWTH TREATMENT MINOXIDIL",
@@ -7650,11 +6345,6 @@
     "slug": "regular-strength-pain-reliever"
   },
   {
-    "brand_name": "RELGAABI",
-    "generic_name": "",
-    "slug": "relgaabi"
-  },
-  {
     "brand_name": "Remeron",
     "generic_name": "mirtazapine",
     "slug": "remeron"
@@ -7688,16 +6378,6 @@
     "brand_name": "REPATHA",
     "generic_name": "",
     "slug": "repatha"
-  },
-  {
-    "brand_name": "RESFRIOL-ITO CHILDREN",
-    "generic_name": "",
-    "slug": "resfriol-ito-children"
-  },
-  {
-    "brand_name": "RESP EASE",
-    "generic_name": "",
-    "slug": "resp-ease"
   },
   {
     "brand_name": "Restasis",
@@ -7740,11 +6420,6 @@
     "slug": "revlimid"
   },
   {
-    "brand_name": "REXALL IBUPROFEN",
-    "generic_name": "",
-    "slug": "rexall-ibuprofen"
-  },
-  {
     "brand_name": "REXALL PAIN RELIEF",
     "generic_name": "",
     "slug": "rexall-pain-relief"
@@ -7753,11 +6428,6 @@
     "brand_name": "Rhinocort",
     "generic_name": "budesonide",
     "slug": "rhinocort"
-  },
-  {
-    "brand_name": "RHINOMEL MANUKA",
-    "generic_name": "",
-    "slug": "rhinomel-manuka"
   },
   {
     "brand_name": "RIBAVIRIN",
@@ -7778,11 +6448,6 @@
     "brand_name": "RIGHT REMEDIES PAIN RELIEF EXTRA STRENGTH CAPLET",
     "generic_name": "",
     "slug": "right-remedies-pain-relief-extra-strength-caplet"
-  },
-  {
-    "brand_name": "RINGL",
-    "generic_name": "",
-    "slug": "ringl"
   },
   {
     "brand_name": "RINVOQ",
@@ -7820,11 +6485,6 @@
     "slug": "rituxan"
   },
   {
-    "brand_name": "ROBITUSSIN DIRECT SORE THROAT PAIN",
-    "generic_name": "",
-    "slug": "robitussin-direct-sore-throat-pain"
-  },
-  {
     "brand_name": "ROLAIDS POWER CHEWS 1000",
     "generic_name": "",
     "slug": "rolaids-power-chews-1000"
@@ -7855,29 +6515,14 @@
     "slug": "rozerem"
   },
   {
-    "brand_name": "RUGBY ASPIRIN",
-    "generic_name": "",
-    "slug": "rugby-aspirin"
-  },
-  {
     "brand_name": "RUGBY CHILDRENS ACETAMINOPHEN",
     "generic_name": "",
     "slug": "rugby-childrens-acetaminophen"
   },
   {
-    "brand_name": "RUGBY FAMOTIDINE",
-    "generic_name": "",
-    "slug": "rugby-famotidine"
-  },
-  {
     "brand_name": "RUGBY INFANTS ACETAMINOPHEN",
     "generic_name": "",
     "slug": "rugby-infants-acetaminophen"
-  },
-  {
-    "brand_name": "RUGBY OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "rugby-omeprazole"
   },
   {
     "brand_name": "RUGBY REGULAR STRENGTH ACETAMINOPHEN",
@@ -7893,16 +6538,6 @@
     "brand_name": "RYKINDO EXTENDED-RELEASE MICROSPHERES",
     "generic_name": "",
     "slug": "rykindo-extended-release-microspheres"
-  },
-  {
-    "brand_name": "SAFETYNADOL",
-    "generic_name": "",
-    "slug": "safetynadol"
-  },
-  {
-    "brand_name": "SALINE CLEANING",
-    "generic_name": "",
-    "slug": "saline-cleaning"
   },
   {
     "brand_name": "SANAR NATURALS CHILDRENS PAIN RELIEVER",
@@ -7990,11 +6625,6 @@
     "slug": "signature-care-childrens-pain-relief"
   },
   {
-    "brand_name": "SIGNATURE CARE ESOMEPRAZOLE MAGNESIUM",
-    "generic_name": "",
-    "slug": "signature-care-esomeprazole-magnesium"
-  },
-  {
     "brand_name": "SIGNATURE CARE HAIR REGROWTH TREATMENT",
     "generic_name": "",
     "slug": "signature-care-hair-regrowth-treatment"
@@ -8005,11 +6635,6 @@
     "slug": "signature-care-hair-regrowth-treatment-for-men"
   },
   {
-    "brand_name": "SIGNATURE CARE IBUPROFEN",
-    "generic_name": "",
-    "slug": "signature-care-ibuprofen"
-  },
-  {
     "brand_name": "SIGNATURE CARE INFANTS IBUPROFEN",
     "generic_name": "",
     "slug": "signature-care-infants-ibuprofen"
@@ -8018,11 +6643,6 @@
     "brand_name": "SIGNATURE CARE INFANTS PAIN RELIEF",
     "generic_name": "",
     "slug": "signature-care-infants-pain-relief"
-  },
-  {
-    "brand_name": "SIGNATURE CARE OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "signature-care-omeprazole"
   },
   {
     "brand_name": "SIGNATURE CARE PAIN RELIEF",
@@ -8060,16 +6680,6 @@
     "slug": "singulair"
   },
   {
-    "brand_name": "SINUCLEANSE NASAL DRIP",
-    "generic_name": "",
-    "slug": "sinucleanse-nasal-drip"
-  },
-  {
-    "brand_name": "SINUCLEANSE STERILE SALINE MIST",
-    "generic_name": "",
-    "slug": "sinucleanse-sterile-saline-mist"
-  },
-  {
     "brand_name": "SINUCLEANSE STERILE SALINE MIST DAILY CARE",
     "generic_name": "",
     "slug": "sinucleanse-sterile-saline-mist-daily-care"
@@ -8088,11 +6698,6 @@
     "brand_name": "SODIUM CHLORIDE HYPERTONICITY",
     "generic_name": "",
     "slug": "sodium-chloride-hypertonicity"
-  },
-  {
-    "brand_name": "SODIUM CHLORIDE HYPERTONICITY OPHTHALMIC",
-    "generic_name": "",
-    "slug": "sodium-chloride-hypertonicity-ophthalmic"
   },
   {
     "brand_name": "SODIUM CHLORIDE NORMAL SALT",
@@ -8115,11 +6720,6 @@
     "slug": "soliris"
   },
   {
-    "brand_name": "SOLUCION CAPILAR CRECEPELO",
-    "generic_name": "",
-    "slug": "solucion-capilar-crecepelo"
-  },
-  {
     "brand_name": "Soma",
     "generic_name": "carisoprodol",
     "slug": "soma"
@@ -8128,16 +6728,6 @@
     "brand_name": "SOOTHE CHILDRENS",
     "generic_name": "",
     "slug": "soothe-childrens"
-  },
-  {
-    "brand_name": "SORE THROAT 911",
-    "generic_name": "",
-    "slug": "sore-throat-911"
-  },
-  {
-    "brand_name": "SOTI HAIR GROWTH SERUM",
-    "generic_name": "",
-    "slug": "soti-hair-growth-serum"
   },
   {
     "brand_name": "SOVALDI",
@@ -8210,19 +6800,9 @@
     "slug": "sterile-saline-kids-mist-sinucleanse-breathe"
   },
   {
-    "brand_name": "STERILE SALINE MIST MEIJER",
-    "generic_name": "",
-    "slug": "sterile-saline-mist-meijer"
-  },
-  {
     "brand_name": "STERILE SALINE MIST RITE AID",
     "generic_name": "",
     "slug": "sterile-saline-mist-rite-aid"
-  },
-  {
-    "brand_name": "STERILE SALINE MIST WALGREENS",
-    "generic_name": "",
-    "slug": "sterile-saline-mist-walgreens"
   },
   {
     "brand_name": "Strattera",
@@ -8248,11 +6828,6 @@
     "brand_name": "SULFASALAZINE",
     "generic_name": "",
     "slug": "sulfasalazine"
-  },
-  {
-    "brand_name": "SUNMARK ASPIRIN",
-    "generic_name": "",
-    "slug": "sunmark-aspirin"
   },
   {
     "brand_name": "SUTENT",
@@ -8315,16 +6890,6 @@
     "slug": "temovate"
   },
   {
-    "brand_name": "TEMP X",
-    "generic_name": "",
-    "slug": "temp-x"
-  },
-  {
-    "brand_name": "TEMPERAL-ITO",
-    "generic_name": "",
-    "slug": "temperal-ito"
-  },
-  {
     "brand_name": "Tenormin",
     "generic_name": "atenolol",
     "slug": "tenormin"
@@ -8333,11 +6898,6 @@
     "brand_name": "THALOMID",
     "generic_name": "",
     "slug": "thalomid"
-  },
-  {
-    "brand_name": "THOMPSON ASPIRIN",
-    "generic_name": "",
-    "slug": "thompson-aspirin"
   },
   {
     "brand_name": "THOMPSON EXTRA STRENGTH NON-ASPIRIN",
@@ -8395,11 +6955,6 @@
     "slug": "topcare-allergy-relief"
   },
   {
-    "brand_name": "TOPCARE ASPIRIN",
-    "generic_name": "",
-    "slug": "topcare-aspirin"
-  },
-  {
     "brand_name": "TOPCARE CHILDRENS ALLERGY",
     "generic_name": "",
     "slug": "topcare-childrens-allergy"
@@ -8420,11 +6975,6 @@
     "slug": "topcare-effervescent-pain-relief"
   },
   {
-    "brand_name": "TOPCARE IBUPROFEN",
-    "generic_name": "",
-    "slug": "topcare-ibuprofen"
-  },
-  {
     "brand_name": "TOPCARE INFANTS IBUPROFEN",
     "generic_name": "",
     "slug": "topcare-infants-ibuprofen"
@@ -8433,21 +6983,6 @@
     "brand_name": "TOPCARE INFANTS PAIN AND FEVER",
     "generic_name": "",
     "slug": "topcare-infants-pain-and-fever"
-  },
-  {
-    "brand_name": "TOPCARE LANSOPRAZOLE",
-    "generic_name": "",
-    "slug": "topcare-lansoprazole"
-  },
-  {
-    "brand_name": "TOPCARE OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "topcare-omeprazole"
-  },
-  {
-    "brand_name": "TOPCARE OMEPRAZOLE DELAYED RELEASE",
-    "generic_name": "",
-    "slug": "topcare-omeprazole-delayed-release"
   },
   {
     "brand_name": "TOPCARE PAIN AND FEVER",
@@ -8483,11 +7018,6 @@
     "brand_name": "TRAMADOL HYDROCHLORIDE EXTENDED-RELEASE",
     "generic_name": "",
     "slug": "tramadol-hydrochloride-extended-release"
-  },
-  {
-    "brand_name": "TRAVEL SAVVY ASPIRIN",
-    "generic_name": "",
-    "slug": "travel-savvy-aspirin"
   },
   {
     "brand_name": "TRELEGY ELLIPTA",
@@ -8533,21 +7063,6 @@
     "brand_name": "TUMS",
     "generic_name": "",
     "slug": "tums"
-  },
-  {
-    "brand_name": "TUMS CHEWY BITES PEPPERMINT",
-    "generic_name": "",
-    "slug": "tums-chewy-bites-peppermint"
-  },
-  {
-    "brand_name": "TUMS CHEWY BITES RASPBERRY LEMONADE",
-    "generic_name": "",
-    "slug": "tums-chewy-bites-raspberry-lemonade"
-  },
-  {
-    "brand_name": "TUMS CHEWY BITES VANILLA AND MINT",
-    "generic_name": "",
-    "slug": "tums-chewy-bites-vanilla-and-mint"
   },
   {
     "brand_name": "TUMS CHEWY DELIGHTS",
@@ -8600,11 +7115,6 @@
     "slug": "tylenol-8-hr-arthritis-pain"
   },
   {
-    "brand_name": "TYLENOL 8 HR MUSCLE ACHES AND PAIN",
-    "generic_name": "",
-    "slug": "tylenol-8-hr-muscle-aches-and-pain"
-  },
-  {
     "brand_name": "TYLENOL 8HR",
     "generic_name": "",
     "slug": "tylenol-8hr"
@@ -8623,16 +7133,6 @@
     "brand_name": "TYLENOL EXTRA STRENGTH CAPLET",
     "generic_name": "",
     "slug": "tylenol-extra-strength-caplet"
-  },
-  {
-    "brand_name": "TYLENOL EXTRA STRENGTH, CVP HEALTH",
-    "generic_name": "",
-    "slug": "tylenol-extra-strength-cvp-health"
-  },
-  {
-    "brand_name": "TYLENOL EXTRA STRENGTH, TRAVEL BASIX",
-    "generic_name": "",
-    "slug": "tylenol-extra-strength-travel-basix"
   },
   {
     "brand_name": "TYLENOL FOR CHILDREN PLUS ADULTS",
@@ -8665,16 +7165,6 @@
     "slug": "uline-acetaminophen-extra-strength"
   },
   {
-    "brand_name": "ULINE ASPIRIN",
-    "generic_name": "",
-    "slug": "uline-aspirin"
-  },
-  {
-    "brand_name": "ULINE IBUPROFEN",
-    "generic_name": "",
-    "slug": "uline-ibuprofen"
-  },
-  {
     "brand_name": "Uloric",
     "generic_name": "febuxostat",
     "slug": "uloric"
@@ -8690,19 +7180,9 @@
     "slug": "ultra-strength-antacid"
   },
   {
-    "brand_name": "UNISHIELD ASPIRIN",
-    "generic_name": "",
-    "slug": "unishield-aspirin"
-  },
-  {
     "brand_name": "UNISHIELD EXTRA STRENGTH NON ASPIRIN",
     "generic_name": "",
     "slug": "unishield-extra-strength-non-aspirin"
-  },
-  {
-    "brand_name": "UNISHIELD IBUPROFEN",
-    "generic_name": "",
-    "slug": "unishield-ibuprofen"
   },
   {
     "brand_name": "UNITHROID",
@@ -8750,11 +7230,6 @@
     "slug": "up-and-up-esomeprazole-magnesium"
   },
   {
-    "brand_name": "UP AND UP FAMOTIDINE",
-    "generic_name": "",
-    "slug": "up-and-up-famotidine"
-  },
-  {
     "brand_name": "UP AND UP HAIR REGROWTH TREATMENT FOR MEN",
     "generic_name": "",
     "slug": "up-and-up-hair-regrowth-treatment-for-men"
@@ -8765,24 +7240,9 @@
     "slug": "up-and-up-hair-regrowth-treatment-for-women"
   },
   {
-    "brand_name": "UP AND UP IBUPROFEN",
-    "generic_name": "",
-    "slug": "up-and-up-ibuprofen"
-  },
-  {
     "brand_name": "UP AND UP INFANTS ACETAMINOPHEN",
     "generic_name": "",
     "slug": "up-and-up-infants-acetaminophen"
-  },
-  {
-    "brand_name": "UP AND UP LANSOPRAZOLE",
-    "generic_name": "",
-    "slug": "up-and-up-lansoprazole"
-  },
-  {
-    "brand_name": "UP AND UP OMEPRAZOLE",
-    "generic_name": "",
-    "slug": "up-and-up-omeprazole"
   },
   {
     "brand_name": "UZEDY",
@@ -8820,11 +7280,6 @@
     "slug": "valtrex"
   },
   {
-    "brand_name": "VALUMEDS IBUPROFEN",
-    "generic_name": "",
-    "slug": "valumeds-ibuprofen"
-  },
-  {
     "brand_name": "VANCOMYCIN",
     "generic_name": "",
     "slug": "vancomycin"
@@ -8845,11 +7300,6 @@
     "slug": "veltassa"
   },
   {
-    "brand_name": "VENANOCI MINOXIDIL",
-    "generic_name": "",
-    "slug": "venanoci-minoxidil"
-  },
-  {
     "brand_name": "VENCLEXTA",
     "generic_name": "",
     "slug": "venclexta"
@@ -8865,19 +7315,9 @@
     "slug": "venlafaxine"
   },
   {
-    "brand_name": "VENLAFAXINE HYDROCHLORIDE",
-    "generic_name": "",
-    "slug": "venlafaxine-hydrochloride"
-  },
-  {
     "brand_name": "VENTOLIN HFA",
     "generic_name": "",
     "slug": "ventolin-hfa"
-  },
-  {
-    "brand_name": "VENTRIXYL",
-    "generic_name": "",
-    "slug": "ventrixyl"
   },
   {
     "brand_name": "VEPESID",
@@ -8955,26 +7395,6 @@
     "slug": "vitamin-d"
   },
   {
-    "brand_name": "VITAPIRENA",
-    "generic_name": "",
-    "slug": "vitapirena"
-  },
-  {
-    "brand_name": "VITRAMYN",
-    "generic_name": "",
-    "slug": "vitramyn"
-  },
-  {
-    "brand_name": "VITRANOL",
-    "generic_name": "",
-    "slug": "vitranol"
-  },
-  {
-    "brand_name": "VITREXATE",
-    "generic_name": "",
-    "slug": "vitrexate"
-  },
-  {
     "brand_name": "VITREXYL",
     "generic_name": "",
     "slug": "vitrexyl"
@@ -9015,11 +7435,6 @@
     "slug": "vykoura"
   },
   {
-    "brand_name": "VYSCOXA",
-    "generic_name": "",
-    "slug": "vyscoxa"
-  },
-  {
     "brand_name": "VYTORIN",
     "generic_name": "",
     "slug": "vytorin"
@@ -9040,11 +7455,6 @@
     "slug": "walgreenchildrens-pain-fever"
   },
   {
-    "brand_name": "WALGREENS",
-    "generic_name": "",
-    "slug": "walgreens"
-  },
-  {
     "brand_name": "WALGREENS EXTRA STRENGTH SMOOTH ANTACID",
     "generic_name": "",
     "slug": "walgreens-extra-strength-smooth-antacid"
@@ -9063,11 +7473,6 @@
     "brand_name": "Wegovy",
     "generic_name": "semaglutide",
     "slug": "wegovy"
-  },
-  {
-    "brand_name": "WELBY ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "welby-acetaminophen"
   },
   {
     "brand_name": "WELBY ALLERGY RELIEF",
@@ -9110,11 +7515,6 @@
     "slug": "winco-foods-saline-nasal-relief"
   },
   {
-    "brand_name": "WISPIRIN",
-    "generic_name": "",
-    "slug": "wispirin"
-  },
-  {
     "brand_name": "WOMENS MINOGROW HAIR REGROWTH TREATMENT MINOXIDIL",
     "generic_name": "",
     "slug": "womens-minogrow-hair-regrowth-treatment-minoxidil"
@@ -9128,11 +7528,6 @@
     "brand_name": "WOMENS ROGAINE UNSCENTED",
     "generic_name": "",
     "slug": "womens-rogaine-unscented"
-  },
-  {
-    "brand_name": "WORAFY GENTLE EYE WASH",
-    "generic_name": "",
-    "slug": "worafy-gentle-eye-wash"
   },
   {
     "brand_name": "XALATAN",
@@ -9185,11 +7580,6 @@
     "slug": "xgeva"
   },
   {
-    "brand_name": "XIFYRM",
-    "generic_name": "",
-    "slug": "xifyrm"
-  },
-  {
     "brand_name": "XOLAIR",
     "generic_name": "",
     "slug": "xolair"
@@ -9200,19 +7590,9 @@
     "slug": "xopenex"
   },
   {
-    "brand_name": "XPECT ACETAMINOPHEN",
-    "generic_name": "",
-    "slug": "xpect-acetaminophen"
-  },
-  {
     "brand_name": "XPECT CHEWABLE ASPIRIN",
     "generic_name": "",
     "slug": "xpect-chewable-aspirin"
-  },
-  {
-    "brand_name": "XPECT IBUPROFEN",
-    "generic_name": "",
-    "slug": "xpect-ibuprofen"
   },
   {
     "brand_name": "XTAMPZA ER",
@@ -9253,11 +7633,6 @@
     "brand_name": "ZANTAC 360",
     "generic_name": "",
     "slug": "zantac-360"
-  },
-  {
-    "brand_name": "ZANTAC 360 COOL MINT",
-    "generic_name": "",
-    "slug": "zantac-360-cool-mint"
   },
   {
     "brand_name": "ZEMPLAR",
@@ -9315,11 +7690,6 @@
     "slug": "zovirax"
   },
   {
-    "brand_name": "ZYBIC",
-    "generic_name": "",
-    "slug": "zybic"
-  },
-  {
     "brand_name": "Zyloprim",
     "generic_name": "allopurinol",
     "slug": "zyloprim"
@@ -9348,5 +7718,15 @@
     "brand_name": "Zyrtec",
     "generic_name": "cetirizine hydrochloride",
     "slug": "zyrtec"
+  },
+  {
+    "brand_name": "LORATADINE",
+    "generic_name": "loratadine",
+    "slug": "loratadine"
+  },
+  {
+    "brand_name": "ROGAINE",
+    "generic_name": "minoxidil",
+    "slug": "rogaine"
   }
 ]
