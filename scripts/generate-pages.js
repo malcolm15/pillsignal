@@ -34,8 +34,9 @@ if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 
-// Read template once at startup — fail early if it's missing
-const TEMPLATE = readFileSync(join(ROOT, 'templates', 'drug-page.html'), 'utf8');
+// Read templates once at startup — fail early if missing
+const TEMPLATE          = readFileSync(join(ROOT, 'templates', 'drug-page.html'), 'utf8');
+const HOMEPAGE_TEMPLATE = readFileSync(join(ROOT, 'templates', 'homepage.html'),  'utf8');
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -588,6 +589,60 @@ ${sections}
   console.log(`  drugs/index.html — ${total} drugs across ${usedKeys.length} letter sections`);
 }
 
+function formatReportTotal(n) {
+  if (n >= 1_000_000_000) return `${Math.floor(n / 1_000_000_000)}B+`;
+  if (n >= 1_000_000)     return `${Math.floor(n / 1_000_000)}M+`;
+  if (n >= 1_000)         return `${Math.floor(n / 1_000)}K+`;
+  return n.toLocaleString('en-US');
+}
+
+async function fetchYearRange() {
+  const [minRes, maxRes] = await Promise.all([
+    supabase.from('trends').select('year').order('year', { ascending: true  }).limit(1),
+    supabase.from('trends').select('year').order('year', { ascending: false }).limit(1),
+  ]);
+  const minYear = minRes.data?.[0]?.year ?? new Date().getFullYear();
+  const maxYear = maxRes.data?.[0]?.year ?? new Date().getFullYear();
+  return { minYear, maxYear };
+}
+
+function writeHomepage(drugs, minYear, maxYear) {
+  const totalReports = drugs.reduce((s, d) => s + (d.total_reports || 0), 0);
+  const drugCount    = drugs.length.toLocaleString('en-US');
+  const reportFmt    = formatReportTotal(totalReports);
+  const coverage     = `${minYear}–${maxYear}`;
+  const lastUpdated  = new Date().toLocaleDateString('en-US', {
+    month: 'long', day: 'numeric', year: 'numeric',
+  });
+
+  const statsBarHtml =
+`  <!-- ─── Stats bar ────────────────────────────────────────────────────────── -->
+  <div class="stats-bar" aria-label="PillSignal dataset summary">
+    <div class="inner">
+      <div class="stat-item">
+        <div class="stat-value">${reportFmt}</div>
+        <div class="stat-label">Total FAERS Reports</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">${drugCount}</div>
+        <div class="stat-label">Drugs Indexed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">${coverage}</div>
+        <div class="stat-label">Data Coverage</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">${lastUpdated}</div>
+        <div class="stat-label">Last Updated</div>
+      </div>
+    </div>
+  </div>`;
+
+  const html = HOMEPAGE_TEMPLATE.replace('{{STATS_BAR}}', statsBarHtml);
+  writeFileSync(join(DOCS_DIR, 'index.html'), html, 'utf8');
+  console.log(`  index.html   — stats: ${reportFmt} reports, ${drugCount} drugs, ${coverage}`);
+}
+
 function writeRobotsTxt() {
   writeFileSync(
     join(DOCS_DIR, 'robots.txt'),
@@ -705,10 +760,13 @@ async function main() {
 
   console.log(`  ${generated}/${drugsWithData.length} pages written\n`);
 
+  const { minYear, maxYear } = await fetchYearRange();
+
   writeBrowsePage(generatedDrugs);
   writeSitemap(generatedDrugs);
   writeRobotsTxt();
   writeDrugIndex(generatedDrugs);
+  writeHomepage(generatedDrugs, minYear, maxYear);
 
   console.log(`\nStage 2 complete.`);
   console.log(`  Generated : ${generated} pages`);
