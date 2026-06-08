@@ -4,7 +4,7 @@
 
 PillSignal (pillsignal.com) is a consumer-facing website that makes FDA adverse event data accessible and understandable to regular people. When someone searches for a medication, they can see what real people have actually reported to the FDA — side effects, reactions, outcomes, demographics, and trends over time — presented in clean visualizations with plain-English context.
 
-The data source is the OpenFDA FAERS (FDA Adverse Event Reporting System) API. PillSignal does not use drug label data (which is what WebMD, Drugs.com, and RxList already cover). PillSignal surfaces real-world reported events, which is a fundamentally different and underserved data set.
+The data source is the OpenFDA AEMS/FAERS (FDA's Adverse Event Monitoring System, formerly the FDA Adverse Event Reporting System) API. PillSignal does not use drug label data (which is what WebMD, Drugs.com, and RxList already cover). PillSignal surfaces real-world reported events, which is a fundamentally different and underserved data set.
 
 The goal is to become a top search result for queries like "[drug name] side effects reported," "[drug name] reactions," and "[drug name] adverse events" and monetize through Google AdSense display advertising.
 
@@ -12,7 +12,7 @@ The goal is to become a top search result for queries like "[drug name] side eff
 
 These are non-negotiable and must be followed in every piece of code, copy, and content generated for this project:
 
-1. **Every page** must include this disclaimer (or a close variation): *"This data reflects voluntary reports submitted to the FDA's Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors."*
+1. **Every page** must include this disclaimer (or a close variation): *"This data reflects voluntary reports submitted to the FDA's Adverse Event Monitoring System (AEMS), formerly the FDA Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors."*
 2. **Never editorialize on drug data pages.** Drug pages present numbers only — no voice, no interpretation, no commentary. The data speaks for itself. In `/guides/` editorial content, an original first-hand voice is encouraged — but only ever anchored to factual findings. "The most-reported reaction was X" is a finding and is allowed. The governing line is **judgment vs. finding**: findings, data analysis, and an editorial voice built on them are permitted in guides; but safety judgments ("dangerous," "risky," "safe," "concerning"), comparative rankings ("most dangerous"), and causation language ("caused by," "side effect of") remain strictly forbidden everywhere, including in editorial content.
 3. **Never rank drugs** as "most dangerous," "worst side effects," or any comparative safety framing.
 4. **Never imply causation.** Use language like "reported with," "associated reports," "events reported by patients taking," not "caused by" or "side effects of."
@@ -22,7 +22,7 @@ These are non-negotiable and must be followed in every piece of code, copy, and 
 
 ## Tech Stack
 
-- **Data source:** OpenFDA FAERS API (https://open.fda.gov/apis/drug/event/)
+- **Data source:** OpenFDA AEMS/FAERS API (https://open.fda.gov/apis/drug/event/) — FAERS became AEMS in March 2026; see Terminology section
 - **Database:** Supabase (Postgres) — stores processed/aggregated data pulled from OpenFDA
 - **Build scripts:** Node.js — two-stage pipeline (fetch → database, database → static HTML)
 - **Frontend:** Vanilla HTML, CSS, JavaScript — no frameworks, no bundler, no build tools for the frontend
@@ -159,6 +159,21 @@ SUPABASE_SERVICE_KEY=    # Supabase secret key (sb_secret_..., never expose clie
 - **Dark mode from the start.** Use CSS custom properties and `prefers-color-scheme` media query, with a manual toggle and localStorage persistence.
 - **Accessibility matters.** Semantic HTML, proper heading hierarchy, alt text, ARIA labels where needed, sufficient color contrast.
 - **Security basics.** Never commit secrets. Use .env for all keys. Parameterized queries for any database interaction. No user-generated content in the MVP.
+
+## Terminology: FAERS / AEMS
+
+In March 2026, the FDA replaced FAERS (FDA Adverse Event Reporting System) with AEMS (Adverse Event Monitoring System). The underlying data and voluntary reporting process are unchanged; only the system name and infrastructure changed.
+
+**Rules for any new copy or code:**
+
+- **Establish the relationship once per page** using the two shared strings below — the disclaimer/notice and the footer data-source line. After those fire, do not repeat "(formerly FAERS)" anywhere else on the same page.
+- **Shared disclaimer/notice:** "This data reflects voluntary reports submitted to the FDA's Adverse Event Monitoring System (AEMS), formerly the FDA Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors." Link: `https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems` — link text "Learn more about AEMS."
+- **Shared footer data-source line:** "Data sourced from the [FDA's Adverse Event Monitoring System (AEMS)](https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems), formerly FAERS, via OpenFDA."
+- **Historical/data-accurate references:** Keep FAERS when accurately naming the legacy system or the historical data (e.g., "FAERS reports from 2003–2026," "the FAERS database"). These references are correct as-is.
+- **Drug page data captions:** Keep FAERS in section-note text (e.g., "in the FAERS database," "FAERS reports") — it accurately describes the data we hold and preserves the search term.
+- **SEO elements:** Keep FAERS in titles, meta descriptions, OG/Twitter tags, and JSON-LD — it is the established search term. AEMS is new and has lower search volume.
+- **External FDA links:** Use `https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems` (the old FAERS surveillance page 301-redirects to AEMS). Always open in new tab with `rel="noopener noreferrer"`.
+- **OpenFDA API endpoints** (`api.fda.gov/drug/event.json`, `open.fda.gov/apis/drug/event/`): leave as-is — they are stable working endpoints, not branded URLs.
 
 ## GA4 Event Schema
 

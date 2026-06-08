@@ -30,4 +30,4 @@ Under active development. Not yet live.
 
 ## Data Source
 
-All data is sourced from the [FDA Adverse Event Reporting System (FAERS)](https://www.fda.gov/drugs/questions-and-answers-fdas-adverse-event-reporting-system-faers/fda-adverse-event-reporting-system-faers-public-dashboard) via the [OpenFDA API](https://open.fda.gov/). PillSignal is not affiliated with the FDA.
+All data is sourced from the [FDA's Adverse Event Monitoring System (AEMS)](https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems), formerly FAERS, via the [OpenFDA API](https://open.fda.gov/). PillSignal is not affiliated with the FDA.
