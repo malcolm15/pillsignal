@@ -188,6 +188,20 @@ All `gtag('event', ...)` calls use a shared generic param naming convention. Do 
 | `dark_mode_toggle` | Any page theme toggle | `new_theme` |
 | `browse_letter_click` | Browse A–Z page letter nav | `letter` |
 
+## Data Refresh Procedure
+
+Run this checklist in order every time the dataset is refreshed. Deviating from the order can create drift between the list, the database, and the live pages.
+
+1. **Verify the list is canonical.** `scripts/drug-list.json` must contain exactly the drugs you want live — no more, no less. The list and Supabase are the same set after reconciliation (June 2026). Before adding new drugs, add them to `drug-list.json`. Removed slugs go to `scripts/drug-list-removed.json` for reference.
+
+2. **Fetch.** `node scripts/fetch-data.js` — queries OpenFDA for every entry in `drug-list.json` and upserts results into Supabase. Watch for `⚠ GENERIC FALLBACK` warnings in the output; any drug that matches only via `generic_name` will produce a duplicate-content page and should be removed from `drug-list.json` unless it is a true canonical generic (ibuprofen, acetaminophen, etc.). Fetch writes `scripts/fetch-metadata.json` automatically with the timestamp.
+
+3. **Generate.** `node scripts/generate-pages.js` — reads Supabase and writes all static HTML to `docs/`. Reads `scripts/fetch-metadata.json` to inject "Data last updated: [Month YYYY]" into every drug page and set `dateModified` in JSON-LD. Run immediately after fetch.
+
+4. **Re-pull aggregate stats for guides.** After a refresh, the figures in `docs/guides/what-fda-drug-reports-show/index.html` and the homepage stats bar will be stale. Run `node scripts/aggregate-stats.js` to get fresh totals and update the guide manually. Key figures to check: total reports, Drug Ineffective count and %, sex split, age distribution, outcome distribution, and per-year trend data.
+
+5. **Commit and push.** Stage and commit all changes under `docs/`, `scripts/drug-list.json`, `scripts/drug-list-removed.json`, and `scripts/fetch-metadata.json`. Never commit `.env`. Push to `main`; GitHub Pages serves automatically.
+
 ## Deployment
 
 - Commit and push to `main` branch

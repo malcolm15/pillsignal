@@ -14,7 +14,7 @@
 
 import 'dotenv/config';
 import { createClient }                        from '@supabase/supabase-js';
-import { readFileSync, writeFileSync, mkdirSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { fileURLToPath }                       from 'url';
 import { dirname, join }                       from 'path';
 
@@ -37,6 +37,22 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 // Read templates once at startup — fail early if missing
 const TEMPLATE          = readFileSync(join(ROOT, 'templates', 'drug-page.html'), 'utf8');
 const HOMEPAGE_TEMPLATE = readFileSync(join(ROOT, 'templates', 'homepage.html'),  'utf8');
+
+// ─── Fetch metadata ────────────────────────────────────────────────────────────
+// Written by fetch-data.js on every run. Falls back to today if not yet created.
+const METADATA_PATH = join(__dirname, 'fetch-metadata.json');
+let DATA_LAST_UPDATED = 'Unknown';
+let DATA_DATE_ISO = new Date().toISOString().slice(0, 10);
+if (existsSync(METADATA_PATH)) {
+  try {
+    const meta = JSON.parse(readFileSync(METADATA_PATH, 'utf8'));
+    if (meta.lastFetched) {
+      const d = new Date(meta.lastFetched);
+      DATA_LAST_UPDATED = d.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+      DATA_DATE_ISO = d.toISOString().slice(0, 10);
+    }
+  } catch {}
+}
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -194,6 +210,7 @@ function buildJsonLd(drug, canonicalUrl, description) {
     name:        `${drug.brand_name} (${drug.generic_name}) — FDA Adverse Event Reports`,
     description,
     url:         canonicalUrl,
+    dateModified: DATA_DATE_ISO,
     creator: {
       '@type': 'Organization',
       name:    'PillSignal',
@@ -263,7 +280,8 @@ function renderPage(drug, adverseEvents, demographics, outcomes, trends, related
     .replaceAll('{{OUTCOMES_JSON}}',        safeJson(outcomesData))
     .replaceAll('{{TRENDS_JSON}}',          safeJson(trendsData))
     .replaceAll('{{RELATED_DRUGS_HTML}}',   renderRelatedDrugsHtml(relatedDrugs))
-    .replaceAll('{{SHARE_BUTTONS}}',        renderShareButtons(brandName, totalReports, canonicalUrl));
+    .replaceAll('{{SHARE_BUTTONS}}',        renderShareButtons(brandName, totalReports, canonicalUrl))
+    .replaceAll('{{DATA_LAST_UPDATED}}',    escapeHtml(DATA_LAST_UPDATED));
 }
 
 // ─── File writers ─────────────────────────────────────────────────────────────

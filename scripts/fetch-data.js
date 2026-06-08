@@ -14,7 +14,7 @@
 
 import 'dotenv/config';
 import { createClient } from '@supabase/supabase-js';
-import { readFileSync }  from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -433,6 +433,11 @@ async function main() {
       console.error(`  [${i + 1}/${drugs.length}] ERROR — ${drugs[i].brand_name}: ${err.message}`);
     }
   }
+
+  writeFileSync(
+    join(__dirname, 'fetch-metadata.json'),
+    JSON.stringify({ lastFetched: new Date().toISOString(), drugCount: drugs.length }, null, 2)
+  );
 
   console.log('\nStage 1 complete.');
   console.log('Next: node scripts/generate-pages.js\n');
