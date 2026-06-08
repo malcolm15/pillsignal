@@ -167,7 +167,7 @@ function renderShareButtons(brandName, totalReports, canonicalUrl) {
 function renderRelatedDrugsHtml(relatedDrugs) {
   if (!relatedDrugs || !relatedDrugs.length) return '';
   const items = relatedDrugs.map(d =>
-    `    <li><a href="/drugs/${d.slug}">${escapeHtml(d.brand_name)}</a>` +
+    `    <li><a href="/drugs/${d.slug}">${escapeHtml(toTitleCase(d.brand_name))}</a>` +
     `<span class="related-count">${d.total_reports.toLocaleString('en-US')} reports</span></li>`
   ).join('\n');
   return `<section class="card" aria-labelledby="related-heading">
@@ -210,7 +210,8 @@ function buildJsonLd(drug, canonicalUrl, description) {
 // ─── Page renderer ────────────────────────────────────────────────────────────
 
 function renderPage(drug, adverseEvents, demographics, outcomes, trends, relatedDrugs = []) {
-  const { slug, brand_name: brandName, generic_name: genericName, total_reports: totalReports } = drug;
+  const { slug, generic_name: genericName, total_reports: totalReports } = drug;
+  const brandName = toTitleCase(drug.brand_name);
   const canonicalUrl  = `${SITE_URL}/drugs/${slug}`;
   const dateRange     = computeDateRange(trends) ?? 'data available';
   const generatedDate = new Date().toLocaleDateString('en-US', {
