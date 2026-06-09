@@ -187,6 +187,8 @@ All `gtag('event', ...)` calls use a shared generic param naming convention. Do 
 | `fda_source_click` | Drug page → FDA/OpenFDA links | `item_name`, `destination_url` |
 | `dark_mode_toggle` | Any page theme toggle | `new_theme` |
 | `browse_letter_click` | Browse A–Z page letter nav | `letter` |
+| `faq_open` | FAQ page → expanding a `<details>` item | `question_text` (first 50 chars of the question) |
+| `share` | Drug page → any share button | `method` — one of: `x`, `reddit`, `facebook`, `bluesky`, `email`, `copy_link` |
 
 ## Data Refresh Procedure
 
