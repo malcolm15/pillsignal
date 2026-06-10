@@ -305,11 +305,6 @@
     "slug": "anusol-hc"
   },
   {
-    "brand_name": "APAP",
-    "generic_name": "",
-    "slug": "apap"
-  },
-  {
     "brand_name": "APIXABAN",
     "generic_name": "",
     "slug": "apixaban"
@@ -2158,16 +2153,6 @@
     "brand_name": "Livalo",
     "generic_name": "pitavastatin",
     "slug": "livalo"
-  },
-  {
-    "brand_name": "LMX4",
-    "generic_name": "",
-    "slug": "lmx4"
-  },
-  {
-    "brand_name": "LMX5",
-    "generic_name": "",
-    "slug": "lmx5"
   },
   {
     "brand_name": "Lopressor",
