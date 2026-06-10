@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+  <title>What Is AEMS? The FDA System That Replaced FAERS | PillSignal</title>
+  <meta name="description" content="AEMS is the FDA's new Adverse Event Monitoring System, which replaced FAERS in March 2026. What changed, what didn't, and what it means for patients.">
+  <link rel="canonical" href="https://pillsignal.com/guides/what-is-aems/">
+  <link rel="me" href="https://x.com/PillSignal">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#00A67E">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article">
+  <meta property="og:title"       content="What Is AEMS? The FDA System That Replaced FAERS | PillSignal">
+  <meta property="og:description" content="AEMS is the FDA's new Adverse Event Monitoring System, which replaced FAERS in March 2026. What changed, what didn't, and what it means for patients.">
+  <meta property="og:url"         content="https://pillsignal.com/guides/what-is-aems/">
+  <meta property="og:site_name"   content="PillSignal">
+  <meta property="og:image"       content="https://pillsignal.com/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="What Is AEMS? The FDA System That Replaced FAERS | PillSignal">
+  <meta name="twitter:description" content="AEMS is the FDA's new Adverse Event Monitoring System, which replaced FAERS in March 2026. What changed, what didn't, and what it means for patients.">
+  <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
+
+  <!-- Article JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What Is AEMS? The FDA's New Adverse Event Monitoring System",
+    "description": "AEMS is the FDA's new Adverse Event Monitoring System, which replaced FAERS in March 2026. What changed, what didn't, and what it means for patients.",
+    "url": "https://pillsignal.com/guides/what-is-aems/",
+    "datePublished": "2026-06-07",
+    "dateModified": "2026-06-07",
+    "author": {
+      "@type": "Organization",
+      "name": "PillSignal",
+      "url": "https://pillsignal.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "PillSignal",
+      "url": "https://pillsignal.com"
+    }
+  }
+  </script>
+
+  <style>
+    /* ─── Light theme (default) ──────────────────────────────────────────────── */
+    :root, [data-theme="light"] {
+      --c-bg:                   #ffffff;
+      --c-surface:              #f9fafb;
+      --c-border:               #e5e7eb;
+      --c-text:                 #1a1a2e;
+      --c-text-muted:           #5a5a6e;
+      --c-primary:              #00A67E;
+      --c-primary-hover:        #008F6B;
+      --c-primary-light:        #E6F9F1;
+      --c-notice-bg:            #FFF9F0;
+      --c-notice-border:        #F0E6D4;
+      --c-notice-text:          #6B4E30;
+      --c-notice-link:          #008F6B;
+      --c-banner-bg:            #FFF9F0;
+      --c-banner-text:          #6B4E30;
+      --c-banner-border:        rgba(107,78,48,0.3);
+      --c-banner-btn-hover:     rgba(0,0,0,0.05);
+      --font: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-heading: "Fraunces", Georgia, serif;
+    }
+
+    /* ─── Dark theme ─────────────────────────────────────────────────────────── */
+    [data-theme="dark"] {
+      --c-bg:                   #0f172a;
+      --c-surface:              #1e293b;
+      --c-border:               #334155;
+      --c-text:                 #f1f5f9;
+      --c-text-muted:           #94a3b8;
+      --c-primary:              #34D1A0;
+      --c-primary-hover:        #2BBD8E;
+      --c-primary-light:        #0D3D2E;
+      --c-notice-bg:            #1C1508;
+      --c-notice-border:        #3D3520;
+      --c-notice-text:          #D4B896;
+      --c-notice-link:          #34D1A0;
+      --c-banner-bg:            #1C1508;
+      --c-banner-text:          #D4B896;
+      --c-banner-border:        rgba(212,184,150,0.25);
+      --c-banner-btn-hover:     rgba(255,255,255,0.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--c-text);
+      background: var(--c-bg);
+      transition: background 0.2s, color 0.2s;
+    }
+    a { color: var(--c-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--c-primary-hover); }
+    h1, h2, h3 { line-height: 1.25; font-family: var(--font-heading); }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* ─── Theme toggle ────────────────────────────────────────────────────────── */
+    .theme-toggle {
+      display: flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+      background: none; border: 1px solid var(--c-border); border-radius: 6px;
+      cursor: pointer; color: var(--c-text-muted); padding: 0; flex-shrink: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
+    [data-theme="light"] .icon-sun  { display: none; }
+    [data-theme="dark"]  .icon-moon { display: none; }
+
+    /* ─── Banner ──────────────────────────────────────────────────────────────── */
+    #disclaimer-banner { background: var(--c-banner-bg); color: var(--c-banner-text); font-size: 0.875rem; line-height: 1.5; }
+    .banner-seen #disclaimer-banner { display: none; }
+    .banner-inner { max-width: 900px; margin: 0 auto; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .banner-inner p { flex: 1; min-width: 200px; }
+    #banner-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--c-banner-border); color: var(--c-banner-text); padding: 0.3rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-family: var(--font); white-space: nowrap; transition: background 0.15s; }
+    #banner-btn:hover { background: var(--c-banner-btn-hover); }
+
+    /* ─── Header ──────────────────────────────────────────────────────────────── */
+    .site-header { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
+    .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.25rem; font-weight: 600; font-family: var(--font-heading); color: var(--c-primary); letter-spacing: 0; }
+    .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
+    .header-actions { display: flex; align-items: center; gap: 1rem; }
+
+    /* ─── Page header ─────────────────────────────────────────────────────────── */
+    .page-header {
+      background: var(--c-surface);
+      border-bottom: 1px solid var(--c-border);
+      padding: 2.5rem 1rem 2rem;
+    }
+    .page-header .inner { max-width: 720px; margin: 0 auto; }
+    .breadcrumb {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .breadcrumb a { color: var(--c-text-muted); }
+    .breadcrumb a:hover { color: var(--c-primary); text-decoration: none; }
+    .breadcrumb span { margin: 0 0.3rem; }
+    .page-header h1 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 600;
+      letter-spacing: 0;
+      color: var(--c-text);
+      margin-bottom: 0.5rem;
+    }
+    .page-header .subtitle {
+      font-size: 1rem;
+      color: var(--c-text-muted);
+      max-width: 600px;
+    }
+
+    /* ─── Article ─────────────────────────────────────────────────────────────── */
+    .article-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.5rem 1rem 4rem;
+    }
+
+    .article-body h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      color: var(--c-text);
+      margin: 2.25rem 0 0.75rem;
+    }
+    .article-body h2:first-child { margin-top: 0; }
+
+    .article-body p {
+      color: var(--c-text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.75;
+    }
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body strong { color: var(--c-text); font-weight: 600; }
+
+    .article-body a { font-weight: 500; }
+
+    /* ─── Callout box ─────────────────────────────────────────────────────────── */
+    .callout {
+      background: var(--c-primary-light);
+      border-left: 4px solid var(--c-primary);
+      border-radius: 0 6px 6px 0;
+      padding: 0.875rem 1rem;
+      margin: 1.5rem 0;
+      font-size: 0.925rem;
+      color: var(--c-text);
+    }
+    .callout strong { color: var(--c-primary); }
+
+    /* ─── Notice ──────────────────────────────────────────────────────────────── */
+    .notice {
+      background: var(--c-notice-bg);
+      border-left: 4px solid var(--c-notice-border);
+      border-radius: 0 6px 6px 0;
+      padding: 0.875rem 1rem;
+      font-size: 0.875rem;
+      color: var(--c-notice-text);
+      margin: 2rem 0 0;
+    }
+    .notice a { color: var(--c-notice-link); font-weight: 500; }
+
+    /* ─── Divider ─────────────────────────────────────────────────────────────── */
+    .divider { border: none; border-top: 1px solid var(--c-border); margin: 2rem 0; }
+
+    /* ─── Footer ──────────────────────────────────────────────────────────────── */
+    .site-footer { border-top: 1px solid var(--c-border); padding: 1.5rem 1rem; text-align: center; font-size: 0.8rem; color: var(--c-text-muted); background: var(--c-bg); }
+    .site-footer a { color: var(--c-text-muted); }
+    .site-footer a:hover { color: var(--c-primary); text-decoration: none; }
+    .footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+    .footer-x-link { display: inline-flex; align-items: center; justify-content: center; margin-top: 0.6rem; color: var(--c-text-muted); transition: color 0.15s; }
+    .footer-x-link:hover { color: var(--c-primary); }
+  </style>
+
+  <script>
+    (function () {
+      var saved = localStorage.getItem('pillsignal_theme');
+      var dark  = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+      if (localStorage.getItem('pillsignal_disclaimer_dismissed')) {
+        document.documentElement.classList.add('banner-seen');
+      }
+    }());
+  </script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZEDB8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5ZEDB8Z5P');
+  </script>
+</head>
+<body>
+
+{{SITE_HEADER}}
+
+  <div class="page-header">
+    <div class="inner">
+      <p class="breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true"> › </span><a href="/guides/">Guides</a><span aria-hidden="true"> › </span>What Is AEMS?
+      </p>
+      <h1>What Is AEMS? The FDA's New Adverse Event Monitoring System</h1>
+      <p class="subtitle">In March 2026, the FDA replaced FAERS with a new system. Here is what changed, what did not, and what it means for anyone looking up a medication.</p>
+    </div>
+  </div>
+
+  <div class="article-wrap">
+    <article class="article-body" aria-label="Guide: What Is AEMS?">
+
+      <p>In March 2026, the FDA folded seven separate safety-reporting databases into a single system and gave it a new name: the Adverse Event Monitoring System, or AEMS. If you have ever looked up the reported side effects of a medication, the data almost certainly came from one of those older systems. The best known of them was FAERS, the <a href="/guides/how-to-read-fda-adverse-event-reports/">FDA Adverse Event Reporting System</a>, which had been the backbone of post-market drug-safety monitoring since 2012. As of March 11, 2026, FAERS is now part of AEMS.</p>
+
+      <p>Most people taking medications never heard a word about it. But because <a href="/">PillSignal</a> is built on exactly this data, we think it is worth explaining plainly: what AEMS is, what actually changed, and, just as importantly, what did not.</p>
+
+      <h2>What AEMS replaced</h2>
+
+      <p>Before AEMS, the FDA ran a patchwork of separate databases, each covering a different kind of product. FAERS handled prescription and over-the-counter drugs and biologics. VAERS, run jointly with the CDC, handled vaccines. CAERS covered foods, dietary supplements, and cosmetics. There were others for medical devices, tobacco products, and veterinary medicine. Each had its own interface, its own quirks, and its own update schedule.</p>
+
+      <p>AEMS consolidates all of that into one platform spanning every product category the FDA regulates. The stated goals are to standardize how reports are collected, reduce duplicated effort, and make it easier to spot safety patterns across product types. The FDA has also said the new system is expected to save roughly $120 million over five years compared with running the old systems separately.</p>
+
+      <p>Importantly, the old data did not vanish. The FDA migrated the historical records from the legacy systems, including all of FAERS, into AEMS when it launched. The decades of reports that PillSignal draws on are still there. They simply live under a new name now.</p>
+
+      <h2>What actually changed</h2>
+
+      <p>Three things are genuinely new.</p>
+
+      <p><strong>The data is now near real time.</strong> This is the biggest practical shift. FAERS published on a roughly quarterly cycle, so the public data always lagged a few months behind. AEMS refreshes daily, which means newly filed reports show up far faster than they used to.</p>
+
+      <p><strong>It is one front door instead of seven.</strong> Anyone can now search drugs, vaccines, devices, supplements, and more from a single <a href="https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems" target="_blank" rel="noopener noreferrer">public dashboard</a>, rather than learning a different tool for each. The dashboard lets you query by product name or by specific adverse event term and download the underlying case listings.</p>
+
+      <p><strong>It leans on artificial intelligence.</strong> The FDA has described AEMS as using AI-based tools for tasks like redacting personal information, digitizing older reports, and helping flag potential safety signals. The agency's stated aim is faster processing, while keeping safeguards in place so that individually identifiable patient information is not disclosed.</p>
+
+      <h2>What did not change</h2>
+
+      <div class="callout">
+        <strong>Key point:</strong> The nature of the data is exactly the same. AEMS, like FAERS before it, is built from voluntary reports. A report still means only that someone observed an event while a product was being used — not that the product caused it.
+      </div>
+
+      <p>The FDA says this directly in its own guidance on the new system: the data does not confirm a causal relationship between a product and a reported event, the true rate of any event cannot be determined from the reports alone, and the reports may be incomplete, unverified, or inaccurate. These are the same limitations that have always applied to this data, restated for the new system.</p>
+
+      <p>The reporting rules did not change either. The same people can report the same things in the same ways, including through <a href="/guides/how-to-report-drug-side-effect-fda/">MedWatch for drugs</a> and VAERS for vaccines. Only the system that receives and displays the reports is different.</p>
+
+      <p>If anything, the move to real-time public data makes careful reading more important, not less. Some safety experts have noted that faster, more accessible reporting can lead to more misinterpretation, with people treating a fresh, unverified report as if it were a confirmed finding. The data got faster. The need to <a href="/guides/how-to-read-fda-adverse-event-reports/">read it carefully</a> got bigger.</p>
+
+      <h2>What this means if you are looking up a medication</h2>
+
+      <p>The <a href="https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems" target="_blank" rel="noopener noreferrer">AEMS public dashboard</a> is a genuinely useful tool, and for clinicians, researchers, and the deeply curious, it is worth knowing about. But it is built for querying, not for browsing. It is an interactive analytics tool designed for people who already know what they are looking for and how to interrogate a dataset. If you just got a new prescription and want to understand what others have reported about it, a query dashboard is a steep place to start.</p>
+
+      <p>That is the gap PillSignal fills. We take this same FDA data — the data that now lives in AEMS and was called FAERS before that — and lay it out as <a href="/drugs/">plain, readable pages</a>, one per medication, with the context and caveats built in. The dashboard is the raw, real-time source for experts. PillSignal is the plain-language front door for everyone else. Both rest on the same reports, and both come with the same fundamental rule: a report is a flag for investigation, never proof of harm.</p>
+
+      <p>As always, the data is a way to walk into a conversation with your doctor or pharmacist better informed. It is not a substitute for that conversation. Whether you read the reports on the FDA's new dashboard or on PillSignal, treat the numbers as a starting point for questions, not as answers. Our guide on <a href="/guides/what-fda-drug-reports-show/">what FDA drug reports actually show</a> puts the full picture in context.</p>
+
+      <hr class="divider">
+
+      <p style="font-size:0.875rem;color:var(--c-text-muted);">New to this data? <a href="/guides/how-to-read-fda-adverse-event-reports/">How to Read FDA Adverse Event Reports →</a></p>
+
+      <p style="font-size:0.875rem;color:var(--c-text-muted);margin-top:0.75rem;">Want to file a report of your own? <a href="/guides/how-to-report-drug-side-effect-fda/">How to Report a Drug Side Effect to the FDA →</a></p>
+
+      <p style="font-size:0.875rem;color:var(--c-text-muted);margin-top:0.75rem;">Ready to look up a medication? <a href="/">Search PillSignal →</a></p>
+
+      <div class="notice" role="note">
+        <strong>About this data:</strong> This data reflects voluntary reports submitted to the FDA's Adverse Event Monitoring System (AEMS), formerly the FDA Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors. <a href="https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems" target="_blank" rel="noopener noreferrer">Learn more about AEMS</a>. PillSignal is not a substitute for professional medical advice. Always consult your healthcare provider.
+      </div>
+
+    </article>
+  </div>
+
+{{SITE_FOOTER}}
+
+  <script>
+    document.getElementById('banner-btn').addEventListener('click', function () {
+      localStorage.setItem('pillsignal_disclaimer_dismissed', '1');
+      document.documentElement.classList.add('banner-seen');
+    });
+    (function () {
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('pillsignal_theme', next);
+        if (typeof gtag === 'function') gtag('event', 'dark_mode_toggle', { new_theme: next });
+      });
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+          if (!localStorage.getItem('pillsignal_theme')) {
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+          }
+        });
+      }
+    }());
+  </script>
+</body>
+</html>

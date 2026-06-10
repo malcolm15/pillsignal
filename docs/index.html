@@ -460,9 +460,6 @@
 </head>
 <body>
 
-  <!-- ─── First-visit disclaimer banner ────────────────────────────────────────
-       Always in the DOM so crawlers read the disclaimer. Hidden via CSS class.
-  ─────────────────────────────────────────────────────────────────────────────── -->
   <div id="disclaimer-banner" role="note" aria-label="Site disclaimer">
     <div class="banner-inner">
       <p>PillSignal presents data from the FDA's voluntary reporting system. This data does not prove that a medication caused any adverse event. Always consult your healthcare provider about your medications.</p>
@@ -470,12 +467,11 @@
     </div>
   </div>
 
-  <!-- ─── Header ────────────────────────────────────────────────────────────── -->
   <header class="site-header">
     <div class="inner">
       <a href="/" class="logo">PillSignal</a>
       <div class="header-actions">
-        <a href="/drugs/" style="font-size:0.875rem;color:var(--c-text-muted);">Browse all</a>
+        <a href="/drugs/" class="header-link">Browse all</a>
         <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
           <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="4"/>
@@ -539,7 +535,7 @@
         <div class="stat-label">Data Coverage</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">June 8, 2026</div>
+        <div class="stat-value">June 9, 2026</div>
         <div class="stat-label">Last Updated</div>
       </div>
     </div>
@@ -599,7 +595,6 @@
 
   </main>
 
-  <!-- ─── Footer ────────────────────────────────────────────────────────────── -->
   <footer class="site-footer">
     <p>Data sourced from the <a href="https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems" target="_blank" rel="noopener noreferrer">FDA's Adverse Event Monitoring System (AEMS)</a>, formerly FAERS, via OpenFDA. PillSignal is not affiliated with the FDA.</p>
     <nav class="footer-nav" aria-label="Site links">

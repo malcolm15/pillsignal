@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+  <title>About PillSignal — Our Data, Methodology, and Mission</title>
+  <meta name="description" content="PillSignal makes FDA adverse event data accessible to everyone. Learn where our data comes from, how it's processed, and what PillSignal is and isn't.">
+  <link rel="canonical" href="https://pillsignal.com/about/">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#00A67E">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="About PillSignal — Our Data, Methodology, and Mission">
+  <meta property="og:description" content="PillSignal makes FDA adverse event data accessible to everyone. Learn where our data comes from, how it's processed, and what PillSignal is and isn't.">
+  <meta property="og:url"         content="https://pillsignal.com/about/">
+  <meta property="og:site_name"   content="PillSignal">
+  <meta property="og:image"       content="https://pillsignal.com/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="About PillSignal — Our Data, Methodology, and Mission">
+  <meta name="twitter:description" content="PillSignal makes FDA adverse event data accessible to everyone. Learn where our data comes from and how it's processed.">
+  <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
+
+  <style>
+    :root, [data-theme="light"] {
+      --c-bg: #ffffff; --c-surface: #f9fafb; --c-border: #e5e7eb;
+      --c-text: #1a1a2e; --c-text-muted: #5a5a6e;
+      --c-primary: #00A67E; --c-primary-hover: #008F6B; --c-primary-light: #E6F9F1;
+      --c-banner-bg: #FFF9F0; --c-banner-text: #6B4E30;
+      --c-banner-border: rgba(107,78,48,0.3); --c-banner-btn-hover: rgba(0,0,0,0.05);
+      --font: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-heading: "Fraunces", Georgia, serif;
+    }
+    [data-theme="dark"] {
+      --c-bg: #0f172a; --c-surface: #1e293b; --c-border: #334155;
+      --c-text: #f1f5f9; --c-text-muted: #94a3b8;
+      --c-primary: #34D1A0; --c-primary-hover: #2BBD8E; --c-primary-light: #0D3D2E;
+      --c-banner-bg: #1C1508; --c-banner-text: #D4B896;
+      --c-banner-border: rgba(212,184,150,0.25); --c-banner-btn-hover: rgba(255,255,255,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); font-size: 1rem; line-height: 1.6; color: var(--c-text); background: var(--c-bg); transition: background 0.2s, color 0.2s; min-height: 100vh; display: flex; flex-direction: column; }
+    a { color: var(--c-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--c-primary-hover); }
+    h1, h2, h3 { line-height: 1.25; font-family: var(--font-heading); }
+    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--c-surface); } ::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 4px; }
+
+    /* Banner */
+    #disclaimer-banner { background: var(--c-banner-bg); color: var(--c-banner-text); font-size: 0.875rem; line-height: 1.5; }
+    .banner-seen #disclaimer-banner { display: none; }
+    .banner-inner { max-width: 900px; margin: 0 auto; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .banner-inner p { flex: 1; min-width: 200px; }
+    #banner-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--c-banner-border); color: var(--c-banner-text); padding: 0.3rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-family: var(--font); white-space: nowrap; transition: background 0.15s; }
+    #banner-btn:hover { background: var(--c-banner-btn-hover); }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
+    .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.25rem; font-weight: 600; font-family: var(--font-heading); color: var(--c-primary); letter-spacing: 0; }
+    .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
+    .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .header-link { font-size: 0.875rem; color: var(--c-text-muted); }
+    .theme-toggle { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: none; border: 1px solid var(--c-border); border-radius: 6px; cursor: pointer; color: var(--c-text-muted); padding: 0; flex-shrink: 0; transition: color 0.15s, border-color 0.15s, background 0.15s; }
+    .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="dark"]  .icon-moon { display: none; }
+
+    /* Content */
+    main { flex: 1; }
+    .prose { max-width: 720px; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
+    .prose h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 600; letter-spacing: 0; margin-bottom: 0.5rem; }
+    .prose .lead { font-size: 1.05rem; color: var(--c-text-muted); margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--c-border); }
+    .prose h2 { font-size: 1.1rem; font-weight: 700; color: var(--c-text); margin: 2.25rem 0 0.6rem; }
+    .prose p { color: var(--c-text-muted); margin-bottom: 1rem; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose ul, .prose ol { color: var(--c-text-muted); margin-bottom: 1rem; padding-left: 1.5rem; }
+    .prose li { margin-bottom: 0.4rem; }
+    .prose strong { color: var(--c-text); font-weight: 600; }
+    .prose .update-log { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: 8px; padding: 1rem 1.25rem; margin-top: 0.5rem; }
+    .prose .update-log li { font-size: 0.875rem; list-style: none; padding-left: 0; }
+
+    /* Footer */
+    .site-footer { border-top: 1px solid var(--c-border); padding: 1.5rem 1rem; text-align: center; font-size: 0.8rem; color: var(--c-text-muted); background: var(--c-bg); }
+    .site-footer a { color: var(--c-text-muted); }
+    .site-footer a:hover { color: var(--c-primary); text-decoration: none; }
+    .footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+    .footer-x-link { display: inline-flex; align-items: center; justify-content: center; margin-top: 0.6rem; color: var(--c-text-muted); transition: color 0.15s; }
+    .footer-x-link:hover { color: var(--c-primary); }
+  </style>
+
+  <script>
+    (function () {
+      var saved = localStorage.getItem('pillsignal_theme');
+      var dark  = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+      if (localStorage.getItem('pillsignal_disclaimer_dismissed')) {
+        document.documentElement.classList.add('banner-seen');
+      }
+    }());
+  </script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZEDB8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5ZEDB8Z5P');
+  </script>
+</head>
+<body>
+
+{{SITE_HEADER}}
+
+  <main>
+    <article class="prose">
+      <h1>About PillSignal</h1>
+      <p class="lead">PillSignal is a free, independent tool that makes FDA adverse event data accessible to the general public.</p>
+
+      <h2>What is PillSignal?</h2>
+      <p>Every day, patients, doctors, and pharmacists submit reports to the FDA about unexpected side effects and adverse events they've experienced while taking medications. These reports are collected in a database called FAERS — the FDA Adverse Event Reporting System. The data is public, but the government's tools for exploring it are designed for researchers and regulators, not for the average person trying to understand their medication.</p>
+      <p>PillSignal changes that by presenting this data in a clear, visual, consumer-friendly format.</p>
+
+      <h2>Where does the data come from?</h2>
+      <p>All data on PillSignal comes directly from two official FDA sources:</p>
+      <ul>
+        <li><strong>Adverse event reports</strong> are sourced from the <a href="https://open.fda.gov/apis/drug/event/" target="_blank" rel="noopener noreferrer">OpenFDA API</a>, which provides programmatic access to the <a href="https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems" target="_blank" rel="noopener noreferrer">FAERS database</a>. FAERS contains millions of adverse event reports dating back to 2003, submitted voluntarily by patients, healthcare providers, and drug manufacturers.</li>
+        <li><strong>Drug descriptions</strong> are sourced from FDA-approved drug labeling via the <a href="https://open.fda.gov/data/faers/" target="_blank" rel="noopener noreferrer">OpenFDA FAERS data downloads</a>.</li>
+      </ul>
+      <p>PillSignal does not collect, modify, or editorialize any of this data. What you see on each drug page is a direct visualization of what the FDA has published.</p>
+
+      <h2>How is the data processed?</h2>
+      <p>For each drug, PillSignal queries the OpenFDA API using the drug's brand name — or its generic name as a fallback — to locate matching adverse event reports in FAERS. Those raw reports are then aggregated into summary statistics:</p>
+      <ul>
+        <li>The most frequently reported adverse events, ranked by occurrence count</li>
+        <li>Demographic breakdowns by patient age group and sex</li>
+        <li>Outcome severity distribution (hospitalization, life-threatening, disability, death, and non-serious)</li>
+        <li>Quarterly report volume trends over time</li>
+      </ul>
+      <p>Data on PillSignal reflects the most recent data available through the OpenFDA API at the time of our last update. PillSignal currently covers 849 medications with adverse event data in FAERS.</p>
+
+      <h2>Why PillSignal exists</h2>
+      <p>PillSignal was built on a simple belief: public data should be publicly accessible. The FDA collects adverse event reports to help monitor drug safety, and that data belongs to the public. But accessing it requires navigating technical APIs and analytical dashboards built for researchers. PillSignal bridges that gap by presenting the same data in a format anyone can understand — because everyone deserves to be informed about the medications they take.</p>
+
+      <h2>What PillSignal is not</h2>
+      <ul>
+        <li>Not a medical resource and does not provide medical advice</li>
+        <li>Not affiliated with, endorsed by, or sponsored by the FDA, any pharmaceutical company, or any healthcare organization</li>
+        <li>Should never be used as a substitute for consulting with a qualified healthcare provider</li>
+        <li>Does not recommend starting, stopping, or changing any medication</li>
+      </ul>
+
+      <h2>Contact</h2>
+      <p>Questions, feedback, or concerns? Reach us at <a href="mailto:hello@pillsignal.com">hello@pillsignal.com</a>.</p>
+
+      <h2>Update log</h2>
+      <ul class="update-log">
+        <li>May 2026 — PillSignal launched with coverage of 1,870+ medications</li>
+        <li>June 2026 — Refined to 849 medications after deduplication cleanup; removed store-brand clones and restored canonical generics</li>
+      </ul>
+    </article>
+  </main>
+
+{{SITE_FOOTER}}
+
+  <script>
+    document.getElementById('banner-btn').addEventListener('click', function () {
+      localStorage.setItem('pillsignal_disclaimer_dismissed', '1');
+      document.documentElement.classList.add('banner-seen');
+    });
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('pillsignal_theme', next);
+    });
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+        if (!localStorage.getItem('pillsignal_theme')) {
+          document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

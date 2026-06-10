@@ -50,6 +50,7 @@ These are non-negotiable and must be followed in every piece of code, copy, and 
 - Generates index/listing pages, sitemap.xml, and any aggregate pages
 - Output goes to `/docs` directory for GitHub Pages serving
 - Each generated page is a complete, standalone HTML file with full SEO markup
+- Also regenerates all static pages (about, faq, guides, contact, privacy, terms) from `templates/static/`
 
 ### Why This Architecture
 
@@ -60,33 +61,46 @@ These are non-negotiable and must be followed in every piece of code, copy, and 
 
 ### Folder Structure
 
+**IMPORTANT — source vs. output:**
+- `templates/` is the **source of truth** for all page content. Edit files here.
+- `docs/` is **build output only** — every file is overwritten by `generate-pages.js`. Never hand-edit files in `docs/` directly; changes will be lost on the next generate run.
+- Static pages and guides live in `templates/static/` and are edited there.
+
 ```
 pillsignal/
 ├── CLAUDE.md
 ├── .gitignore
-├── .env.example          # Template for required env vars
+├── .env.example                    # Template for required env vars
 ├── package.json
 ├── scripts/
-│   ├── fetch-data.js     # Stage 1: OpenFDA API → Supabase
-│   ├── generate-pages.js # Stage 2: Supabase → static HTML
-│   └── drug-list.json    # List of drugs to fetch (start with top 200)
+│   ├── fetch-data.js               # Stage 1: OpenFDA API → Supabase
+│   ├── generate-pages.js           # Stage 2: Supabase + templates → docs/
+│   ├── drug-list.json              # Canonical list of 848 drugs (matches Supabase exactly)
+│   ├── drug-list-removed.json      # Reference list of removed slugs (not fetched)
+│   └── fetch-metadata.json         # Written by fetch-data.js; read by generate-pages.js
 ├── templates/
-│   ├── drug-page.html    # Template for individual drug pages
-│   ├── index.html        # Homepage template
-│   └── partials/         # Reusable HTML fragments (header, footer, disclaimer)
-├── docs/                 # GitHub Pages serves from here
-│   ├── index.html
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   └── search.js     # Client-side drug search functionality
-│   ├── drugs/
-│   │   ├── lexapro.html
-│   │   ├── metformin.html
-│   │   └── ...           # One HTML file per drug
-│   ├── sitemap.xml       # Auto-generated
-│   ├── robots.txt
-│   └── 404.html
+│   ├── drug-page.html              # Template for all 848 drug pages ({{SITE_HEADER}}, {{SITE_FOOTER}})
+│   ├── homepage.html               # Homepage template ({{SITE_HEADER}}, {{SITE_FOOTER}}, {{STATS_BAR}})
+│   └── static/                     # Source for all static/guide pages — edit these, not docs/
+│       ├── about.html
+│       ├── faq.html
+│       ├── contact.html
+│       ├── privacy.html
+│       ├── terms.html
+│       └── guides/
+│           ├── index.html
+│           ├── how-to-read-fda-adverse-event-reports.html
+│           ├── what-fda-drug-reports-show.html
+│           ├── how-to-report-drug-side-effect-fda.html
+│           └── what-is-aems.html
+├── docs/                           # BUILD OUTPUT — do not hand-edit
+│   ├── index.html                  # ← generated from templates/homepage.html
+│   ├── about/index.html            # ← generated from templates/static/about.html
+│   ├── guides/                     # ← generated from templates/static/guides/
+│   ├── drugs/                      # ← generated, one subdir per drug
+│   ├── js/drug-index.json          # ← generated
+│   ├── sitemap.xml                 # ← generated
+│   └── robots.txt                  # ← generated
 └── sql/
     └── schema.sql        # Supabase table definitions
 ```
@@ -189,6 +203,17 @@ All `gtag('event', ...)` calls use a shared generic param naming convention. Do 
 | `browse_letter_click` | Browse A–Z page letter nav | `letter` |
 | `faq_open` | FAQ page → expanding a `<details>` item | `question_text` (first 50 chars of the question) |
 | `share` | Drug page → any share button | `method` — one of: `x`, `reddit`, `facebook`, `bluesky`, `email`, `copy_link` |
+
+## Shared Header and Footer
+
+The site header (banner + nav + dark-mode toggle) and footer (AEMS data source, footer nav, X link) are defined once in `renderHeader(page)` and `renderFooter()` in `scripts/generate-pages.js`. Every page type — drug pages, browse, homepage, and all 10 static pages — receives its header and footer from these functions via `{{SITE_HEADER}}` / `{{SITE_FOOTER}}` placeholders in the templates.
+
+**To change the header or footer:** edit the functions in `generate-pages.js`, then run `node scripts/generate-pages.js`. All 860+ pages update in one run.
+
+`renderHeader(page)` nav variants:
+- `'drug'` — Browse all + ← Search (drug detail pages)
+- `'browse'` — ← Search only (browse listing page)
+- `'home'` or any static/guide page — Browse all only
 
 ## Data Refresh Procedure
 

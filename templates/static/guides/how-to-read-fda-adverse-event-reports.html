@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+  <title>How to Read FDA Adverse Event Reports | PillSignal</title>
+  <meta name="description" content="A plain-English guide to understanding FDA FAERS data — what reports mean, why large numbers aren't always alarming, and how to read a drug page without scaring yourself.">
+  <link rel="canonical" href="https://pillsignal.com/guides/how-to-read-fda-adverse-event-reports/">
+  <link rel="me" href="https://x.com/PillSignal">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#00A67E">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="article">
+  <meta property="og:title"       content="How to Read FDA Adverse Event Reports | PillSignal">
+  <meta property="og:description" content="A plain-English guide to understanding FDA FAERS data — what reports mean, why large numbers aren't always alarming, and how to read a drug page.">
+  <meta property="og:url"         content="https://pillsignal.com/guides/how-to-read-fda-adverse-event-reports/">
+  <meta property="og:site_name"   content="PillSignal">
+  <meta property="og:image"       content="https://pillsignal.com/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="How to Read FDA Adverse Event Reports | PillSignal">
+  <meta name="twitter:description" content="A plain-English guide to understanding FAERS data — what reports mean and how to read a drug page without scaring yourself.">
+  <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
+
+  <!-- Article JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Read FDA Adverse Event Reports for Medications",
+    "description": "A plain-English guide to understanding FAERS data — what reports mean, why large numbers aren't always alarming, and how to read a drug page without scaring yourself.",
+    "url": "https://pillsignal.com/guides/how-to-read-fda-adverse-event-reports/",
+    "datePublished": "2026-06-01",
+    "dateModified": "2026-06-01",
+    "author": {
+      "@type": "Organization",
+      "name": "PillSignal",
+      "url": "https://pillsignal.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "PillSignal",
+      "url": "https://pillsignal.com"
+    }
+  }
+  </script>
+
+  <style>
+    /* ─── Light theme (default) ──────────────────────────────────────────────── */
+    :root, [data-theme="light"] {
+      --c-bg:                   #ffffff;
+      --c-surface:              #f9fafb;
+      --c-border:               #e5e7eb;
+      --c-text:                 #1a1a2e;
+      --c-text-muted:           #5a5a6e;
+      --c-primary:              #00A67E;
+      --c-primary-hover:        #008F6B;
+      --c-primary-light:        #E6F9F1;
+      --c-notice-bg:            #FFF9F0;
+      --c-notice-border:        #F0E6D4;
+      --c-notice-text:          #6B4E30;
+      --c-notice-link:          #008F6B;
+      --c-banner-bg:            #FFF9F0;
+      --c-banner-text:          #6B4E30;
+      --c-banner-border:        rgba(107,78,48,0.3);
+      --c-banner-btn-hover:     rgba(0,0,0,0.05);
+      --font: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-heading: "Fraunces", Georgia, serif;
+    }
+
+    /* ─── Dark theme ─────────────────────────────────────────────────────────── */
+    [data-theme="dark"] {
+      --c-bg:                   #0f172a;
+      --c-surface:              #1e293b;
+      --c-border:               #334155;
+      --c-text:                 #f1f5f9;
+      --c-text-muted:           #94a3b8;
+      --c-primary:              #34D1A0;
+      --c-primary-hover:        #2BBD8E;
+      --c-primary-light:        #0D3D2E;
+      --c-notice-bg:            #1C1508;
+      --c-notice-border:        #3D3520;
+      --c-notice-text:          #D4B896;
+      --c-notice-link:          #34D1A0;
+      --c-banner-bg:            #1C1508;
+      --c-banner-text:          #D4B896;
+      --c-banner-border:        rgba(212,184,150,0.25);
+      --c-banner-btn-hover:     rgba(255,255,255,0.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--c-text);
+      background: var(--c-bg);
+      transition: background 0.2s, color 0.2s;
+    }
+    a { color: var(--c-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--c-primary-hover); }
+    h1, h2, h3 { line-height: 1.25; font-family: var(--font-heading); }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* ─── Theme toggle ────────────────────────────────────────────────────────── */
+    .theme-toggle {
+      display: flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+      background: none; border: 1px solid var(--c-border); border-radius: 6px;
+      cursor: pointer; color: var(--c-text-muted); padding: 0; flex-shrink: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
+    [data-theme="light"] .icon-sun  { display: none; }
+    [data-theme="dark"]  .icon-moon { display: none; }
+
+    /* ─── Banner ──────────────────────────────────────────────────────────────── */
+    #disclaimer-banner { background: var(--c-banner-bg); color: var(--c-banner-text); font-size: 0.875rem; line-height: 1.5; }
+    .banner-seen #disclaimer-banner { display: none; }
+    .banner-inner { max-width: 900px; margin: 0 auto; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .banner-inner p { flex: 1; min-width: 200px; }
+    #banner-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--c-banner-border); color: var(--c-banner-text); padding: 0.3rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-family: var(--font); white-space: nowrap; transition: background 0.15s; }
+    #banner-btn:hover { background: var(--c-banner-btn-hover); }
+
+    /* ─── Header ──────────────────────────────────────────────────────────────── */
+    .site-header { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
+    .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.25rem; font-weight: 600; font-family: var(--font-heading); color: var(--c-primary); letter-spacing: 0; }
+    .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
+    .header-actions { display: flex; align-items: center; gap: 1rem; }
+
+    /* ─── Page header ─────────────────────────────────────────────────────────── */
+    .page-header {
+      background: var(--c-surface);
+      border-bottom: 1px solid var(--c-border);
+      padding: 2.5rem 1rem 2rem;
+    }
+    .page-header .inner { max-width: 720px; margin: 0 auto; }
+    .breadcrumb {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .breadcrumb a { color: var(--c-text-muted); }
+    .breadcrumb a:hover { color: var(--c-primary); text-decoration: none; }
+    .breadcrumb span { margin: 0 0.3rem; }
+    .page-header h1 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 600;
+      letter-spacing: 0;
+      color: var(--c-text);
+      margin-bottom: 0.5rem;
+    }
+    .page-header .subtitle {
+      font-size: 1rem;
+      color: var(--c-text-muted);
+      max-width: 600px;
+    }
+
+    /* ─── Article ─────────────────────────────────────────────────────────────── */
+    .article-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.5rem 1rem 4rem;
+    }
+
+    .article-body h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      color: var(--c-text);
+      margin: 2.25rem 0 0.75rem;
+    }
+    .article-body h2:first-child { margin-top: 0; }
+
+    .article-body p {
+      color: var(--c-text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.75;
+    }
+    .article-body p:last-child { margin-bottom: 0; }
+
+    .article-body strong { color: var(--c-text); font-weight: 600; }
+
+    .article-body a { font-weight: 500; }
+
+    /* ─── Callout box ─────────────────────────────────────────────────────────── */
+    .callout {
+      background: var(--c-primary-light);
+      border-left: 4px solid var(--c-primary);
+      border-radius: 0 6px 6px 0;
+      padding: 0.875rem 1rem;
+      margin: 1.5rem 0;
+      font-size: 0.925rem;
+      color: var(--c-text);
+    }
+    .callout strong { color: var(--c-primary); }
+
+    /* ─── Notice ──────────────────────────────────────────────────────────────── */
+    .notice {
+      background: var(--c-notice-bg);
+      border-left: 4px solid var(--c-notice-border);
+      border-radius: 0 6px 6px 0;
+      padding: 0.875rem 1rem;
+      font-size: 0.875rem;
+      color: var(--c-notice-text);
+      margin: 2rem 0 0;
+    }
+    .notice a { color: var(--c-notice-link); font-weight: 500; }
+
+    /* ─── Divider ─────────────────────────────────────────────────────────────── */
+    .divider { border: none; border-top: 1px solid var(--c-border); margin: 2rem 0; }
+
+    /* ─── Footer ──────────────────────────────────────────────────────────────── */
+    .site-footer { border-top: 1px solid var(--c-border); padding: 1.5rem 1rem; text-align: center; font-size: 0.8rem; color: var(--c-text-muted); background: var(--c-bg); }
+    .site-footer a { color: var(--c-text-muted); }
+    .site-footer a:hover { color: var(--c-primary); text-decoration: none; }
+    .footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+    .footer-x-link { display: inline-flex; align-items: center; justify-content: center; margin-top: 0.6rem; color: var(--c-text-muted); transition: color 0.15s; }
+    .footer-x-link:hover { color: var(--c-primary); }
+  </style>
+
+  <script>
+    (function () {
+      var saved = localStorage.getItem('pillsignal_theme');
+      var dark  = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+      if (localStorage.getItem('pillsignal_disclaimer_dismissed')) {
+        document.documentElement.classList.add('banner-seen');
+      }
+    }());
+  </script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZEDB8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5ZEDB8Z5P');
+  </script>
+</head>
+<body>
+
+{{SITE_HEADER}}
+
+  <div class="page-header">
+    <div class="inner">
+      <p class="breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true"> › </span><a href="/guides/">Guides</a><span aria-hidden="true"> › </span>How to Read FDA Adverse Event Reports
+      </p>
+      <h1>How to Read FDA Adverse Event Reports for Medications</h1>
+      <p class="subtitle">A plain-English guide to understanding FAERS data — without scaring yourself.</p>
+    </div>
+  </div>
+
+  <div class="article-wrap">
+    <article class="article-body" aria-label="Guide: How to Read FDA Adverse Event Reports">
+
+      <p>When we went through the FAERS data behind PillSignal, the single most-reported problem for a lot of medications wasn't a side effect at all. It was that the drug didn't work.</p>
+
+      <p>"Drug ineffective" shows up again and again near the top of the list — for some medications it's the number one most-reported event, ahead of nausea, headache, or anything you'd normally think of as a side effect. For <a href="/drugs/xanax/">Xanax</a>, for instance, it's the single most-reported term in the FDA database, with 13,428 reports — more than nausea (12,912) or fatigue (12,008). It holds the top spot for roughly one in four of the drugs we track, and appears somewhere in the top three for more than half of them.</p>
+
+      <p>That one fact tells you almost everything you need to know about how to read this data. A FAERS report is not a doctor's finding. It's a complaint — something a patient, caregiver, doctor, or drug company submitted to the FDA because something happened while a medication was being taken. Sometimes that something is a serious reaction. Sometimes it's "I took this and it didn't help." The database holds all of it, side by side, with no filter for what actually caused what.</p>
+
+      <p>So before you read a single drug page on PillSignal, it helps to understand what you're actually looking at.</p>
+
+      <h2>What FAERS is</h2>
+
+      <p>FAERS stands for the FDA Adverse Event Reporting System. It's the database the FDA uses to keep an eye on medications after they've been approved and are out in the world. Anyone can submit a report — a patient who felt dizzy, a pharmacist who noticed a pattern, a doctor filing on a patient's behalf, or a drug manufacturer that's legally required to pass along anything it hears about. The reports go back to 2003 and number in the millions. In March 2026, FAERS became part of <a href="/guides/what-is-aems/">AEMS, the FDA's new Adverse Event Monitoring System</a>.</p>
+
+      <p>The data is completely public. The catch is that the FDA built its tools for researchers and regulators, not for someone who just got handed a new prescription and wants to understand it. That's the gap PillSignal exists to fill. But the data carries some sharp edges, and the rest of this guide is about handling them.</p>
+
+      <h2>The one rule that matters most: a report is not proof</h2>
+
+      <div class="callout">
+        <strong>Key principle:</strong> A report does not mean the medication caused the event. It means the event happened while someone was taking the medication.
+      </div>
+
+      <p>When someone files a FAERS report, they're saying "this happened while I was taking this drug." They are not proving the drug was responsible. A person taking a blood pressure medication who has a heart attack will often show up in the data — but people who need blood pressure medication are, as a group, already at higher risk of heart attacks. Untangling what the drug did from what the underlying condition did, from what another medication did, from sheer coincidence, is the work of controlled clinical studies. A single report can't do it, and neither can a pile of them.</p>
+
+      <p>This is why PillSignal never ranks drugs by danger and never says a medication "causes" anything. We show you what was reported. What it means is a conversation for you and your doctor.</p>
+
+      <h2>Why a big number doesn't mean a dangerous drug</h2>
+
+      <p>Here's the trap almost everyone falls into: they see one drug with 200,000 reports and another with 2,000 and assume the first is a hundred times more dangerous. It usually isn't. Report counts are driven by things that have nothing to do with how risky a medication actually is.</p>
+
+      <p><strong>Popularity.</strong> A drug taken by twenty million people will generate more reports than one taken by fifty thousand, even if the second is riskier per person. More users, more reports. It's that simple. <a href="/drugs/humira/">Humira</a>, one of the most widely prescribed drugs in the world, has nearly 700,000 FAERS reports — largely because of how many patients take it, not because it's uniquely dangerous.</p>
+
+      <p><strong>Time on the market.</strong> A medication that's been available since 2004 has had two decades to accumulate reports. A drug approved last year has had months. The older drug's bigger number reflects its age, not its safety.</p>
+
+      <p><strong>Lawsuits and media.</strong> This is the big one, and it's why we treat report counts with so much caution. When a drug becomes the subject of a class-action lawsuit or a viral news story, reporting spikes — sometimes by orders of magnitude — as attorneys, journalists, and newly worried patients file. The reports are real, but the surge reflects attention, not a sudden change in the drug's safety. When you see a sharp spike in the "Report Volume Over Time" chart on a PillSignal page, a legal or media event is often the reason.</p>
+
+      <p>Because of all this, we report <strong>counts, never rates</strong>. We won't tell you a drug is "3% likely" to cause something, because the data doesn't support that kind of math. FAERS can't tell you how many people took a drug safely and never filed anything — and that silent majority is almost always the overwhelming majority.</p>
+
+      <h2>How to actually read a PillSignal drug page</h2>
+
+      <p>Every drug page is built from the same FAERS data, organized into a few sections. Here's how to get something useful out of each one.</p>
+
+      <p><strong>The report count and date range</strong> at the top tells you how many reports exist and how far back they go. Read it as a measure of attention and time on market as much as anything else.</p>
+
+      <p><strong>Top Reported Adverse Events</strong> is the list of what got reported most often. Remember that "drug ineffective" and the underlying condition the drug treats both routinely show up here — a psoriasis drug will have "psoriasis" reported as an event, because people reported their condition alongside the medication. The list is a starting point for questions, not a verdict.</p>
+
+      <p><strong>Who Is Reporting</strong> breaks down the demographics — age and sex — of the reports that included that information. It can hint at who's using a medication, but it's shaped by who files reports, which isn't the same as who takes the drug.</p>
+
+      <p><strong>Reported Outcomes</strong> shows how serious the reported events were, using the FDA's own categories — hospitalization, life-threatening, and so on. These are defined by FDA reporting guidelines, not by us, and a single report can involve more than one.</p>
+
+      <p><strong>Report Volume Over Time</strong> is where you can spot the clusters we keep mentioning. A steady trickle looks very different from a sudden mountain that lines up with a recall. When you see a spike, ask what happened that year — it's frequently a legal or regulatory event rather than a change in the drug itself. <a href="/drugs/ozempic/">Ozempic's</a> report volume chart is a good example of a drug whose reporting surged in tandem with its public profile.</p>
+
+      <h2>What this data can't tell you</h2>
+
+      <p>It can't tell you whether a medication is safe for you. It can't tell you your odds of any particular reaction. It can't compare two drugs and crown one safer. And it can't replace the person who actually knows your medical history.</p>
+
+      <p>What it <em>can</em> do is make you a more informed participant in your own care. If you see a reaction reported often enough to give you pause, that's not a reason to stop taking anything — it's a reason to bring a specific, well-informed question to your doctor or pharmacist. "I saw that a lot of people reported X with this medication — is that something I should watch for given my situation?" is a far better conversation than silence, and a far better one than quietly stopping a medication you may need.</p>
+
+      <p>Talk to a professional before you act on anything you read here. We mean that as the whole point of the site, not a disclaimer at the bottom of it. PillSignal is a place to get informed. Your doctor is where you go to decide.</p>
+
+      <hr class="divider">
+
+      <p style="font-size:0.875rem;color:var(--c-text-muted);">Want to see what patterns emerge across all 849 medications we track? <a href="/guides/what-fda-drug-reports-show/">What FDA drug reports actually show →</a></p>
+
+      <p style="font-size:0.875rem;color:var(--c-text-muted);margin-top:0.75rem;">FAERS is now part of a new system — <a href="/guides/what-is-aems/">What Is AEMS? The FDA System That Replaced FAERS →</a></p>
+
+      <p style="font-size:0.875rem;color:var(--c-text-muted);margin-top:0.75rem;">Want to file your own report with the FDA? <a href="/guides/how-to-report-drug-side-effect-fda/">How to Report a Drug Side Effect to the FDA →</a></p>
+
+      <p style="font-size:0.875rem;color:var(--c-text-muted);margin-top:0.75rem;">Ready to look up a medication? <a href="/">Search PillSignal →</a></p>
+
+      <div class="notice" role="note">
+        <strong>About this data:</strong> This data reflects voluntary reports submitted to the FDA's Adverse Event Monitoring System (AEMS), formerly the FDA Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors. <a href="https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems" target="_blank" rel="noopener noreferrer">Learn more about AEMS</a>. PillSignal is not a substitute for professional medical advice. Always consult your healthcare provider.
+      </div>
+
+    </article>
+  </div>
+
+{{SITE_FOOTER}}
+
+  <script>
+    document.getElementById('banner-btn').addEventListener('click', function () {
+      localStorage.setItem('pillsignal_disclaimer_dismissed', '1');
+      document.documentElement.classList.add('banner-seen');
+    });
+    (function () {
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('pillsignal_theme', next);
+        if (typeof gtag === 'function') gtag('event', 'dark_mode_toggle', { new_theme: next });
+      });
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+          if (!localStorage.getItem('pillsignal_theme')) {
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+          }
+        });
+      }
+    }());
+  </script>
+</body>
+</html>

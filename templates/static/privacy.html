@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+  <title>Privacy Policy — PillSignal</title>
+  <meta name="description" content="PillSignal's privacy policy. We use Google Analytics for anonymized usage data. We do not collect personal information or sell data.">
+  <link rel="canonical" href="https://pillsignal.com/privacy">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#00A67E">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Privacy Policy — PillSignal">
+  <meta property="og:description" content="PillSignal's privacy policy. We use Google Analytics for anonymized usage data. We do not collect personal information or sell data.">
+  <meta property="og:url"         content="https://pillsignal.com/privacy">
+  <meta property="og:site_name"   content="PillSignal">
+  <meta property="og:image"       content="https://pillsignal.com/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Privacy Policy — PillSignal">
+  <meta name="twitter:description" content="PillSignal's privacy policy. We use Google Analytics for anonymized usage data. We do not collect personal information or sell data.">
+  <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
+
+  <style>
+    :root, [data-theme="light"] {
+      --c-bg:               #ffffff;
+      --c-surface:          #f9fafb;
+      --c-border:           #e5e7eb;
+      --c-text:             #1a1a2e;
+      --c-text-muted:       #5a5a6e;
+      --c-primary:          #00A67E;
+      --c-primary-hover:    #008F6B;
+      --c-primary-light:    #E6F9F1;
+      --c-banner-bg:        #FFF9F0;
+      --c-banner-text:      #6B4E30;
+      --c-banner-border:    rgba(107,78,48,0.3);
+      --c-banner-btn-hover: rgba(0,0,0,0.05);
+      --font: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-heading: "Fraunces", Georgia, serif;
+    }
+    [data-theme="dark"] {
+      --c-bg:               #0f172a;
+      --c-surface:          #1e293b;
+      --c-border:           #334155;
+      --c-text:             #f1f5f9;
+      --c-text-muted:       #94a3b8;
+      --c-primary:          #34D1A0;
+      --c-primary-hover:    #2BBD8E;
+      --c-primary-light:    #0D3D2E;
+      --c-banner-bg:        #1C1508;
+      --c-banner-text:      #D4B896;
+      --c-banner-border:    rgba(212,184,150,0.25);
+      --c-banner-btn-hover: rgba(255,255,255,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--c-text);
+      background: var(--c-bg);
+      transition: background 0.2s, color 0.2s;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: var(--c-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--c-primary-hover); }
+    h1, h2 { line-height: 1.25; }
+    .theme-toggle {
+      display: flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px;
+      background: none;
+      border: 1px solid var(--c-border);
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--c-text-muted);
+      padding: 0; flex-shrink: 0;
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
+    [data-theme="light"] .icon-sun  { display: none; }
+    [data-theme="dark"]  .icon-moon { display: none; }
+    #disclaimer-banner { background: var(--c-banner-bg); color: var(--c-banner-text); font-size: 0.875rem; line-height: 1.5; }
+    .banner-seen #disclaimer-banner { display: none; }
+    .banner-inner { max-width: 900px; margin: 0 auto; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .banner-inner p { flex: 1; min-width: 200px; }
+    #banner-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--c-banner-border); color: var(--c-banner-text); padding: 0.3rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-family: var(--font); white-space: nowrap; transition: background 0.15s; }
+    #banner-btn:hover { background: var(--c-banner-btn-hover); }
+    .site-header { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
+    .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.25rem; font-weight: 600; font-family: var(--font-heading); color: var(--c-primary); letter-spacing: 0; }
+    .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
+    .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .header-link { font-size: 0.875rem; color: var(--c-text-muted); }
+    main { flex: 1; }
+    .prose { max-width: 720px; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
+    .prose h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.03em; color: var(--c-text); margin-bottom: 0.5rem; }
+    .prose .lead { font-size: 1.05rem; color: var(--c-text-muted); margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--c-border); }
+    .prose h2 { font-size: 1.05rem; font-weight: 700; color: var(--c-text); margin: 2rem 0 0.5rem; }
+    .prose p { color: var(--c-text-muted); margin-bottom: 1rem; }
+    .prose ul { color: var(--c-text-muted); margin-bottom: 1rem; padding-left: 1.5rem; }
+    .prose li { margin-bottom: 0.35rem; }
+    .prose strong { color: var(--c-text); font-weight: 600; }
+    .effective-date { display: inline-block; font-size: 0.8rem; color: var(--c-text-muted); margin-bottom: 1.5rem; }
+    .site-footer { border-top: 1px solid var(--c-border); padding: 1.5rem 1rem; text-align: center; font-size: 0.8rem; color: var(--c-text-muted); background: var(--c-bg); }
+    .site-footer a { color: var(--c-text-muted); }
+    .site-footer a:hover { color: var(--c-primary); text-decoration: none; }
+    .footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+    .footer-x-link { display: inline-flex; align-items: center; justify-content: center; margin-top: 0.6rem; color: var(--c-text-muted); transition: color 0.15s; }
+    .footer-x-link:hover { color: var(--c-primary); }
+  </style>
+
+  <script>
+    (function () {
+      var saved = localStorage.getItem('pillsignal_theme');
+      var dark  = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+      if (localStorage.getItem('pillsignal_disclaimer_dismissed')) {
+        document.documentElement.classList.add('banner-seen');
+      }
+    }());
+  </script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZEDB8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5ZEDB8Z5P');
+  </script>
+</head>
+<body>
+
+{{SITE_HEADER}}
+
+  <main>
+    <article class="prose">
+      <h1>Privacy Policy</h1>
+      <span class="effective-date">Effective: May 26, 2026</span>
+      <p class="lead">PillSignal is committed to protecting your privacy. This policy explains what data we collect, how we use it, and your options.</p>
+
+      <h2>What we collect</h2>
+      <p>PillSignal uses <strong>Google Analytics 4 (GA4)</strong> to collect anonymized usage data. This includes pages visited, time on page, device type, browser type, and approximate geographic location (city or region level, not street address). This data is used solely to understand how the site is being used and to improve the experience.</p>
+      <p>We do not collect your name, email address, or any other personally identifying information. PillSignal has no account system — no login, no registration, no forms that capture personal data.</p>
+
+      <h2>Interaction event tracking</h2>
+      <p>In addition to standard page view data, we track anonymized interaction events to understand how PillSignal is used and to improve the experience. These events include search queries entered on the site, clicks on drug pages and related drug links, and interactions with FAQ and navigation elements. They are processed through Google Analytics and do not contain any personally identifiable information. No keystrokes, form inputs, or personal data are captured — only anonymized signals such as the fact that a search occurred or that a link was clicked.</p>
+
+      <h2>Local storage</h2>
+      <p>PillSignal stores two values in your browser's local storage:</p>
+      <ul>
+        <li>Your dark/light mode preference</li>
+        <li>Whether you have dismissed the site disclaimer banner</li>
+      </ul>
+      <p>These values never leave your device. They are not transmitted to us or any third party.</p>
+
+      <h2>Cookies</h2>
+      <p>PillSignal does not set first-party cookies. Google Analytics may set cookies as part of its standard operation. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a> for details on how Google handles analytics data.</p>
+
+      <h2>Google Analytics opt-out</h2>
+      <p>You can opt out of Google Analytics tracking by installing the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics Opt-out Browser Add-on</a>.</p>
+
+      <h2>Third parties</h2>
+      <p>We do not sell, share, or transfer your data to third parties for marketing or any other commercial purpose. Google Analytics data is governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's privacy policy</a>.</p>
+
+      <h2>California residents (CCPA)</h2>
+      <p>PillSignal collects minimal anonymized usage data and does not sell personal information. If you have a privacy request — including a request to know what data has been collected or to request deletion — contact us at <a href="mailto:hello@pillsignal.com">hello@pillsignal.com</a>.</p>
+
+      <h2>Future advertising</h2>
+      <p>PillSignal may add display advertising in the future. If advertising is added, this privacy policy will be updated to reflect any changes to data collection or third-party sharing practices before those changes take effect.</p>
+
+      <h2>Contact</h2>
+      <p>For privacy questions or requests, contact <a href="mailto:hello@pillsignal.com">hello@pillsignal.com</a>.</p>
+    </article>
+  </main>
+
+{{SITE_FOOTER}}
+
+  <script>
+    document.getElementById('banner-btn').addEventListener('click', function () {
+      localStorage.setItem('pillsignal_disclaimer_dismissed', '1');
+      document.documentElement.classList.add('banner-seen');
+    });
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('pillsignal_theme', next);
+    });
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+        if (!localStorage.getItem('pillsignal_theme')) {
+          document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

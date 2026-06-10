@@ -38,6 +38,71 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 const TEMPLATE          = readFileSync(join(ROOT, 'templates', 'drug-page.html'), 'utf8');
 const HOMEPAGE_TEMPLATE = readFileSync(join(ROOT, 'templates', 'homepage.html'),  'utf8');
 
+// ─── Shared page chrome ───────────────────────────────────────────────────────
+// Single source of truth for banner, site-header, and site-footer HTML.
+// Injected via {{SITE_HEADER}} / {{SITE_FOOTER}} placeholders in every template
+// and called directly in writeBrowsePage(). Change here → all pages update.
+
+function renderHeader(page = 'default') {
+  const navBrowse = `<a href="/drugs/" class="header-link">Browse all</a>`;
+  const navSearch = `<a href="/" class="header-link">← Search</a>`;
+
+  const navLinks = page === 'drug'
+    ? `${navBrowse}\n        ${navSearch}`
+    : page === 'browse'
+    ? navSearch
+    : navBrowse;
+
+  return `  <div id="disclaimer-banner" role="note" aria-label="Site disclaimer">
+    <div class="banner-inner">
+      <p>PillSignal presents data from the FDA's voluntary reporting system. This data does not prove that a medication caused any adverse event. Always consult your healthcare provider about your medications.</p>
+      <button id="banner-btn" type="button">I understand</button>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="inner">
+      <a href="/" class="logo">PillSignal</a>
+      <div class="header-actions">
+        ${navLinks}
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <line x1="12" y1="2"     x2="12" y2="6"/>
+            <line x1="12" y1="18"    x2="12" y2="22"/>
+            <line x1="4.93" y1="4.93"   x2="7.76"  y2="7.76"/>
+            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+            <line x1="2"  y1="12"    x2="6"  y2="12"/>
+            <line x1="18" y1="12"    x2="22" y2="12"/>
+            <line x1="4.93" y1="19.07"  x2="7.76"  y2="16.24"/>
+            <line x1="16.24" y1="7.76"  x2="19.07" y2="4.93"/>
+          </svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>`;
+}
+
+function renderFooter() {
+  return `  <footer class="site-footer">
+    <p>Data sourced from the <a href="https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems" target="_blank" rel="noopener noreferrer">FDA's Adverse Event Monitoring System (AEMS)</a>, formerly FAERS, via OpenFDA. PillSignal is not affiliated with the FDA.</p>
+    <nav class="footer-nav" aria-label="Site links">
+      <a href="/guides/">Guides</a>
+      <a href="/about">About</a>
+      <a href="/faq">FAQ</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="/contact">Contact</a>
+    </nav>
+    <a href="https://x.com/PillSignal" class="footer-x-link" target="_blank" rel="noopener noreferrer" aria-label="PillSignal on X">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+  </footer>`;
+}
+
 // ─── Fetch metadata ────────────────────────────────────────────────────────────
 // Written by fetch-data.js on every run. Falls back to today if not yet created.
 const METADATA_PATH = join(__dirname, 'fetch-metadata.json');
@@ -285,7 +350,9 @@ function renderPage(drug, adverseEvents, demographics, outcomes, trends, related
     .replaceAll('{{TRENDS_JSON}}',          safeJson(trendsData))
     .replaceAll('{{RELATED_DRUGS_HTML}}',   renderRelatedDrugsHtml(relatedDrugs))
     .replaceAll('{{SHARE_BUTTONS}}',        renderShareButtons(brandName, totalReports, canonicalUrl))
-    .replaceAll('{{DATA_LAST_UPDATED}}',    escapeHtml(DATA_LAST_UPDATED));
+    .replaceAll('{{DATA_LAST_UPDATED}}',    escapeHtml(DATA_LAST_UPDATED))
+    .replaceAll('{{SITE_HEADER}}',          renderHeader('drug'))
+    .replaceAll('{{SITE_FOOTER}}',          renderFooter());
 }
 
 // ─── File writers ─────────────────────────────────────────────────────────────
@@ -514,33 +581,7 @@ function writeBrowsePage(drugs) {
 </head>
 <body>
 
-  <div id="disclaimer-banner" role="note" aria-label="Site disclaimer">
-    <div class="banner-inner">
-      <p>PillSignal presents data from the FDA's voluntary reporting system. This data does not prove that a medication caused any adverse event. Always consult your healthcare provider about your medications.</p>
-      <button id="banner-btn" type="button">I understand</button>
-    </div>
-  </div>
-
-  <header class="site-header">
-    <div class="inner">
-      <a href="/" class="logo">PillSignal</a>
-      <div class="header-actions">
-        <a href="/" class="header-link">← Search drugs</a>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
-          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="4"/>
-            <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>
-            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
-            <line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
-            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
-          </svg>
-          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </header>
+${renderHeader('browse')}
 
   <div class="page-header">
     <h1>Browse All Drugs</h1>
@@ -559,19 +600,7 @@ ${sections}
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,10 7,4 12,10"/></svg>
   </button>
 
-  <footer class="site-footer">
-    <p>Data sourced from <a href="https://open.fda.gov/" target="_blank" rel="noopener noreferrer">OpenFDA</a>. PillSignal is not affiliated with the FDA.</p>
-    <nav class="footer-nav" aria-label="Site links">
-      <a href="/guides/">Guides</a>
-      <a href="/about">About</a>
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/terms">Terms of Service</a>
-      <a href="/contact">Contact</a>
-    </nav>
-    <a href="https://x.com/PillSignal" class="footer-x-link" target="_blank" rel="noopener noreferrer" aria-label="PillSignal on X">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-    </a>
-  </footer>
+${renderFooter()}
 
   <script>
     document.getElementById('banner-btn').addEventListener('click', function () {
@@ -661,9 +690,42 @@ function writeHomepage(drugs, minYear, maxYear) {
     </div>
   </div>`;
 
-  const html = HOMEPAGE_TEMPLATE.replace('{{STATS_BAR}}', statsBarHtml);
+  const html = HOMEPAGE_TEMPLATE
+    .replace('{{STATS_BAR}}',    statsBarHtml)
+    .replace('{{SITE_HEADER}}',  renderHeader('home'))
+    .replace('{{SITE_FOOTER}}',  renderFooter());
   writeFileSync(join(DOCS_DIR, 'index.html'), html, 'utf8');
   console.log(`  index.html   — stats: ${reportFmt} reports, ${drugCount} drugs, ${coverage}`);
+}
+
+const STATIC_PAGES = [
+  { template: 'about.html',                                       output: 'about/index.html'                                       },
+  { template: 'faq.html',                                         output: 'faq/index.html'                                         },
+  { template: 'contact.html',                                     output: 'contact/index.html'                                     },
+  { template: 'privacy.html',                                     output: 'privacy/index.html'                                     },
+  { template: 'terms.html',                                       output: 'terms/index.html'                                       },
+  { template: 'guides/index.html',                                output: 'guides/index.html'                                      },
+  { template: 'guides/how-to-read-fda-adverse-event-reports.html', output: 'guides/how-to-read-fda-adverse-event-reports/index.html' },
+  { template: 'guides/what-fda-drug-reports-show.html',           output: 'guides/what-fda-drug-reports-show/index.html'           },
+  { template: 'guides/how-to-report-drug-side-effect-fda.html',   output: 'guides/how-to-report-drug-side-effect-fda/index.html'   },
+  { template: 'guides/what-is-aems.html',                         output: 'guides/what-is-aems/index.html'                         },
+];
+
+function writeStaticPages() {
+  const staticDir = join(ROOT, 'templates', 'static');
+  let count = 0;
+  for (const { template, output } of STATIC_PAGES) {
+    const src  = readFileSync(join(staticDir, template), 'utf8');
+    const page = template.startsWith('guides/') ? 'guide' : 'static';
+    const html = src
+      .replace('{{SITE_HEADER}}', renderHeader(page))
+      .replace('{{SITE_FOOTER}}', renderFooter());
+    const dest = join(DOCS_DIR, output);
+    mkdirSync(dirname(dest), { recursive: true });
+    writeFileSync(dest, html, 'utf8');
+    count++;
+  }
+  console.log(`  static pages — ${count} pages written`);
 }
 
 function writeRobotsTxt() {
@@ -790,6 +852,7 @@ async function main() {
   writeRobotsTxt();
   writeDrugIndex(generatedDrugs);
   writeHomepage(generatedDrugs, minYear, maxYear);
+  writeStaticPages();
 
   console.log(`\nStage 2 complete.`);
   console.log(`  Generated : ${generated} pages`);

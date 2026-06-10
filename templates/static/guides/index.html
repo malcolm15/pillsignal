@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+
+  <title>Guides — Understanding FDA Drug Data | PillSignal</title>
+  <meta name="description" content="Plain-English guides to understanding FDA adverse event data — how to read FAERS reports, what the numbers mean, and how to use PillSignal.">
+  <link rel="canonical" href="https://pillsignal.com/guides/">
+  <link rel="me" href="https://x.com/PillSignal">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#00A67E">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Guides — Understanding FDA Drug Data | PillSignal">
+  <meta property="og:description" content="Plain-English guides to understanding FDA adverse event data — how to read FAERS reports, what the numbers mean, and how to use PillSignal.">
+  <meta property="og:url"         content="https://pillsignal.com/guides/">
+  <meta property="og:site_name"   content="PillSignal">
+  <meta property="og:image"       content="https://pillsignal.com/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Guides — Understanding FDA Drug Data | PillSignal">
+  <meta name="twitter:description" content="Plain-English guides to understanding FDA adverse event data.">
+  <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
+
+  <style>
+    :root, [data-theme="light"] {
+      --c-bg: #ffffff; --c-surface: #f9fafb; --c-border: #e5e7eb;
+      --c-text: #1a1a2e; --c-text-muted: #5a5a6e;
+      --c-primary: #00A67E; --c-primary-hover: #008F6B; --c-primary-light: #E6F9F1;
+      --c-notice-bg: #FFF9F0; --c-notice-border: #F0E6D4; --c-notice-text: #6B4E30; --c-notice-link: #008F6B;
+      --c-banner-bg: #FFF9F0; --c-banner-text: #6B4E30; --c-banner-border: rgba(107,78,48,0.3); --c-banner-btn-hover: rgba(0,0,0,0.05);
+      --font: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-heading: "Fraunces", Georgia, serif;
+    }
+    [data-theme="dark"] {
+      --c-bg: #0f172a; --c-surface: #1e293b; --c-border: #334155;
+      --c-text: #f1f5f9; --c-text-muted: #94a3b8;
+      --c-primary: #34D1A0; --c-primary-hover: #2BBD8E; --c-primary-light: #0D3D2E;
+      --c-notice-bg: #1C1508; --c-notice-border: #3D3520; --c-notice-text: #D4B896; --c-notice-link: #34D1A0;
+      --c-banner-bg: #1C1508; --c-banner-text: #D4B896; --c-banner-border: rgba(212,184,150,0.25); --c-banner-btn-hover: rgba(255,255,255,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); font-size: 1rem; line-height: 1.6; color: var(--c-text); background: var(--c-bg); transition: background 0.2s, color 0.2s; }
+    a { color: var(--c-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--c-primary-hover); }
+    h1, h2 { line-height: 1.25; }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    .theme-toggle { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: none; border: 1px solid var(--c-border); border-radius: 6px; cursor: pointer; color: var(--c-text-muted); padding: 0; flex-shrink: 0; transition: color 0.15s, border-color 0.15s, background 0.15s; }
+    .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
+    [data-theme="light"] .icon-sun  { display: none; }
+    [data-theme="dark"]  .icon-moon { display: none; }
+
+    #disclaimer-banner { background: var(--c-banner-bg); color: var(--c-banner-text); font-size: 0.875rem; line-height: 1.5; }
+    .banner-seen #disclaimer-banner { display: none; }
+    .banner-inner { max-width: 900px; margin: 0 auto; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .banner-inner p { flex: 1; min-width: 200px; }
+    #banner-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--c-banner-border); color: var(--c-banner-text); padding: 0.3rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-family: var(--font); white-space: nowrap; transition: background 0.15s; }
+    #banner-btn:hover { background: var(--c-banner-btn-hover); }
+
+    .site-header { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
+    .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.25rem; font-weight: 600; font-family: var(--font-heading); color: var(--c-primary); letter-spacing: 0; }
+    .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
+    .header-actions { display: flex; align-items: center; gap: 1rem; }
+
+    .page-header { background: var(--c-surface); border-bottom: 1px solid var(--c-border); padding: 2.5rem 1rem 2rem; }
+    .page-header .inner { max-width: 720px; margin: 0 auto; }
+    .breadcrumb { font-size: 0.8rem; color: var(--c-text-muted); margin-bottom: 0.75rem; }
+    .breadcrumb a { color: var(--c-text-muted); }
+    .breadcrumb a:hover { color: var(--c-primary); text-decoration: none; }
+    .breadcrumb span { margin: 0 0.3rem; }
+    .page-header h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 600; letter-spacing: 0; color: var(--c-text); margin-bottom: 0.5rem; }
+    .page-header .subtitle { font-size: 1rem; color: var(--c-text-muted); }
+
+    main { max-width: 720px; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
+
+    .guide-card {
+      display: block;
+      border: 1px solid var(--c-border);
+      border-radius: 10px;
+      padding: 1.25rem 1.375rem;
+      margin-bottom: 1rem;
+      color: var(--c-text);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .guide-card:hover { border-color: var(--c-primary); box-shadow: 0 2px 12px rgba(0,166,126,0.1); text-decoration: none; }
+    .guide-card h2 { font-size: 1.05rem; font-weight: 700; color: var(--c-primary); margin-bottom: 0.35rem; }
+    .guide-card p { font-size: 0.9rem; color: var(--c-text-muted); margin: 0; line-height: 1.55; }
+    .guide-card .read-more { font-size: 0.8rem; color: var(--c-text-muted); margin-top: 0.6rem; display: block; }
+
+    .site-footer { border-top: 1px solid var(--c-border); padding: 1.5rem 1rem; text-align: center; font-size: 0.8rem; color: var(--c-text-muted); background: var(--c-bg); }
+    .site-footer a { color: var(--c-text-muted); }
+    .site-footer a:hover { color: var(--c-primary); text-decoration: none; }
+    .footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+    .footer-x-link { display: inline-flex; align-items: center; justify-content: center; margin-top: 0.6rem; color: var(--c-text-muted); transition: color 0.15s; }
+    .footer-x-link:hover { color: var(--c-primary); }
+  </style>
+
+  <script>
+    (function () {
+      var saved = localStorage.getItem('pillsignal_theme');
+      var dark  = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+      if (localStorage.getItem('pillsignal_disclaimer_dismissed')) {
+        document.documentElement.classList.add('banner-seen');
+      }
+    }());
+  </script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZEDB8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5ZEDB8Z5P');
+  </script>
+</head>
+<body>
+
+{{SITE_HEADER}}
+
+  <div class="page-header">
+    <div class="inner">
+      <p class="breadcrumb"><a href="/">Home</a><span aria-hidden="true"> › </span>Guides</p>
+      <h1>Guides</h1>
+      <p class="subtitle">Plain-English explanations of FDA drug data — what it means and how to use it.</p>
+    </div>
+  </div>
+
+  <main>
+    <a href="/guides/how-to-read-fda-adverse-event-reports/" class="guide-card">
+      <h2>How to Read FDA Adverse Event Reports for Medications</h2>
+      <p>What FAERS is, why large report counts don't automatically mean danger, why "Drug Ineffective" is often the #1 reported event, and how to read each section of a PillSignal drug page.</p>
+      <span class="read-more">Read the guide →</span>
+    </a>
+    <a href="/guides/what-fda-drug-reports-show/" class="guide-card">
+      <h2>What FDA Drug Reports Actually Show</h2>
+      <p>We analyzed every medication in our database — 849 drugs, 78M+ reports. The biggest patterns in the data reveal more about how people report than about which drugs are dangerous.</p>
+      <span class="read-more">Read the guide →</span>
+    </a>
+    <a href="/guides/how-to-report-drug-side-effect-fda/" class="guide-card">
+      <h2>How to Report a Drug Side Effect to the FDA</h2>
+      <p>A plain-language walkthrough of MedWatch — who can report, what to gather, and the three ways to file. The data on this site exists because people like you took a few minutes to do this.</p>
+      <span class="read-more">Read the guide →</span>
+    </a>
+    <a href="/guides/what-is-aems/" class="guide-card">
+      <h2>What Is AEMS? The FDA System That Replaced FAERS</h2>
+      <p>In March 2026, the FDA replaced FAERS with a new system called AEMS. What consolidated, what got faster, what stayed exactly the same — and what it means if you're looking up a medication.</p>
+      <span class="read-more">Read the guide →</span>
+    </a>
+  </main>
+
+{{SITE_FOOTER}}
+
+  <script>
+    document.getElementById('banner-btn').addEventListener('click', function () {
+      localStorage.setItem('pillsignal_disclaimer_dismissed', '1');
+      document.documentElement.classList.add('banner-seen');
+    });
+    (function () {
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('pillsignal_theme', next);
+        if (typeof gtag === 'function') gtag('event', 'dark_mode_toggle', { new_theme: next });
+      });
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+          if (!localStorage.getItem('pillsignal_theme')) {
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+          }
+        });
+      }
+    }());
+  </script>
+</body>
+</html>

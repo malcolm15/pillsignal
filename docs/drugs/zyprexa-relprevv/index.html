@@ -395,10 +395,6 @@
 </head>
 <body>
 
-  <!-- ─── First-visit disclaimer banner (Legal requirement #7) ──────────────────
-       Always rendered in HTML so crawlers read the disclaimer text.
-       Hidden via CSS for users who have already dismissed it.
-  ─────────────────────────────────────────────────────────────────────────────── -->
   <div id="disclaimer-banner" role="note" aria-label="Site disclaimer">
     <div class="banner-inner">
       <p>PillSignal presents data from the FDA's voluntary reporting system. This data does not prove that a medication caused any adverse event. Always consult your healthcare provider about your medications.</p>
@@ -406,7 +402,6 @@
     </div>
   </div>
 
-  <!-- ─── Header ────────────────────────────────────────────────────────────── -->
   <header class="site-header">
     <div class="inner">
       <a href="/" class="logo">PillSignal</a>
@@ -414,7 +409,6 @@
         <a href="/drugs/" class="header-link">Browse all</a>
         <a href="/" class="header-link">← Search</a>
         <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
-          <!-- Sun: shown in dark mode (click to go light) -->
           <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="4"/>
             <line x1="12" y1="2"     x2="12" y2="6"/>
@@ -426,7 +420,6 @@
             <line x1="4.93" y1="19.07"  x2="7.76"  y2="16.24"/>
             <line x1="16.24" y1="7.76"  x2="19.07" y2="4.93"/>
           </svg>
-          <!-- Moon: shown in light mode (click to go dark) -->
           <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
           </svg>
@@ -554,13 +547,8 @@
 
   </main>
 
-  <!-- ─── Footer ────────────────────────────────────────────────────────────── -->
   <footer class="site-footer">
-    <p>
-      Data sourced from <a href="https://open.fda.gov/" target="_blank" rel="noopener noreferrer">OpenFDA</a>.
-      PillSignal is not affiliated with the FDA.
-      Page generated June 8, 2026.
-    </p>
+    <p>Data sourced from the <a href="https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems" target="_blank" rel="noopener noreferrer">FDA's Adverse Event Monitoring System (AEMS)</a>, formerly FAERS, via OpenFDA. PillSignal is not affiliated with the FDA.</p>
     <nav class="footer-nav" aria-label="Site links">
       <a href="/guides/">Guides</a>
       <a href="/about">About</a>
