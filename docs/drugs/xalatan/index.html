@@ -319,6 +319,13 @@
     .chart-wrap--donut-lg { height: 300px; max-width: 400px; margin: 0 auto; }
     .chart-wrap--bar      { height: 240px; }
     .chart-wrap--line     { height: 260px; }
+    .chart-caption {
+      font-size: 0.75rem;
+      color: var(--c-text-muted);
+      text-align: center;
+      margin-top: 0.625rem;
+      line-height: 1.45;
+    }
     .no-data {
       font-size: 0.875rem;
       color: var(--c-text-muted);
@@ -478,6 +485,7 @@
       <div class="chart-wrap" id="ae-wrap">
         <canvas id="chart-ae" role="img" aria-label="Horizontal bar chart showing top reported adverse events for Xalatan"></canvas>
       </div>
+      <p class="chart-caption">Ranked by frequency of reports, not severity — the most-reported event is not necessarily the most dangerous or most common in patients taking this drug.</p>
     </section>
 
     <!-- ─── Demographics ────────────────────────────────────────────────────── -->
@@ -501,6 +509,7 @@
           </div>
         </div>
       </div>
+      <p class="chart-caption">This shows who filed reports — reflecting who takes this drug and who tends to report, not who is at greatest risk.</p>
     </section>
 
     <!-- ─── Outcomes ────────────────────────────────────────────────────────── -->
@@ -514,6 +523,7 @@
       <div class="chart-wrap chart-wrap--donut chart-wrap--donut-lg" style="margin:0 auto;">
         <canvas id="chart-outcomes" role="img" aria-label="Donut chart showing reported outcome distribution for Xalatan"></canvas>
       </div>
+      <p class="chart-caption">Serious outcomes are far more likely to be reported than mild ones, so this overstates how often outcomes are serious. A recorded death does not mean the drug caused it.</p>
     </section>
 
     <!-- ─── Trends ──────────────────────────────────────────────────────────── -->
@@ -527,6 +537,7 @@
       <div class="chart-wrap chart-wrap--line">
         <canvas id="chart-trends" role="img" aria-label="Line chart showing quarterly FAERS report volume for Xalatan"></canvas>
       </div>
+      <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission — not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
