@@ -8,6 +8,10 @@ The data source is the OpenFDA AEMS/FAERS (FDA's Adverse Event Monitoring System
 
 The goal is to become a top search result for queries like "[drug name] side effects reported," "[drug name] reactions," and "[drug name] adverse events" and monetize through Google AdSense display advertising.
 
+## Writing Conventions
+
+- **No em-dashes** in any PillSignal content (copy, captions, section notes, guide text, UI labels). Use a comma, a period, or restructure the sentence instead. Em-dashes include `—` (U+2014) and `–` (U+2013). Code comments are exempt.
+
 ## Legal Requirements — READ THIS FIRST
 
 These are non-negotiable and must be followed in every piece of code, copy, and content generated for this project:
