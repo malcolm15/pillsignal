@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"CALCIUM GLUCONATE () — FDA Adverse Event Reports","description":"Calcium Gluconate (): 11,777 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/calcium-gluconate","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"CALCIUM GLUCONATE () — FDA Adverse Event Reports","description":"Calcium Gluconate (): 11,777 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/calcium-gluconate","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Calcium Gluconate</h2>
+  <p class="section-note">In FDA adverse event reports that mention Calcium Gluconate, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(3,158 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(2,978 reports)</span></li>
+    <li><a href="/drugs/pantoprazole">Pantoprazole</a> <span class="co-reported-count">(2,897 reports)</span></li>
+    <li>Ergocalciferol <span class="co-reported-count">(2,827 reports)</span></li>
+    <li><a href="/drugs/folic-acid">Folic Acid</a> <span class="co-reported-count">(2,807 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/adalimumab">Adalimumab</a><span class="related-count">42,796 reports</span></li>
-    <li><a href="/drugs/azulfidine-en-tabs">Azulfidine En-tabs</a><span class="related-count">76,998 reports</span></li>
-    <li><a href="/drugs/azulfidine">Azulfidine</a><span class="related-count">75,765 reports</span></li>
-    <li><a href="/drugs/sulfasalazine">Sulfasalazine</a><span class="related-count">72,719 reports</span></li>
-    <li><a href="/drugs/voltaren-arthritis-pain">Voltaren Arthritis Pain</a><span class="related-count">99,125 reports</span></li>
+    <li><a href="/drugs/adalimumab">Adalimumab</a><span class="related-count">42,797 reports</span></li>
+    <li><a href="/drugs/azulfidine-en-tabs">Azulfidine En-tabs</a><span class="related-count">76,997 reports</span></li>
+    <li><a href="/drugs/azulfidine">Azulfidine</a><span class="related-count">75,763 reports</span></li>
+    <li><a href="/drugs/sulfasalazine">Sulfasalazine</a><span class="related-count">72,717 reports</span></li>
+    <li><a href="/drugs/voltaren-arthritis-pain">Voltaren Arthritis Pain</a><span class="related-count">99,134 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Calcium Gluconate";
-    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":2115},{"label":"PAIN","value":1682},{"label":"FATIGUE","value":1660},{"label":"OFF LABEL USE","value":1570},{"label":"RHEUMATOID ARTHRITIS","value":1373},{"label":"NAUSEA","value":1346},{"label":"ALOPECIA","value":1318},{"label":"ARTHROPATHY","value":1242},{"label":"PEMPHIGUS","value":1239},{"label":"VOMITING","value":1238},{"label":"PSORIATIC ARTHROPATHY","value":1231},{"label":"ABDOMINAL DISCOMFORT","value":1229},{"label":"SYSTEMIC LUPUS ERYTHEMATOSUS","value":1212},{"label":"DIARRHOEA","value":1184},{"label":"GLOSSODYNIA","value":1169}];
-    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[7633,3218,22]};
+    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":2115},{"label":"PAIN","value":1682},{"label":"FATIGUE","value":1661},{"label":"OFF LABEL USE","value":1570},{"label":"RHEUMATOID ARTHRITIS","value":1373},{"label":"NAUSEA","value":1347},{"label":"ALOPECIA","value":1318},{"label":"ARTHROPATHY","value":1242},{"label":"PEMPHIGUS","value":1239},{"label":"VOMITING","value":1239},{"label":"PSORIATIC ARTHROPATHY","value":1231},{"label":"ABDOMINAL DISCOMFORT","value":1229},{"label":"SYSTEMIC LUPUS ERYTHEMATOSUS","value":1212},{"label":"DIARRHOEA","value":1186},{"label":"GLOSSODYNIA","value":1169}];
+    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[7632,3219,22]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[469,525,1651,2450,1862,1656]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Life-Threatening","Non-Serious","Disability"],"values":[6442,5423,2436,2405,2119,1555]};
-    var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[12,17,45,149,878,464,449,496,331,270,339,102,33,21,24,11,168,20,60,35,25,36,26,25,16,24,30,34,32,31,33,28,42,36,69,31,28,37,54,51,56,31,32,44,39,43,74,47,52,58,71,77,64,93,100,78,87,103,91,112,129,145,105,164,120,165,228,174,154,202,160,185,174,314,213,234,220,225,202,250,187,246,177,260,274,233,270,268,135]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Life-Threatening","Non-Serious","Disability"],"values":[6442,5424,2436,2405,2119,1555]};
+    var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[12,17,45,149,878,464,449,496,331,269,340,102,33,21,24,11,168,20,60,35,25,36,26,25,16,24,30,34,32,31,33,28,42,36,69,31,28,37,54,51,56,31,32,44,39,43,74,47,52,58,71,77,64,93,100,78,87,103,91,112,129,145,105,164,120,165,228,174,154,202,160,185,174,314,213,234,220,225,202,250,187,246,177,260,274,233,270,268,135]};
   </script>
 
   <!-- Chart.js from CDN -->

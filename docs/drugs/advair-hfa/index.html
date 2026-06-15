@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"ADVAIR HFA () — FDA Adverse Event Reports","description":"Advair Hfa (): 59,093 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/advair-hfa","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"ADVAIR HFA () — FDA Adverse Event Reports","description":"Advair Hfa (): 59,093 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/advair-hfa","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,6 +557,20 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Advair Hfa</h2>
+  <p class="section-note">In FDA adverse event reports that mention Advair Hfa, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/albuterol">Albuterol</a> <span class="co-reported-count">(20,917 reports)</span></li>
+    <li><a href="/drugs/montelukast">Montelukast</a> <span class="co-reported-count">(11,691 reports)</span></li>
+    <li>Tiotropium <span class="co-reported-count">(11,240 reports)</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(10,149 reports)</span></li>
+    <li>Ergocalciferol <span class="co-reported-count">(7,695 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
@@ -547,9 +578,9 @@
   <ul class="related-list">
     <li><a href="/drugs/spiriva">Spiriva</a><span class="related-count">135,604 reports</span></li>
     <li><a href="/drugs/spiriva-handihaler">Spiriva Handihaler</a><span class="related-count">135,604 reports</span></li>
-    <li><a href="/drugs/symbicort">Symbicort</a><span class="related-count">95,180 reports</span></li>
-    <li><a href="/drugs/nasonex">Nasonex</a><span class="related-count">31,752 reports</span></li>
-    <li><a href="/drugs/singulair">Singulair</a><span class="related-count">118,895 reports</span></li>
+    <li><a href="/drugs/symbicort">Symbicort</a><span class="related-count">95,178 reports</span></li>
+    <li><a href="/drugs/nasonex">Nasonex</a><span class="related-count">31,749 reports</span></li>
+    <li><a href="/drugs/singulair">Singulair</a><span class="related-count">118,890 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Advair Hfa";
-    var ADVERSE_EVENTS = [{"label":"DYSPNOEA","value":9855},{"label":"ASTHMA","value":8017},{"label":"DRUG INEFFECTIVE","value":5419},{"label":"PNEUMONIA","value":4846},{"label":"COUGH","value":4844},{"label":"WHEEZING","value":4126},{"label":"FATIGUE","value":3909},{"label":"MALAISE","value":3563},{"label":"HEADACHE","value":3555},{"label":"PAIN","value":3318},{"label":"OFF LABEL USE","value":2782},{"label":"NAUSEA","value":2701},{"label":"DIARRHOEA","value":2174},{"label":"NASOPHARYNGITIS","value":2127},{"label":"VOMITING","value":2121}];
+    var ADVERSE_EVENTS = [{"label":"DYSPNOEA","value":9856},{"label":"ASTHMA","value":8017},{"label":"DRUG INEFFECTIVE","value":5419},{"label":"PNEUMONIA","value":4847},{"label":"COUGH","value":4844},{"label":"WHEEZING","value":4127},{"label":"FATIGUE","value":3908},{"label":"MALAISE","value":3564},{"label":"HEADACHE","value":3554},{"label":"PAIN","value":3318},{"label":"OFF LABEL USE","value":2782},{"label":"NAUSEA","value":2702},{"label":"DIARRHOEA","value":2174},{"label":"NASOPHARYNGITIS","value":2127},{"label":"VOMITING","value":2121}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[37135,17684,35]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1388,2328,4782,11495,9035,6277]};
-    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Death","Life-Threatening","Disability"],"values":[24903,23406,17374,3538,1157,1091]};
-    var TRENDS_DATA    = {"labels":["Q3 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,7,552,10,15,12,15,12,11,10,11,9,1724,7,10,4,15,30,316,14,121,271,699,715,28,28,20,23,35,73,191,43,82,123,125,125,76,57,113,125,389,395,615,1656,3886,1539,1156,1631,1485,1557,1453,1949,1204,1325,1265,1045,957,1347,1078,1042,1048,1225,1225,1147,1286,1385,1182,1243,1002,1020,1030,810,695,800,693,747,730,740,674,627,720,820,756,714,779,733,589,676,625,539]};
+    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Death","Life-Threatening","Disability"],"values":[24902,23406,17375,3538,1158,1091]};
+    var TRENDS_DATA    = {"labels":["Q3 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,7,552,10,15,12,15,12,11,10,11,9,1724,7,10,4,15,30,315,14,122,271,699,717,27,28,20,23,35,73,191,43,82,123,124,125,76,57,113,125,389,395,615,1656,3886,1539,1156,1631,1485,1557,1453,1949,1204,1325,1265,1045,957,1347,1078,1042,1048,1225,1225,1147,1286,1385,1182,1243,1002,1020,1030,810,695,800,693,747,730,740,674,627,720,820,756,714,779,733,589,676,625,539]};
   </script>
 
   <!-- Chart.js from CDN -->

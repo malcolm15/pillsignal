@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Farxiga (dapagliflozin) — FDA Adverse Event Reports","description":"Farxiga (dapagliflozin): 53,578 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/farxiga","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Farxiga (dapagliflozin) — FDA Adverse Event Reports","description":"Farxiga (dapagliflozin): 53,578 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/farxiga","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Farxiga</h2>
+  <p class="section-note">In FDA adverse event reports that mention Farxiga, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/metformin">Metformin</a> <span class="co-reported-count">(10,390 reports)</span></li>
+    <li><a href="/drugs/lasix">Furosemide</a> <span class="co-reported-count">(5,537 reports)</span></li>
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(5,262 reports)</span></li>
+    <li><a href="/drugs/bisoprolol">Bisoprolol</a> <span class="co-reported-count">(4,818 reports)</span></li>
+    <li><a href="/drugs/spironolactone">Spironolactone</a> <span class="co-reported-count">(4,123 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/dapagliflozin">Dapagliflozin</a><span class="related-count">28,642 reports</span></li>
-    <li><a href="/drugs/kapspargo">Kapspargo</a><span class="related-count">60,078 reports</span></li>
-    <li><a href="/drugs/metoprolol-succinate">Metoprolol Succinate</a><span class="related-count">60,051 reports</span></li>
-    <li><a href="/drugs/coreg">Coreg</a><span class="related-count">132,644 reports</span></li>
-    <li><a href="/drugs/cozaar">Cozaar</a><span class="related-count">76,525 reports</span></li>
+    <li><a href="/drugs/kapspargo">Kapspargo</a><span class="related-count">60,077 reports</span></li>
+    <li><a href="/drugs/metoprolol-succinate">Metoprolol Succinate</a><span class="related-count">60,050 reports</span></li>
+    <li><a href="/drugs/coreg">Coreg</a><span class="related-count">132,638 reports</span></li>
+    <li><a href="/drugs/cozaar">Cozaar</a><span class="related-count">76,519 reports</span></li>
   </ul>
 </section>
 

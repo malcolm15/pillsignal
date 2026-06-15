@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"ROXICODONE () — FDA Adverse Event Reports","description":"Roxicodone (): 89,663 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/roxicodone","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"ROXICODONE () — FDA Adverse Event Reports","description":"Roxicodone (): 89,663 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/roxicodone","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,6 +557,20 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Roxicodone</h2>
+  <p class="section-note">In FDA adverse event reports that mention Roxicodone, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Morphine <span class="co-reported-count">(36,271 reports)</span></li>
+    <li>Hydromorphone <span class="co-reported-count">(33,286 reports)</span></li>
+    <li>Buprenorphine <span class="co-reported-count">(26,081 reports)</span></li>
+    <li>Hydrocodone <span class="co-reported-count">(25,954 reports)</span></li>
+    <li>Oxycodone And Acetaminophen <span class="co-reported-count">(25,788 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
@@ -547,9 +578,9 @@
   <ul class="related-list">
     <li><a href="/drugs/oxaydo">Oxaydo</a><span class="related-count">82,666 reports</span></li>
     <li><a href="/drugs/roxybond">Roxybond</a><span class="related-count">82,592 reports</span></li>
-    <li><a href="/drugs/oxycodone-hydrochloride">Oxycodone Hydrochloride</a><span class="related-count">181,654 reports</span></li>
-    <li><a href="/drugs/xtampza-er">Xtampza Er</a><span class="related-count">105,716 reports</span></li>
-    <li><a href="/drugs/endocet">Endocet</a><span class="related-count">22,916 reports</span></li>
+    <li><a href="/drugs/oxycodone-hydrochloride">Oxycodone Hydrochloride</a><span class="related-count">181,652 reports</span></li>
+    <li><a href="/drugs/xtampza-er">Xtampza Er</a><span class="related-count">105,714 reports</span></li>
+    <li><a href="/drugs/endocet">Endocet</a><span class="related-count">22,919 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Roxicodone";
-    var ADVERSE_EVENTS = [{"label":"DRUG DEPENDENCE","value":26996},{"label":"PAIN","value":18868},{"label":"OVERDOSE","value":17471},{"label":"EMOTIONAL DISTRESS","value":15337},{"label":"DEATH","value":14169},{"label":"TOXICITY TO VARIOUS AGENTS","value":12536},{"label":"DRUG WITHDRAWAL SYNDROME","value":10073},{"label":"FATIGUE","value":3913},{"label":"DRUG INEFFECTIVE","value":3841},{"label":"DRUG ABUSE","value":3650},{"label":"NAUSEA","value":3506},{"label":"ANXIETY","value":2833},{"label":"DYSPNOEA","value":2669},{"label":"OFF LABEL USE","value":2664},{"label":"RASH","value":2553}];
+    var ADVERSE_EVENTS = [{"label":"DRUG DEPENDENCE","value":26996},{"label":"PAIN","value":18867},{"label":"OVERDOSE","value":17471},{"label":"EMOTIONAL DISTRESS","value":15337},{"label":"DEATH","value":14168},{"label":"TOXICITY TO VARIOUS AGENTS","value":12537},{"label":"DRUG WITHDRAWAL SYNDROME","value":10074},{"label":"FATIGUE","value":3913},{"label":"DRUG INEFFECTIVE","value":3841},{"label":"DRUG ABUSE","value":3650},{"label":"NAUSEA","value":3506},{"label":"ANXIETY","value":2833},{"label":"DYSPNOEA","value":2669},{"label":"OFF LABEL USE","value":2664},{"label":"RASH","value":2553}];
     var SEX_DATA       = {"labels":["Male","Female","Unknown"],"values":[30737,30614,57]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[806,2899,6639,8115,4750,3172]};
     var OUTCOMES_DATA  = {"labels":["Other Serious","Death","Hospitalization","Non-Serious","Disability","Life-Threatening"],"values":[48200,31625,15886,10064,9455,3343]};
-    var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[6,9,20,11,9,12,19,21,13,25,18,48,18,19,22,49,77,73,14,17,45,41,33,41,79,59,51,74,74,64,65,69,193,181,132,96,354,142,187,181,393,129,121,128,263,160,211,435,580,560,665,686,800,659,550,2294,12795,11088,683,712,1261,695,639,727,1202,1163,1167,1889,1680,3354,1075,8028,10130,2106,1099,2572,860,1031,905,1854,1072,991,1044,1078,1227,966,1275,950,1050]};
+    var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[6,9,20,11,9,12,19,21,13,25,18,48,18,19,22,49,77,73,14,17,45,41,33,41,79,59,51,74,73,64,66,69,194,181,131,96,354,142,187,181,393,129,121,128,263,160,211,435,580,560,665,686,800,659,550,2294,12795,11088,683,712,1261,695,639,727,1202,1163,1167,1889,1680,3354,1075,8028,10130,2106,1099,2572,860,1031,905,1854,1072,991,1044,1078,1227,966,1275,950,1050]};
   </script>
 
   <!-- Chart.js from CDN -->

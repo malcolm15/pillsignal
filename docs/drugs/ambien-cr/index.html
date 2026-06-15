@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"AMBIEN CR () — FDA Adverse Event Reports","description":"Ambien Cr (): 84,705 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/ambien-cr","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"AMBIEN CR () — FDA Adverse Event Reports","description":"Ambien Cr (): 84,705 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/ambien-cr","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Ambien Cr</h2>
+  <p class="section-note">In FDA adverse event reports that mention Ambien Cr, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/neurontin">Gabapentin</a> <span class="co-reported-count">(11,271 reports)</span></li>
+    <li><a href="/drugs/xanax">Alprazolam</a> <span class="co-reported-count">(10,682 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(10,264 reports)</span></li>
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(9,846 reports)</span></li>
+    <li>Ergocalciferol <span class="co-reported-count">(9,430 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/ambien">Ambien</a><span class="related-count">81,342 reports</span></li>
-    <li><a href="/drugs/klonopin">Klonopin</a><span class="related-count">157,183 reports</span></li>
-    <li><a href="/drugs/zoloft">Zoloft</a><span class="related-count">103,626 reports</span></li>
-    <li><a href="/drugs/celexa">Celexa</a><span class="related-count">112,320 reports</span></li>
-    <li><a href="/drugs/euthyrox">Euthyrox</a><span class="related-count">109,328 reports</span></li>
+    <li><a href="/drugs/zoloft">Zoloft</a><span class="related-count">103,622 reports</span></li>
+    <li><a href="/drugs/celexa">Celexa</a><span class="related-count">112,321 reports</span></li>
+    <li><a href="/drugs/euthyrox">Euthyrox</a><span class="related-count">109,325 reports</span></li>
+    <li><a href="/drugs/klonopin">Klonopin</a><span class="related-count">157,182 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Ambien Cr";
-    var ADVERSE_EVENTS = [{"label":"NAUSEA","value":6052},{"label":"FATIGUE","value":5910},{"label":"DRUG INEFFECTIVE","value":5905},{"label":"INSOMNIA","value":4807},{"label":"PAIN","value":4729},{"label":"HEADACHE","value":4475},{"label":"DIARRHOEA","value":4102},{"label":"ANXIETY","value":3935},{"label":"DIZZINESS","value":3782},{"label":"DYSPNOEA","value":3701},{"label":"FALL","value":3629},{"label":"DEPRESSION","value":3417},{"label":"VOMITING","value":3357},{"label":"ASTHENIA","value":3146},{"label":"ARTHRALGIA","value":2634}];
-    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[52502,27461,203]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[518,4448,11046,18622,10401,7592]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Non-Serious","Hospitalization","Death","Life-Threatening","Disability"],"values":[32963,31073,26284,7387,3044,2424]};
-    var TRENDS_DATA    = {"labels":["Q2 2001","Q2 2002","Q1 2003","Q2 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,1,1,484,367,541,529,628,502,683,688,866,919,703,836,836,742,811,830,608,642,758,642,691,809,1097,818,764,728,1675,799,911,876,1025,891,1468,1352,1134,838,1215,764,995,1025,1375,774,971,851,1800,1111,1937,1285,1618,1577,1952,1503,1248,1249,1281,1176,1399,1676,1860,1171,1393,1184,1009,1086,1083,853,1003,912,788,695,684,724,741,783,698,763,749,652,696,627,712,761,741,586,738,751,684,668,632]};
+    var ADVERSE_EVENTS = [{"label":"NAUSEA","value":6053},{"label":"FATIGUE","value":5911},{"label":"DRUG INEFFECTIVE","value":5905},{"label":"INSOMNIA","value":4805},{"label":"PAIN","value":4726},{"label":"HEADACHE","value":4474},{"label":"DIARRHOEA","value":4103},{"label":"ANXIETY","value":3935},{"label":"DIZZINESS","value":3782},{"label":"DYSPNOEA","value":3703},{"label":"FALL","value":3629},{"label":"DEPRESSION","value":3416},{"label":"VOMITING","value":3359},{"label":"ASTHENIA","value":3147},{"label":"ARTHRALGIA","value":2633}];
+    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[52505,27458,203]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[517,4449,11047,18624,10402,7592]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Non-Serious","Hospitalization","Death","Life-Threatening","Disability"],"values":[32959,31074,26280,7385,3044,2421]};
+    var TRENDS_DATA    = {"labels":["Q2 2001","Q2 2002","Q1 2003","Q2 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,1,1,485,368,540,529,629,501,682,688,866,918,703,836,836,742,811,830,610,641,758,642,691,809,1098,819,764,728,1674,798,909,877,1026,891,1467,1353,1134,838,1215,764,995,1025,1375,774,971,851,1800,1111,1937,1285,1618,1577,1952,1503,1248,1249,1281,1176,1399,1676,1860,1171,1393,1184,1009,1086,1083,853,1003,912,788,695,684,724,741,783,698,763,749,652,696,627,712,761,741,586,738,751,684,668,632]};
   </script>
 
   <!-- Chart.js from CDN -->

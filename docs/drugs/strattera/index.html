@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Strattera (atomoxetine hydrochloride) — FDA Adverse Event Reports","description":"Strattera (atomoxetine hydrochloride): 23,432 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/strattera","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Strattera (atomoxetine hydrochloride) — FDA Adverse Event Reports","description":"Strattera (atomoxetine hydrochloride): 23,432 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/strattera","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Strattera</h2>
+  <p class="section-note">In FDA adverse event reports that mention Strattera, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/lamotrigine">Lamotrigine</a> <span class="co-reported-count">(1,730 reports)</span></li>
+    <li><a href="/drugs/cetirizine">Cetirizine</a> <span class="co-reported-count">(1,613 reports)</span></li>
+    <li>Methylphenidate <span class="co-reported-count">(1,576 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(1,371 reports)</span></li>
+    <li><a href="/drugs/topamax">Topiramate</a> <span class="co-reported-count">(1,330 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/paxil">Paxil</a><span class="related-count">53,559 reports</span></li>
-    <li><a href="/drugs/paxil-cr">Paxil Cr</a><span class="related-count">58,175 reports</span></li>
-    <li><a href="/drugs/pristiq-extended-release">Pristiq Extended-release</a><span class="related-count">23,268 reports</span></li>
-    <li><a href="/drugs/pristiq">Pristiq</a><span class="related-count">26,508 reports</span></li>
-    <li><a href="/drugs/topamax">Topamax</a><span class="related-count">89,511 reports</span></li>
+    <li><a href="/drugs/paxil">Paxil</a><span class="related-count">53,553 reports</span></li>
+    <li><a href="/drugs/paxil-cr">Paxil Cr</a><span class="related-count">58,169 reports</span></li>
+    <li><a href="/drugs/pristiq-extended-release">Pristiq Extended-release</a><span class="related-count">23,267 reports</span></li>
+    <li><a href="/drugs/pristiq">Pristiq</a><span class="related-count">26,507 reports</span></li>
+    <li><a href="/drugs/topamax">Topamax</a><span class="related-count">89,513 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Strattera";
-    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":2357},{"label":"NAUSEA","value":1837},{"label":"FATIGUE","value":1827},{"label":"VOMITING","value":1463},{"label":"HEADACHE","value":1433},{"label":"SOMNOLENCE","value":1357},{"label":"DIZZINESS","value":1356},{"label":"INSOMNIA","value":1243},{"label":"OFF LABEL USE","value":1224},{"label":"FEELING ABNORMAL","value":1181},{"label":"DEPRESSION","value":1126},{"label":"PRESCRIBED OVERDOSE","value":1115},{"label":"ABDOMINAL PAIN UPPER","value":1110},{"label":"ANXIETY","value":1031},{"label":"SUICIDAL IDEATION","value":1003}];
-    var SEX_DATA       = {"labels":["Male","Female","Unknown"],"values":[12774,9181,126]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[9399,2615,3175,1370,216,86]};
-    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Life-Threatening","Death","Disability"],"values":[14292,7049,3236,1382,1367,1259]};
-    var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[2660,147,2255,173,1881,235,1234,350,182,148,129,120,145,146,111,108,101,103,96,115,121,121,147,168,66,95,145,92,119,99,92,105,116,128,112,118,109,106,74,120,112,118,133,171,170,228,3910,192,154,221,250,183,127,153,119,109,119,123,91,83,99,121,104,117,92,86,93,84,70,84,72,69,93,81,87,105,113,110,107,110,158,115,171,280,319,245,389,245,155]};
+    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":2358},{"label":"NAUSEA","value":1837},{"label":"FATIGUE","value":1827},{"label":"VOMITING","value":1463},{"label":"HEADACHE","value":1433},{"label":"SOMNOLENCE","value":1356},{"label":"DIZZINESS","value":1355},{"label":"INSOMNIA","value":1242},{"label":"OFF LABEL USE","value":1224},{"label":"FEELING ABNORMAL","value":1181},{"label":"DEPRESSION","value":1126},{"label":"PRESCRIBED OVERDOSE","value":1115},{"label":"ABDOMINAL PAIN UPPER","value":1110},{"label":"ANXIETY","value":1031},{"label":"SUICIDAL IDEATION","value":1003}];
+    var SEX_DATA       = {"labels":["Male","Female","Unknown"],"values":[12773,9182,126]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[9398,2616,3175,1370,216,86]};
+    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Life-Threatening","Death","Disability"],"values":[14292,7049,3236,1381,1367,1259]};
+    var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[2660,148,2255,173,1881,235,1234,350,182,148,129,120,145,146,111,108,101,103,96,115,121,121,147,168,66,95,145,92,119,98,92,105,116,128,112,118,109,106,74,120,112,118,133,171,170,228,3910,192,154,221,250,183,127,153,119,109,119,123,91,83,99,121,104,117,92,86,93,84,70,84,72,69,93,81,87,105,113,110,107,110,158,115,171,280,319,245,389,245,155]};
   </script>
 
   <!-- Chart.js from CDN -->

@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"ELIGARD () — FDA Adverse Event Reports","description":"Eligard (): 51,985 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/eligard","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"ELIGARD () — FDA Adverse Event Reports","description":"Eligard (): 51,985 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/eligard","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,6 +557,20 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Eligard</h2>
+  <p class="section-note">In FDA adverse event reports that mention Eligard, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Enzalutamide <span class="co-reported-count">(2,645 reports)</span></li>
+    <li>Bicalutamide <span class="co-reported-count">(2,460 reports)</span></li>
+    <li>Abiraterone <span class="co-reported-count">(1,468 reports)</span></li>
+    <li>Denosumab <span class="co-reported-count">(1,213 reports)</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(1,146 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
@@ -547,9 +578,9 @@
   <ul class="related-list">
     <li><a href="/drugs/xtandi">Xtandi</a><span class="related-count">58,003 reports</span></li>
     <li><a href="/drugs/lupron-depot">Lupron Depot</a><span class="related-count">28,349 reports</span></li>
-    <li><a href="/drugs/arimidex">Arimidex</a><span class="related-count">35,755 reports</span></li>
-    <li><a href="/drugs/femara">Femara</a><span class="related-count">60,076 reports</span></li>
-    <li><a href="/drugs/ferrum-metallicum">Ferrum Metallicum</a><span class="related-count">65,136 reports</span></li>
+    <li><a href="/drugs/arimidex">Arimidex</a><span class="related-count">35,756 reports</span></li>
+    <li><a href="/drugs/femara">Femara</a><span class="related-count">60,073 reports</span></li>
+    <li><a href="/drugs/ferrum-metallicum">Ferrum Metallicum</a><span class="related-count">65,138 reports</span></li>
   </ul>
 </section>
 
@@ -595,7 +626,7 @@
   <script>
     var DRUG_NAME      = "Eligard";
     var ADVERSE_EVENTS = [{"label":"INTERCEPTED PRODUCT PREPARATION ERROR","value":8869},{"label":"SYRINGE ISSUE","value":7730},{"label":"HOT FLUSH","value":6264},{"label":"DEATH","value":6260},{"label":"DEVICE LEAKAGE","value":5988},{"label":"WRONG TECHNIQUE IN PRODUCT USAGE PROCESS","value":5213},{"label":"INJECTION SITE PAIN","value":4198},{"label":"FATIGUE","value":3463},{"label":"PROSTATIC SPECIFIC ANTIGEN INCREASED","value":1924},{"label":"INTENTIONAL PRODUCT USE ISSUE","value":1647},{"label":"ASTHENIA","value":1627},{"label":"PROSTATE CANCER","value":1469},{"label":"FALL","value":1410},{"label":"OFF LABEL USE","value":1404},{"label":"DRUG INEFFECTIVE","value":1293}];
-    var SEX_DATA       = {"labels":["Male","Female","Unknown"],"values":[42384,2967,20]};
+    var SEX_DATA       = {"labels":["Male","Female","Unknown"],"values":[42384,2967,21]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1065,308,884,3388,8476,12700]};
     var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Death","Hospitalization","Life-Threatening","Disability"],"values":[28515,11941,8768,7791,611,421]};
     var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[13,34,23,27,13,30,48,23,29,16,31,33,23,34,39,50,44,60,141,130,107,36,32,27,58,79,55,83,35,78,86,104,136,125,93,63,24,56,55,53,43,56,71,121,181,229,253,184,242,214,670,992,339,291,752,242,314,246,785,356,331,322,1105,811,936,1455,1232,1299,1351,1380,1440,2021,997,2969,1700,1458,1431,1738,1870,1998,2117,2481,2235,1969,2960,1105,953,843,671]};

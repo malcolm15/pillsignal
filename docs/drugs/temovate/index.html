@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Temovate (clobetasol propionate) — FDA Adverse Event Reports","description":"Temovate (clobetasol propionate): 10,767 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/temovate","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Temovate (clobetasol propionate) — FDA Adverse Event Reports","description":"Temovate (clobetasol propionate): 10,767 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/temovate","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,6 +557,20 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Temovate</h2>
+  <p class="section-note">In FDA adverse event reports that mention Temovate, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Dupilumab <span class="co-reported-count">(1,906 reports)</span></li>
+    <li>Ergocalciferol <span class="co-reported-count">(1,462 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(1,165 reports)</span></li>
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(1,145 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(1,088 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
@@ -547,9 +578,9 @@
   <ul class="related-list">
     <li><a href="/drugs/allegra">Allegra</a><span class="related-count">20,489 reports</span></li>
     <li><a href="/drugs/atarax">Atarax</a><span class="related-count">12,337 reports</span></li>
-    <li><a href="/drugs/claritin">Claritin</a><span class="related-count">99,620 reports</span></li>
-    <li><a href="/drugs/claritin-allergy">Claritin Allergy</a><span class="related-count">99,660 reports</span></li>
-    <li><a href="/drugs/claritin-liqui-gels">Claritin Liqui-gels</a><span class="related-count">100,325 reports</span></li>
+    <li><a href="/drugs/claritin">Claritin</a><span class="related-count">99,623 reports</span></li>
+    <li><a href="/drugs/claritin-allergy">Claritin Allergy</a><span class="related-count">99,663 reports</span></li>
+    <li><a href="/drugs/claritin-liqui-gels">Claritin Liqui-gels</a><span class="related-count">100,328 reports</span></li>
   </ul>
 </section>
 

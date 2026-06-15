@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"DILAUDID () — FDA Adverse Event Reports","description":"Dilaudid (): 91,030 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/dilaudid","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"DILAUDID () — FDA Adverse Event Reports","description":"Dilaudid (): 91,030 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/dilaudid","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Dilaudid</h2>
+  <p class="section-note">In FDA adverse event reports that mention Dilaudid, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Morphine <span class="co-reported-count">(44,171 reports)</span></li>
+    <li>Buprenorphine <span class="co-reported-count">(29,940 reports)</span></li>
+    <li>Hydrocodone <span class="co-reported-count">(27,516 reports)</span></li>
+    <li>Oxycodone And Acetaminophen <span class="co-reported-count">(24,840 reports)</span></li>
+    <li>Tapentadol <span class="co-reported-count">(22,612 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/ms-contin">Ms Contin</a><span class="related-count">119,604 reports</span></li>
-    <li><a href="/drugs/duramorph">Duramorph</a><span class="related-count">66,228 reports</span></li>
-    <li><a href="/drugs/infumorph-200">Infumorph 200</a><span class="related-count">66,102 reports</span></li>
-    <li><a href="/drugs/infumorph-500">Infumorph 500</a><span class="related-count">66,102 reports</span></li>
-    <li><a href="/drugs/mitigo">Mitigo</a><span class="related-count">66,103 reports</span></li>
+    <li><a href="/drugs/ms-contin">Ms Contin</a><span class="related-count">119,606 reports</span></li>
+    <li><a href="/drugs/duramorph">Duramorph</a><span class="related-count">66,230 reports</span></li>
+    <li><a href="/drugs/infumorph-200">Infumorph 200</a><span class="related-count">66,104 reports</span></li>
+    <li><a href="/drugs/infumorph-500">Infumorph 500</a><span class="related-count">66,104 reports</span></li>
+    <li><a href="/drugs/mitigo">Mitigo</a><span class="related-count">66,105 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Dilaudid";
-    var ADVERSE_EVENTS = [{"label":"DRUG DEPENDENCE","value":35090},{"label":"OVERDOSE","value":23022},{"label":"PAIN","value":22206},{"label":"EMOTIONAL DISTRESS","value":17688},{"label":"DEATH","value":14892},{"label":"DRUG WITHDRAWAL SYNDROME","value":14323},{"label":"TOXICITY TO VARIOUS AGENTS","value":10069},{"label":"NAUSEA","value":4674},{"label":"DRUG INEFFECTIVE","value":4409},{"label":"FATIGUE","value":3568},{"label":"VOMITING","value":3447},{"label":"ANXIETY","value":3366},{"label":"OFF LABEL USE","value":3323},{"label":"DRUG ABUSE","value":3109},{"label":"HEADACHE","value":2970}];
-    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[34216,31177,52]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[636,2827,5046,7871,4493,2283]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Death","Hospitalization","Disability","Non-Serious","Life-Threatening"],"values":[57325,27956,16859,9782,6654,1976]};
-    var TRENDS_DATA    = {"labels":["Q1 2002","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,48,97,72,70,79,81,72,88,85,110,99,89,89,87,112,149,104,116,112,107,114,162,179,192,234,195,231,206,202,267,274,235,325,362,430,284,299,311,301,335,357,282,356,385,574,376,488,525,558,731,536,763,567,479,675,2200,10871,10926,536,723,682,686,714,652,773,906,2183,4838,2805,8563,1239,4788,7958,1603,560,5570,492,538,515,799,551,521,557,572,427,443,446,415,320]};
+    var ADVERSE_EVENTS = [{"label":"DRUG DEPENDENCE","value":35090},{"label":"OVERDOSE","value":23022},{"label":"PAIN","value":22207},{"label":"EMOTIONAL DISTRESS","value":17688},{"label":"DEATH","value":14894},{"label":"DRUG WITHDRAWAL SYNDROME","value":14323},{"label":"TOXICITY TO VARIOUS AGENTS","value":10069},{"label":"NAUSEA","value":4675},{"label":"DRUG INEFFECTIVE","value":4409},{"label":"FATIGUE","value":3568},{"label":"VOMITING","value":3449},{"label":"ANXIETY","value":3366},{"label":"OFF LABEL USE","value":3323},{"label":"DRUG ABUSE","value":3109},{"label":"HEADACHE","value":2969}];
+    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[34217,31176,52]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[636,2827,5046,7871,4492,2283]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Death","Hospitalization","Disability","Non-Serious","Life-Threatening"],"values":[57324,27957,16858,9782,6655,1976]};
+    var TRENDS_DATA    = {"labels":["Q1 2002","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,48,97,72,70,79,81,72,88,85,110,99,89,89,86,112,149,104,116,112,107,113,162,179,191,234,195,232,206,202,268,274,236,325,362,430,284,299,311,301,335,357,282,356,385,574,376,488,525,558,731,536,763,567,479,675,2200,10871,10926,536,723,682,686,714,652,773,906,2183,4838,2805,8563,1239,4788,7958,1603,560,5570,492,538,515,799,551,521,557,572,427,443,446,415,320]};
   </script>
 
   <!-- Chart.js from CDN -->

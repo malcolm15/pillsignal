@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Desyrel (trazodone hydrochloride) — FDA Adverse Event Reports","description":"Desyrel (trazodone hydrochloride): 15,321 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/desyrel","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Desyrel (trazodone hydrochloride) — FDA Adverse Event Reports","description":"Desyrel (trazodone hydrochloride): 15,321 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/desyrel","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Desyrel</h2>
+  <p class="section-note">In FDA adverse event reports that mention Desyrel, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/neurontin">Gabapentin</a> <span class="co-reported-count">(2,542 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(1,849 reports)</span></li>
+    <li>Levothyroxine <span class="co-reported-count">(1,816 reports)</span></li>
+    <li>Ergocalciferol <span class="co-reported-count">(1,801 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(1,732 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/lexapro">Lexapro</a><span class="related-count">123,113 reports</span></li>
-    <li><a href="/drugs/klonopin">Klonopin</a><span class="related-count">157,183 reports</span></li>
-    <li><a href="/drugs/xanax">Xanax</a><span class="related-count">202,031 reports</span></li>
-    <li><a href="/drugs/xanax-xr">Xanax Xr</a><span class="related-count">202,812 reports</span></li>
-    <li><a href="/drugs/ativan">Ativan</a><span class="related-count">176,539 reports</span></li>
+    <li><a href="/drugs/lexapro">Lexapro</a><span class="related-count">123,112 reports</span></li>
+    <li><a href="/drugs/xanax">Xanax</a><span class="related-count">202,035 reports</span></li>
+    <li><a href="/drugs/xanax-xr">Xanax Xr</a><span class="related-count">202,816 reports</span></li>
+    <li><a href="/drugs/ativan">Ativan</a><span class="related-count">176,543 reports</span></li>
+    <li><a href="/drugs/celexa">Celexa</a><span class="related-count">112,321 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Desyrel";
-    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":1190},{"label":"FATIGUE","value":1142},{"label":"NAUSEA","value":1112},{"label":"HEADACHE","value":915},{"label":"PAIN","value":817},{"label":"DIARRHOEA","value":804},{"label":"OFF LABEL USE","value":728},{"label":"VOMITING","value":693},{"label":"INSOMNIA","value":676},{"label":"DEPRESSION","value":662},{"label":"DYSPNOEA","value":634},{"label":"DIZZINESS","value":614},{"label":"FALL","value":609},{"label":"ASTHENIA","value":531},{"label":"ANXIETY","value":516}];
-    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[9508,4780,9]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[196,867,1899,3160,1745,1925]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[6379,5163,5133,1570,627,443]};
-    var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[11,8,9,13,27,26,22,29,49,70,5,3,19,16,18,19,34,10,17,9,44,68,38,25,37,150,334,41,31,17,283,241,88,43,340,52,66,60,62,72,90,50,163,144,261,152,173,219,324,282,315,311,325,276,274,397,373,289,306,249,326,286,281,290,332,329,384,351,351,438,368,290,266,290,269,238,216,214,181,201,232,232,219,216,203,232,237,170,200]};
+    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":1191},{"label":"FATIGUE","value":1142},{"label":"NAUSEA","value":1111},{"label":"HEADACHE","value":913},{"label":"PAIN","value":816},{"label":"DIARRHOEA","value":804},{"label":"OFF LABEL USE","value":728},{"label":"VOMITING","value":692},{"label":"INSOMNIA","value":676},{"label":"DEPRESSION","value":663},{"label":"DYSPNOEA","value":633},{"label":"DIZZINESS","value":614},{"label":"FALL","value":609},{"label":"ASTHENIA","value":530},{"label":"ANXIETY","value":516}];
+    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[9506,4782,9]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[196,867,1898,3160,1746,1925]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[6378,5164,5133,1570,628,442]};
+    var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[11,8,9,13,27,26,22,29,49,70,5,3,19,16,18,19,34,10,17,9,44,68,38,25,37,149,334,41,31,17,283,241,89,43,340,52,66,60,62,72,90,50,163,144,261,152,173,219,324,282,315,311,325,276,274,397,373,289,306,249,326,286,281,290,332,329,384,351,351,438,368,290,266,290,269,238,216,214,181,201,232,232,219,216,203,232,237,170,200]};
   </script>
 
   <!-- Chart.js from CDN -->

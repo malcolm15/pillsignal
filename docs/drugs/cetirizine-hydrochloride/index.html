@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"CETIRIZINE HYDROCHLORIDE () — FDA Adverse Event Reports","description":"Cetirizine Hydrochloride (): 67,118 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/cetirizine-hydrochloride","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"CETIRIZINE HYDROCHLORIDE () — FDA Adverse Event Reports","description":"Cetirizine Hydrochloride (): 67,118 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/cetirizine-hydrochloride","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Cetirizine Hydrochloride</h2>
+  <p class="section-note">In FDA adverse event reports that mention Cetirizine Hydrochloride, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Cetirizine Allergy <span class="co-reported-count">(29,428 reports)</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(18,097 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(17,785 reports)</span></li>
+    <li><a href="/drugs/trexall">Methotrexate</a> <span class="co-reported-count">(14,378 reports)</span></li>
+    <li><a href="/drugs/folic-acid">Folic Acid</a> <span class="co-reported-count">(14,341 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/cetirizine">Cetirizine</a><span class="related-count">67,104 reports</span></li>
-    <li><a href="/drugs/diclofenac">Diclofenac</a><span class="related-count">83,778 reports</span></li>
-    <li><a href="/drugs/diclofenac-sodium">Diclofenac Sodium</a><span class="related-count">83,807 reports</span></li>
-    <li><a href="/drugs/alendronate">Alendronate</a><span class="related-count">49,158 reports</span></li>
-    <li><a href="/drugs/anusol-hc">Anusol Hc</a><span class="related-count">69,676 reports</span></li>
+    <li><a href="/drugs/diclofenac">Diclofenac</a><span class="related-count">83,774 reports</span></li>
+    <li><a href="/drugs/diclofenac-sodium">Diclofenac Sodium</a><span class="related-count">83,803 reports</span></li>
+    <li><a href="/drugs/alendronate">Alendronate</a><span class="related-count">49,162 reports</span></li>
+    <li><a href="/drugs/anusol-hc">Anusol Hc</a><span class="related-count">69,678 reports</span></li>
   </ul>
 </section>
 
@@ -596,7 +627,7 @@
     var DRUG_NAME      = "Cetirizine Hydrochloride";
     var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":12921},{"label":"FATIGUE","value":12582},{"label":"PAIN","value":11990},{"label":"RASH","value":9692},{"label":"OFF LABEL USE","value":9364},{"label":"ABDOMINAL DISCOMFORT","value":9349},{"label":"ALOPECIA","value":9299},{"label":"RHEUMATOID ARTHRITIS","value":8785},{"label":"SYSTEMIC LUPUS ERYTHEMATOSUS","value":8568},{"label":"PEMPHIGUS","value":8386},{"label":"SWELLING","value":7975},{"label":"GLOSSODYNIA","value":7865},{"label":"HYPERSENSITIVITY","value":7782},{"label":"ARTHRALGIA","value":7402},{"label":"PRURITUS","value":7309}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[41271,16347,52]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[4268,5199,12474,10766,7139,5459]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[4268,5199,12474,10766,7138,5459]};
     var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Disability","Death","Life-Threatening"],"values":[40107,21744,14722,8646,7847,7815]};
     var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[10,1,3,10,12,17,15,24,27,13,14,15,14,8,30,7,24,84,68,53,72,120,64,55,28,36,71,130,30,45,70,189,162,183,202,249,180,280,230,370,260,397,403,436,457,577,537,965,590,712,561,929,564,748,684,1123,921,844,949,1197,1106,1150,1284,1590,1310,1512,1279,2010,1897,1934,2372,2236,2151,1654,1547,1888,1751,1674,1474,1960,1839,1993,2410,2588,1735,2095,1835,1775]};
   </script>

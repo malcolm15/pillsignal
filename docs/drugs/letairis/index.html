@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"LETAIRIS () — FDA Adverse Event Reports","description":"Letairis (): 123,381 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/letairis","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"LETAIRIS () — FDA Adverse Event Reports","description":"Letairis (): 123,381 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/letairis","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,14 +557,28 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Letairis</h2>
+  <p class="section-note">In FDA adverse event reports that mention Letairis, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Treprostinil <span class="co-reported-count">(33,700 reports)</span></li>
+    <li>Tadalafil <span class="co-reported-count">(29,934 reports)</span></li>
+    <li><a href="/drugs/sildenafil">Sildenafil</a> <span class="co-reported-count">(21,297 reports)</span></li>
+    <li><a href="/drugs/lasix">Furosemide</a> <span class="co-reported-count">(11,376 reports)</span></li>
+    <li>Selexipag <span class="co-reported-count">(7,704 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/adcirca">Adcirca</a><span class="related-count">73,504 reports</span></li>
+    <li><a href="/drugs/adcirca">Adcirca</a><span class="related-count">73,505 reports</span></li>
     <li><a href="/drugs/ambrisentan">Ambrisentan</a><span class="related-count">61,516 reports</span></li>
-    <li><a href="/drugs/revatio">Revatio</a><span class="related-count">53,792 reports</span></li>
+    <li><a href="/drugs/revatio">Revatio</a><span class="related-count">53,793 reports</span></li>
     <li><a href="/drugs/opsumit">Opsumit</a><span class="related-count">67,845 reports</span></li>
     <li><a href="/drugs/sildenafil">Sildenafil</a><span class="related-count">56,434 reports</span></li>
   </ul>
@@ -594,10 +625,10 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Letairis";
-    var ADVERSE_EVENTS = [{"label":"DYSPNOEA","value":19051},{"label":"DEATH","value":11318},{"label":"HEADACHE","value":10682},{"label":"PNEUMONIA","value":7229},{"label":"DIARRHOEA","value":7038},{"label":"FATIGUE","value":6541},{"label":"DIZZINESS","value":6494},{"label":"NAUSEA","value":6476},{"label":"FLUID RETENTION","value":5450},{"label":"MALAISE","value":5304},{"label":"COUGH","value":4576},{"label":"OEDEMA PERIPHERAL","value":4179},{"label":"PERIPHERAL SWELLING","value":4008},{"label":"CHEST PAIN","value":3823},{"label":"NASAL CONGESTION","value":3790}];
-    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[91724,29394,172]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[2733,5555,14249,28263,21583,17299]};
-    var OUTCOMES_DATA  = {"labels":["Hospitalization","Other Serious","Non-Serious","Death","Life-Threatening","Disability"],"values":[52121,44114,43377,16947,1121,659]};
+    var ADVERSE_EVENTS = [{"label":"DYSPNOEA","value":19051},{"label":"DEATH","value":11321},{"label":"HEADACHE","value":10681},{"label":"PNEUMONIA","value":7229},{"label":"DIARRHOEA","value":7038},{"label":"FATIGUE","value":6540},{"label":"DIZZINESS","value":6494},{"label":"NAUSEA","value":6476},{"label":"FLUID RETENTION","value":5450},{"label":"MALAISE","value":5304},{"label":"COUGH","value":4576},{"label":"OEDEMA PERIPHERAL","value":4178},{"label":"PERIPHERAL SWELLING","value":4008},{"label":"CHEST PAIN","value":3823},{"label":"NASAL CONGESTION","value":3790}];
+    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[91723,29394,172]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[2733,5554,14247,28261,21585,17299]};
+    var OUTCOMES_DATA  = {"labels":["Hospitalization","Other Serious","Non-Serious","Death","Life-Threatening","Disability"],"values":[52119,44113,43377,16948,1121,659]};
     var TRENDS_DATA    = {"labels":["Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[17,50,135,135,146,179,184,223,227,249,251,384,383,524,578,810,690,753,945,1043,1190,1112,1239,1225,1137,5420,11573,6509,6029,3828,3678,1724,2259,1802,2808,2077,2537,2034,2640,2169,2517,2088,2661,2687,2259,2224,2229,2134,1822,1894,1609,1074,1150,1083,1102,1073,1022,1354,1202,1379,1422,1426,1401,1354,1413,1338,1384,1362,1226,1161,1191,946,867,761,670]};
   </script>
 

@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"SKIN RENEWING SERUM () — FDA Adverse Event Reports","description":"Skin Renewing Serum (): 22,825 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/skin-renewing-serum","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"SKIN RENEWING SERUM () — FDA Adverse Event Reports","description":"Skin Renewing Serum (): 22,825 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/skin-renewing-serum","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,14 +557,28 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Skin Renewing Serum</h2>
+  <p class="section-note">In FDA adverse event reports that mention Skin Renewing Serum, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Ergocalciferol <span class="co-reported-count">(6,258 reports)</span></li>
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(5,141 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(4,059 reports)</span></li>
+    <li><a href="/drugs/folic-acid">Folic Acid</a> <span class="co-reported-count">(3,764 reports)</span></li>
+    <li><a href="/drugs/lasix">Furosemide</a> <span class="co-reported-count">(3,152 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/ascor">Ascor</a><span class="related-count">22,852 reports</span></li>
-    <li><a href="/drugs/advil">Advil</a><span class="related-count">235,673 reports</span></li>
-    <li><a href="/drugs/advil-liqui-gels">Advil Liqui-gels</a><span class="related-count">198,868 reports</span></li>
+    <li><a href="/drugs/advil">Advil</a><span class="related-count">235,672 reports</span></li>
+    <li><a href="/drugs/advil-liqui-gels">Advil Liqui-gels</a><span class="related-count">198,870 reports</span></li>
     <li><a href="/drugs/advil-migraine">Advil Migraine</a><span class="related-count">195,682 reports</span></li>
     <li><a href="/drugs/caldolor">Caldolor</a><span class="related-count">195,126 reports</span></li>
   </ul>
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Skin Renewing Serum";
-    var ADVERSE_EVENTS = [{"label":"FATIGUE","value":2300},{"label":"PAIN","value":2076},{"label":"NAUSEA","value":1965},{"label":"DIARRHOEA","value":1803},{"label":"HEADACHE","value":1789},{"label":"DRUG INEFFECTIVE","value":1755},{"label":"DYSPNOEA","value":1656},{"label":"VOMITING","value":1543},{"label":"OFF LABEL USE","value":1507},{"label":"ASTHENIA","value":1456},{"label":"RASH","value":1391},{"label":"DIZZINESS","value":1329},{"label":"ARTHRALGIA","value":1269},{"label":"PRURITUS","value":1146},{"label":"PYREXIA","value":1132}];
+    var ADVERSE_EVENTS = [{"label":"FATIGUE","value":2300},{"label":"PAIN","value":2075},{"label":"NAUSEA","value":1965},{"label":"DIARRHOEA","value":1803},{"label":"HEADACHE","value":1788},{"label":"DRUG INEFFECTIVE","value":1755},{"label":"DYSPNOEA","value":1657},{"label":"VOMITING","value":1543},{"label":"OFF LABEL USE","value":1507},{"label":"ASTHENIA","value":1458},{"label":"RASH","value":1391},{"label":"DIZZINESS","value":1330},{"label":"ARTHRALGIA","value":1270},{"label":"PRURITUS","value":1146},{"label":"PYREXIA","value":1133}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[13581,7967,15]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[356,964,2348,4112,3552,3544]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[10558,9139,6462,2571,1686,1524]};
-    var TRENDS_DATA    = {"labels":["Q1 1999","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,84,96,81,108,146,149,238,277,214,220,191,248,247,210,191,241,241,259,302,323,278,284,392,342,56,65,545,429,486,384,494,441,737,476,488,139,123,99,110,95,132,119,126,108,125,99,123,146,140,154,191,175,182,220,203,188,270,285,239,255,243,281,249,256,210,352,426,337,322,288,277,389,334,329,332,327,303,314,317,287,297,359,362,286,252,287,285,257,257]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[355,963,2347,4111,3553,3544]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[10558,9142,6461,2570,1686,1523]};
+    var TRENDS_DATA    = {"labels":["Q1 1999","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,84,96,81,108,146,150,238,277,215,220,192,248,246,210,191,241,241,259,303,323,277,284,391,342,56,65,545,429,486,382,495,440,736,478,488,139,123,99,110,95,132,119,126,108,125,99,123,146,140,154,191,175,182,220,203,188,270,285,239,255,243,281,249,256,210,352,426,337,322,288,277,389,334,329,332,327,303,314,317,287,297,359,362,286,252,287,285,257,257]};
   </script>
 
   <!-- Chart.js from CDN -->

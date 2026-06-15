@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Imdur (isosorbide mononitrate) — FDA Adverse Event Reports","description":"Imdur (isosorbide mononitrate): 20,264 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/imdur","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Imdur (isosorbide mononitrate) — FDA Adverse Event Reports","description":"Imdur (isosorbide mononitrate): 20,264 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/imdur","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,6 +557,20 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Imdur</h2>
+  <p class="section-note">In FDA adverse event reports that mention Imdur, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(7,708 reports)</span></li>
+    <li><a href="/drugs/lasix">Furosemide</a> <span class="co-reported-count">(6,098 reports)</span></li>
+    <li><a href="/drugs/clopidogrel">Clopidogrel</a> <span class="co-reported-count">(4,443 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(4,095 reports)</span></li>
+    <li><a href="/drugs/metoprolol">Metoprolol</a> <span class="co-reported-count">(3,545 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
@@ -547,9 +578,9 @@
   <ul class="related-list">
     <li><a href="/drugs/farxiga">Farxiga</a><span class="related-count">53,578 reports</span></li>
     <li><a href="/drugs/dapagliflozin">Dapagliflozin</a><span class="related-count">28,642 reports</span></li>
-    <li><a href="/drugs/bisoprolol-fumarate">Bisoprolol Fumarate</a><span class="related-count">34,372 reports</span></li>
-    <li><a href="/drugs/coreg">Coreg</a><span class="related-count">132,644 reports</span></li>
-    <li><a href="/drugs/carvedilol">Carvedilol</a><span class="related-count">97,231 reports</span></li>
+    <li><a href="/drugs/bisoprolol-fumarate">Bisoprolol Fumarate</a><span class="related-count">34,376 reports</span></li>
+    <li><a href="/drugs/coreg">Coreg</a><span class="related-count">132,638 reports</span></li>
+    <li><a href="/drugs/carvedilol">Carvedilol</a><span class="related-count">97,227 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Imdur";
-    var ADVERSE_EVENTS = [{"label":"DYSPNOEA","value":1523},{"label":"DIZZINESS","value":1420},{"label":"DIARRHOEA","value":1273},{"label":"FATIGUE","value":1271},{"label":"NAUSEA","value":1246},{"label":"CHEST PAIN","value":1193},{"label":"MYOCARDIAL INFARCTION","value":1035},{"label":"HEADACHE","value":1029},{"label":"VOMITING","value":953},{"label":"HYPOTENSION","value":913},{"label":"MALAISE","value":906},{"label":"ACUTE KIDNEY INJURY","value":899},{"label":"OFF LABEL USE","value":874},{"label":"PAIN","value":859},{"label":"FALL","value":835}];
+    var ADVERSE_EVENTS = [{"label":"DYSPNOEA","value":1523},{"label":"DIZZINESS","value":1419},{"label":"DIARRHOEA","value":1273},{"label":"FATIGUE","value":1271},{"label":"NAUSEA","value":1246},{"label":"CHEST PAIN","value":1193},{"label":"MYOCARDIAL INFARCTION","value":1034},{"label":"HEADACHE","value":1029},{"label":"VOMITING","value":954},{"label":"HYPOTENSION","value":914},{"label":"MALAISE","value":906},{"label":"ACUTE KIDNEY INJURY","value":899},{"label":"OFF LABEL USE","value":874},{"label":"PAIN","value":859},{"label":"FALL","value":835}];
     var SEX_DATA       = {"labels":["Male","Female","Unknown"],"values":[10097,8628,21]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[33,143,701,3188,4367,6599]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[9769,9729,3196,2572,1533,943]};
-    var TRENDS_DATA    = {"labels":["Q2 2002","Q3 2002","Q3 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,2,118,102,107,129,127,117,131,164,155,128,122,111,103,95,99,99,86,105,97,327,206,112,87,113,77,98,142,138,158,166,172,165,256,207,180,178,133,128,142,130,161,283,224,190,193,193,299,337,308,268,305,281,293,291,308,306,327,472,325,353,349,419,316,332,327,305,270,277,213,262,194,305,331,295,343,296,291,541,362,333,328,223,293,305,301,279,367,299,276]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[33,143,701,3186,4367,6599]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[9768,9728,3196,2573,1533,943]};
+    var TRENDS_DATA    = {"labels":["Q2 2002","Q3 2002","Q3 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,2,118,102,107,129,127,117,131,164,155,128,123,111,103,95,99,99,86,105,97,326,206,112,87,113,77,98,142,137,158,166,172,165,257,207,180,178,133,128,142,130,161,283,224,190,193,193,299,337,308,268,305,281,293,291,308,306,327,472,325,353,349,419,316,332,327,305,270,277,213,262,194,305,331,295,343,296,291,541,362,333,328,223,293,305,301,279,367,299,276]};
   </script>
 
   <!-- Chart.js from CDN -->

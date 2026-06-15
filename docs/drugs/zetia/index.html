@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Zetia (ezetimibe) — FDA Adverse Event Reports","description":"Zetia (ezetimibe): 72,434 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/zetia","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Zetia (ezetimibe) — FDA Adverse Event Reports","description":"Zetia (ezetimibe): 72,434 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/zetia","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Zetia</h2>
+  <p class="section-note">In FDA adverse event reports that mention Zetia, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(17,267 reports)</span></li>
+    <li><a href="/drugs/rosuvastatin">Rosuvastatin</a> <span class="co-reported-count">(12,273 reports)</span></li>
+    <li><a href="/drugs/lasix">Furosemide</a> <span class="co-reported-count">(8,593 reports)</span></li>
+    <li>Atorvastatin <span class="co-reported-count">(8,459 reports)</span></li>
+    <li><a href="/drugs/clopidogrel">Clopidogrel</a> <span class="co-reported-count">(7,896 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/crestor">Crestor</a><span class="related-count">198,888 reports</span></li>
-    <li><a href="/drugs/atenolol">Atenolol</a><span class="related-count">121,968 reports</span></li>
-    <li><a href="/drugs/ezetimibe">Ezetimibe</a><span class="related-count">35,911 reports</span></li>
-    <li><a href="/drugs/lipitor">Lipitor</a><span class="related-count">242,949 reports</span></li>
-    <li><a href="/drugs/zocor">Zocor</a><span class="related-count">247,112 reports</span></li>
+    <li><a href="/drugs/crestor">Crestor</a><span class="related-count">198,884 reports</span></li>
+    <li><a href="/drugs/atenolol">Atenolol</a><span class="related-count">121,975 reports</span></li>
+    <li><a href="/drugs/ezetimibe">Ezetimibe</a><span class="related-count">35,912 reports</span></li>
+    <li><a href="/drugs/lipitor">Lipitor</a><span class="related-count">242,943 reports</span></li>
+    <li><a href="/drugs/zocor">Zocor</a><span class="related-count">247,111 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Zetia";
-    var ADVERSE_EVENTS = [{"label":"FATIGUE","value":4804},{"label":"MYALGIA","value":4378},{"label":"NAUSEA","value":4326},{"label":"DIARRHOEA","value":3816},{"label":"DRUG INEFFECTIVE","value":3612},{"label":"DIZZINESS","value":3458},{"label":"DYSPNOEA","value":3366},{"label":"HEADACHE","value":3263},{"label":"ARTHRALGIA","value":2954},{"label":"ASTHENIA","value":2856},{"label":"PAIN","value":2827},{"label":"PAIN IN EXTREMITY","value":2392},{"label":"FALL","value":2377},{"label":"VOMITING","value":2333},{"label":"OFF LABEL USE","value":2316}];
-    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[35243,30956,355]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[273,610,3310,15050,16547,12647]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Non-Serious","Hospitalization","Death","Life-Threatening","Disability"],"values":[31684,25147,21334,4216,3128,2877]};
-    var TRENDS_DATA    = {"labels":["Q3 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,656,573,635,458,552,524,535,637,318,340,366,500,344,380,372,503,492,413,435,458,340,376,584,531,361,395,1091,469,421,510,698,488,601,556,680,432,482,459,497,459,597,498,481,488,743,641,924,825,774,745,845,693,730,773,797,691,824,992,936,929,972,1073,1000,963,943,898,1174,1020,884,966,1084,1053,1217,1088,1148,1205,1367,1289,1462,1221,1730,1420,1584,1442,1842,1824,1996,1645,2076]};
+    var ADVERSE_EVENTS = [{"label":"FATIGUE","value":4804},{"label":"MYALGIA","value":4378},{"label":"NAUSEA","value":4326},{"label":"DIARRHOEA","value":3816},{"label":"DRUG INEFFECTIVE","value":3612},{"label":"DIZZINESS","value":3458},{"label":"DYSPNOEA","value":3366},{"label":"HEADACHE","value":3263},{"label":"ARTHRALGIA","value":2953},{"label":"ASTHENIA","value":2856},{"label":"PAIN","value":2827},{"label":"PAIN IN EXTREMITY","value":2392},{"label":"FALL","value":2377},{"label":"VOMITING","value":2334},{"label":"OFF LABEL USE","value":2316}];
+    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[35242,30956,355]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[273,610,3309,15050,16545,12648]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Non-Serious","Hospitalization","Death","Life-Threatening","Disability"],"values":[31684,25148,21335,4214,3129,2875]};
+    var TRENDS_DATA    = {"labels":["Q3 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,656,573,635,457,552,524,535,638,318,340,366,500,343,381,373,503,492,413,435,458,340,376,584,531,361,395,1091,469,420,510,698,488,601,556,680,432,482,459,497,459,597,498,481,488,743,641,924,825,774,745,845,693,730,773,797,691,824,992,936,929,972,1073,1000,963,943,898,1174,1020,884,966,1084,1053,1217,1088,1148,1205,1367,1289,1462,1221,1730,1420,1584,1442,1842,1824,1996,1645,2076]};
   </script>
 
   <!-- Chart.js from CDN -->

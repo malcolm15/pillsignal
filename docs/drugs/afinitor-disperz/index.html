@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"AFINITOR DISPERZ () — FDA Adverse Event Reports","description":"Afinitor Disperz (): 48,790 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/afinitor-disperz","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"AFINITOR DISPERZ () — FDA Adverse Event Reports","description":"Afinitor Disperz (): 48,790 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/afinitor-disperz","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,15 +557,29 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Afinitor Disperz</h2>
+  <p class="section-note">In FDA adverse event reports that mention Afinitor Disperz, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Exemestane <span class="co-reported-count">(5,668 reports)</span></li>
+    <li><a href="/drugs/tacrolimus">Tacrolimus</a> <span class="co-reported-count">(4,062 reports)</span></li>
+    <li><a href="/drugs/tacrolimus">Tacrolimus %</a> <span class="co-reported-count">(3,747 reports)</span></li>
+    <li>Lenvatinib <span class="co-reported-count">(3,585 reports)</span></li>
+    <li><a href="/drugs/mycophenolate-mofetil">Mycophenolate Mofetil</a> <span class="co-reported-count">(2,432 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/afinitor">Afinitor</a><span class="related-count">48,470 reports</span></li>
-    <li><a href="/drugs/tykerb">Tykerb</a><span class="related-count">15,407 reports</span></li>
+    <li><a href="/drugs/tykerb">Tykerb</a><span class="related-count">15,405 reports</span></li>
     <li><a href="/drugs/xgeva">Xgeva</a><span class="related-count">50,284 reports</span></li>
-    <li><a href="/drugs/femara">Femara</a><span class="related-count">60,076 reports</span></li>
+    <li><a href="/drugs/femara">Femara</a><span class="related-count">60,073 reports</span></li>
     <li><a href="/drugs/votrient">Votrient</a><span class="related-count">22,470 reports</span></li>
   </ul>
 </section>
@@ -594,10 +625,10 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Afinitor Disperz";
-    var ADVERSE_EVENTS = [{"label":"DEATH","value":6186},{"label":"MALIGNANT NEOPLASM PROGRESSION","value":4630},{"label":"DIARRHOEA","value":3972},{"label":"FATIGUE","value":3743},{"label":"STOMATITIS","value":3159},{"label":"NAUSEA","value":2780},{"label":"DYSPNOEA","value":2592},{"label":"DRUG INEFFECTIVE","value":2313},{"label":"PYREXIA","value":2087},{"label":"DECREASED APPETITE","value":2085},{"label":"VOMITING","value":2071},{"label":"RASH","value":1954},{"label":"WEIGHT DECREASED","value":1907},{"label":"COUGH","value":1860},{"label":"ASTHENIA","value":1859}];
+    var ADVERSE_EVENTS = [{"label":"DEATH","value":6187},{"label":"MALIGNANT NEOPLASM PROGRESSION","value":4630},{"label":"DIARRHOEA","value":3972},{"label":"FATIGUE","value":3742},{"label":"STOMATITIS","value":3159},{"label":"NAUSEA","value":2781},{"label":"DYSPNOEA","value":2592},{"label":"DRUG INEFFECTIVE","value":2313},{"label":"PYREXIA","value":2087},{"label":"DECREASED APPETITE","value":2085},{"label":"VOMITING","value":2072},{"label":"RASH","value":1954},{"label":"WEIGHT DECREASED","value":1908},{"label":"COUGH","value":1860},{"label":"ASTHENIA","value":1859}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[26685,17901,289]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[2069,1857,3559,10071,6815,3192]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[21627,14596,11159,10604,1694,584]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[21629,14596,11158,10604,1694,584]};
     var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2005","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,1,2,2,4,3,3,5,5,4,7,18,12,31,40,105,132,257,256,283,340,308,327,466,953,411,346,619,414,580,590,540,447,494,656,695,669,842,1223,1223,1393,1267,1093,1073,901,1015,1038,1066,1158,1221,1188,1228,1215,1307,1022,1190,1261,1146,895,969,981,752,836,872,733,707,578,678,596,653,687,594,541,478,536,562,424,341,366,455,458]};
   </script>
 

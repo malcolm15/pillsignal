@@ -5,8 +5,9 @@
  * and stores aggregated results in Supabase.
  *
  * Usage:
- *   node scripts/fetch-data.js              # process all drugs
- *   node scripts/fetch-data.js --limit 5    # process first 5 (for testing)
+ *   node scripts/fetch-data.js                    # process all drugs
+ *   node scripts/fetch-data.js --limit 5          # process first 5 (for testing)
+ *   node scripts/fetch-data.js --only mirena,advil # process only these slugs
  *
  * Requires: OPENFDA_API_KEY, SUPABASE_URL, SUPABASE_SERVICE_KEY in .env
  * Native fetch is used (Node 18+). No node-fetch needed.
@@ -43,6 +44,15 @@ function getCLILimit() {
   if (idx !== -1 && process.argv[idx + 1]) {
     const n = parseInt(process.argv[idx + 1], 10);
     if (!isNaN(n) && n > 0) return n;
+  }
+  return null;
+}
+
+// --only slug1,slug2 — restrict the run to specific slugs (targeted re-fetch).
+function getCLIOnly() {
+  const idx = process.argv.indexOf('--only');
+  if (idx !== -1 && process.argv[idx + 1]) {
+    return new Set(process.argv[idx + 1].split(',').map(s => s.trim()).filter(Boolean));
   }
   return null;
 }
@@ -166,6 +176,85 @@ async function fetchAdverseEvents(searchField, searchTerm) {
     event_name: r.term,
     count:      r.count,
   }));
+}
+
+// ─── Co-reported medications ──────────────────────────────────────────────────
+// Medications most often reported in the SAME FAERS/AEMS report as this drug,
+// counted by normalized openfda generic_name. This is co-occurrence only, never
+// an interaction or causal signal (see CLAUDE.md). The raw generic_name field is
+// fragmented into dose/form/salt variants, so we canonicalize and dedupe before
+// storing the top results.
+
+const CO_SELF_CAPTURE   = 0.5;  // a generic in >=50% of the drug's reports IS the drug itself
+const CO_SELF_HEURISTIC = 0.9;  // fallback guard: drop anything in >=90% of reports
+const CO_FLOOR_PCT      = 0.01; // noise floor: >=1% of the drug's total reports...
+const CO_FLOOR_MIN      = 25;   // ...but never below an absolute 25 reports
+const CO_MAX            = 5;    // store at most this many per drug
+
+// Dose/form/salt vocabulary stripped during canonicalization.
+const CO_FORM_WORDS = /\b(TABLETS?|CAPSULES?|CAPLETS?|ORAL|FILM[- ]?COATED|EXTENDED[- ]?RELEASE|DELAYED[- ]?RELEASE|PROLONGED[- ]?RELEASE|MODIFIED[- ]?RELEASE|SUSTAINED[- ]?RELEASE|USP|INJECTION|INJECTABLE|SOLUTION|SUSPENSION|CREAM|GEL|OINTMENT|PATCH|CHEWABLE|COATED|EFFERVESCENT|LOZENGE|SPRAY|INHALER|DROPS?|SYRUP|POWDER|SOLUBLE)\b/g;
+const CO_SALT_WORDS = /\b(SODIUM|POTASSIUM|MAGNESIUM|CALCIUM|ZINC|SULFATE|SULPHATE|HYDROCHLORIDE|HCL|HYDROBROMIDE|HBR|BESYLATE|MESYLATE|MALEATE|TARTRATE|BITARTRATE|CITRATE|FUMARATE|SUCCINATE|ACETATE|PHOSPHATE|NITRATE|BROMIDE|CHLORIDE|DIHYDRATE|MONOHYDRATE|HEMIHYDRATE|ANHYDROUS|PROPIONATE|DIPROPIONATE|VALERATE|FUROATE|ENANTHATE|DECANOATE|PALMITATE|PAMOATE|EMBONATE|XINAFOATE|TROMETHAMINE|MICRONIZED)\b/g;
+
+// Non-drug descriptors and junk that should never appear as a co-reported "drug".
+const CO_STOP_TOKENS  = new Set(['VITAMIN', 'MULTIVITAMIN', 'SUPPLEMENT', 'SUPPLEMENTS', 'HERBAL', 'UNKNOWN']);
+const CO_STOP_PHRASES = ['PAIN RELIEVER'];
+
+// Collapse a raw openfda generic_name to a plain, patient-recognizable ingredient.
+function canonicalizeMed(name) {
+  return String(name)
+    .toUpperCase()
+    .replace(/[()\[\].,;:/]/g, ' ')                                                      // punctuation
+    .replace(/\b\d+(?:\.\d+)?\s*(?:MG|MCG|UG|G|GR|ML|L|%|IU|U|UNITS?|MEQ|MMOL)\b/g, ' ')  // dosage tokens
+    .replace(/\b(?:ER|XR|SR|CR|IR|XL|DR|LA|XT|MR)\b/g, ' ')                               // release abbreviations
+    .replace(CO_FORM_WORDS, ' ')
+    .replace(CO_SALT_WORDS, ' ')
+    .replace(/\b\d+(?:\.\d+)?\b/g, ' ')                                                   // leftover bare numbers
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function isStopName(canon) {
+  if (!canon) return true;
+  if (/^\d+$/.test(canon)) return true;                       // purely numeric
+  for (const p of CO_STOP_PHRASES) if (canon.includes(p)) return true;
+  for (const t of canon.split(' ')) if (CO_STOP_TOKENS.has(t)) return true;
+  return false;
+}
+
+async function fetchCoReported(searchField, searchTerm, totalReports, drug) {
+  await sleep(CALL_DELAY_MS);
+  const data = await apiFetch(
+    buildUrl(searchField, searchTerm, 'patient.drug.openfda.generic_name.exact', 100)
+  );
+  if (!data?.results || !totalReports) return [];
+
+  // Self-exclusion. Capture the drug's own generic aliases robustly: seed from the
+  // brand and list generic, then add any generic appearing in >=50% of the drug's
+  // own reports (that IS the drug, e.g. Mirena -> LEVONORGESTREL). The >=90% rule is
+  // kept as a secondary fallback guard at filter time.
+  const selfCanon = new Set();
+  const addSelf = n => { const c = canonicalizeMed(n); if (c) selfCanon.add(c); };
+  addSelf(drug.brand_name);
+  if (drug.generic_name) addSelf(drug.generic_name);
+  for (const r of data.results) {
+    if (r.count >= CO_SELF_CAPTURE * totalReports) addSelf(canonicalizeMed(r.term));
+  }
+
+  // Canonicalize + dedupe variants, keeping the highest count as the representative.
+  const groups = new Map();
+  for (const r of data.results) {
+    if (r.count >= CO_SELF_HEURISTIC * totalReports) continue; // fallback self guard
+    const c = canonicalizeMed(r.term);
+    if (isStopName(c) || selfCanon.has(c)) continue;
+    if (!groups.has(c) || groups.get(c).count < r.count) groups.set(c, { name: c, count: r.count });
+  }
+
+  // Relative noise floor, then take the top CO_MAX.
+  const floor = Math.max(CO_FLOOR_MIN, Math.ceil(CO_FLOOR_PCT * totalReports));
+  return [...groups.values()]
+    .filter(x => x.count >= floor)
+    .sort((a, b) => b.count - a.count)
+    .slice(0, CO_MAX);
 }
 
 // ─── Demographics: sex ────────────────────────────────────────────────────────
@@ -345,6 +434,7 @@ async function clearDrugData(drugId) {
     supabase.from('demographics').delete().eq('drug_id', drugId),
     supabase.from('outcomes').delete().eq('drug_id', drugId),
     supabase.from('trends').delete().eq('drug_id', drugId),
+    supabase.from('co_reported_drugs').delete().eq('drug_id', drugId),
   ]);
 }
 
@@ -388,21 +478,24 @@ async function processDrug(drug, index, total) {
   const ageDemographics = await fetchAgeDemographics(field, term);
   const outcomes        = await fetchOutcomes(field, term);
   const trends          = await fetchTrends(field, term);
+  const coReported      = await fetchCoReported(field, term, totalReports, drug);
   const description     = await fetchDrugLabel(drug.brand_name, drug.generic_name);
 
   const drugId = await upsertDrug(drug, totalReports, description);
   await clearDrugData(drugId);
 
-  await insertRows('adverse_events', drugId, adverseEvents);
-  await insertRows('demographics',   drugId, [...sexDemographics, ...ageDemographics]);
-  await insertRows('outcomes',       drugId, outcomes);
-  await insertRows('trends',         drugId, trends);
+  await insertRows('adverse_events',   drugId, adverseEvents);
+  await insertRows('demographics',     drugId, [...sexDemographics, ...ageDemographics]);
+  await insertRows('outcomes',         drugId, outcomes);
+  await insertRows('trends',           drugId, trends);
+  await insertRows('co_reported_drugs', drugId, coReported);
 
   console.log(
     `  ${tag} Saved: ${adverseEvents.length} events,` +
     ` ${sexDemographics.length + ageDemographics.length} demographic rows,` +
     ` ${outcomes.length} outcomes,` +
     ` ${trends.length} trend periods,` +
+    ` ${coReported.length} co-reported,` +
     ` description: ${description ? 'yes' : 'none'}`
   );
 }
@@ -414,11 +507,14 @@ async function main() {
     readFileSync(join(__dirname, 'drug-list.json'), 'utf8')
   );
 
+  const cliOnly  = getCLIOnly();
   const cliLimit = getCLILimit();
-  const drugs    = cliLimit !== null ? drugList.slice(0, cliLimit) : drugList;
+  const drugs    = cliOnly
+    ? drugList.filter(d => cliOnly.has(d.slug))
+    : cliLimit !== null ? drugList.slice(0, cliLimit) : drugList;
 
-  // Up to 14 API calls per drug: 1–2 for FAERS resolution + 9 for data + 1–2 for label
-  const CALLS_PER_DRUG = 14;
+  // Up to 15 API calls per drug: 1–2 resolution + 9 data + 1 co-reported + 1–2 label
+  const CALLS_PER_DRUG = 15;
   const estMinutes = Math.ceil(drugs.length * CALLS_PER_DRUG * CALL_DELAY_MS / 60_000);
 
   console.log('\nPillSignal — Stage 1: Fetch');

@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Victoza (liraglutide) — FDA Adverse Event Reports","description":"Victoza (liraglutide): 41,734 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/victoza","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Victoza (liraglutide) — FDA Adverse Event Reports","description":"Victoza (liraglutide): 41,734 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/victoza","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,6 +557,20 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Victoza</h2>
+  <p class="section-note">In FDA adverse event reports that mention Victoza, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/metformin">Metformin</a> <span class="co-reported-count">(7,901 reports)</span></li>
+    <li><a href="/drugs/lantus">Insulin Glargine</a> <span class="co-reported-count">(5,014 reports)</span></li>
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(2,402 reports)</span></li>
+    <li><a href="/drugs/zestril">Lisinopril</a> <span class="co-reported-count">(2,187 reports)</span></li>
+    <li><a href="/drugs/lasix">Furosemide</a> <span class="co-reported-count">(2,123 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
@@ -547,9 +578,9 @@
   <ul class="related-list">
     <li><a href="/drugs/ozempic">Ozempic</a><span class="related-count">62,885 reports</span></li>
     <li><a href="/drugs/rybelsus">Rybelsus</a><span class="related-count">6,782 reports</span></li>
-    <li><a href="/drugs/actos">Actos</a><span class="related-count">42,710 reports</span></li>
-    <li><a href="/drugs/glipizide">Glipizide</a><span class="related-count">51,207 reports</span></li>
-    <li><a href="/drugs/glucotrol">Glucotrol</a><span class="related-count">60,043 reports</span></li>
+    <li><a href="/drugs/actos">Actos</a><span class="related-count">42,709 reports</span></li>
+    <li><a href="/drugs/glipizide">Glipizide</a><span class="related-count">51,212 reports</span></li>
+    <li><a href="/drugs/glucotrol">Glucotrol</a><span class="related-count">60,048 reports</span></li>
   </ul>
 </section>
 
@@ -594,10 +625,10 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Victoza";
-    var ADVERSE_EVENTS = [{"label":"NAUSEA","value":5976},{"label":"BLOOD GLUCOSE INCREASED","value":3850},{"label":"DIARRHOEA","value":2935},{"label":"VOMITING","value":2880},{"label":"PANCREATITIS","value":2104},{"label":"WEIGHT DECREASED","value":2030},{"label":"DECREASED APPETITE","value":1840},{"label":"HEADACHE","value":1704},{"label":"OFF LABEL USE","value":1516},{"label":"FATIGUE","value":1345},{"label":"DIZZINESS","value":1288},{"label":"CONSTIPATION","value":1249},{"label":"ABDOMINAL PAIN UPPER","value":1242},{"label":"DRUG INEFFECTIVE","value":1217},{"label":"MALAISE","value":1204}];
-    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[23867,15220,147]};
+    var ADVERSE_EVENTS = [{"label":"NAUSEA","value":5976},{"label":"BLOOD GLUCOSE INCREASED","value":3850},{"label":"DIARRHOEA","value":2935},{"label":"VOMITING","value":2879},{"label":"PANCREATITIS","value":2104},{"label":"WEIGHT DECREASED","value":2030},{"label":"DECREASED APPETITE","value":1840},{"label":"HEADACHE","value":1704},{"label":"OFF LABEL USE","value":1516},{"label":"FATIGUE","value":1345},{"label":"DIZZINESS","value":1288},{"label":"CONSTIPATION","value":1249},{"label":"ABDOMINAL PAIN UPPER","value":1242},{"label":"DRUG INEFFECTIVE","value":1217},{"label":"MALAISE","value":1203}];
+    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[23868,15220,147]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[140,706,3887,11574,7721,2436]};
-    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Death","Life-Threatening","Disability"],"values":[21710,12483,9607,1673,1311,618]};
+    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Death","Life-Threatening","Disability"],"values":[21709,12484,9606,1672,1312,618]};
     var TRENDS_DATA    = {"labels":["Q2 2004","Q1 2008","Q2 2008","Q4 2008","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[3,1,1,1,1,1,28,421,992,1266,1286,1269,1441,1449,1293,280,591,745,608,294,303,379,370,456,722,388,568,534,3217,515,540,594,1916,519,1016,509,509,562,1599,714,1149,606,955,558,510,504,948,411,424,460,716,386,354,295,506,245,285,276,470,228,233,215,365,224,261,206,488,197,366,372,620]};
   </script>
 

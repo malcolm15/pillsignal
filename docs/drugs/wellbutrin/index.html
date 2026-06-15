@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Wellbutrin (bupropion hydrochloride) — FDA Adverse Event Reports","description":"Wellbutrin (bupropion hydrochloride): 96,765 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/wellbutrin","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Wellbutrin (bupropion hydrochloride) — FDA Adverse Event Reports","description":"Wellbutrin (bupropion hydrochloride): 96,765 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/wellbutrin","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Wellbutrin</h2>
+  <p class="section-note">In FDA adverse event reports that mention Wellbutrin, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/neurontin">Gabapentin</a> <span class="co-reported-count">(10,320 reports)</span></li>
+    <li>Ergocalciferol <span class="co-reported-count">(9,641 reports)</span></li>
+    <li><a href="/drugs/klonopin">Clonazepam</a> <span class="co-reported-count">(8,515 reports)</span></li>
+    <li>Levothyroxine <span class="co-reported-count">(8,024 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(7,705 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/wellbutrin-xl">Wellbutrin Xl</a><span class="related-count">87,540 reports</span></li>
-    <li><a href="/drugs/wellbutrin-sr">Wellbutrin Sr</a><span class="related-count">77,855 reports</span></li>
-    <li><a href="/drugs/effexor-xr">Effexor Xr</a><span class="related-count">75,568 reports</span></li>
-    <li><a href="/drugs/lexapro">Lexapro</a><span class="related-count">123,113 reports</span></li>
-    <li><a href="/drugs/prozac">Prozac</a><span class="related-count">61,342 reports</span></li>
+    <li><a href="/drugs/wellbutrin-sr">Wellbutrin Sr</a><span class="related-count">77,857 reports</span></li>
+    <li><a href="/drugs/effexor-xr">Effexor Xr</a><span class="related-count">75,571 reports</span></li>
+    <li><a href="/drugs/lexapro">Lexapro</a><span class="related-count">123,112 reports</span></li>
+    <li><a href="/drugs/prozac">Prozac</a><span class="related-count">61,348 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Wellbutrin";
-    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":9381},{"label":"NAUSEA","value":7633},{"label":"FATIGUE","value":7028},{"label":"HEADACHE","value":6855},{"label":"DEPRESSION","value":6273},{"label":"ANXIETY","value":5591},{"label":"PAIN","value":5199},{"label":"DIZZINESS","value":4978},{"label":"INSOMNIA","value":4480},{"label":"OFF LABEL USE","value":4442},{"label":"DIARRHOEA","value":3549},{"label":"VOMITING","value":3382},{"label":"RASH","value":3359},{"label":"DYSPNOEA","value":3177},{"label":"FEELING ABNORMAL","value":3142}];
+    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":9382},{"label":"NAUSEA","value":7632},{"label":"FATIGUE","value":7028},{"label":"HEADACHE","value":6854},{"label":"DEPRESSION","value":6272},{"label":"ANXIETY","value":5592},{"label":"PAIN","value":5200},{"label":"DIZZINESS","value":4979},{"label":"INSOMNIA","value":4480},{"label":"OFF LABEL USE","value":4442},{"label":"DIARRHOEA","value":3549},{"label":"VOMITING","value":3382},{"label":"RASH","value":3359},{"label":"DYSPNOEA","value":3177},{"label":"FEELING ABNORMAL","value":3143}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[64224,24181,271]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1748,9526,16332,19645,6704,2347]};
-    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Death","Disability","Life-Threatening"],"values":[47399,35552,19410,4665,2637,2455]};
-    var TRENDS_DATA    = {"labels":["Q3 2000","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1157,848,868,1647,1327,970,892,1295,1291,869,824,1170,968,467,1057,637,715,382,1024,549,673,782,802,729,669,501,1436,702,917,647,826,791,1316,782,759,735,1005,584,664,771,1274,561,680,814,1482,922,1847,1208,1450,1586,1803,1635,1377,1271,1185,1319,1444,1244,1090,1147,1534,1340,1284,1219,1361,1185,1302,1159,1316,1038,1141,1178,1248,1350,1344,1243,1316,1133,1220,1133,1182,1269,1759,1287,1218,1190,1242,1117,1069]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1748,9526,16331,19645,6703,2347]};
+    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Death","Disability","Life-Threatening"],"values":[47400,35551,19411,4663,2637,2456]};
+    var TRENDS_DATA    = {"labels":["Q3 2000","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1157,847,868,1646,1327,970,893,1295,1291,869,824,1170,967,467,1057,637,715,383,1024,549,673,782,803,728,669,501,1436,702,917,647,826,792,1316,782,759,735,1005,584,664,771,1274,561,680,814,1482,922,1847,1208,1450,1586,1803,1635,1377,1271,1185,1319,1444,1244,1090,1147,1534,1340,1284,1219,1361,1185,1302,1159,1316,1038,1141,1178,1248,1350,1344,1243,1316,1133,1220,1133,1182,1269,1759,1287,1218,1190,1242,1117,1069]};
   </script>
 
   <!-- Chart.js from CDN -->

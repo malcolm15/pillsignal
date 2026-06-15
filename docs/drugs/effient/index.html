@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Effient (prasugrel) — FDA Adverse Event Reports","description":"Effient (prasugrel): 10,033 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/effient","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Effient (prasugrel) — FDA Adverse Event Reports","description":"Effient (prasugrel): 10,033 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/effient","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Effient</h2>
+  <p class="section-note">In FDA adverse event reports that mention Effient, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(3,296 reports)</span></li>
+    <li><a href="/drugs/metoprolol">Metoprolol</a> <span class="co-reported-count">(1,120 reports)</span></li>
+    <li><a href="/drugs/rosuvastatin">Rosuvastatin</a> <span class="co-reported-count">(938 reports)</span></li>
+    <li><a href="/drugs/zestril">Lisinopril</a> <span class="co-reported-count">(854 reports)</span></li>
+    <li><a href="/drugs/coreg">Carvedilol</a> <span class="co-reported-count">(849 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/brilinta">Brilinta</a><span class="related-count">31,314 reports</span></li>
-    <li><a href="/drugs/clopidogrel">Clopidogrel</a><span class="related-count">99,961 reports</span></li>
-    <li><a href="/drugs/plavix">Plavix</a><span class="related-count">194,885 reports</span></li>
-    <li><a href="/drugs/clopidogrel-bisulfate">Clopidogrel Bisulfate</a><span class="related-count">14,537 reports</span></li>
-    <li><a href="/drugs/lovastatin">Lovastatin</a><span class="related-count">25,357 reports</span></li>
+    <li><a href="/drugs/clopidogrel">Clopidogrel</a><span class="related-count">99,964 reports</span></li>
+    <li><a href="/drugs/plavix">Plavix</a><span class="related-count">194,897 reports</span></li>
+    <li><a href="/drugs/clopidogrel-bisulfate">Clopidogrel Bisulfate</a><span class="related-count">14,536 reports</span></li>
+    <li><a href="/drugs/coumadin">Coumadin</a><span class="related-count">45,849 reports</span></li>
   </ul>
 </section>
 
@@ -594,7 +625,7 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Effient";
-    var ADVERSE_EVENTS = [{"label":"MYOCARDIAL INFARCTION","value":507},{"label":"GASTROINTESTINAL HAEMORRHAGE","value":470},{"label":"CHEST PAIN","value":456},{"label":"HAEMORRHAGE","value":452},{"label":"DYSPNOEA","value":429},{"label":"CONTUSION","value":423},{"label":"FATIGUE","value":329},{"label":"OFF LABEL USE","value":318},{"label":"NAUSEA","value":304},{"label":"DIZZINESS","value":298},{"label":"THROMBOSIS IN DEVICE","value":284},{"label":"EPISTAXIS","value":252},{"label":"HEADACHE","value":242},{"label":"ASTHENIA","value":227},{"label":"DEATH","value":216}];
+    var ADVERSE_EVENTS = [{"label":"MYOCARDIAL INFARCTION","value":507},{"label":"GASTROINTESTINAL HAEMORRHAGE","value":470},{"label":"CHEST PAIN","value":456},{"label":"HAEMORRHAGE","value":452},{"label":"DYSPNOEA","value":429},{"label":"CONTUSION","value":423},{"label":"FATIGUE","value":329},{"label":"OFF LABEL USE","value":318},{"label":"NAUSEA","value":304},{"label":"DIZZINESS","value":298},{"label":"THROMBOSIS IN DEVICE","value":284},{"label":"EPISTAXIS","value":252},{"label":"HEADACHE","value":242},{"label":"ASTHENIA","value":227},{"label":"DEATH","value":217}];
     var SEX_DATA       = {"labels":["Male","Female","Unknown"],"values":[6165,3332,38]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[69,55,577,2249,1825,1083]};
     var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[4791,3949,2511,854,525,165]};

@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"RANITIDINE COOL MINT () — FDA Adverse Event Reports","description":"Ranitidine Cool Mint (): 197,546 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/ranitidine-cool-mint","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"RANITIDINE COOL MINT () — FDA Adverse Event Reports","description":"Ranitidine Cool Mint (): 197,546 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/ranitidine-cool-mint","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Ranitidine Cool Mint</h2>
+  <p class="section-note">In FDA adverse event reports that mention Ranitidine Cool Mint, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(11,225 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(9,239 reports)</span></li>
+    <li><a href="/drugs/lasix">Furosemide</a> <span class="co-reported-count">(8,734 reports)</span></li>
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(8,458 reports)</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(7,629 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/ranitidine">Ranitidine</a><span class="related-count">197,546 reports</span></li>
-    <li><a href="/drugs/keflex">Keflex</a><span class="related-count">21,105 reports</span></li>
-    <li><a href="/drugs/zithromax">Zithromax</a><span class="related-count">18,866 reports</span></li>
-    <li><a href="/drugs/aciphex">Aciphex</a><span class="related-count">26,956 reports</span></li>
-    <li><a href="/drugs/amoxicillin">Amoxicillin</a><span class="related-count">74,624 reports</span></li>
+    <li><a href="/drugs/keflex">Keflex</a><span class="related-count">21,106 reports</span></li>
+    <li><a href="/drugs/zithromax">Zithromax</a><span class="related-count">18,870 reports</span></li>
+    <li><a href="/drugs/aciphex">Aciphex</a><span class="related-count">26,951 reports</span></li>
+    <li><a href="/drugs/amoxicillin">Amoxicillin</a><span class="related-count">74,623 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Ranitidine Cool Mint";
-    var ADVERSE_EVENTS = [{"label":"BREAST CANCER","value":24854},{"label":"PROSTATE CANCER","value":22252},{"label":"COLORECTAL CANCER","value":17674},{"label":"BLADDER CANCER","value":16746},{"label":"RENAL CANCER","value":16278},{"label":"OESOPHAGEAL CARCINOMA","value":9648},{"label":"INCORRECT DOSE ADMINISTERED","value":9632},{"label":"HEPATIC CANCER","value":7592},{"label":"GASTRIC CANCER","value":7538},{"label":"PANCREATIC CARCINOMA","value":6840},{"label":"LUNG NEOPLASM MALIGNANT","value":6760},{"label":"NAUSEA","value":4729},{"label":"CHRONIC KIDNEY DISEASE","value":4687},{"label":"FATIGUE","value":4475},{"label":"DRUG INEFFECTIVE","value":4060}];
+    var ADVERSE_EVENTS = [{"label":"BREAST CANCER","value":24854},{"label":"PROSTATE CANCER","value":22252},{"label":"COLORECTAL CANCER","value":17674},{"label":"BLADDER CANCER","value":16746},{"label":"RENAL CANCER","value":16278},{"label":"OESOPHAGEAL CARCINOMA","value":9648},{"label":"INCORRECT DOSE ADMINISTERED","value":9632},{"label":"HEPATIC CANCER","value":7592},{"label":"GASTRIC CANCER","value":7538},{"label":"PANCREATIC CARCINOMA","value":6840},{"label":"LUNG NEOPLASM MALIGNANT","value":6760},{"label":"NAUSEA","value":4730},{"label":"CHRONIC KIDNEY DISEASE","value":4687},{"label":"FATIGUE","value":4474},{"label":"DRUG INEFFECTIVE","value":4060}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[90293,83198,136]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[3117,4736,16281,36288,20627,11506]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Non-Serious","Life-Threatening","Disability"],"values":[163131,26035,15476,13021,4706,3511]};
-    var TRENDS_DATA    = {"labels":["Q4 1999","Q2 2003","Q3 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,301,265,280,281,314,277,261,347,269,320,273,289,246,244,244,108,239,215,201,313,286,382,436,361,341,340,578,420,451,451,501,408,620,707,609,611,677,610,587,683,806,761,746,861,1096,957,1244,1161,1277,1265,1457,1227,1155,1237,1365,1344,1835,2282,1719,1855,2550,2685,2139,2340,1789,3556,13493,1882,22849,19438,40327,14625,15907,626,1133,731,3145,4336,340,239,300,301,377,295,406,190,243,183,122]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[3117,4736,16279,36288,20625,11504]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Non-Serious","Life-Threatening","Disability"],"values":[163133,26035,15475,13022,4707,3509]};
+    var TRENDS_DATA    = {"labels":["Q4 1999","Q2 2003","Q3 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,301,265,280,281,314,277,261,347,269,320,273,290,245,244,244,108,239,215,201,313,286,383,436,361,342,340,578,420,451,451,501,408,620,705,609,611,677,610,587,683,806,761,746,861,1096,957,1244,1161,1277,1265,1457,1227,1155,1237,1365,1344,1835,2282,1719,1855,2550,2685,2139,2340,1789,3556,13493,1882,22849,19438,40327,14625,15907,626,1133,731,3145,4336,340,239,300,301,377,295,406,190,243,183,122]};
   </script>
 
   <!-- Chart.js from CDN -->

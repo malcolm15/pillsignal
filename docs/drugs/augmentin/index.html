@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Augmentin (amoxicillin/clavulanate potassium) — FDA Adverse Event Reports","description":"Augmentin (amoxicillin/clavulanate potassium): 26,550 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/augmentin","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Augmentin (amoxicillin/clavulanate potassium) — FDA Adverse Event Reports","description":"Augmentin (amoxicillin/clavulanate potassium): 26,550 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/augmentin","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Augmentin</h2>
+  <p class="section-note">In FDA adverse event reports that mention Augmentin, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(3,228 reports)</span></li>
+    <li><a href="/drugs/lasix">Furosemide</a> <span class="co-reported-count">(2,755 reports)</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(2,638 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(2,440 reports)</span></li>
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(2,193 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/diflucan">Diflucan</a><span class="related-count">68,737 reports</span></li>
-    <li><a href="/drugs/amoxicillin">Amoxicillin</a><span class="related-count">74,624 reports</span></li>
-    <li><a href="/drugs/amoxil">Amoxil</a><span class="related-count">74,624 reports</span></li>
-    <li><a href="/drugs/fluconazole">Fluconazole</a><span class="related-count">55,681 reports</span></li>
-    <li><a href="/drugs/ondansetron">Ondansetron</a><span class="related-count">118,455 reports</span></li>
+    <li><a href="/drugs/diflucan">Diflucan</a><span class="related-count">68,733 reports</span></li>
+    <li><a href="/drugs/amoxicillin">Amoxicillin</a><span class="related-count">74,623 reports</span></li>
+    <li><a href="/drugs/amoxil">Amoxil</a><span class="related-count">74,623 reports</span></li>
+    <li><a href="/drugs/fluconazole">Fluconazole</a><span class="related-count">55,676 reports</span></li>
+    <li><a href="/drugs/ondansetron">Ondansetron</a><span class="related-count">118,454 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Augmentin";
-    var ADVERSE_EVENTS = [{"label":"DIARRHOEA","value":1830},{"label":"DRUG HYPERSENSITIVITY","value":1811},{"label":"NAUSEA","value":1419},{"label":"PYREXIA","value":1381},{"label":"DYSPNOEA","value":1379},{"label":"FATIGUE","value":1252},{"label":"PNEUMONIA","value":1170},{"label":"VOMITING","value":1157},{"label":"RASH","value":1014},{"label":"PAIN","value":972},{"label":"HEADACHE","value":912},{"label":"ACUTE KIDNEY INJURY","value":843},{"label":"PRURITUS","value":841},{"label":"DRUG INEFFECTIVE","value":833},{"label":"ASTHENIA","value":828}];
+    var ADVERSE_EVENTS = [{"label":"DIARRHOEA","value":1830},{"label":"DRUG HYPERSENSITIVITY","value":1810},{"label":"NAUSEA","value":1419},{"label":"PYREXIA","value":1381},{"label":"DYSPNOEA","value":1378},{"label":"FATIGUE","value":1251},{"label":"PNEUMONIA","value":1170},{"label":"VOMITING","value":1157},{"label":"RASH","value":1015},{"label":"PAIN","value":972},{"label":"HEADACHE","value":912},{"label":"ACUTE KIDNEY INJURY","value":843},{"label":"PRURITUS","value":841},{"label":"DRUG INEFFECTIVE","value":833},{"label":"ASTHENIA","value":826}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[14058,10747,53]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1155,1814,2777,5127,4099,4175]};
-    var OUTCOMES_DATA  = {"labels":["Hospitalization","Other Serious","Non-Serious","Death","Life-Threatening","Disability"],"values":[13122,10768,5881,2592,1823,582]};
-    var TRENDS_DATA    = {"labels":["Q1 1999","Q2 2001","Q1 2002","Q2 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,1,171,249,104,38,73,143,63,171,61,16,77,51,51,24,21,46,20,35,42,43,100,156,224,236,292,116,105,160,275,225,119,251,192,267,229,238,262,242,248,278,330,266,371,279,398,297,501,406,465,476,644,558,422,403,514,613,633,592,658,495,643,605,607,558,558,494,482,495,402,302,354,279,315,347,362,384,443,327,329,324,354,334,324,373,354,290,294,272,306]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1155,1813,2778,5127,4100,4175]};
+    var OUTCOMES_DATA  = {"labels":["Hospitalization","Other Serious","Non-Serious","Death","Life-Threatening","Disability"],"values":[13123,10767,5881,2592,1822,583]};
+    var TRENDS_DATA    = {"labels":["Q1 1999","Q2 2001","Q1 2002","Q2 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,1,171,248,104,38,73,143,63,171,62,16,77,51,53,24,20,46,20,35,42,43,100,156,225,236,292,116,105,160,274,225,119,250,192,267,229,238,262,242,248,278,330,266,371,279,398,297,501,406,465,476,644,558,422,403,514,613,633,592,658,495,643,605,607,558,558,494,482,495,402,302,354,279,315,347,362,384,443,327,329,324,354,334,324,373,354,290,294,272,306]};
   </script>
 
   <!-- Chart.js from CDN -->

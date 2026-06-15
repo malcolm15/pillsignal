@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Protonix (pantoprazole sodium) — FDA Adverse Event Reports","description":"Protonix (pantoprazole sodium): 144,619 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/protonix","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Protonix (pantoprazole sodium) — FDA Adverse Event Reports","description":"Protonix (pantoprazole sodium): 144,619 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/protonix","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Protonix</h2>
+  <p class="section-note">In FDA adverse event reports that mention Protonix, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Pantoprazole In % <span class="co-reported-count">(59,845 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(31,481 reports)</span></li>
+    <li><a href="/drugs/esomeprazole">Esomeprazole</a> <span class="co-reported-count">(29,744 reports)</span></li>
+    <li><a href="/drugs/prevacid">Lansoprazole</a> <span class="co-reported-count">(27,958 reports)</span></li>
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(24,955 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/protonix-delayed-release">Protonix Delayed-release</a><span class="related-count">144,572 reports</span></li>
-    <li><a href="/drugs/pantoprazole-sodium">Pantoprazole Sodium</a><span class="related-count">245,987 reports</span></li>
-    <li><a href="/drugs/pantoprazole">Pantoprazole</a><span class="related-count">190,015 reports</span></li>
-    <li><a href="/drugs/prevacid">Prevacid</a><span class="related-count">171,882 reports</span></li>
-    <li><a href="/drugs/advil">Advil</a><span class="related-count">235,673 reports</span></li>
+    <li><a href="/drugs/pantoprazole-sodium">Pantoprazole Sodium</a><span class="related-count">245,982 reports</span></li>
+    <li><a href="/drugs/pantoprazole">Pantoprazole</a><span class="related-count">190,013 reports</span></li>
+    <li><a href="/drugs/prevacid">Prevacid</a><span class="related-count">171,884 reports</span></li>
+    <li><a href="/drugs/advil">Advil</a><span class="related-count">235,672 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Protonix";
-    var ADVERSE_EVENTS = [{"label":"CHRONIC KIDNEY DISEASE","value":24461},{"label":"ACUTE KIDNEY INJURY","value":13784},{"label":"FATIGUE","value":11140},{"label":"RENAL FAILURE","value":10849},{"label":"NAUSEA","value":10254},{"label":"PAIN","value":9635},{"label":"DYSPNOEA","value":9258},{"label":"DIARRHOEA","value":9159},{"label":"DRUG INEFFECTIVE","value":8626},{"label":"HEADACHE","value":7984},{"label":"OFF LABEL USE","value":7785},{"label":"END STAGE RENAL DISEASE","value":7555},{"label":"VOMITING","value":6764},{"label":"ARTHRALGIA","value":6713},{"label":"RENAL INJURY","value":6217}];
-    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[77734,46319,164]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[766,4336,13944,26362,20250,17197]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[79174,51218,31771,16045,7239,6011]};
-    var TRENDS_DATA    = {"labels":["Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[2,365,366,511,436,614,576,670,676,765,668,738,776,603,572,699,735,615,782,721,712,590,792,1110,654,508,634,1608,1009,777,917,928,942,1328,1399,942,644,953,776,678,882,1262,754,815,901,1606,1306,1667,1351,1583,1432,1572,1378,1378,1485,1389,1336,2271,12836,1827,1814,7530,5315,2015,1648,1883,2313,1795,1912,1953,1942,1979,2802,2663,2455,2592,2799,2284,2003,2070,2083,2245,2483,2506,2622,2551,2342,2746,2290,2162]};
+    var ADVERSE_EVENTS = [{"label":"CHRONIC KIDNEY DISEASE","value":24461},{"label":"ACUTE KIDNEY INJURY","value":13784},{"label":"FATIGUE","value":11139},{"label":"RENAL FAILURE","value":10851},{"label":"NAUSEA","value":10258},{"label":"PAIN","value":9636},{"label":"DYSPNOEA","value":9265},{"label":"DIARRHOEA","value":9160},{"label":"DRUG INEFFECTIVE","value":8627},{"label":"HEADACHE","value":7982},{"label":"OFF LABEL USE","value":7785},{"label":"END STAGE RENAL DISEASE","value":7555},{"label":"VOMITING","value":6768},{"label":"ARTHRALGIA","value":6715},{"label":"RENAL INJURY","value":6217}];
+    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[77737,46316,164]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[766,4336,13945,26365,20247,17194]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[79176,51217,31772,16049,7237,6012]};
+    var TRENDS_DATA    = {"labels":["Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[2,365,367,510,436,615,576,669,677,765,667,739,776,603,571,699,735,615,780,721,712,591,793,1112,653,508,634,1608,1009,777,917,928,942,1328,1398,942,644,953,776,678,882,1262,754,815,901,1606,1306,1667,1351,1583,1432,1572,1378,1378,1485,1389,1336,2271,12836,1827,1814,7530,5315,2015,1648,1883,2313,1795,1912,1953,1942,1979,2802,2663,2455,2592,2799,2284,2003,2070,2083,2245,2483,2506,2622,2551,2342,2746,2290,2162]};
   </script>
 
   <!-- Chart.js from CDN -->

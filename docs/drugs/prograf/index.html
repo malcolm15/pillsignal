@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"PROGRAF () — FDA Adverse Event Reports","description":"Prograf (): 148,397 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/prograf","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"PROGRAF () — FDA Adverse Event Reports","description":"Prograf (): 148,397 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/prograf","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,6 +557,20 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Prograf</h2>
+  <p class="section-note">In FDA adverse event reports that mention Prograf, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/mycophenolate-mofetil">Mycophenolate Mofetil</a> <span class="co-reported-count">(56,351 reports)</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(39,168 reports)</span></li>
+    <li><a href="/drugs/prednisolone">Prednisolone</a> <span class="co-reported-count">(23,705 reports)</span></li>
+    <li><a href="/drugs/methylprednisolone">Methylprednisolone</a> <span class="co-reported-count">(17,621 reports)</span></li>
+    <li>Mycophenolic Acid <span class="co-reported-count">(15,004 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
@@ -547,9 +578,9 @@
   <ul class="related-list">
     <li><a href="/drugs/envarsus-xr">Envarsus Xr</a><span class="related-count">124,302 reports</span></li>
     <li><a href="/drugs/tacrolimus">Tacrolimus</a><span class="related-count">120,504 reports</span></li>
-    <li><a href="/drugs/cellcept">Cellcept</a><span class="related-count">131,737 reports</span></li>
-    <li><a href="/drugs/mycophenolate-mofetil">Mycophenolate Mofetil</a><span class="related-count">100,445 reports</span></li>
-    <li><a href="/drugs/myhibbin">Myhibbin</a><span class="related-count">100,193 reports</span></li>
+    <li><a href="/drugs/cellcept">Cellcept</a><span class="related-count">131,736 reports</span></li>
+    <li><a href="/drugs/mycophenolate-mofetil">Mycophenolate Mofetil</a><span class="related-count">100,443 reports</span></li>
+    <li><a href="/drugs/myhibbin">Myhibbin</a><span class="related-count">100,191 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Prograf";
-    var ADVERSE_EVENTS = [{"label":"OFF LABEL USE","value":14285},{"label":"DRUG INEFFECTIVE","value":9994},{"label":"DRUG INTERACTION","value":6197},{"label":"PRODUCT USE IN UNAPPROVED INDICATION","value":6169},{"label":"ACUTE KIDNEY INJURY","value":5785},{"label":"DIARRHOEA","value":5688},{"label":"TRANSPLANT REJECTION","value":4776},{"label":"DEATH","value":4762},{"label":"PYREXIA","value":4723},{"label":"CYTOMEGALOVIRUS INFECTION","value":4434},{"label":"PNEUMONIA","value":4362},{"label":"COVID-19","value":3815},{"label":"TOXICITY TO VARIOUS AGENTS","value":3740},{"label":"RENAL IMPAIRMENT","value":3493},{"label":"SEPSIS","value":3415}];
-    var SEX_DATA       = {"labels":["Male","Female","Unknown"],"values":[72410,56870,840]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[15130,16169,21879,35797,17148,4425]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Non-Serious","Life-Threatening","Disability"],"values":[94250,59661,24748,14594,11721,2179]};
-    var TRENDS_DATA    = {"labels":["Q1 2001","Q2 2001","Q3 2001","Q4 2001","Q1 2002","Q2 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,1,2,1,1,156,164,206,173,225,198,213,240,197,238,219,258,260,344,414,467,491,482,489,537,452,658,481,578,457,449,742,695,872,1008,987,1053,1056,1147,1254,1204,771,1188,937,957,995,1578,1031,948,1018,1404,1160,1447,1460,1695,1402,1465,1639,2178,2150,2121,2458,3053,2969,2510,2687,2497,2478,3002,2966,3169,3127,2869,3155,2636,2656,3023,2650,2884,3112,3248,3173,3403,3510,3165,2930,3548,3202,4615,3700,2989,3742,3716,2939]};
+    var ADVERSE_EVENTS = [{"label":"OFF LABEL USE","value":14285},{"label":"DRUG INEFFECTIVE","value":9992},{"label":"DRUG INTERACTION","value":6197},{"label":"PRODUCT USE IN UNAPPROVED INDICATION","value":6169},{"label":"ACUTE KIDNEY INJURY","value":5785},{"label":"DIARRHOEA","value":5688},{"label":"TRANSPLANT REJECTION","value":4776},{"label":"DEATH","value":4760},{"label":"PYREXIA","value":4723},{"label":"CYTOMEGALOVIRUS INFECTION","value":4435},{"label":"PNEUMONIA","value":4363},{"label":"COVID-19","value":3815},{"label":"TOXICITY TO VARIOUS AGENTS","value":3741},{"label":"RENAL IMPAIRMENT","value":3492},{"label":"SEPSIS","value":3412}];
+    var SEX_DATA       = {"labels":["Male","Female","Unknown"],"values":[72412,56868,840]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[15130,16169,21879,35798,17147,4425]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Non-Serious","Life-Threatening","Disability"],"values":[94247,59664,24748,14595,11722,2178]};
+    var TRENDS_DATA    = {"labels":["Q1 2001","Q2 2001","Q3 2001","Q4 2001","Q1 2002","Q2 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,1,2,1,1,156,164,206,173,224,198,213,240,197,238,219,258,260,344,414,467,491,481,489,537,452,658,481,578,457,449,742,695,872,1008,987,1053,1058,1147,1254,1204,771,1188,937,957,995,1578,1031,948,1018,1404,1160,1447,1460,1695,1402,1465,1639,2178,2150,2121,2458,3053,2969,2510,2687,2497,2478,3002,2966,3169,3127,2869,3155,2636,2656,3023,2650,2884,3112,3248,3173,3403,3510,3165,2930,3548,3202,4615,3700,2989,3742,3716,2939]};
   </script>
 
   <!-- Chart.js from CDN -->

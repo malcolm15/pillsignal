@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"MEDPRIDE () — FDA Adverse Event Reports","description":"Medpride (): 68,839 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/medpride","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"MEDPRIDE () — FDA Adverse Event Reports","description":"Medpride (): 68,839 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/medpride","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Medpride</h2>
+  <p class="section-note">In FDA adverse event reports that mention Medpride, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(16,475 reports)</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(13,861 reports)</span></li>
+    <li><a href="/drugs/trexall">Methotrexate</a> <span class="co-reported-count">(13,809 reports)</span></li>
+    <li><a href="/drugs/infliximab">Infliximab</a> <span class="co-reported-count">(9,788 reports)</span></li>
+    <li>Ergocalciferol <span class="co-reported-count">(9,122 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/cortisone">Cortisone</a><span class="related-count">81,133 reports</span></li>
-    <li><a href="/drugs/quality-choice">Quality Choice</a><span class="related-count">111,859 reports</span></li>
-    <li><a href="/drugs/anusol-hc">Anusol Hc</a><span class="related-count">69,676 reports</span></li>
+    <li><a href="/drugs/cortisone">Cortisone</a><span class="related-count">81,134 reports</span></li>
+    <li><a href="/drugs/quality-choice">Quality Choice</a><span class="related-count">111,867 reports</span></li>
+    <li><a href="/drugs/anusol-hc">Anusol Hc</a><span class="related-count">69,678 reports</span></li>
     <li><a href="/drugs/cortizone-10">Cortizone 10</a><span class="related-count">65,490 reports</span></li>
-    <li><a href="/drugs/hydrocortisone">Hydrocortisone</a><span class="related-count">69,513 reports</span></li>
+    <li><a href="/drugs/hydrocortisone">Hydrocortisone</a><span class="related-count">69,514 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Medpride";
-    var ADVERSE_EVENTS = [{"label":"OFF LABEL USE","value":9850},{"label":"DRUG INEFFECTIVE","value":8138},{"label":"FATIGUE","value":6483},{"label":"CONDITION AGGRAVATED","value":5909},{"label":"RASH","value":5493},{"label":"NAUSEA","value":5489},{"label":"PAIN","value":5229},{"label":"DIARRHOEA","value":4888},{"label":"HEADACHE","value":4884},{"label":"ARTHRALGIA","value":4838},{"label":"DYSPNOEA","value":4810},{"label":"PYREXIA","value":4634},{"label":"VOMITING","value":4368},{"label":"PRURITUS","value":4203},{"label":"INFUSION RELATED REACTION","value":4098}];
+    var ADVERSE_EVENTS = [{"label":"OFF LABEL USE","value":9850},{"label":"DRUG INEFFECTIVE","value":8138},{"label":"FATIGUE","value":6484},{"label":"CONDITION AGGRAVATED","value":5907},{"label":"RASH","value":5493},{"label":"NAUSEA","value":5489},{"label":"PAIN","value":5229},{"label":"DIARRHOEA","value":4888},{"label":"HEADACHE","value":4883},{"label":"ARTHRALGIA","value":4838},{"label":"DYSPNOEA","value":4812},{"label":"PYREXIA","value":4635},{"label":"VOMITING","value":4368},{"label":"PRURITUS","value":4203},{"label":"INFUSION RELATED REACTION","value":4099}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[35286,24945,133]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[7569,5982,9937,11173,8206,5839]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[39831,29899,11237,10830,9416,6436]};
-    var TRENDS_DATA    = {"labels":["Q4 2001","Q2 2003","Q3 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,1,99,117,109,121,144,139,125,163,179,142,98,100,130,137,138,155,156,131,143,197,147,187,219,197,191,218,245,222,219,273,317,315,347,403,489,590,423,348,395,430,510,417,447,468,627,576,656,676,701,715,799,767,687,793,919,1041,1497,1231,1142,1076,1090,1144,1120,1117,1250,1350,1374,1465,1480,1525,1409,1414,1669,1701,1663,1553,1507,1654,1806,1481,1565,1745,1733,2084,1803,1504,1915,1681,1390]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[7570,5982,9936,11175,8206,5839]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[39828,29898,11237,10830,9416,6436]};
+    var TRENDS_DATA    = {"labels":["Q4 2001","Q2 2003","Q3 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,1,99,117,109,121,144,139,125,163,178,142,97,100,130,136,138,156,156,130,143,197,147,187,219,197,191,218,245,222,220,273,317,316,348,403,489,590,423,348,395,430,510,417,447,468,627,576,656,676,701,715,799,767,687,793,919,1041,1497,1231,1142,1076,1090,1144,1120,1117,1250,1350,1374,1465,1480,1525,1409,1414,1669,1701,1663,1553,1507,1654,1806,1481,1565,1745,1733,2084,1803,1504,1915,1681,1390]};
   </script>
 
   <!-- Chart.js from CDN -->

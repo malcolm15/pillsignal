@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"CLOZARIL () — FDA Adverse Event Reports","description":"Clozaril (): 123,167 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/clozaril","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"CLOZARIL () — FDA Adverse Event Reports","description":"Clozaril (): 123,167 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/clozaril","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Clozaril</h2>
+  <p class="section-note">In FDA adverse event reports that mention Clozaril, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/zyprexa">Olanzapine</a> <span class="co-reported-count">(8,420 reports)</span></li>
+    <li><a href="/drugs/abilify">Aripiprazole</a> <span class="co-reported-count">(6,827 reports)</span></li>
+    <li><a href="/drugs/quetiapine">Quetiapine</a> <span class="co-reported-count">(6,289 reports)</span></li>
+    <li><a href="/drugs/risperidone">Risperidone</a> <span class="co-reported-count">(6,131 reports)</span></li>
+    <li>Aripiprazole Orally Disintegrating <span class="co-reported-count">(4,904 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/clozapine">Clozapine</a><span class="related-count">75,269 reports</span></li>
-    <li><a href="/drugs/versacloz">Versacloz</a><span class="related-count">75,301 reports</span></li>
-    <li><a href="/drugs/haloperidol">Haloperidol</a><span class="related-count">24,306 reports</span></li>
-    <li><a href="/drugs/olanzapine">Olanzapine</a><span class="related-count">66,334 reports</span></li>
-    <li><a href="/drugs/olanzapine-intramuscular">Olanzapine Intramuscular</a><span class="related-count">66,334 reports</span></li>
+    <li><a href="/drugs/clozapine">Clozapine</a><span class="related-count">75,270 reports</span></li>
+    <li><a href="/drugs/versacloz">Versacloz</a><span class="related-count">75,302 reports</span></li>
+    <li><a href="/drugs/haloperidol">Haloperidol</a><span class="related-count">24,305 reports</span></li>
+    <li><a href="/drugs/olanzapine">Olanzapine</a><span class="related-count">66,333 reports</span></li>
+    <li><a href="/drugs/olanzapine-intramuscular">Olanzapine Intramuscular</a><span class="related-count">66,333 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Clozaril";
-    var ADVERSE_EVENTS = [{"label":"NEUTROPENIA","value":18813},{"label":"HOSPITALISATION","value":12257},{"label":"DEATH","value":11736},{"label":"SCHIZOPHRENIA","value":4607},{"label":"WHITE BLOOD CELL COUNT INCREASED","value":4479},{"label":"WHITE BLOOD CELL COUNT DECREASED","value":4432},{"label":"NEUTROPHIL COUNT INCREASED","value":4148},{"label":"DRUG INEFFECTIVE","value":3910},{"label":"MALAISE","value":3773},{"label":"OFF LABEL USE","value":3686},{"label":"PNEUMONIA","value":3222},{"label":"TREATMENT NONCOMPLIANCE","value":3180},{"label":"NEUTROPHIL COUNT DECREASED","value":3140},{"label":"DRUG INTERACTION","value":3095},{"label":"HAEMOGLOBIN DECREASED","value":3083}];
-    var SEX_DATA       = {"labels":["Male","Female","Unknown"],"values":[66552,42447,209]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[2105,17073,20592,21524,8701,4292]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Non-Serious","Life-Threatening","Disability"],"values":[68482,53795,21907,6590,6504,1214]};
-    var TRENDS_DATA    = {"labels":["Q4 2001","Q2 2002","Q3 2002","Q4 2002","Q1 2003","Q3 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,2,1,1,3,1,342,328,318,719,501,365,313,409,1170,245,730,297,221,280,209,214,146,193,259,334,406,375,603,610,545,985,747,597,543,3335,912,838,915,1557,988,714,745,701,747,819,810,875,773,930,833,1148,1085,1104,852,1076,1070,1539,2062,1921,1647,1644,1907,1681,1703,1529,1757,1754,1995,1944,1957,1993,2451,1677,1895,1788,1812,1865,6389,2616,2588,2326,3527,2833,3003,3771,3676,2616,2781,2629,2763,2037,1684,1789,1777]};
+    var ADVERSE_EVENTS = [{"label":"NEUTROPENIA","value":18812},{"label":"HOSPITALISATION","value":12257},{"label":"DEATH","value":11736},{"label":"SCHIZOPHRENIA","value":4607},{"label":"WHITE BLOOD CELL COUNT INCREASED","value":4477},{"label":"WHITE BLOOD CELL COUNT DECREASED","value":4432},{"label":"NEUTROPHIL COUNT INCREASED","value":4147},{"label":"DRUG INEFFECTIVE","value":3912},{"label":"MALAISE","value":3772},{"label":"OFF LABEL USE","value":3686},{"label":"PNEUMONIA","value":3222},{"label":"TREATMENT NONCOMPLIANCE","value":3179},{"label":"NEUTROPHIL COUNT DECREASED","value":3139},{"label":"DRUG INTERACTION","value":3095},{"label":"HAEMOGLOBIN DECREASED","value":3084}];
+    var SEX_DATA       = {"labels":["Male","Female","Unknown"],"values":[66551,42447,209]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[2105,17074,20590,21523,8701,4292]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Non-Serious","Life-Threatening","Disability"],"values":[68481,53797,21907,6588,6503,1213]};
+    var TRENDS_DATA    = {"labels":["Q4 2001","Q2 2002","Q3 2002","Q4 2002","Q1 2003","Q3 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,2,1,1,3,1,342,328,317,719,501,365,313,409,1170,245,730,297,221,280,210,214,146,193,259,334,406,375,603,610,545,985,747,597,543,3335,912,838,915,1557,988,714,745,701,747,819,810,875,773,930,833,1148,1085,1104,852,1076,1070,1539,2062,1921,1647,1644,1907,1681,1703,1529,1757,1754,1995,1944,1957,1993,2451,1677,1895,1788,1812,1865,6389,2616,2588,2326,3527,2833,3003,3771,3676,2616,2781,2629,2763,2037,1684,1789,1777]};
   </script>
 
   <!-- Chart.js from CDN -->

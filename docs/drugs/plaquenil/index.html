@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Plaquenil (hydroxychloroquine sulfate) — FDA Adverse Event Reports","description":"Plaquenil (hydroxychloroquine sulfate): 89,508 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/plaquenil","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Plaquenil (hydroxychloroquine sulfate) — FDA Adverse Event Reports","description":"Plaquenil (hydroxychloroquine sulfate): 89,508 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/plaquenil","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,6 +557,20 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Plaquenil</h2>
+  <p class="section-note">In FDA adverse event reports that mention Plaquenil, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/enbrel">Etanercept</a> <span class="co-reported-count">(35,574 reports)</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(32,302 reports)</span></li>
+    <li><a href="/drugs/humira">Adalimumab</a> <span class="co-reported-count">(32,150 reports)</span></li>
+    <li><a href="/drugs/leflunomide">Leflunomide</a> <span class="co-reported-count">(30,967 reports)</span></li>
+    <li><a href="/drugs/sulfasalazine">Sulfasalazine</a> <span class="co-reported-count">(25,321 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
@@ -547,8 +578,8 @@
   <ul class="related-list">
     <li><a href="/drugs/actemra">Actemra</a><span class="related-count">108,697 reports</span></li>
     <li><a href="/drugs/arava">Arava</a><span class="related-count">102,952 reports</span></li>
-    <li><a href="/drugs/orencia">Orencia</a><span class="related-count">135,351 reports</span></li>
-    <li><a href="/drugs/hydroxychloroquine">Hydroxychloroquine</a><span class="related-count">73,082 reports</span></li>
+    <li><a href="/drugs/orencia">Orencia</a><span class="related-count">135,352 reports</span></li>
+    <li><a href="/drugs/hydroxychloroquine">Hydroxychloroquine</a><span class="related-count">73,083 reports</span></li>
     <li><a href="/drugs/xeljanz">Xeljanz</a><span class="related-count">105,852 reports</span></li>
   </ul>
 </section>
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Plaquenil";
-    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":29072},{"label":"RHEUMATOID ARTHRITIS","value":20306},{"label":"PAIN","value":16568},{"label":"FATIGUE","value":14061},{"label":"ARTHRALGIA","value":13793},{"label":"DRUG INTOLERANCE","value":12316},{"label":"JOINT SWELLING","value":12248},{"label":"OFF LABEL USE","value":11211},{"label":"RASH","value":10628},{"label":"ABDOMINAL DISCOMFORT","value":9652},{"label":"CONTRAINDICATED PRODUCT ADMINISTERED","value":9558},{"label":"ALOPECIA","value":9506},{"label":"NAUSEA","value":9339},{"label":"ARTHROPATHY","value":8790},{"label":"SYSTEMIC LUPUS ERYTHEMATOSUS","value":8775}];
+    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":29073},{"label":"RHEUMATOID ARTHRITIS","value":20305},{"label":"PAIN","value":16568},{"label":"FATIGUE","value":14061},{"label":"ARTHRALGIA","value":13791},{"label":"DRUG INTOLERANCE","value":12315},{"label":"JOINT SWELLING","value":12248},{"label":"OFF LABEL USE","value":11211},{"label":"RASH","value":10628},{"label":"ABDOMINAL DISCOMFORT","value":9652},{"label":"CONTRAINDICATED PRODUCT ADMINISTERED","value":9558},{"label":"ALOPECIA","value":9506},{"label":"NAUSEA","value":9337},{"label":"ARTHROPATHY","value":8790},{"label":"SYSTEMIC LUPUS ERYTHEMATOSUS","value":8775}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[68633,11481,45]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[930,3890,13848,20847,9420,4363]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Disability","Death","Life-Threatening"],"values":[55947,22122,21902,8199,6005,5831]};
-    var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[128,137,197,177,171,113,140,179,146,141,135,506,142,152,141,984,153,219,180,972,216,263,342,801,327,205,285,622,431,338,317,554,1084,543,449,304,899,299,446,440,1153,347,432,516,1285,803,1022,921,1375,1074,1206,1242,1415,1099,1561,1599,1775,1658,1488,1748,2344,1673,2143,2212,2930,3647,3273,2604,1896,2069,1864,2183,1677,2218,1477,1590,1247,1074,1085,1155,1215,1457,1223,1424,1425,1056,1415,1070,865]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[930,3890,13847,20848,9419,4364]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Disability","Death","Life-Threatening"],"values":[55945,22121,21903,8199,6003,5832]};
+    var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[128,137,197,177,171,113,140,179,146,141,135,506,142,153,140,984,154,219,179,973,214,263,341,801,327,205,285,622,432,338,317,554,1085,543,449,304,899,299,446,440,1153,347,432,516,1285,803,1022,921,1375,1074,1206,1242,1415,1099,1561,1599,1775,1658,1488,1748,2344,1673,2143,2212,2930,3647,3273,2604,1896,2069,1864,2183,1677,2218,1477,1590,1247,1074,1085,1155,1215,1457,1223,1424,1425,1056,1415,1070,865]};
   </script>
 
   <!-- Chart.js from CDN -->

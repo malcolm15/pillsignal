@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"NEXPLANON () — FDA Adverse Event Reports","description":"Nexplanon (): 47,184 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/nexplanon","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"NEXPLANON () — FDA Adverse Event Reports","description":"Nexplanon (): 47,184 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/nexplanon","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,15 +557,18 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/mirena">Mirena</a><span class="related-count">135,699 reports</span></li>
-    <li><a href="/drugs/nuvaring">Nuvaring</a><span class="related-count">21,181 reports</span></li>
+    <li><a href="/drugs/nuvaring">Nuvaring</a><span class="related-count">21,179 reports</span></li>
     <li><a href="/drugs/paragard-t-380a">Paragard T 380a</a><span class="related-count">42,708 reports</span></li>
-    <li><a href="/drugs/depo-provera">Depo-provera</a><span class="related-count">22,463 reports</span></li>
+    <li><a href="/drugs/depo-provera">Depo-provera</a><span class="related-count">22,460 reports</span></li>
     <li><a href="/drugs/lupron-depot">Lupron Depot</a><span class="related-count">28,349 reports</span></li>
   </ul>
 </section>

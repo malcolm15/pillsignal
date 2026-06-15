@@ -249,6 +249,51 @@ function renderShareButtons(brandName, totalReports, canonicalUrl) {
   `</div>`;
 }
 
+// ─── Co-reported medications ──────────────────────────────────────────────────
+// Internal links are resolved here at generate time (not stored in the DB) against
+// the in-memory drug list, matching on slug, brand_name, and generic_name so links
+// always point at currently-live pages.
+
+const slugifyName = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+function buildCoReportedLinkIndex(drugs) {
+  const byName = new Map(); // UPPER brand/generic -> drug
+  const bySlug = new Map();
+  for (const d of drugs) {
+    if (d.brand_name)   byName.set(d.brand_name.toUpperCase().trim(), d);
+    if (d.generic_name) byName.set(d.generic_name.toUpperCase().trim(), d);
+    bySlug.set(d.slug, d);
+  }
+  return name => {
+    const u = String(name).toUpperCase().trim();
+    if (byName.has(u)) return byName.get(u);
+    const sl = slugifyName(name);
+    if (bySlug.has(sl)) return bySlug.get(sl);
+    return null;
+  };
+}
+
+// Renders the "Medications commonly reported with X" card, or '' if under 3 co-reports.
+// Co-occurrence only: copy must never imply interaction, causation, or combined risk.
+function renderCoReportedHtml(coReported, brandName, resolveLink) {
+  if (!coReported || coReported.length < 3) return '';
+  const items = coReported.map(c => {
+    const display = escapeHtml(toTitleCase(c.name));
+    const match   = resolveLink(c.name);
+    const nameHtml = match ? `<a href="/drugs/${match.slug}">${display}</a>` : display;
+    return `    <li>${nameHtml} <span class="co-reported-count">(${c.count.toLocaleString('en-US')} reports)</span></li>`;
+  }).join('\n');
+
+  return `<section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with ${escapeHtml(brandName)}</h2>
+  <p class="section-note">In FDA adverse event reports that mention ${escapeHtml(brandName)}, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+${items}
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>`;
+}
+
 // Renders the "Related Drugs" card HTML, or empty string if no related drugs.
 function renderRelatedDrugsHtml(relatedDrugs) {
   if (!relatedDrugs || !relatedDrugs.length) return '';
@@ -296,7 +341,7 @@ function buildJsonLd(drug, canonicalUrl, description) {
 
 // ─── Page renderer ────────────────────────────────────────────────────────────
 
-function renderPage(drug, adverseEvents, demographics, outcomes, trends, relatedDrugs = []) {
+function renderPage(drug, adverseEvents, demographics, outcomes, trends, relatedDrugs = [], coReported = [], resolveLink = () => null) {
   const { slug, generic_name: genericName, total_reports: totalReports } = drug;
   const brandName = toTitleCase(drug.brand_name);
   const canonicalUrl  = `${SITE_URL}/drugs/${slug}`;
@@ -348,6 +393,7 @@ function renderPage(drug, adverseEvents, demographics, outcomes, trends, related
     .replaceAll('{{AGE_DATA_JSON}}',        safeJson(ageData))
     .replaceAll('{{OUTCOMES_JSON}}',        safeJson(outcomesData))
     .replaceAll('{{TRENDS_JSON}}',          safeJson(trendsData))
+    .replaceAll('{{CO_REPORTED_HTML}}',     renderCoReportedHtml(coReported, brandName, resolveLink))
     .replaceAll('{{RELATED_DRUGS_HTML}}',   renderRelatedDrugsHtml(relatedDrugs))
     .replaceAll('{{SHARE_BUTTONS}}',        renderShareButtons(brandName, totalReports, canonicalUrl))
     .replaceAll('{{DATA_LAST_UPDATED}}',    escapeHtml(DATA_LAST_UPDATED))
@@ -772,17 +818,19 @@ async function fetchAllDrugs() {
 }
 
 async function fetchDrugDetails(drugId) {
-  const [aeRes, demoRes, outRes, trendRes] = await Promise.all([
+  const [aeRes, demoRes, outRes, trendRes, coRes] = await Promise.all([
     supabase.from('adverse_events').select('*').eq('drug_id', drugId).order('count', { ascending: false }),
     supabase.from('demographics').select('*').eq('drug_id', drugId),
     supabase.from('outcomes').select('*').eq('drug_id', drugId),
     supabase.from('trends').select('*').eq('drug_id', drugId).order('year').order('quarter'),
+    supabase.from('co_reported_drugs').select('*').eq('drug_id', drugId).order('count', { ascending: false }),
   ]);
   return {
     adverseEvents: aeRes.data  ?? [],
     demographics:  demoRes.data ?? [],
     outcomes:      outRes.data  ?? [],
     trends:        trendRes.data ?? [],
+    coReported:    coRes.data   ?? [],
   };
 }
 
@@ -817,6 +865,7 @@ async function main() {
   // Phase 2: compute related drugs via adverse event overlap
   console.log('Phase 2: Computing related drugs...');
   const relatedMap = computeRelatedDrugs(drugsWithData, detailsMap);
+  const resolveCoReportedLink = buildCoReportedLinkIndex(drugsWithData);
   console.log('  Done\n');
 
   // Phase 3: generate pages
@@ -832,7 +881,9 @@ async function main() {
       details.demographics,
       details.outcomes,
       details.trends,
-      relatedMap[drug.id] || []
+      relatedMap[drug.id] || [],
+      details.coReported,
+      resolveCoReportedLink
     );
 
     writeDrugPage(drug.slug, html);

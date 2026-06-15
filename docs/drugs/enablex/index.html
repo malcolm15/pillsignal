@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Enablex (darifenacin hydrobromide) — FDA Adverse Event Reports","description":"Enablex (darifenacin hydrobromide): 854 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/enablex","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Enablex (darifenacin hydrobromide) — FDA Adverse Event Reports","description":"Enablex (darifenacin hydrobromide): 854 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/enablex","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Enablex</h2>
+  <p class="section-note">In FDA adverse event reports that mention Enablex, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Levothyroxine <span class="co-reported-count">(243 reports)</span></li>
+    <li><a href="/drugs/lasix">Furosemide</a> <span class="co-reported-count">(228 reports)</span></li>
+    <li><a href="/drugs/pantoprazole">Pantoprazole</a> <span class="co-reported-count">(192 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(167 reports)</span></li>
+    <li><a href="/drugs/lorazepam">Lorazepam</a> <span class="co-reported-count">(161 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/methotrexate-sodium">Methotrexate Sodium</a><span class="related-count">75,171 reports</span></li>
-    <li><a href="/drugs/deltasone">Deltasone</a><span class="related-count">491,124 reports</span></li>
-    <li><a href="/drugs/prednisone">Prednisone</a><span class="related-count">491,111 reports</span></li>
-    <li><a href="/drugs/prednisone-delayed-release">Prednisone Delayed Release</a><span class="related-count">491,111 reports</span></li>
-    <li><a href="/drugs/celebrex">Celebrex</a><span class="related-count">129,430 reports</span></li>
+    <li><a href="/drugs/methotrexate-sodium">Methotrexate Sodium</a><span class="related-count">75,175 reports</span></li>
+    <li><a href="/drugs/deltasone">Deltasone</a><span class="related-count">491,130 reports</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a><span class="related-count">491,117 reports</span></li>
+    <li><a href="/drugs/prednisone-delayed-release">Prednisone Delayed Release</a><span class="related-count">491,117 reports</span></li>
+    <li><a href="/drugs/celebrex">Celebrex</a><span class="related-count">129,443 reports</span></li>
   </ul>
 </section>
 
@@ -597,7 +628,7 @@
     var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":183},{"label":"HERPES ZOSTER","value":136},{"label":"PERIPHERAL SWELLING","value":135},{"label":"PNEUMONIA VIRAL","value":117},{"label":"ARTHRALGIA","value":113},{"label":"SYNOVITIS","value":107},{"label":"ANAEMIA","value":102},{"label":"FIBROMYALGIA","value":100},{"label":"ARTHRITIS","value":98},{"label":"JOINT SWELLING","value":97},{"label":"BLOOD CHOLESTEROL INCREASED","value":96},{"label":"LEUKOPENIA","value":96},{"label":"LIVER FUNCTION TEST ABNORMAL","value":89},{"label":"INFECTION","value":87},{"label":"ORAL PAIN","value":80}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[591,180,3]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1,12,46,112,115,253]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[483,251,179,105,26,15]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[483,251,179,105,25,15]};
     var TRENDS_DATA    = {"labels":["Q4 2005","Q3 2006","Q4 2006","Q2 2007","Q3 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,1,2,3,2,7,8,5,4,2,14,17,36,10,9,8,8,4,6,5,9,2,4,7,2,2,4,4,1,1,7,9,7,8,7,8,13,17,9,22,12,12,20,26,20,26,32,36,18,26,30,24,22,27,18,12,20,28,8,17,19,10,5,5,9,6,10,13,7,5,8,8,11,7]};
   </script>
 

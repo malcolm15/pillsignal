@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Cardura (doxazosin mesylate) — FDA Adverse Event Reports","description":"Cardura (doxazosin mesylate): 27,472 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/cardura","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Cardura (doxazosin mesylate) — FDA Adverse Event Reports","description":"Cardura (doxazosin mesylate): 27,472 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/cardura","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Cardura</h2>
+  <p class="section-note">In FDA adverse event reports that mention Cardura, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Amlodipine <span class="co-reported-count">(5,781 reports)</span></li>
+    <li><a href="/drugs/lasix">Furosemide</a> <span class="co-reported-count">(5,352 reports)</span></li>
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(4,838 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(4,083 reports)</span></li>
+    <li><a href="/drugs/metformin">Metformin</a> <span class="co-reported-count">(3,289 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/aldactone">Aldactone</a><span class="related-count">136,771 reports</span></li>
+    <li><a href="/drugs/aldactone">Aldactone</a><span class="related-count">136,770 reports</span></li>
     <li><a href="/drugs/aspirin">Aspirin</a><span class="related-count">500,606 reports</span></li>
-    <li><a href="/drugs/bayer">Bayer</a><span class="related-count">500,121 reports</span></li>
-    <li><a href="/drugs/bayer-aspirin-regimen-chewable-low-dose-aspirin-orange">Bayer Aspirin Regimen Chewable Low Dose Aspirin Orange</a><span class="related-count">499,967 reports</span></li>
-    <li><a href="/drugs/bayer-aspirin-regimen-enteric-coated">Bayer Aspirin Regimen Enteric Coated</a><span class="related-count">499,960 reports</span></li>
+    <li><a href="/drugs/bayer">Bayer</a><span class="related-count">500,117 reports</span></li>
+    <li><a href="/drugs/bayer-aspirin-regimen-chewable-low-dose-aspirin-orange">Bayer Aspirin Regimen Chewable Low Dose Aspirin Orange</a><span class="related-count">499,963 reports</span></li>
+    <li><a href="/drugs/bayer-aspirin-regimen-enteric-coated">Bayer Aspirin Regimen Enteric Coated</a><span class="related-count">499,956 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Cardura";
-    var ADVERSE_EVENTS = [{"label":"DYSPNOEA","value":1493},{"label":"DIZZINESS","value":1310},{"label":"FATIGUE","value":1291},{"label":"DRUG INEFFECTIVE","value":1267},{"label":"DIARRHOEA","value":1254},{"label":"NAUSEA","value":1160},{"label":"ACUTE KIDNEY INJURY","value":1153},{"label":"HYPOTENSION","value":994},{"label":"HEADACHE","value":956},{"label":"ASTHENIA","value":954},{"label":"HYPERTENSION","value":882},{"label":"DRUG INTERACTION","value":869},{"label":"VOMITING","value":848},{"label":"OFF LABEL USE","value":803},{"label":"RENAL FAILURE","value":778}];
-    var SEX_DATA       = {"labels":["Male","Female","Unknown"],"values":[16413,8852,51]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[210,393,1311,4850,6359,7848]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[14361,11602,4562,2289,1810,1213]};
-    var TRENDS_DATA    = {"labels":["Q3 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,59,105,140,136,99,118,165,147,137,141,108,100,48,47,61,98,94,83,55,71,56,77,127,144,98,139,221,111,219,154,134,121,181,142,186,263,264,290,303,305,368,374,396,335,416,421,528,442,501,516,433,485,488,471,464,459,598,651,543,535,673,594,601,614,553,510,407,398,405,353,423,360,363,327,354,376,384,480,351,383,402,412,391,418,403,411,416,362,376]};
+    var ADVERSE_EVENTS = [{"label":"DYSPNOEA","value":1493},{"label":"DIZZINESS","value":1310},{"label":"FATIGUE","value":1292},{"label":"DRUG INEFFECTIVE","value":1266},{"label":"DIARRHOEA","value":1253},{"label":"NAUSEA","value":1159},{"label":"ACUTE KIDNEY INJURY","value":1153},{"label":"HYPOTENSION","value":993},{"label":"HEADACHE","value":956},{"label":"ASTHENIA","value":954},{"label":"HYPERTENSION","value":882},{"label":"DRUG INTERACTION","value":869},{"label":"VOMITING","value":847},{"label":"OFF LABEL USE","value":803},{"label":"RENAL FAILURE","value":779}];
+    var SEX_DATA       = {"labels":["Male","Female","Unknown"],"values":[16415,8850,51]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[210,393,1312,4848,6358,7848]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[14359,11603,4562,2290,1810,1213]};
+    var TRENDS_DATA    = {"labels":["Q3 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,59,105,140,135,99,118,165,147,137,141,108,100,48,47,61,98,94,83,55,71,56,77,127,144,98,139,221,111,219,155,134,121,181,142,186,263,264,290,303,305,368,374,396,335,416,421,528,442,501,516,433,485,488,471,464,459,598,651,543,535,673,594,601,614,553,510,407,398,405,353,423,360,363,327,354,376,384,480,351,383,402,412,391,418,403,411,416,362,376]};
   </script>
 
   <!-- Chart.js from CDN -->

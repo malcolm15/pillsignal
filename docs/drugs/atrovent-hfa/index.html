@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"ATROVENT HFA () — FDA Adverse Event Reports","description":"Atrovent Hfa (): 34,823 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/atrovent-hfa","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"ATROVENT HFA () — FDA Adverse Event Reports","description":"Atrovent Hfa (): 34,823 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/atrovent-hfa","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Atrovent Hfa</h2>
+  <p class="section-note">In FDA adverse event reports that mention Atrovent Hfa, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/albuterol">Albuterol</a> <span class="co-reported-count">(12,845 reports)</span></li>
+    <li><a href="/drugs/lasix">Furosemide</a> <span class="co-reported-count">(6,279 reports)</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(5,821 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(5,030 reports)</span></li>
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(4,704 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/advair-hfa">Advair Hfa</a><span class="related-count">59,093 reports</span></li>
-    <li><a href="/drugs/albuterol">Albuterol</a><span class="related-count">195,635 reports</span></li>
+    <li><a href="/drugs/albuterol">Albuterol</a><span class="related-count">195,637 reports</span></li>
     <li><a href="/drugs/spiriva">Spiriva</a><span class="related-count">135,604 reports</span></li>
     <li><a href="/drugs/spiriva-handihaler">Spiriva Handihaler</a><span class="related-count">135,604 reports</span></li>
-    <li><a href="/drugs/nasonex">Nasonex</a><span class="related-count">31,752 reports</span></li>
+    <li><a href="/drugs/nasonex">Nasonex</a><span class="related-count">31,749 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Atrovent Hfa";
-    var ADVERSE_EVENTS = [{"label":"DYSPNOEA","value":5938},{"label":"ASTHMA","value":3985},{"label":"PNEUMONIA","value":3094},{"label":"COUGH","value":2981},{"label":"WHEEZING","value":2641},{"label":"DRUG INEFFECTIVE","value":2632},{"label":"FATIGUE","value":2185},{"label":"NAUSEA","value":1936},{"label":"CHRONIC OBSTRUCTIVE PULMONARY DISEASE","value":1817},{"label":"OFF LABEL USE","value":1689},{"label":"MALAISE","value":1670},{"label":"DIARRHOEA","value":1636},{"label":"VOMITING","value":1634},{"label":"HEADACHE","value":1592},{"label":"DIZZINESS","value":1479}];
-    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[18646,13725,111]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1155,1043,2302,6355,5771,6840]};
-    var OUTCOMES_DATA  = {"labels":["Hospitalization","Other Serious","Non-Serious","Death","Life-Threatening","Disability"],"values":[15436,15428,8103,4626,2225,1055]};
-    var TRENDS_DATA    = {"labels":["Q4 1996","Q2 1999","Q1 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,1,224,195,287,239,405,253,241,334,240,247,195,230,207,171,176,249,212,276,265,228,212,329,263,202,192,219,310,289,288,329,263,319,304,343,304,229,299,293,222,254,304,236,330,313,344,306,433,357,433,439,533,427,431,410,368,415,467,657,473,504,528,568,599,643,690,630,730,694,801,704,619,540,494,471,478,562,430,487,447,447,533,583,518,498,538,454,578,519,519]};
+    var ADVERSE_EVENTS = [{"label":"DYSPNOEA","value":5938},{"label":"ASTHMA","value":3986},{"label":"PNEUMONIA","value":3096},{"label":"COUGH","value":2983},{"label":"WHEEZING","value":2642},{"label":"DRUG INEFFECTIVE","value":2632},{"label":"FATIGUE","value":2184},{"label":"NAUSEA","value":1937},{"label":"CHRONIC OBSTRUCTIVE PULMONARY DISEASE","value":1818},{"label":"OFF LABEL USE","value":1689},{"label":"MALAISE","value":1671},{"label":"DIARRHOEA","value":1637},{"label":"VOMITING","value":1636},{"label":"HEADACHE","value":1592},{"label":"DIZZINESS","value":1479}];
+    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[18647,13724,111]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1155,1043,2302,6353,5772,6840]};
+    var OUTCOMES_DATA  = {"labels":["Hospitalization","Other Serious","Non-Serious","Death","Life-Threatening","Disability"],"values":[15436,15429,8103,4627,2226,1054]};
+    var TRENDS_DATA    = {"labels":["Q4 1996","Q2 1999","Q1 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,1,223,195,287,241,405,252,242,334,240,247,195,230,207,172,176,249,212,275,265,228,212,329,264,202,192,219,309,289,288,328,263,319,304,343,304,229,299,293,222,254,304,236,330,313,344,306,433,357,433,439,533,427,431,410,368,415,467,657,473,504,528,568,599,643,690,630,730,694,801,704,619,540,494,471,478,562,430,487,447,447,533,583,518,498,538,454,578,519,519]};
   </script>
 
   <!-- Chart.js from CDN -->

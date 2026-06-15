@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"HYDROXYCHLOROQUINE SULFATE () — FDA Adverse Event Reports","description":"Hydroxychloroquine Sulfate (): 39,136 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/hydroxychloroquine-sulfate","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"HYDROXYCHLOROQUINE SULFATE () — FDA Adverse Event Reports","description":"Hydroxychloroquine Sulfate (): 39,136 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/hydroxychloroquine-sulfate","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Hydroxychloroquine Sulfate</h2>
+  <p class="section-note">In FDA adverse event reports that mention Hydroxychloroquine Sulfate, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/humira">Adalimumab</a> <span class="co-reported-count">(19,228 reports)</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(18,924 reports)</span></li>
+    <li>Abatacept <span class="co-reported-count">(18,067 reports)</span></li>
+    <li>Tocilizumab <span class="co-reported-count">(17,725 reports)</span></li>
+    <li><a href="/drugs/sulfasalazine">Sulfasalazine</a> <span class="co-reported-count">(17,351 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/sovuna">Sovuna</a><span class="related-count">39,137 reports</span></li>
-    <li><a href="/drugs/azulfidine">Azulfidine</a><span class="related-count">75,765 reports</span></li>
-    <li><a href="/drugs/sulfasalazine">Sulfasalazine</a><span class="related-count">72,719 reports</span></li>
-    <li><a href="/drugs/azulfidine-en-tabs">Azulfidine En-tabs</a><span class="related-count">76,998 reports</span></li>
-    <li><a href="/drugs/diclofenac">Diclofenac</a><span class="related-count">83,778 reports</span></li>
+    <li><a href="/drugs/azulfidine">Azulfidine</a><span class="related-count">75,763 reports</span></li>
+    <li><a href="/drugs/sulfasalazine">Sulfasalazine</a><span class="related-count">72,717 reports</span></li>
+    <li><a href="/drugs/azulfidine-en-tabs">Azulfidine En-tabs</a><span class="related-count">76,997 reports</span></li>
+    <li><a href="/drugs/diclofenac">Diclofenac</a><span class="related-count">83,774 reports</span></li>
   </ul>
 </section>
 
@@ -596,9 +627,9 @@
     var DRUG_NAME      = "Hydroxychloroquine Sulfate";
     var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":18095},{"label":"RHEUMATOID ARTHRITIS","value":13674},{"label":"PAIN","value":10809},{"label":"FATIGUE","value":9379},{"label":"DRUG INTOLERANCE","value":9240},{"label":"OFF LABEL USE","value":8457},{"label":"JOINT SWELLING","value":8397},{"label":"ARTHRALGIA","value":8376},{"label":"CONTRAINDICATED PRODUCT ADMINISTERED","value":8075},{"label":"ALOPECIA","value":7711},{"label":"ABDOMINAL DISCOMFORT","value":7694},{"label":"RASH","value":7617},{"label":"ARTHROPATHY","value":7168},{"label":"SYSTEMIC LUPUS ERYTHEMATOSUS","value":7149},{"label":"SYNOVITIS","value":6892}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[27915,4493,11]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[496,1453,7132,8056,3370,1522]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Disability","Non-Serious","Life-Threatening","Death"],"values":[29917,10939,6249,4671,4346,4146]};
-    var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[30,49,53,41,65,44,51,71,33,42,43,56,54,51,47,91,43,113,77,169,53,77,143,95,114,71,28,447,54,110,106,151,335,231,135,23,38,31,104,35,42,33,27,41,39,61,136,135,190,216,240,256,295,205,260,284,275,275,354,694,849,570,879,981,1432,2329,2200,1864,1259,1424,1196,1503,1059,1502,928,1054,838,654,714,740,793,974,869,930,957,711,962,737,566]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[496,1453,7131,8056,3370,1522]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Disability","Non-Serious","Life-Threatening","Death"],"values":[29917,10938,6249,4671,4347,4145]};
+    var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[30,49,53,41,65,44,51,71,33,42,43,56,54,52,46,91,43,113,76,169,53,77,143,95,114,71,28,447,55,110,106,151,335,231,135,23,38,31,104,35,42,33,27,41,39,61,136,135,190,216,240,256,295,205,260,284,275,275,354,694,849,570,879,981,1432,2329,2200,1864,1259,1424,1196,1503,1059,1502,928,1054,838,654,714,740,793,974,869,930,957,711,962,737,566]};
   </script>
 
   <!-- Chart.js from CDN -->

@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"ESTROGEN 4X () — FDA Adverse Event Reports","description":"Estrogen 4x (): 45,881 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/estrogen-4x","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"ESTROGEN 4X () — FDA Adverse Event Reports","description":"Estrogen 4x (): 45,881 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/estrogen-4x","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Estrogen 4x</h2>
+  <p class="section-note">In FDA adverse event reports that mention Estrogen 4x, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Ergocalciferol <span class="co-reported-count">(6,320 reports)</span></li>
+    <li>Progesterone <span class="co-reported-count">(5,546 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(4,928 reports)</span></li>
+    <li><a href="/drugs/neurontin">Gabapentin</a> <span class="co-reported-count">(4,708 reports)</span></li>
+    <li>Levothyroxine <span class="co-reported-count">(4,630 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/dotti">Dotti</a><span class="related-count">43,174 reports</span></li>
-    <li><a href="/drugs/elestrin">Elestrin</a><span class="related-count">43,182 reports</span></li>
-    <li><a href="/drugs/estradiol">Estradiol</a><span class="related-count">43,080 reports</span></li>
-    <li><a href="/drugs/estradiol-1557">Estradiol 1557</a><span class="related-count">43,067 reports</span></li>
-    <li><a href="/drugs/estradiol-vaginal-inserts">Estradiol Vaginal Inserts</a><span class="related-count">43,083 reports</span></li>
+    <li><a href="/drugs/dotti">Dotti</a><span class="related-count">43,173 reports</span></li>
+    <li><a href="/drugs/elestrin">Elestrin</a><span class="related-count">43,181 reports</span></li>
+    <li><a href="/drugs/estradiol">Estradiol</a><span class="related-count">43,079 reports</span></li>
+    <li><a href="/drugs/estradiol-1557">Estradiol 1557</a><span class="related-count">43,066 reports</span></li>
+    <li><a href="/drugs/estradiol-vaginal-inserts">Estradiol Vaginal Inserts</a><span class="related-count">43,082 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Estrogen 4x";
-    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":3783},{"label":"NAUSEA","value":2877},{"label":"FATIGUE","value":2869},{"label":"HEADACHE","value":2825},{"label":"OFF LABEL USE","value":2387},{"label":"PAIN","value":2101},{"label":"DIARRHOEA","value":1954},{"label":"BREAST CANCER FEMALE","value":1739},{"label":"DIZZINESS","value":1733},{"label":"ARTHRALGIA","value":1633},{"label":"DYSPNOEA","value":1530},{"label":"RASH","value":1477},{"label":"PRODUCT ADHESION ISSUE","value":1465},{"label":"PRURITUS","value":1461},{"label":"INSOMNIA","value":1377}];
+    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":3784},{"label":"NAUSEA","value":2877},{"label":"FATIGUE","value":2870},{"label":"HEADACHE","value":2825},{"label":"OFF LABEL USE","value":2387},{"label":"PAIN","value":2102},{"label":"DIARRHOEA","value":1954},{"label":"BREAST CANCER FEMALE","value":1738},{"label":"DIZZINESS","value":1733},{"label":"ARTHRALGIA","value":1633},{"label":"DYSPNOEA","value":1531},{"label":"RASH","value":1477},{"label":"PRODUCT ADHESION ISSUE","value":1465},{"label":"PRURITUS","value":1461},{"label":"INSOMNIA","value":1378}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[41916,785,95]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[418,1128,4529,12143,5042,2484]};
-    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Disability","Death","Life-Threatening"],"values":[23202,17757,7307,1256,941,840]};
-    var TRENDS_DATA    = {"labels":["Q3 1993","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,128,84,205,214,189,175,185,115,133,125,96,64,81,1198,99,117,89,106,102,163,135,153,242,144,126,262,452,238,319,159,203,163,466,265,288,281,361,202,233,273,545,264,248,294,613,404,706,539,707,633,738,590,563,558,610,606,740,719,661,617,760,768,765,777,820,697,820,736,714,673,697,863,786,740,737,786,879,756,930,973,937,893,859,1000,998,1102,1390,1702,1334]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[418,1128,4529,12143,5043,2484]};
+    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Disability","Death","Life-Threatening"],"values":[23203,17756,7306,1256,942,840]};
+    var TRENDS_DATA    = {"labels":["Q3 1993","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,128,84,205,214,189,175,185,115,133,125,96,64,82,1198,99,117,89,106,102,163,135,153,243,143,126,262,451,238,320,158,203,163,466,265,288,281,361,202,233,273,545,264,248,294,613,404,706,539,707,633,738,590,563,558,610,606,740,719,661,617,760,768,765,777,820,697,820,736,714,673,697,863,786,740,737,786,879,756,930,973,937,893,859,1000,998,1102,1390,1702,1334]};
   </script>
 
   <!-- Chart.js from CDN -->

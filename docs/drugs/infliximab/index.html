@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"INFLIXIMAB () — FDA Adverse Event Reports","description":"Infliximab (): 55,550 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/infliximab","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"INFLIXIMAB () — FDA Adverse Event Reports","description":"Infliximab (): 55,550 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/infliximab","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Infliximab</h2>
+  <p class="section-note">In FDA adverse event reports that mention Infliximab, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/trexall">Methotrexate</a> <span class="co-reported-count">(18,999 reports)</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(16,561 reports)</span></li>
+    <li><a href="/drugs/humira">Adalimumab</a> <span class="co-reported-count">(15,100 reports)</span></li>
+    <li>Adalimumab-adaz <span class="co-reported-count">(10,163 reports)</span></li>
+    <li><a href="/drugs/enbrel">Etanercept</a> <span class="co-reported-count">(9,752 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/renflexis">Renflexis</a><span class="related-count">57,600 reports</span></li>
-    <li><a href="/drugs/remicade">Remicade</a><span class="related-count">212,270 reports</span></li>
-    <li><a href="/drugs/imuran">Imuran</a><span class="related-count">85,880 reports</span></li>
-    <li><a href="/drugs/azasan">Azasan</a><span class="related-count">64,682 reports</span></li>
-    <li><a href="/drugs/azathioprine">Azathioprine</a><span class="related-count">64,420 reports</span></li>
+    <li><a href="/drugs/remicade">Remicade</a><span class="related-count">212,272 reports</span></li>
+    <li><a href="/drugs/imuran">Imuran</a><span class="related-count">85,883 reports</span></li>
+    <li><a href="/drugs/azasan">Azasan</a><span class="related-count">64,686 reports</span></li>
+    <li><a href="/drugs/azathioprine">Azathioprine</a><span class="related-count">64,424 reports</span></li>
   </ul>
 </section>
 
@@ -594,10 +625,10 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Infliximab";
-    var ADVERSE_EVENTS = [{"label":"OFF LABEL USE","value":19435},{"label":"CONDITION AGGRAVATED","value":12325},{"label":"DRUG INEFFECTIVE","value":11869},{"label":"INTENTIONAL PRODUCT USE ISSUE","value":9395},{"label":"ARTHRALGIA","value":7752},{"label":"FATIGUE","value":6253},{"label":"PAIN","value":6068},{"label":"INAPPROPRIATE SCHEDULE OF PRODUCT ADMINISTRATION","value":5523},{"label":"NAUSEA","value":5196},{"label":"WEIGHT INCREASED","value":5179},{"label":"HEADACHE","value":5054},{"label":"MALAISE","value":4961},{"label":"RHEUMATOID ARTHRITIS","value":4911},{"label":"DIARRHOEA","value":4898},{"label":"RASH","value":4571}];
+    var ADVERSE_EVENTS = [{"label":"OFF LABEL USE","value":19435},{"label":"CONDITION AGGRAVATED","value":12325},{"label":"DRUG INEFFECTIVE","value":11868},{"label":"INTENTIONAL PRODUCT USE ISSUE","value":9395},{"label":"ARTHRALGIA","value":7752},{"label":"FATIGUE","value":6253},{"label":"PAIN","value":6068},{"label":"INAPPROPRIATE SCHEDULE OF PRODUCT ADMINISTRATION","value":5523},{"label":"NAUSEA","value":5196},{"label":"WEIGHT INCREASED","value":5179},{"label":"HEADACHE","value":5054},{"label":"MALAISE","value":4961},{"label":"RHEUMATOID ARTHRITIS","value":4911},{"label":"DIARRHOEA","value":4898},{"label":"RASH","value":4571}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[26041,16035,63]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[3441,7471,10864,9068,4278,1741]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Life-Threatening","Disability","Non-Serious"],"values":[45289,19895,6500,5490,5364,1640]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[3440,7471,10864,9068,4278,1741]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Life-Threatening","Disability","Non-Serious"],"values":[45292,19896,6500,5490,5364,1637]};
     var TRENDS_DATA    = {"labels":["Q3 2002","Q2 2003","Q3 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,2,8,24,22,73,152,209,168,192,190,178,7,7,144,162,147,87,128,135,99,112,134,114,165,203,241,157,163,85,72,119,64,142,79,79,576,61,71,56,79,51,72,67,61,75,57,83,104,105,95,102,124,152,190,190,194,235,260,281,380,402,610,876,698,1055,855,1322,1636,1079,1377,792,1133,1138,1538,1928,1920,2411,2002,2845,2734,1795,1132,1449,1709,1664,1973,1844,1670,2218,2484,1475]};
   </script>
 

@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"HAIR GROWTH () — FDA Adverse Event Reports","description":"Hair Growth (): 3 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/hair-growth","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"HAIR GROWTH () — FDA Adverse Event Reports","description":"Hair Growth (): 3 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/hair-growth","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,15 +557,18 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/ampyra">Ampyra</a><span class="related-count">71,176 reports</span></li>
-    <li><a href="/drugs/baclofen">Baclofen</a><span class="related-count">83,151 reports</span></li>
-    <li><a href="/drugs/baclofen-intrathecal">Baclofen (intrathecal)</a><span class="related-count">84,433 reports</span></li>
-    <li><a href="/drugs/detrol-la">Detrol La</a><span class="related-count">10,393 reports</span></li>
+    <li><a href="/drugs/baclofen">Baclofen</a><span class="related-count">83,150 reports</span></li>
+    <li><a href="/drugs/baclofen-intrathecal">Baclofen (intrathecal)</a><span class="related-count">84,432 reports</span></li>
+    <li><a href="/drugs/detrol-la">Detrol La</a><span class="related-count">10,396 reports</span></li>
     <li><a href="/drugs/diazepam">Diazepam</a><span class="related-count">87,175 reports</span></li>
   </ul>
 </section>

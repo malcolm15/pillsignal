@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 
   <title>Naproxen — Adverse Events | PillSignal</title>
-  <meta name="description" content="Naproxen (naproxen): 87,516 adverse event reports submitted to the FDA.">
+  <meta name="description" content="Naproxen (): 87,516 adverse event reports submitted to the FDA.">
   <link rel="canonical" href="https://pillsignal.com/drugs/naproxen">
   <link rel="me" href="https://x.com/PillSignal">
 
@@ -22,7 +22,7 @@
   <!-- Open Graph -->
   <meta property="og:type"        content="website">
   <meta property="og:title"       content="Naproxen — Adverse Events | PillSignal">
-  <meta property="og:description" content="Naproxen (naproxen): 87,516 adverse event reports submitted to the FDA.">
+  <meta property="og:description" content="Naproxen (): 87,516 adverse event reports submitted to the FDA.">
   <meta property="og:url"         content="https://pillsignal.com/drugs/naproxen">
   <meta property="og:site_name"   content="PillSignal">
   <meta property="og:image"       content="https://pillsignal.com/og-image.png">
@@ -30,11 +30,11 @@
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="Naproxen — Adverse Events | PillSignal">
-  <meta name="twitter:description" content="Naproxen (naproxen): 87,516 adverse event reports submitted to the FDA.">
+  <meta name="twitter:description" content="Naproxen (): 87,516 adverse event reports submitted to the FDA.">
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"NAPROXEN (naproxen) — FDA Adverse Event Reports","description":"Naproxen (naproxen): 87,516 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/naproxen","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"NAPROXEN () — FDA Adverse Event Reports","description":"Naproxen (): 87,516 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/naproxen","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -453,7 +470,7 @@
 
     <!-- Drug hero -->
     <div class="drug-hero">
-      <h1>Naproxen<small>naproxen</small></h1>
+      <h1>Naproxen<small></small></h1>
       <p class="drug-description"><strong>According to the FDA label:</strong> CAREFULLY CONSIDER THE POTENTIAL BENEFITS AND RISKS OF NAPROXEN AND OTHER TREATMENT OPTIONS BEFORE DECIDING TO USE NAPROXEN TABLETS. USE THE LOWEST EFFECTIVE DOSE FOR THE SHORTEST DURATION CONSISTENT WITH INDIVIDUAL PATIENT TREATMENT GOALS (SEE WARNINGS: GASTROINTESTINAL BLEEDING, ULCERATION, AND PERFORATION). NAPROXEN TABLETS ARE INDICATED: FOR THE RELIEF OF THE SIGNS AND SYMPTOMS OF RHEUMATOID ARTHRITIS.</p>
       <p class="drug-summary">
         <strong>87,516</strong> adverse event reports submitted to the FDA
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Naproxen</h2>
+  <p class="section-note">In FDA adverse event reports that mention Naproxen, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/trexall">Methotrexate</a> <span class="co-reported-count">(18,477 reports)</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(16,446 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(16,146 reports)</span></li>
+    <li><a href="/drugs/humira">Adalimumab</a> <span class="co-reported-count">(13,143 reports)</span></li>
+    <li><a href="/drugs/folic-acid">Folic Acid</a> <span class="co-reported-count">(12,971 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/naprosyn">Naprosyn</a><span class="related-count">76,930 reports</span></li>
-    <li><a href="/drugs/celebrex">Celebrex</a><span class="related-count">129,430 reports</span></li>
-    <li><a href="/drugs/celecoxib">Celecoxib</a><span class="related-count">33,828 reports</span></li>
-    <li><a href="/drugs/elyxyb-celecoxib">Elyxyb - Celecoxib</a><span class="related-count">33,828 reports</span></li>
-    <li><a href="/drugs/aleve">Aleve</a><span class="related-count">65,379 reports</span></li>
+    <li><a href="/drugs/naprosyn">Naprosyn</a><span class="related-count">76,934 reports</span></li>
+    <li><a href="/drugs/celebrex">Celebrex</a><span class="related-count">129,443 reports</span></li>
+    <li><a href="/drugs/celecoxib">Celecoxib</a><span class="related-count">33,832 reports</span></li>
+    <li><a href="/drugs/elyxyb-celecoxib">Elyxyb - Celecoxib</a><span class="related-count">33,832 reports</span></li>
+    <li><a href="/drugs/aleve">Aleve</a><span class="related-count">65,381 reports</span></li>
   </ul>
 </section>
 

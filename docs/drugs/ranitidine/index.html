@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 
   <title>Ranitidine — Adverse Events | PillSignal</title>
-  <meta name="description" content="Ranitidine (ranitidine): 197,546 adverse event reports submitted to the FDA.">
+  <meta name="description" content="Ranitidine (): 197,546 adverse event reports submitted to the FDA.">
   <link rel="canonical" href="https://pillsignal.com/drugs/ranitidine">
   <link rel="me" href="https://x.com/PillSignal">
 
@@ -22,7 +22,7 @@
   <!-- Open Graph -->
   <meta property="og:type"        content="website">
   <meta property="og:title"       content="Ranitidine — Adverse Events | PillSignal">
-  <meta property="og:description" content="Ranitidine (ranitidine): 197,546 adverse event reports submitted to the FDA.">
+  <meta property="og:description" content="Ranitidine (): 197,546 adverse event reports submitted to the FDA.">
   <meta property="og:url"         content="https://pillsignal.com/drugs/ranitidine">
   <meta property="og:site_name"   content="PillSignal">
   <meta property="og:image"       content="https://pillsignal.com/og-image.png">
@@ -30,11 +30,11 @@
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="Ranitidine — Adverse Events | PillSignal">
-  <meta name="twitter:description" content="Ranitidine (ranitidine): 197,546 adverse event reports submitted to the FDA.">
+  <meta name="twitter:description" content="Ranitidine (): 197,546 adverse event reports submitted to the FDA.">
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"RANITIDINE (ranitidine) — FDA Adverse Event Reports","description":"Ranitidine (ranitidine): 197,546 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/ranitidine","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"RANITIDINE () — FDA Adverse Event Reports","description":"Ranitidine (): 197,546 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/ranitidine","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -453,7 +470,7 @@
 
     <!-- Drug hero -->
     <div class="drug-hero">
-      <h1>Ranitidine<small>ranitidine</small></h1>
+      <h1>Ranitidine<small></small></h1>
       <p class="drug-description"><strong>According to the FDA label:</strong> Ranitidine Tablets are indicated in: Short- term treatment of active duodenal ulcer. Most patients heal within 4 weeks. Studies available to date have not assessed the safety of Ranitidine in uncomplicated duodenal ulcer for periods of more than 8 weeks. Maintenance therapy for duodenal ulcer patients at reduced dosage after healing of acute ulcers. No placebo- controlled comparative studies have been carried out for periods of longer than 1 year.</p>
       <p class="drug-summary">
         <strong>197,546</strong> adverse event reports submitted to the FDA
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Ranitidine</h2>
+  <p class="section-note">In FDA adverse event reports that mention Ranitidine, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(11,225 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(9,239 reports)</span></li>
+    <li><a href="/drugs/lasix">Furosemide</a> <span class="co-reported-count">(8,734 reports)</span></li>
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(8,458 reports)</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(7,629 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/ranitidine-cool-mint">Ranitidine Cool Mint</a><span class="related-count">197,546 reports</span></li>
-    <li><a href="/drugs/keflex">Keflex</a><span class="related-count">21,105 reports</span></li>
-    <li><a href="/drugs/zithromax">Zithromax</a><span class="related-count">18,866 reports</span></li>
-    <li><a href="/drugs/aciphex">Aciphex</a><span class="related-count">26,956 reports</span></li>
-    <li><a href="/drugs/amoxicillin">Amoxicillin</a><span class="related-count">74,624 reports</span></li>
+    <li><a href="/drugs/keflex">Keflex</a><span class="related-count">21,106 reports</span></li>
+    <li><a href="/drugs/zithromax">Zithromax</a><span class="related-count">18,870 reports</span></li>
+    <li><a href="/drugs/aciphex">Aciphex</a><span class="related-count">26,951 reports</span></li>
+    <li><a href="/drugs/amoxicillin">Amoxicillin</a><span class="related-count">74,623 reports</span></li>
   </ul>
 </section>
 

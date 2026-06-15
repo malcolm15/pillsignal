@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"METOCLOPRAMIDE () — FDA Adverse Event Reports","description":"Metoclopramide (): 61,564 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/metoclopramide","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"METOCLOPRAMIDE () — FDA Adverse Event Reports","description":"Metoclopramide (): 61,564 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/metoclopramide","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Metoclopramide</h2>
+  <p class="section-note">In FDA adverse event reports that mention Metoclopramide, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/ondansetron">Ondansetron</a> <span class="co-reported-count">(10,695 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(9,193 reports)</span></li>
+    <li><a href="/drugs/dexamethasone">Dexamethasone</a> <span class="co-reported-count">(8,826 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(7,965 reports)</span></li>
+    <li><a href="/drugs/pantoprazole">Pantoprazole</a> <span class="co-reported-count">(7,413 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/reglan">Reglan</a><span class="related-count">25,752 reports</span></li>
-    <li><a href="/drugs/diflucan">Diflucan</a><span class="related-count">68,737 reports</span></li>
-    <li><a href="/drugs/ondansetron">Ondansetron</a><span class="related-count">118,455 reports</span></li>
-    <li><a href="/drugs/zofran">Zofran</a><span class="related-count">118,450 reports</span></li>
-    <li><a href="/drugs/allopurinol">Allopurinol</a><span class="related-count">153,225 reports</span></li>
+    <li><a href="/drugs/diflucan">Diflucan</a><span class="related-count">68,733 reports</span></li>
+    <li><a href="/drugs/ondansetron">Ondansetron</a><span class="related-count">118,454 reports</span></li>
+    <li><a href="/drugs/zofran">Zofran</a><span class="related-count">118,449 reports</span></li>
+    <li><a href="/drugs/allopurinol">Allopurinol</a><span class="related-count">153,224 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Metoclopramide";
-    var ADVERSE_EVENTS = [{"label":"TARDIVE DYSKINESIA","value":15392},{"label":"EXTRAPYRAMIDAL DISORDER","value":12507},{"label":"NERVOUS SYSTEM DISORDER","value":7402},{"label":"DYSTONIA","value":6980},{"label":"PAIN","value":5008},{"label":"NAUSEA","value":4681},{"label":"ECONOMIC PROBLEM","value":3807},{"label":"VOMITING","value":3624},{"label":"ANXIETY","value":3315},{"label":"INCORRECT DRUG ADMINISTRATION DURATION","value":3177},{"label":"DIARRHOEA","value":3161},{"label":"MOVEMENT DISORDER","value":3061},{"label":"DYSKINESIA","value":2840},{"label":"ACTIVITIES OF DAILY LIVING IMPAIRED","value":2815},{"label":"OFF LABEL USE","value":2538}];
-    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[34225,21201,1501]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1736,3321,5478,10705,8415,5509]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Disability","Death","Life-Threatening","Non-Serious"],"values":[35400,28049,13363,8198,4724,3738]};
-    var TRENDS_DATA    = {"labels":["Q1 1995","Q3 1997","Q1 1999","Q3 1999","Q4 2001","Q2 2003","Q3 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,3,2,1,1,3,2,145,189,150,193,177,191,188,150,168,157,138,189,176,152,160,141,166,192,215,216,200,261,255,295,333,372,824,432,641,2812,7340,404,701,3090,2322,403,457,532,468,674,453,342,407,583,431,434,445,498,542,549,565,453,435,446,477,525,730,874,701,704,863,845,827,842,783,742,914,795,912,934,957,1051,939,871,996,1088,925,927,839,837,773,825,797,781,835,713,695,698,683]};
+    var ADVERSE_EVENTS = [{"label":"TARDIVE DYSKINESIA","value":15392},{"label":"EXTRAPYRAMIDAL DISORDER","value":12507},{"label":"NERVOUS SYSTEM DISORDER","value":7402},{"label":"DYSTONIA","value":6980},{"label":"PAIN","value":5007},{"label":"NAUSEA","value":4681},{"label":"ECONOMIC PROBLEM","value":3807},{"label":"VOMITING","value":3624},{"label":"ANXIETY","value":3315},{"label":"INCORRECT DRUG ADMINISTRATION DURATION","value":3177},{"label":"DIARRHOEA","value":3160},{"label":"MOVEMENT DISORDER","value":3061},{"label":"DYSKINESIA","value":2840},{"label":"ACTIVITIES OF DAILY LIVING IMPAIRED","value":2815},{"label":"OFF LABEL USE","value":2538}];
+    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[34227,21199,1501]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1736,3321,5478,10704,8416,5509]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Disability","Death","Life-Threatening","Non-Serious"],"values":[35400,28049,13363,8197,4721,3738]};
+    var TRENDS_DATA    = {"labels":["Q1 1995","Q3 1997","Q1 1999","Q3 1999","Q4 2001","Q2 2003","Q3 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,3,2,1,1,3,2,145,190,150,193,177,191,189,150,168,157,138,189,176,152,160,141,166,191,215,216,200,261,255,295,333,372,824,431,640,2812,7340,404,702,3090,2322,403,457,532,468,674,453,342,407,583,431,434,445,498,542,549,565,453,435,446,477,525,730,874,701,704,863,845,827,842,783,742,914,795,912,934,957,1051,939,871,996,1088,925,927,839,837,773,825,797,781,835,713,695,698,683]};
   </script>
 
   <!-- Chart.js from CDN -->

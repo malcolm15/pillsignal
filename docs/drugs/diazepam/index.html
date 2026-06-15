@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"DIAZEPAM () — FDA Adverse Event Reports","description":"Diazepam (): 87,175 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/diazepam","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"DIAZEPAM () — FDA Adverse Event Reports","description":"Diazepam (): 87,175 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/diazepam","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Diazepam</h2>
+  <p class="section-note">In FDA adverse event reports that mention Diazepam, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/neurontin">Gabapentin</a> <span class="co-reported-count">(9,399 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(8,747 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(7,887 reports)</span></li>
+    <li><a href="/drugs/quetiapine">Quetiapine</a> <span class="co-reported-count">(7,631 reports)</span></li>
+    <li><a href="/drugs/pregabalin">Pregabalin</a> <span class="co-reported-count">(7,495 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/valtoco">Valtoco</a><span class="related-count">87,849 reports</span></li>
-    <li><a href="/drugs/valium">Valium</a><span class="related-count">118,723 reports</span></li>
-    <li><a href="/drugs/mirtazapine">Mirtazapine</a><span class="related-count">72,928 reports</span></li>
-    <li><a href="/drugs/remeron">Remeron</a><span class="related-count">89,348 reports</span></li>
-    <li><a href="/drugs/remeronsoltab">Remeronsoltab</a><span class="related-count">72,929 reports</span></li>
+    <li><a href="/drugs/valium">Valium</a><span class="related-count">118,727 reports</span></li>
+    <li><a href="/drugs/mirtazapine">Mirtazapine</a><span class="related-count">72,931 reports</span></li>
+    <li><a href="/drugs/remeron">Remeron</a><span class="related-count">89,353 reports</span></li>
+    <li><a href="/drugs/remeronsoltab">Remeronsoltab</a><span class="related-count">72,932 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Diazepam";
-    var ADVERSE_EVENTS = [{"label":"TOXICITY TO VARIOUS AGENTS","value":8678},{"label":"DRUG ABUSE","value":6084},{"label":"DRUG INEFFECTIVE","value":4872},{"label":"NAUSEA","value":4083},{"label":"COMPLETED SUICIDE","value":3812},{"label":"FATIGUE","value":3730},{"label":"DRUG INTERACTION","value":3703},{"label":"SOMNOLENCE","value":3468},{"label":"OFF LABEL USE","value":3374},{"label":"ANXIETY","value":3328},{"label":"DEATH","value":3311},{"label":"PAIN","value":3185},{"label":"HEADACHE","value":3181},{"label":"OVERDOSE","value":3161},{"label":"VOMITING","value":3020}];
+    var ADVERSE_EVENTS = [{"label":"TOXICITY TO VARIOUS AGENTS","value":8678},{"label":"DRUG ABUSE","value":6084},{"label":"DRUG INEFFECTIVE","value":4871},{"label":"NAUSEA","value":4083},{"label":"COMPLETED SUICIDE","value":3812},{"label":"FATIGUE","value":3732},{"label":"DRUG INTERACTION","value":3703},{"label":"SOMNOLENCE","value":3468},{"label":"OFF LABEL USE","value":3374},{"label":"ANXIETY","value":3326},{"label":"DEATH","value":3311},{"label":"PAIN","value":3187},{"label":"HEADACHE","value":3181},{"label":"OVERDOSE","value":3163},{"label":"VOMITING","value":3018}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[44582,34326,509]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[3610,12580,17027,17862,7783,5254]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Non-Serious","Life-Threatening","Disability"],"values":[42298,30225,20285,13033,6465,2973]};
-    var TRENDS_DATA    = {"labels":["Q1 1996","Q3 1999","Q4 2000","Q1 2002","Q2 2002","Q1 2003","Q2 2003","Q3 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,1,1,1,1,1,3,242,286,292,319,312,246,324,458,293,303,232,342,344,256,313,321,509,422,491,379,484,369,484,459,576,491,753,526,734,606,816,620,1082,837,747,583,1466,825,614,835,1673,590,702,803,1456,910,1099,1193,1321,1287,1498,1200,1526,1124,1251,1628,1770,1772,1534,1447,2242,1704,1620,1580,1819,1579,1629,1697,1796,1366,1315,1218,1302,1133,1224,1324,1245,1322,1152,1141,1440,1207,1202,1296,1333,1207,1353,1224,1119]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[3610,12580,17027,17863,7782,5254]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Non-Serious","Life-Threatening","Disability"],"values":[42296,30227,20283,13035,6466,2972]};
+    var TRENDS_DATA    = {"labels":["Q1 1996","Q3 1999","Q4 2000","Q1 2002","Q2 2002","Q1 2003","Q2 2003","Q3 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,1,1,1,1,1,3,242,285,292,319,312,247,325,459,292,303,231,343,344,256,313,321,509,421,490,379,484,369,484,459,576,490,753,526,735,606,816,620,1084,836,747,583,1466,825,614,835,1673,590,702,803,1456,910,1099,1193,1321,1287,1498,1200,1526,1124,1251,1628,1770,1772,1534,1447,2242,1704,1620,1580,1819,1579,1629,1697,1796,1366,1315,1218,1302,1133,1224,1324,1245,1322,1152,1141,1440,1207,1202,1296,1333,1207,1353,1224,1119]};
   </script>
 
   <!-- Chart.js from CDN -->

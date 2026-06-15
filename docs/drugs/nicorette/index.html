@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"NICORETTE () — FDA Adverse Event Reports","description":"Nicorette (): 19,104 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/nicorette","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"NICORETTE () — FDA Adverse Event Reports","description":"Nicorette (): 19,104 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/nicorette","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,6 +557,20 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Nicorette</h2>
+  <p class="section-note">In FDA adverse event reports that mention Nicorette, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Nicotine <span class="co-reported-count">(7,459 reports)</span></li>
+    <li>Nicotine Polacrilex Gum <span class="co-reported-count">(6,132 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(736 reports)</span></li>
+    <li>Nicotine Polacrilex Mini <span class="co-reported-count">(701 reports)</span></li>
+    <li>Nicotine Polarilex <span class="co-reported-count">(701 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
@@ -594,7 +625,7 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Nicorette";
-    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":3333},{"label":"NICOTINE DEPENDENCE","value":2991},{"label":"INTENTIONAL DRUG MISUSE","value":2815},{"label":"NAUSEA","value":1642},{"label":"DRUG ADMINISTRATION ERROR","value":1007},{"label":"MALAISE","value":849},{"label":"ORAL DISCOMFORT","value":627},{"label":"WRONG TECHNIQUE IN PRODUCT USAGE PROCESS","value":612},{"label":"DIZZINESS","value":586},{"label":"DYSPEPSIA","value":573},{"label":"MACULAR DEGENERATION","value":565},{"label":"HEADACHE","value":546},{"label":"PRODUCT QUALITY ISSUE","value":529},{"label":"HICCUPS","value":523},{"label":"VOMITING","value":513}];
+    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":3333},{"label":"NICOTINE DEPENDENCE","value":2991},{"label":"INTENTIONAL DRUG MISUSE","value":2815},{"label":"NAUSEA","value":1642},{"label":"DRUG ADMINISTRATION ERROR","value":1007},{"label":"MALAISE","value":849},{"label":"ORAL DISCOMFORT","value":627},{"label":"WRONG TECHNIQUE IN PRODUCT USAGE PROCESS","value":612},{"label":"DIZZINESS","value":586},{"label":"DYSPEPSIA","value":573},{"label":"MACULAR DEGENERATION","value":565},{"label":"HEADACHE","value":546},{"label":"PRODUCT QUALITY ISSUE","value":530},{"label":"HICCUPS","value":523},{"label":"VOMITING","value":513}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[8872,6244,61]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[97,1031,2196,3184,1624,505]};
     var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Death","Life-Threatening","Disability"],"values":[15325,3157,890,147,104,96]};

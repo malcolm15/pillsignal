@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"NICODERM CQ () — FDA Adverse Event Reports","description":"Nicoderm Cq (): 30,910 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/nicoderm-cq","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"NICODERM CQ () — FDA Adverse Event Reports","description":"Nicoderm Cq (): 30,910 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/nicoderm-cq","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Nicoderm Cq</h2>
+  <p class="section-note">In FDA adverse event reports that mention Nicoderm Cq, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Nicotine Polacrilex Mini <span class="co-reported-count">(14,712 reports)</span></li>
+    <li>Nicotine Polarilex <span class="co-reported-count">(14,712 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(2,518 reports)</span></li>
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(1,789 reports)</span></li>
+    <li><a href="/drugs/xanax">Alprazolam</a> <span class="co-reported-count">(1,773 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/butrans">Butrans</a><span class="related-count">83,431 reports</span></li>
-    <li><a href="/drugs/estradiol-transdermal-system">Estradiol Transdermal System</a><span class="related-count">48,793 reports</span></li>
-    <li><a href="/drugs/excedrin-migraine">Excedrin Migraine</a><span class="related-count">16,903 reports</span></li>
-    <li><a href="/drugs/clonidine">Clonidine</a><span class="related-count">49,383 reports</span></li>
-    <li><a href="/drugs/clonidine-transdermal-system">Clonidine Transdermal System</a><span class="related-count">50,141 reports</span></li>
+    <li><a href="/drugs/butrans">Butrans</a><span class="related-count">83,430 reports</span></li>
+    <li><a href="/drugs/estradiol-transdermal-system">Estradiol Transdermal System</a><span class="related-count">48,792 reports</span></li>
+    <li><a href="/drugs/excedrin-migraine">Excedrin Migraine</a><span class="related-count">16,904 reports</span></li>
+    <li><a href="/drugs/clonidine">Clonidine</a><span class="related-count">49,384 reports</span></li>
+    <li><a href="/drugs/clonidine-transdermal-system">Clonidine Transdermal System</a><span class="related-count">50,142 reports</span></li>
   </ul>
 </section>
 
@@ -594,7 +625,7 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Nicoderm Cq";
-    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":3616},{"label":"APPLICATION SITE ERYTHEMA","value":3090},{"label":"APPLICATION SITE PRURITUS","value":2981},{"label":"NAUSEA","value":2515},{"label":"NICOTINE DEPENDENCE","value":2106},{"label":"DIZZINESS","value":1593},{"label":"MALAISE","value":1347},{"label":"HEADACHE","value":1332},{"label":"APPLICATION SITE IRRITATION","value":1088},{"label":"APPLICATION SITE RASH","value":998},{"label":"APPLICATION SITE PAIN","value":997},{"label":"INSOMNIA","value":986},{"label":"OVERDOSE","value":979},{"label":"VOMITING","value":969},{"label":"DYSPNOEA","value":950}];
+    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":3617},{"label":"APPLICATION SITE ERYTHEMA","value":3090},{"label":"APPLICATION SITE PRURITUS","value":2981},{"label":"NAUSEA","value":2515},{"label":"NICOTINE DEPENDENCE","value":2106},{"label":"DIZZINESS","value":1593},{"label":"MALAISE","value":1347},{"label":"HEADACHE","value":1332},{"label":"APPLICATION SITE IRRITATION","value":1088},{"label":"APPLICATION SITE RASH","value":998},{"label":"APPLICATION SITE PAIN","value":997},{"label":"INSOMNIA","value":986},{"label":"OVERDOSE","value":979},{"label":"VOMITING","value":969},{"label":"DYSPNOEA","value":950}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[16740,9872,117]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[461,3271,4519,6441,3056,933]};
     var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Death","Life-Threatening","Disability"],"values":[18366,8949,5345,1723,642,369]};

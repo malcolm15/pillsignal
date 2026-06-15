@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"NEXAVAR () — FDA Adverse Event Reports","description":"Nexavar (): 20,517 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/nexavar","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"NEXAVAR () — FDA Adverse Event Reports","description":"Nexavar (): 20,517 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/nexavar","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Nexavar</h2>
+  <p class="section-note">In FDA adverse event reports that mention Nexavar, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/lasix">Furosemide</a> <span class="co-reported-count">(1,005 reports)</span></li>
+    <li><a href="/drugs/spironolactone">Spironolactone</a> <span class="co-reported-count">(642 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(580 reports)</span></li>
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(566 reports)</span></li>
+    <li>Bevacizumab <span class="co-reported-count">(521 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/votrient">Votrient</a><span class="related-count">22,470 reports</span></li>
-    <li><a href="/drugs/xeloda">Xeloda</a><span class="related-count">89,367 reports</span></li>
+    <li><a href="/drugs/xeloda">Xeloda</a><span class="related-count">89,365 reports</span></li>
     <li><a href="/drugs/cabometyx">Cabometyx</a><span class="related-count">44,604 reports</span></li>
     <li><a href="/drugs/sutent">Sutent</a><span class="related-count">39,018 reports</span></li>
-    <li><a href="/drugs/tykerb">Tykerb</a><span class="related-count">15,407 reports</span></li>
+    <li><a href="/drugs/tykerb">Tykerb</a><span class="related-count">15,405 reports</span></li>
   </ul>
 </section>
 
@@ -594,10 +625,10 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Nexavar";
-    var ADVERSE_EVENTS = [{"label":"DIARRHOEA","value":2948},{"label":"PALMAR-PLANTAR ERYTHRODYSAESTHESIA SYNDROME","value":2161},{"label":"HEPATOCELLULAR CARCINOMA","value":1897},{"label":"FATIGUE","value":1792},{"label":"OFF LABEL USE","value":1695},{"label":"RASH","value":1457},{"label":"DEATH","value":1452},{"label":"DECREASED APPETITE","value":1448},{"label":"NAUSEA","value":1364},{"label":"ASTHENIA","value":1183},{"label":"HYPERTENSION","value":1146},{"label":"PYREXIA","value":1052},{"label":"VOMITING","value":981},{"label":"PAIN IN EXTREMITY","value":965},{"label":"WEIGHT DECREASED","value":916}];
+    var ADVERSE_EVENTS = [{"label":"DIARRHOEA","value":2949},{"label":"PALMAR-PLANTAR ERYTHRODYSAESTHESIA SYNDROME","value":2162},{"label":"HEPATOCELLULAR CARCINOMA","value":1897},{"label":"FATIGUE","value":1792},{"label":"OFF LABEL USE","value":1694},{"label":"RASH","value":1457},{"label":"DEATH","value":1452},{"label":"DECREASED APPETITE","value":1447},{"label":"NAUSEA","value":1365},{"label":"ASTHENIA","value":1183},{"label":"HYPERTENSION","value":1145},{"label":"PYREXIA","value":1052},{"label":"VOMITING","value":981},{"label":"PAIN IN EXTREMITY","value":964},{"label":"WEIGHT DECREASED","value":916}];
     var SEX_DATA       = {"labels":["Male","Female","Unknown"],"values":[13323,5324,127]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[523,441,1335,5623,4853,2949]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Non-Serious","Life-Threatening","Disability"],"values":[10826,7714,5063,2249,1011,442]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Non-Serious","Life-Threatening","Disability"],"values":[10826,7715,5062,2248,1011,442]};
     var TRENDS_DATA    = {"labels":["Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[2,4,1,3,89,283,362,280,226,122,256,208,201,187,224,236,283,265,301,340,397,497,386,335,295,374,360,447,354,434,361,252,204,211,253,244,203,244,315,334,302,378,335,341,276,308,265,251,330,328,397,422,401,508,322,347,215,246,238,331,259,147,210,182,171,168,171,193,122,125,149,166,222,163,154,101,88,76,273,101,91,70,68,60,73]};
   </script>
 

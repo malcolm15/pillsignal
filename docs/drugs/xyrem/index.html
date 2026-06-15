@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"XYREM () — FDA Adverse Event Reports","description":"Xyrem (): 61,872 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/xyrem","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"XYREM () — FDA Adverse Event Reports","description":"Xyrem (): 61,872 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/xyrem","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,6 +557,20 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Xyrem</h2>
+  <p class="section-note">In FDA adverse event reports that mention Xyrem, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Dextroamphetamine Dextroamphetamine Saccharate Amphetamine And Amphetamine Aspartate <span class="co-reported-count">(12,047 reports)</span></li>
+    <li>Dextroamphetamine Saccharate Amphetamine Aspartate Dextroamphetamine And Amphetamine <span class="co-reported-count">(11,357 reports)</span></li>
+    <li>Modafinil <span class="co-reported-count">(11,083 reports)</span></li>
+    <li>Armodafinil <span class="co-reported-count">(10,527 reports)</span></li>
+    <li>Ergocalciferol <span class="co-reported-count">(10,256 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
@@ -548,7 +579,7 @@
     <li><a href="/drugs/adderall-xr">Adderall Xr</a><span class="related-count">40,525 reports</span></li>
     <li><a href="/drugs/nuvigil">Nuvigil</a><span class="related-count">20,859 reports</span></li>
     <li><a href="/drugs/adderall">Adderall</a><span class="related-count">34,483 reports</span></li>
-    <li><a href="/drugs/provigil">Provigil</a><span class="related-count">31,876 reports</span></li>
+    <li><a href="/drugs/provigil">Provigil</a><span class="related-count">31,871 reports</span></li>
     <li><a href="/drugs/cymbalta">Cymbalta</a><span class="related-count">136,755 reports</span></li>
   </ul>
 </section>
@@ -594,9 +625,9 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Xyrem";
-    var ADVERSE_EVENTS = [{"label":"NAUSEA","value":4286},{"label":"ANXIETY","value":3653},{"label":"SOMNOLENCE","value":3175},{"label":"DEPRESSION","value":3026},{"label":"HEADACHE","value":2924},{"label":"FEELING ABNORMAL","value":2895},{"label":"CONDITION AGGRAVATED","value":2799},{"label":"WEIGHT DECREASED","value":2780},{"label":"FATIGUE","value":2669},{"label":"DIZZINESS","value":2634},{"label":"INSOMNIA","value":2559},{"label":"SLEEP APNOEA SYNDROME","value":2546},{"label":"FALL","value":2448},{"label":"PRE-EXISTING CONDITION IMPROVED","value":2218},{"label":"DRUG INEFFECTIVE","value":2168}];
+    var ADVERSE_EVENTS = [{"label":"NAUSEA","value":4286},{"label":"ANXIETY","value":3653},{"label":"SOMNOLENCE","value":3175},{"label":"DEPRESSION","value":3025},{"label":"HEADACHE","value":2924},{"label":"FEELING ABNORMAL","value":2895},{"label":"CONDITION AGGRAVATED","value":2798},{"label":"WEIGHT DECREASED","value":2780},{"label":"FATIGUE","value":2669},{"label":"DIZZINESS","value":2634},{"label":"INSOMNIA","value":2560},{"label":"SLEEP APNOEA SYNDROME","value":2547},{"label":"FALL","value":2448},{"label":"PRE-EXISTING CONDITION IMPROVED","value":2218},{"label":"DRUG INEFFECTIVE","value":2168}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[43530,17030,16]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1174,7392,8538,6013,1651,649]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1173,7393,8538,6013,1651,649]};
     var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Death","Disability","Life-Threatening"],"values":[29783,28664,7454,933,455,166]};
     var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[5,8,19,13,9,5,10,6,13,10,10,20,22,28,25,27,25,27,29,57,39,46,72,60,44,75,86,123,116,144,156,117,342,234,236,97,123,174,399,225,274,281,854,422,606,561,9452,824,648,6221,7471,5195,1347,1220,1575,1402,1079,1194,1105,1152,1217,943,746,1057,874,739,713,816,824,604,746,784,391,813,432,405,454,565,438,419,324,144,132,524,141,119,132,116,101]};
   </script>

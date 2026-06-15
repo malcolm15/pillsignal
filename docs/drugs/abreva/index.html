@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"ABREVA () — FDA Adverse Event Reports","description":"Abreva (): 14,518 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/abreva","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"ABREVA () — FDA Adverse Event Reports","description":"Abreva (): 14,518 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/abreva","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,19 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/rogaine">Rogaine</a><span class="related-count">44,061 reports</span></li>
-    <li><a href="/drugs/hair-regrowth-treatment">Hair Regrowth Treatment</a><span class="related-count">32,258 reports</span></li>
-    <li><a href="/drugs/hers-hair-regrowth-treatment">Hers Hair Regrowth Treatment</a><span class="related-count">32,255 reports</span></li>
-    <li><a href="/drugs/minoxidil">Minoxidil</a><span class="related-count">32,253 reports</span></li>
-    <li><a href="/drugs/minoxidil-for-men">Minoxidil (for Men)</a><span class="related-count">32,265 reports</span></li>
+    <li><a href="/drugs/hair-regrowth-treatment">Hair Regrowth Treatment</a><span class="related-count">32,260 reports</span></li>
+    <li><a href="/drugs/hers-hair-regrowth-treatment">Hers Hair Regrowth Treatment</a><span class="related-count">32,257 reports</span></li>
+    <li><a href="/drugs/minoxidil">Minoxidil</a><span class="related-count">32,255 reports</span></li>
+    <li><a href="/drugs/minoxidil-for-men">Minoxidil (for Men)</a><span class="related-count">32,267 reports</span></li>
   </ul>
 </section>
 

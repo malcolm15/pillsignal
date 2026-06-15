@@ -23,6 +23,7 @@ These are non-negotiable and must be followed in every piece of code, copy, and 
 5. **Always link to the FDA source.** Every drug page should link to the corresponding OpenFDA query or FDA drug page so users can verify the data themselves.
 6. **No medical advice.** Include a standard notice that PillSignal is not a substitute for professional medical advice and users should consult their healthcare provider.
 7. **First-visit disclaimer banner.** Display a non-blocking, dismissible banner at the top of the site on first visit. Text: "PillSignal presents data from the FDA's voluntary reporting system. This data does not prove that a medication caused any adverse event. Always consult your healthcare provider about your medications." Include an "I understand" button. Use localStorage to remember dismissal so it only shows once. This must NOT be a blocking modal or interstitial — it must not prevent page content from being visible to users or search engine crawlers.
+8. **Co-occurrence is never interaction.** The "Medications commonly reported with [Drug]" section shows medications named in the same reports. Never describe this as a drug interaction, a combination risk, or causation. See the Co-Reported Medications section for the fixed framing copy and rules.
 
 ## Tech Stack
 
@@ -218,6 +219,26 @@ The site header (banner + nav + dark-mode toggle) and footer (AEMS data source, 
 - `'drug'` — Browse all + ← Search (drug detail pages)
 - `'browse'` — ← Search only (browse listing page)
 - `'home'` or any static/guide page — Browse all only
+
+## Co-Reported Medications
+
+Each drug page can show a "Medications commonly reported with [Drug]" section: the medications most frequently named in the same FAERS/AEMS reports as the drug, by normalized openfda generic name.
+
+**Framing rule (non-negotiable, legal):** this is **co-occurrence only**. Copy must never imply drug interaction, causation, combined risk, or that any combination is unsafe. The section presents which medications appeared in the same reports, nothing more. The lead sentence, list, and caption are fixed editorial copy in `renderCoReportedHtml()`; do not reword them to add interpretation. This sits under the same guardrails as the rest of the site (see Legal Requirements: no causation, no ranking, no medical advice).
+
+**Data source:** `&count=patient.drug.openfda.generic_name.exact` scoped to the drug's resolved FAERS search (same brand-first, generic-fallback construction the other fetchers use). This field is chosen over `medicinalproduct` because it uses normalized generic vocabulary that matches our internal pages, but it is fragmented into dose/form/salt variants and must be canonicalized.
+
+**Storage:** `co_reported_drugs` table (`drug_id`, `name`, `count`), one row per stored co-reported medication, up to 5 per drug. Written by `fetch-data.js` (cleared and re-inserted on every fetch, same as the other detail tables). The stored `name` is already canonicalized; `count` is the representative report count.
+
+**Canonicalization (in `fetch-data.js`, `canonicalizeMed()`):** collapses dose/form/salt variants of the same ingredient to one plain, patient-recognizable name. It strips dosage tokens (`200MG`, `81 MG`), release abbreviations (`ER`, `XR`, `SR`, etc.), dosage-form words (`TABLET`, `CAPSULE`, `ORAL`, `FILM-COATED`, `EXTENDED RELEASE`, etc.), and **salt/ester suffixes** (`SODIUM`, `MAGNESIUM`, `SULFATE`, `HYDROCHLORIDE`, `PROPIONATE`, etc.) so `albuterol sulfate` becomes `albuterol` and `omeprazole magnesium` becomes `omeprazole`. Variants that collapse to the same canonical name are merged, keeping the **highest count** as the representative. Misspellings that survive canonicalization (e.g. `ibupfrofen`) fall through to plain text; we do not fuzzy-match.
+
+**Stoplist:** non-drug descriptors are dropped entirely: `pain reliever`, `vitamin`, `multivitamin`, `supplement`, `herbal`, `unknown`, and any purely numeric entry.
+
+**Self-exclusion:** the drug's own generic must never appear in its own co-reported list. We seed the exclusion set from the brand name and list generic, then add any generic appearing in **≥50% of the drug's own reports** (that is the drug itself under its normalized generic, e.g. Mirena → levonorgestrel). A **≥90% of reports** cutoff is kept as a secondary fallback guard.
+
+**Noise floor:** a co-reported medication qualifies only if its count is at least `max(25, 1% of the drug's total_reports)`. A drug must have **at least 3** qualifying medications or the section is **omitted entirely** for that drug. The 1% relative floor is intentional: high-volume drugs with diffuse co-reporting (e.g. Mirena) are omitted rather than padded with weak, thin-looking entries.
+
+**Internal links:** resolved at **generate time** (not stored in the DB) against the in-memory drug list, matching on `slug`, `brand_name`, and `generic_name`. A co-reported medication links to its page when we have one and renders as plain text when we do not. The list uses a dedicated `.co-reported-list` class (not `.related-list`) so it does not fire the `related_item_click` GA event.
 
 ## Data Refresh Procedure
 

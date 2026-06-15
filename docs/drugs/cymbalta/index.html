@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Cymbalta (duloxetine hydrochloride) — FDA Adverse Event Reports","description":"Cymbalta (duloxetine hydrochloride): 136,755 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/cymbalta","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Cymbalta (duloxetine hydrochloride) — FDA Adverse Event Reports","description":"Cymbalta (duloxetine hydrochloride): 136,755 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/cymbalta","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,14 +557,28 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Cymbalta</h2>
+  <p class="section-note">In FDA adverse event reports that mention Cymbalta, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/neurontin">Gabapentin</a> <span class="co-reported-count">(20,084 reports)</span></li>
+    <li><a href="/drugs/pregabalin">Pregabalin</a> <span class="co-reported-count">(16,620 reports)</span></li>
+    <li>Ergocalciferol <span class="co-reported-count">(14,883 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(12,425 reports)</span></li>
+    <li>Levothyroxine <span class="co-reported-count">(11,215 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/effexor-xr">Effexor Xr</a><span class="related-count">75,568 reports</span></li>
-    <li><a href="/drugs/zoloft">Zoloft</a><span class="related-count">103,626 reports</span></li>
-    <li><a href="/drugs/prozac">Prozac</a><span class="related-count">61,342 reports</span></li>
+    <li><a href="/drugs/effexor-xr">Effexor Xr</a><span class="related-count">75,571 reports</span></li>
+    <li><a href="/drugs/zoloft">Zoloft</a><span class="related-count">103,622 reports</span></li>
+    <li><a href="/drugs/prozac">Prozac</a><span class="related-count">61,348 reports</span></li>
     <li><a href="/drugs/wellbutrin-xl">Wellbutrin Xl</a><span class="related-count">87,540 reports</span></li>
     <li><a href="/drugs/ambien-cr">Ambien Cr</a><span class="related-count">84,705 reports</span></li>
   </ul>
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Cymbalta";
-    var ADVERSE_EVENTS = [{"label":"NAUSEA","value":14413},{"label":"FATIGUE","value":12432},{"label":"DIZZINESS","value":11236},{"label":"HEADACHE","value":11172},{"label":"DRUG INEFFECTIVE","value":10335},{"label":"PAIN","value":9718},{"label":"INSOMNIA","value":8597},{"label":"ANXIETY","value":8272},{"label":"DRUG WITHDRAWAL SYNDROME","value":7863},{"label":"DIARRHOEA","value":7431},{"label":"OFF LABEL USE","value":7050},{"label":"DEPRESSION","value":6866},{"label":"PARAESTHESIA","value":6686},{"label":"VOMITING","value":6618},{"label":"FEELING ABNORMAL","value":5899}];
-    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[98006,31402,260]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1070,7998,20338,30949,13271,8966]};
-    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Death","Life-Threatening","Disability"],"values":[57671,54795,32992,5970,3730,3365]};
-    var TRENDS_DATA    = {"labels":["Q4 2003","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,12,859,216,1410,332,1152,415,1413,464,1165,512,1209,541,608,614,671,773,816,881,867,1100,1337,946,944,1852,1077,1244,1101,1321,1282,1777,1767,1585,1339,1720,1337,1294,1399,2292,1209,1377,1344,2355,1797,17267,2180,2461,2496,2657,2568,3677,1905,1759,1758,2024,1981,1843,1545,2116,1883,1683,1924,1771,1549,1672,1580,1404,1315,1242,1400,1381,1504,1445,1401,1352,1183,1230,1106,1137,1218,1259,1200,1240,1218,1348,1079,1067]};
+    var ADVERSE_EVENTS = [{"label":"NAUSEA","value":14415},{"label":"FATIGUE","value":12432},{"label":"DIZZINESS","value":11236},{"label":"HEADACHE","value":11172},{"label":"DRUG INEFFECTIVE","value":10335},{"label":"PAIN","value":9719},{"label":"INSOMNIA","value":8596},{"label":"ANXIETY","value":8273},{"label":"DRUG WITHDRAWAL SYNDROME","value":7863},{"label":"DIARRHOEA","value":7431},{"label":"OFF LABEL USE","value":7049},{"label":"DEPRESSION","value":6864},{"label":"PARAESTHESIA","value":6686},{"label":"VOMITING","value":6620},{"label":"FEELING ABNORMAL","value":5901}];
+    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[98007,31401,260]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[1070,7997,20335,30951,13274,8965]};
+    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Death","Life-Threatening","Disability"],"values":[57672,54791,32993,5971,3730,3366]};
+    var TRENDS_DATA    = {"labels":["Q4 2003","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,12,859,216,1410,332,1152,415,1413,464,1165,512,1209,541,608,614,671,772,816,881,867,1099,1338,946,944,1853,1077,1242,1101,1322,1283,1775,1769,1585,1339,1720,1337,1294,1399,2292,1209,1377,1344,2355,1797,17267,2180,2461,2496,2657,2568,3677,1905,1759,1758,2024,1981,1843,1545,2116,1883,1683,1924,1771,1549,1672,1580,1404,1315,1242,1400,1381,1504,1445,1401,1352,1183,1230,1106,1137,1218,1259,1200,1240,1218,1348,1079,1067]};
   </script>
 
   <!-- Chart.js from CDN -->

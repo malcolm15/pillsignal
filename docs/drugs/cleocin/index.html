@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Cleocin (clindamycin hydrochloride) — FDA Adverse Event Reports","description":"Cleocin (clindamycin hydrochloride): 4,720 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/cleocin","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Cleocin (clindamycin hydrochloride) — FDA Adverse Event Reports","description":"Cleocin (clindamycin hydrochloride): 4,720 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/cleocin","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Cleocin</h2>
+  <p class="section-note">In FDA adverse event reports that mention Cleocin, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Ergocalciferol <span class="co-reported-count">(473 reports)</span></li>
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(423 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(385 reports)</span></li>
+    <li><a href="/drugs/doxycycline">Doxycycline</a> <span class="co-reported-count">(383 reports)</span></li>
+    <li><a href="/drugs/vibramycin">Doxycycline Hyclate</a> <span class="co-reported-count">(380 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/equate-famotidine">Equate Famotidine</a><span class="related-count">73,553 reports</span></li>
+    <li><a href="/drugs/equate-famotidine">Equate Famotidine</a><span class="related-count">73,558 reports</span></li>
     <li><a href="/drugs/famotidine">Famotidine</a><span class="related-count">73,556 reports</span></li>
-    <li><a href="/drugs/pepcid">Pepcid</a><span class="related-count">102,237 reports</span></li>
-    <li><a href="/drugs/pepcid-ac">Pepcid Ac</a><span class="related-count">78,514 reports</span></li>
-    <li><a href="/drugs/pepcid-ac-maximum-strength">Pepcid Ac Maximum Strength</a><span class="related-count">79,163 reports</span></li>
+    <li><a href="/drugs/pepcid">Pepcid</a><span class="related-count">102,241 reports</span></li>
+    <li><a href="/drugs/pepcid-ac">Pepcid Ac</a><span class="related-count">78,519 reports</span></li>
+    <li><a href="/drugs/pepcid-ac-maximum-strength">Pepcid Ac Maximum Strength</a><span class="related-count">79,168 reports</span></li>
   </ul>
 </section>
 
@@ -597,7 +628,7 @@
     var ADVERSE_EVENTS = [{"label":"DRUG HYPERSENSITIVITY","value":552},{"label":"DRUG INEFFECTIVE","value":419},{"label":"RASH","value":352},{"label":"DIARRHOEA","value":314},{"label":"NAUSEA","value":267},{"label":"OFF LABEL USE","value":249},{"label":"PAIN","value":246},{"label":"FATIGUE","value":238},{"label":"PRURITUS","value":191},{"label":"DYSPNOEA","value":182},{"label":"HEADACHE","value":168},{"label":"PYREXIA","value":154},{"label":"VOMITING","value":153},{"label":"CONDITION AGGRAVATED","value":150},{"label":"ANXIETY","value":143}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[2891,1393,14]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[222,444,519,790,534,437]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Non-Serious","Hospitalization","Death","Life-Threatening","Disability"],"values":[1957,1831,1385,349,249,110]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Non-Serious","Hospitalization","Death","Life-Threatening","Disability"],"values":[1958,1831,1386,349,248,110]};
     var TRENDS_DATA    = {"labels":["Q1 1999","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,8,13,7,11,23,20,23,24,31,17,16,18,5,4,4,10,4,9,16,13,18,24,18,24,27,41,56,60,34,27,20,29,30,30,37,39,37,56,37,58,61,58,37,29,60,68,75,37,73,87,139,102,58,91,55,76,116,81,83,97,87,108,84,87,77,58,90,58,62,47,67,55,69,72,91,86,65,97,67,105,87,81,60,88,89,70,93,79,78]};
   </script>
 

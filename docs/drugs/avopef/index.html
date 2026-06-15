@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"AVOPEF () — FDA Adverse Event Reports","description":"Avopef (): 70,525 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/avopef","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"AVOPEF () — FDA Adverse Event Reports","description":"Avopef (): 70,525 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/avopef","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,6 +557,20 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Avopef</h2>
+  <p class="section-note">In FDA adverse event reports that mention Avopef, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/cyclophosphamide">Cyclophosphamide</a> <span class="co-reported-count">(28,510 reports)</span></li>
+    <li>Cyclophosphamide For <span class="co-reported-count">(28,510 reports)</span></li>
+    <li><a href="/drugs/carboplatin">Carboplatin</a> <span class="co-reported-count">(20,875 reports)</span></li>
+    <li>Doxorubicin <span class="co-reported-count">(18,845 reports)</span></li>
+    <li><a href="/drugs/cisplatin">Cisplatin</a> <span class="co-reported-count">(17,958 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
@@ -547,9 +578,9 @@
   <ul class="related-list">
     <li><a href="/drugs/etoposide">Etoposide</a><span class="related-count">70,525 reports</span></li>
     <li><a href="/drugs/vepesid">Vepesid</a><span class="related-count">71,563 reports</span></li>
-    <li><a href="/drugs/cyclophosphamide">Cyclophosphamide</a><span class="related-count">172,249 reports</span></li>
+    <li><a href="/drugs/cyclophosphamide">Cyclophosphamide</a><span class="related-count">172,252 reports</span></li>
     <li><a href="/drugs/cytarabine">Cytarabine</a><span class="related-count">58,624 reports</span></li>
-    <li><a href="/drugs/frindovyx">Frindovyx</a><span class="related-count">172,249 reports</span></li>
+    <li><a href="/drugs/frindovyx">Frindovyx</a><span class="related-count">172,252 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Avopef";
-    var ADVERSE_EVENTS = [{"label":"OFF LABEL USE","value":7914},{"label":"FEBRILE NEUTROPENIA","value":7454},{"label":"NEUTROPENIA","value":4915},{"label":"DRUG INEFFECTIVE","value":4578},{"label":"DISEASE PROGRESSION","value":4365},{"label":"THROMBOCYTOPENIA","value":3968},{"label":"PYREXIA","value":3282},{"label":"ANAEMIA","value":3233},{"label":"SEPSIS","value":2921},{"label":"PRODUCT USE IN UNAPPROVED INDICATION","value":2905},{"label":"DEATH","value":2776},{"label":"PANCYTOPENIA","value":2655},{"label":"PNEUMONIA","value":2434},{"label":"NAUSEA","value":2391},{"label":"DIARRHOEA","value":2229}];
+    var ADVERSE_EVENTS = [{"label":"OFF LABEL USE","value":7914},{"label":"FEBRILE NEUTROPENIA","value":7454},{"label":"NEUTROPENIA","value":4915},{"label":"DRUG INEFFECTIVE","value":4578},{"label":"DISEASE PROGRESSION","value":4365},{"label":"THROMBOCYTOPENIA","value":3968},{"label":"PYREXIA","value":3283},{"label":"ANAEMIA","value":3232},{"label":"SEPSIS","value":2921},{"label":"PRODUCT USE IN UNAPPROVED INDICATION","value":2905},{"label":"DEATH","value":2776},{"label":"PANCYTOPENIA","value":2655},{"label":"PNEUMONIA","value":2434},{"label":"NAUSEA","value":2391},{"label":"DIARRHOEA","value":2229}];
     var SEX_DATA       = {"labels":["Male","Female","Unknown"],"values":[32824,22858,926]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[11717,7545,6991,12331,8147,2888]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Life-Threatening","Non-Serious","Disability"],"values":[46867,23783,17241,6887,1893,986]};
-    var TRENDS_DATA    = {"labels":["Q2 1998","Q2 2003","Q3 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,2,1,142,212,257,180,218,217,295,150,172,168,246,159,211,216,283,279,203,314,306,261,296,275,256,218,273,280,315,298,392,483,407,491,421,556,543,474,331,402,374,460,411,362,455,474,457,625,483,704,699,674,638,590,836,881,828,1119,1175,1168,1114,1199,1242,1203,1151,1306,1386,1590,1508,1356,1295,1474,1466,1550,1536,1695,1597,1802,1738,1989,1693,1572,1546,1429,1765,1765,1469,1406,1482,1273,1311]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[11717,7543,6992,12332,8146,2888]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Death","Life-Threatening","Non-Serious","Disability"],"values":[46866,23784,17241,6887,1893,985]};
+    var TRENDS_DATA    = {"labels":["Q2 1998","Q2 2003","Q3 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,2,1,142,212,258,180,218,217,295,150,172,168,246,159,211,215,283,279,203,314,306,261,296,275,256,218,273,280,315,298,392,483,407,491,421,556,543,474,331,402,374,460,411,362,455,474,457,625,483,704,699,674,638,590,836,881,828,1119,1175,1168,1114,1199,1242,1203,1151,1306,1386,1590,1508,1356,1295,1474,1466,1550,1536,1695,1597,1802,1738,1989,1693,1572,1546,1429,1765,1765,1469,1406,1482,1273,1311]};
   </script>
 
   <!-- Chart.js from CDN -->

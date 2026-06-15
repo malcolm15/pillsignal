@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"AMPYRA () — FDA Adverse Event Reports","description":"Ampyra (): 71,176 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/ampyra","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"AMPYRA () — FDA Adverse Event Reports","description":"Ampyra (): 71,176 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/ampyra","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Ampyra</h2>
+  <p class="section-note">In FDA adverse event reports that mention Ampyra, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/baclofen">Baclofen</a> <span class="co-reported-count">(11,482 reports)</span></li>
+    <li>Dimethyl <span class="co-reported-count">(11,148 reports)</span></li>
+    <li>Ergocalciferol <span class="co-reported-count">(10,856 reports)</span></li>
+    <li><a href="/drugs/neurontin">Gabapentin</a> <span class="co-reported-count">(7,477 reports)</span></li>
+    <li>Interferon Beta-1a <span class="co-reported-count">(6,000 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/aubagio">Aubagio</a><span class="related-count">44,823 reports</span></li>
-    <li><a href="/drugs/baclofen">Baclofen</a><span class="related-count">83,151 reports</span></li>
-    <li><a href="/drugs/baclofen-intrathecal">Baclofen (intrathecal)</a><span class="related-count">84,433 reports</span></li>
-    <li><a href="/drugs/fleqsuvy">Fleqsuvy</a><span class="related-count">83,161 reports</span></li>
-    <li><a href="/drugs/lioresal-baclofen">Lioresal (baclofen)</a><span class="related-count">83,196 reports</span></li>
+    <li><a href="/drugs/baclofen">Baclofen</a><span class="related-count">83,150 reports</span></li>
+    <li><a href="/drugs/baclofen-intrathecal">Baclofen (intrathecal)</a><span class="related-count">84,432 reports</span></li>
+    <li><a href="/drugs/fleqsuvy">Fleqsuvy</a><span class="related-count">83,160 reports</span></li>
+    <li><a href="/drugs/lioresal-baclofen">Lioresal (baclofen)</a><span class="related-count">83,195 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Ampyra";
-    var ADVERSE_EVENTS = [{"label":"GAIT DISTURBANCE","value":10964},{"label":"DRUG INEFFECTIVE","value":8299},{"label":"FALL","value":7324},{"label":"FATIGUE","value":5511},{"label":"BALANCE DISORDER","value":4896},{"label":"MULTIPLE SCLEROSIS RELAPSE","value":4766},{"label":"THERAPY CESSATION","value":4510},{"label":"DIZZINESS","value":3986},{"label":"URINARY TRACT INFECTION","value":3734},{"label":"CONDITION AGGRAVATED","value":3482},{"label":"ASTHENIA","value":3456},{"label":"INSOMNIA","value":3306},{"label":"HEADACHE","value":3259},{"label":"MULTIPLE SCLEROSIS","value":3116},{"label":"MOBILITY DECREASED","value":2995}];
-    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[49823,17538,359]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[16,1195,7647,16215,5574,892]};
-    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Death","Disability","Life-Threatening"],"values":[51101,11564,10112,1752,1451,267]};
-    var TRENDS_DATA    = {"labels":["Q3 2006","Q1 2008","Q2 2008","Q1 2009","Q2 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,2,2,2,2,113,214,357,197,210,226,205,275,270,288,219,275,363,410,570,5006,483,403,457,5404,768,657,703,9859,750,655,748,7741,894,750,779,8451,924,746,668,6253,343,308,261,2418,257,279,198,1707,304,289,395,1562,390,443,363,1205,370,359,311,331,239,224,195,240,179,165,162,377]};
+    var ADVERSE_EVENTS = [{"label":"GAIT DISTURBANCE","value":10964},{"label":"DRUG INEFFECTIVE","value":8299},{"label":"FALL","value":7324},{"label":"FATIGUE","value":5511},{"label":"BALANCE DISORDER","value":4897},{"label":"MULTIPLE SCLEROSIS RELAPSE","value":4766},{"label":"THERAPY CESSATION","value":4510},{"label":"DIZZINESS","value":3986},{"label":"URINARY TRACT INFECTION","value":3734},{"label":"CONDITION AGGRAVATED","value":3481},{"label":"ASTHENIA","value":3456},{"label":"INSOMNIA","value":3305},{"label":"HEADACHE","value":3259},{"label":"MULTIPLE SCLEROSIS","value":3116},{"label":"MOBILITY DECREASED","value":2995}];
+    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[49824,17537,359]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[16,1195,7647,16213,5574,892]};
+    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Death","Disability","Life-Threatening"],"values":[51102,11564,10111,1751,1451,267]};
+    var TRENDS_DATA    = {"labels":["Q3 2006","Q1 2008","Q2 2008","Q1 2009","Q2 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,2,2,2,2,113,214,358,197,210,226,205,274,270,288,219,275,363,410,570,5006,483,403,457,5404,768,657,703,9859,750,655,748,7741,894,750,779,8451,924,746,668,6253,343,308,261,2418,257,279,198,1707,304,289,395,1562,390,443,363,1205,370,359,311,331,239,224,195,240,179,165,162,377]};
   </script>
 
   <!-- Chart.js from CDN -->

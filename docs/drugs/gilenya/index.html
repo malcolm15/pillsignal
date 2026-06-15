@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"GILENYA () — FDA Adverse Event Reports","description":"Gilenya (): 81,628 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/gilenya","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"GILENYA () — FDA Adverse Event Reports","description":"Gilenya (): 81,628 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/gilenya","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Gilenya</h2>
+  <p class="section-note">In FDA adverse event reports that mention Gilenya, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Ergocalciferol <span class="co-reported-count">(6,079 reports)</span></li>
+    <li>Dalfampridine <span class="co-reported-count">(3,394 reports)</span></li>
+    <li><a href="/drugs/baclofen">Baclofen</a> <span class="co-reported-count">(3,287 reports)</span></li>
+    <li><a href="/drugs/neurontin">Gabapentin</a> <span class="co-reported-count">(3,092 reports)</span></li>
+    <li><a href="/drugs/ibuprofen">Ibuprofen</a> <span class="co-reported-count">(1,537 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/aubagio">Aubagio</a><span class="related-count">44,823 reports</span></li>
-    <li><a href="/drugs/provigil">Provigil</a><span class="related-count">31,876 reports</span></li>
+    <li><a href="/drugs/provigil">Provigil</a><span class="related-count">31,871 reports</span></li>
     <li><a href="/drugs/rebif">Rebif</a><span class="related-count">47,245 reports</span></li>
-    <li><a href="/drugs/tysabri">Tysabri</a><span class="related-count">180,086 reports</span></li>
-    <li><a href="/drugs/avonex">Avonex</a><span class="related-count">142,926 reports</span></li>
+    <li><a href="/drugs/tysabri">Tysabri</a><span class="related-count">180,087 reports</span></li>
+    <li><a href="/drugs/avonex">Avonex</a><span class="related-count">142,920 reports</span></li>
   </ul>
 </section>
 
@@ -594,10 +625,10 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Gilenya";
-    var ADVERSE_EVENTS = [{"label":"FATIGUE","value":10594},{"label":"MULTIPLE SCLEROSIS RELAPSE","value":7250},{"label":"HEADACHE","value":7121},{"label":"DIZZINESS","value":5272},{"label":"WHITE BLOOD CELL COUNT DECREASED","value":3932},{"label":"GAIT DISTURBANCE","value":3743},{"label":"HYPOAESTHESIA","value":3664},{"label":"FALL","value":3417},{"label":"LYMPHOCYTE COUNT DECREASED","value":3404},{"label":"NAUSEA","value":3357},{"label":"MALAISE","value":3066},{"label":"MEMORY IMPAIRMENT","value":2940},{"label":"DRUG INEFFECTIVE","value":2907},{"label":"PAIN","value":2841},{"label":"CENTRAL NERVOUS SYSTEM LESION","value":2832}];
+    var ADVERSE_EVENTS = [{"label":"FATIGUE","value":10594},{"label":"MULTIPLE SCLEROSIS RELAPSE","value":7249},{"label":"HEADACHE","value":7121},{"label":"DIZZINESS","value":5273},{"label":"WHITE BLOOD CELL COUNT DECREASED","value":3932},{"label":"GAIT DISTURBANCE","value":3743},{"label":"HYPOAESTHESIA","value":3664},{"label":"FALL","value":3418},{"label":"LYMPHOCYTE COUNT DECREASED","value":3403},{"label":"NAUSEA","value":3358},{"label":"MALAISE","value":3065},{"label":"MEMORY IMPAIRMENT","value":2940},{"label":"DRUG INEFFECTIVE","value":2907},{"label":"PAIN","value":2841},{"label":"CENTRAL NERVOUS SYSTEM LESION","value":2832}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[60677,16978,355]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[620,9053,18217,12914,1705,115]};
-    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Disability","Life-Threatening","Death"],"values":[41055,32363,10785,1288,1172,1112]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[620,9053,18218,12914,1705,115]};
+    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Disability","Life-Threatening","Death"],"values":[41056,32360,10786,1288,1172,1112]};
     var TRENDS_DATA    = {"labels":["Q2 2007","Q2 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,12,91,214,301,2076,1713,799,982,1168,1294,1239,935,758,860,798,790,626,986,992,3592,2626,2829,2574,2370,2249,2831,2578,2496,2355,2406,2761,2933,3393,2986,2455,2266,3322,2291,1589,1291,1365,1020,1018,963,849,888,750,762,592,476,358,332,274,185,190,148,148,139,106,84,82,70]};
   </script>
 

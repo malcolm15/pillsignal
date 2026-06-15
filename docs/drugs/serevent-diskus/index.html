@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"SEREVENT DISKUS () — FDA Adverse Event Reports","description":"Serevent Diskus (): 8,540 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/serevent-diskus","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"SEREVENT DISKUS () — FDA Adverse Event Reports","description":"Serevent Diskus (): 8,540 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/serevent-diskus","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,6 +557,20 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Serevent Diskus</h2>
+  <p class="section-note">In FDA adverse event reports that mention Serevent Diskus, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/albuterol">Albuterol</a> <span class="co-reported-count">(2,349 reports)</span></li>
+    <li><a href="/drugs/montelukast">Montelukast</a> <span class="co-reported-count">(1,148 reports)</span></li>
+    <li>Tiotropium <span class="co-reported-count">(1,075 reports)</span></li>
+    <li><a href="/drugs/lasix">Furosemide</a> <span class="co-reported-count">(852 reports)</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(775 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
@@ -548,8 +579,8 @@
     <li><a href="/drugs/advair-hfa">Advair Hfa</a><span class="related-count">59,093 reports</span></li>
     <li><a href="/drugs/spiriva">Spiriva</a><span class="related-count">135,604 reports</span></li>
     <li><a href="/drugs/spiriva-handihaler">Spiriva Handihaler</a><span class="related-count">135,604 reports</span></li>
-    <li><a href="/drugs/imitrex">Imitrex</a><span class="related-count">37,204 reports</span></li>
-    <li><a href="/drugs/lipitor">Lipitor</a><span class="related-count">242,949 reports</span></li>
+    <li><a href="/drugs/imitrex">Imitrex</a><span class="related-count">37,203 reports</span></li>
+    <li><a href="/drugs/lipitor">Lipitor</a><span class="related-count">242,943 reports</span></li>
   </ul>
 </section>
 
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Serevent Diskus";
-    var ADVERSE_EVENTS = [{"label":"DYSPNOEA","value":1252},{"label":"DRUG INEFFECTIVE","value":1221},{"label":"ASTHMA","value":902},{"label":"COUGH","value":586},{"label":"HEADACHE","value":457},{"label":"PNEUMONIA","value":404},{"label":"NAUSEA","value":395},{"label":"WHEEZING","value":368},{"label":"DIZZINESS","value":366},{"label":"CHEST DISCOMFORT","value":355},{"label":"FATIGUE","value":349},{"label":"PHARMACEUTICAL PRODUCT COMPLAINT","value":318},{"label":"CHEST PAIN","value":299},{"label":"MALAISE","value":292},{"label":"DIARRHOEA","value":276}];
-    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[5193,2953,11]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[199,226,726,1531,1446,1360]};
-    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Death","Disability","Life-Threatening"],"values":[3523,2766,2471,953,412,362]};
-    var TRENDS_DATA    = {"labels":["Q3 1999","Q1 2002","Q3 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,151,300,903,152,101,183,118,276,107,180,71,204,78,100,73,175,83,137,102,124,66,122,176,82,118,75,120,121,61,69,81,102,58,64,62,99,95,47,61,113,60,61,106,101,117,57,77,80,113,75,116,66,73,70,61,78,62,71,76,83,73,73,75,86,84,54,62,52,93,46,63,43,54,44,34,48,50,49,35,35,43,61,66,60,18,32,31,42,18]};
+    var ADVERSE_EVENTS = [{"label":"DYSPNOEA","value":1253},{"label":"DRUG INEFFECTIVE","value":1221},{"label":"ASTHMA","value":902},{"label":"COUGH","value":587},{"label":"HEADACHE","value":457},{"label":"PNEUMONIA","value":405},{"label":"NAUSEA","value":395},{"label":"WHEEZING","value":368},{"label":"DIZZINESS","value":367},{"label":"CHEST DISCOMFORT","value":355},{"label":"FATIGUE","value":349},{"label":"PHARMACEUTICAL PRODUCT COMPLAINT","value":318},{"label":"CHEST PAIN","value":300},{"label":"MALAISE","value":293},{"label":"DIARRHOEA","value":276}];
+    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[5192,2954,11]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[199,226,725,1530,1447,1360]};
+    var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Death","Disability","Life-Threatening"],"values":[3522,2766,2472,953,412,362]};
+    var TRENDS_DATA    = {"labels":["Q3 1999","Q1 2002","Q3 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,1,1,150,301,903,152,101,183,118,276,108,180,71,204,78,100,73,175,83,137,102,123,66,122,176,82,118,75,120,121,61,69,81,102,58,64,62,99,95,47,61,113,60,61,106,101,117,57,77,80,113,75,116,66,73,70,61,78,62,71,76,83,73,73,75,86,84,54,62,52,93,46,63,43,54,44,34,48,50,49,35,35,43,61,66,60,18,32,31,42,18]};
   </script>
 
   <!-- Chart.js from CDN -->

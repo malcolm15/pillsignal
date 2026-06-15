@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Suboxone (buprenorphine/naloxone) — FDA Adverse Event Reports","description":"Suboxone (buprenorphine/naloxone): 23,840 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/suboxone","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Suboxone (buprenorphine/naloxone) — FDA Adverse Event Reports","description":"Suboxone (buprenorphine/naloxone): 23,840 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/suboxone","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,6 +557,20 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Suboxone</h2>
+  <p class="section-note">In FDA adverse event reports that mention Suboxone, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Oxycodone <span class="co-reported-count">(3,001 reports)</span></li>
+    <li>Buprenorphine <span class="co-reported-count">(1,554 reports)</span></li>
+    <li>Hydrocodone And Acetaminophen <span class="co-reported-count">(1,528 reports)</span></li>
+    <li><a href="/drugs/neurontin">Gabapentin</a> <span class="co-reported-count">(1,257 reports)</span></li>
+    <li>Hydromorphone <span class="co-reported-count">(1,133 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
@@ -547,9 +578,9 @@
   <ul class="related-list">
     <li><a href="/drugs/dilaudid">Dilaudid</a><span class="related-count">91,030 reports</span></li>
     <li><a href="/drugs/hydrocodone-bitartrate-and-acetaminophen">Hydrocodone Bitartrate And Acetaminophen</a><span class="related-count">55,870 reports</span></li>
-    <li><a href="/drugs/methadone-hydrochloride">Methadone Hydrochloride</a><span class="related-count">42,084 reports</span></li>
-    <li><a href="/drugs/oxycontin">Oxycontin</a><span class="related-count">209,754 reports</span></li>
-    <li><a href="/drugs/butrans">Butrans</a><span class="related-count">83,431 reports</span></li>
+    <li><a href="/drugs/methadone-hydrochloride">Methadone Hydrochloride</a><span class="related-count">42,086 reports</span></li>
+    <li><a href="/drugs/oxycontin">Oxycontin</a><span class="related-count">209,755 reports</span></li>
+    <li><a href="/drugs/butrans">Butrans</a><span class="related-count">83,430 reports</span></li>
   </ul>
 </section>
 
@@ -594,7 +625,7 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Suboxone";
-    var ADVERSE_EVENTS = [{"label":"DRUG DEPENDENCE","value":4290},{"label":"DRUG WITHDRAWAL SYNDROME","value":3338},{"label":"PAIN","value":2558},{"label":"OFF LABEL USE","value":2071},{"label":"OVERDOSE","value":1858},{"label":"NAUSEA","value":1638},{"label":"EMOTIONAL DISTRESS","value":1478},{"label":"ANXIETY","value":1353},{"label":"VOMITING","value":1341},{"label":"HEADACHE","value":1114},{"label":"DRUG ABUSE","value":1104},{"label":"INSOMNIA","value":1078},{"label":"FOETAL EXPOSURE DURING PREGNANCY","value":1049},{"label":"DEPRESSION","value":1030},{"label":"INTENTIONAL UNDERDOSE","value":1026}];
+    var ADVERSE_EVENTS = [{"label":"DRUG DEPENDENCE","value":4290},{"label":"DRUG WITHDRAWAL SYNDROME","value":3338},{"label":"PAIN","value":2558},{"label":"OFF LABEL USE","value":2071},{"label":"OVERDOSE","value":1858},{"label":"NAUSEA","value":1639},{"label":"EMOTIONAL DISTRESS","value":1478},{"label":"ANXIETY","value":1353},{"label":"VOMITING","value":1341},{"label":"HEADACHE","value":1114},{"label":"DRUG ABUSE","value":1104},{"label":"INSOMNIA","value":1075},{"label":"FOETAL EXPOSURE DURING PREGNANCY","value":1049},{"label":"DEPRESSION","value":1029},{"label":"INTENTIONAL UNDERDOSE","value":1026}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[10040,10020,100]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[366,3898,3603,2199,410,79]};
     var OUTCOMES_DATA  = {"labels":["Other Serious","Non-Serious","Hospitalization","Disability","Death","Life-Threatening"],"values":[11751,8704,4827,1284,1254,584]};

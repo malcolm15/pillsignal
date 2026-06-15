@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Namenda (memantine hydrochloride) — FDA Adverse Event Reports","description":"Namenda (memantine hydrochloride): 13,229 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/namenda","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Namenda (memantine hydrochloride) — FDA Adverse Event Reports","description":"Namenda (memantine hydrochloride): 13,229 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/namenda","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Namenda</h2>
+  <p class="section-note">In FDA adverse event reports that mention Namenda, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li>Donepezil <span class="co-reported-count">(3,059 reports)</span></li>
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(1,863 reports)</span></li>
+    <li><a href="/drugs/quetiapine">Quetiapine</a> <span class="co-reported-count">(1,636 reports)</span></li>
+    <li>Pimavanserin <span class="co-reported-count">(1,491 reports)</span></li>
+    <li>Ergocalciferol <span class="co-reported-count">(1,271 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/aricept">Aricept</a><span class="related-count">19,466 reports</span></li>
-    <li><a href="/drugs/keppra">Keppra</a><span class="related-count">128,927 reports</span></li>
-    <li><a href="/drugs/keppra-xr">Keppra Xr</a><span class="related-count">130,398 reports</span></li>
-    <li><a href="/drugs/trileptal">Trileptal</a><span class="related-count">30,888 reports</span></li>
-    <li><a href="/drugs/clonazepam">Clonazepam</a><span class="related-count">116,079 reports</span></li>
+    <li><a href="/drugs/aricept">Aricept</a><span class="related-count">19,465 reports</span></li>
+    <li><a href="/drugs/keppra">Keppra</a><span class="related-count">128,926 reports</span></li>
+    <li><a href="/drugs/keppra-xr">Keppra Xr</a><span class="related-count">130,397 reports</span></li>
+    <li><a href="/drugs/trileptal">Trileptal</a><span class="related-count">30,889 reports</span></li>
+    <li><a href="/drugs/clonazepam">Clonazepam</a><span class="related-count">116,081 reports</span></li>
   </ul>
 </section>
 
@@ -594,10 +625,10 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Namenda";
-    var ADVERSE_EVENTS = [{"label":"FALL","value":963},{"label":"DEATH","value":892},{"label":"DRUG INEFFECTIVE","value":836},{"label":"OFF LABEL USE","value":758},{"label":"CONFUSIONAL STATE","value":718},{"label":"FATIGUE","value":622},{"label":"HALLUCINATION","value":605},{"label":"CONDITION AGGRAVATED","value":511},{"label":"ASTHENIA","value":479},{"label":"DIZZINESS","value":451},{"label":"SOMNOLENCE","value":451},{"label":"URINARY TRACT INFECTION","value":430},{"label":"NAUSEA","value":411},{"label":"DIARRHOEA","value":390},{"label":"PRODUCT DOSE OMISSION ISSUE","value":354}];
+    var ADVERSE_EVENTS = [{"label":"FALL","value":962},{"label":"DEATH","value":892},{"label":"DRUG INEFFECTIVE","value":836},{"label":"OFF LABEL USE","value":758},{"label":"CONFUSIONAL STATE","value":718},{"label":"FATIGUE","value":622},{"label":"HALLUCINATION","value":605},{"label":"CONDITION AGGRAVATED","value":511},{"label":"ASTHENIA","value":479},{"label":"DIZZINESS","value":451},{"label":"SOMNOLENCE","value":451},{"label":"URINARY TRACT INFECTION","value":430},{"label":"NAUSEA","value":411},{"label":"DIARRHOEA","value":390},{"label":"PRODUCT DOSE OMISSION ISSUE","value":354}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[6158,5723,8]};
     var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[186,248,341,1076,1891,5818]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[6388,5382,2579,2036,570,428]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[6389,5382,2579,2036,570,428]};
     var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q1 2007","Q1 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[3,5,3,11,13,3,4,1,1,4,7,11,7,12,13,35,41,59,79,98,118,124,40,82,64,61,61,50,54,73,68,82,55,85,86,120,123,143,154,166,163,219,179,209,194,216,240,227,189,249,263,231,223,267,308,265,279,257,281,262,308,326,317,325,377,292,324,373,302,333,323,429,400,329,392,403,367,369]};
   </script>
 

@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"CALDOLOR () — FDA Adverse Event Reports","description":"Caldolor (): 195,126 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/caldolor","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"CALDOLOR () — FDA Adverse Event Reports","description":"Caldolor (): 195,126 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/caldolor","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,12 +557,26 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Caldolor</h2>
+  <p class="section-note">In FDA adverse event reports that mention Caldolor, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/acetaminophen">Acetaminophen</a> <span class="co-reported-count">(38,702 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(20,126 reports)</span></li>
+    <li>Ergocalciferol <span class="co-reported-count">(18,979 reports)</span></li>
+    <li><a href="/drugs/prednisone">Prednisone</a> <span class="co-reported-count">(17,517 reports)</span></li>
+    <li><a href="/drugs/aspirin">Aspirin</a> <span class="co-reported-count">(16,922 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/advil-liqui-gels">Advil Liqui-gels</a><span class="related-count">198,868 reports</span></li>
+    <li><a href="/drugs/advil-liqui-gels">Advil Liqui-gels</a><span class="related-count">198,870 reports</span></li>
     <li><a href="/drugs/advil-migraine">Advil Migraine</a><span class="related-count">195,682 reports</span></li>
     <li><a href="/drugs/ibuprofen">Ibuprofen</a><span class="related-count">195,385 reports</span></li>
     <li><a href="/drugs/motrin-ib">Motrin Ib</a><span class="related-count">198,015 reports</span></li>
@@ -594,11 +625,11 @@
   <!-- ─── Chart data (injected by generate-pages.js) ───────────────────────── -->
   <script>
     var DRUG_NAME      = "Caldolor";
-    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":15479},{"label":"PAIN","value":14877},{"label":"FATIGUE","value":14244},{"label":"NAUSEA","value":13253},{"label":"HEADACHE","value":11921},{"label":"ARTHRALGIA","value":10747},{"label":"DYSPNOEA","value":10352},{"label":"VOMITING","value":9800},{"label":"DIARRHOEA","value":9539},{"label":"RASH","value":8900},{"label":"OFF LABEL USE","value":8300},{"label":"DIZZINESS","value":8041},{"label":"PYREXIA","value":7804},{"label":"PRURITUS","value":7786},{"label":"ACUTE KIDNEY INJURY","value":6532}];
-    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[113783,62217,605]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[12659,21762,32101,37254,18631,12408]};
-    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[93429,69270,52792,15951,12790,8957]};
-    var TRENDS_DATA    = {"labels":["Q4 1998","Q4 2001","Q3 2002","Q2 2003","Q3 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,2,1,1,2,2,372,364,446,428,502,490,562,586,582,540,387,539,561,476,489,583,639,371,462,308,426,682,957,699,863,749,1316,1044,1381,1351,1387,1579,1902,1692,1893,1584,1903,1641,1421,1787,2169,1418,1386,1593,2340,1897,2522,2343,2893,3036,3673,2907,3062,2827,2855,2599,3819,4549,3720,3509,4612,4076,4243,3744,4481,3704,3766,3521,4039,3728,3650,3830,3734,3492,3357,4060,3865,3323,3417,3064,3377,3182,2919,3149,3212,3047,3344,3121,2999]};
+    var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":15479},{"label":"PAIN","value":14875},{"label":"FATIGUE","value":14245},{"label":"NAUSEA","value":13252},{"label":"HEADACHE","value":11917},{"label":"ARTHRALGIA","value":10747},{"label":"DYSPNOEA","value":10354},{"label":"VOMITING","value":9798},{"label":"DIARRHOEA","value":9539},{"label":"RASH","value":8900},{"label":"OFF LABEL USE","value":8300},{"label":"DIZZINESS","value":8043},{"label":"PYREXIA","value":7803},{"label":"PRURITUS","value":7785},{"label":"ACUTE KIDNEY INJURY","value":6532}];
+    var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[113780,62219,605]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[12656,21760,32100,37257,18633,12408]};
+    var OUTCOMES_DATA  = {"labels":["Other Serious","Hospitalization","Non-Serious","Death","Life-Threatening","Disability"],"values":[93433,69270,52791,15951,12788,8957]};
+    var TRENDS_DATA    = {"labels":["Q4 1998","Q4 2001","Q3 2002","Q2 2003","Q3 2003","Q4 2003","Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q2 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[1,2,1,1,2,2,372,363,445,428,502,490,563,586,582,540,388,539,561,475,489,583,639,370,462,309,426,682,958,699,863,749,1316,1045,1382,1351,1387,1579,1901,1691,1893,1584,1903,1641,1421,1787,2169,1418,1386,1593,2340,1897,2522,2343,2893,3036,3673,2907,3062,2827,2855,2599,3819,4549,3720,3509,4612,4076,4243,3744,4481,3704,3766,3521,4039,3728,3650,3830,3734,3492,3357,4060,3865,3323,3417,3064,3377,3182,2919,3149,3212,3047,3344,3121,2999]};
   </script>
 
   <!-- Chart.js from CDN -->

@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 
   <title>Aspirin — Adverse Events | PillSignal</title>
-  <meta name="description" content="Aspirin (aspirin): 500,606 adverse event reports submitted to the FDA.">
+  <meta name="description" content="Aspirin (): 500,606 adverse event reports submitted to the FDA.">
   <link rel="canonical" href="https://pillsignal.com/drugs/aspirin">
   <link rel="me" href="https://x.com/PillSignal">
 
@@ -22,7 +22,7 @@
   <!-- Open Graph -->
   <meta property="og:type"        content="website">
   <meta property="og:title"       content="Aspirin — Adverse Events | PillSignal">
-  <meta property="og:description" content="Aspirin (aspirin): 500,606 adverse event reports submitted to the FDA.">
+  <meta property="og:description" content="Aspirin (): 500,606 adverse event reports submitted to the FDA.">
   <meta property="og:url"         content="https://pillsignal.com/drugs/aspirin">
   <meta property="og:site_name"   content="PillSignal">
   <meta property="og:image"       content="https://pillsignal.com/og-image.png">
@@ -30,11 +30,11 @@
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="Aspirin — Adverse Events | PillSignal">
-  <meta name="twitter:description" content="Aspirin (aspirin): 500,606 adverse event reports submitted to the FDA.">
+  <meta name="twitter:description" content="Aspirin (): 500,606 adverse event reports submitted to the FDA.">
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"ASPIRIN (aspirin) — FDA Adverse Event Reports","description":"Aspirin (aspirin): 500,606 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/aspirin","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"ASPIRIN () — FDA Adverse Event Reports","description":"Aspirin (): 500,606 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/aspirin","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -453,7 +470,7 @@
 
     <!-- Drug hero -->
     <div class="drug-hero">
-      <h1>Aspirin<small>aspirin</small></h1>
+      <h1>Aspirin<small></small></h1>
       <p class="drug-description"><strong>According to the FDA label:</strong> Uses temporarily relieves: headache muscle pain toothache menstrual pain pain and fever of colds minor pain of arthritis</p>
       <p class="drug-summary">
         <strong>500,606</strong> adverse event reports submitted to the FDA
@@ -540,16 +557,30 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    <section class="card" aria-labelledby="co-reported-heading">
+  <h2 id="co-reported-heading">Medications commonly reported with Aspirin</h2>
+  <p class="section-note">In FDA adverse event reports that mention Aspirin, these medications appeared most often in the same report.</p>
+  <ul class="co-reported-list">
+    <li><a href="/drugs/lasix">Furosemide</a> <span class="co-reported-count">(68,971 reports)</span></li>
+    <li>Ergocalciferol <span class="co-reported-count">(65,947 reports)</span></li>
+    <li><a href="/drugs/prilosec">Omeprazole</a> <span class="co-reported-count">(63,241 reports)</span></li>
+    <li><a href="/drugs/clopidogrel">Clopidogrel</a> <span class="co-reported-count">(60,304 reports)</span></li>
+    <li><a href="/drugs/metoprolol">Metoprolol</a> <span class="co-reported-count">(58,427 reports)</span></li>
+  </ul>
+  <p class="chart-caption">This reflects co-occurrence in submitted reports, not evidence of drug interaction or combined risk. People often report several medications taken for the same condition or for unrelated reasons. Talk to a doctor or pharmacist about your specific medications.</p>
+</section>
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
-    <li><a href="/drugs/bayer">Bayer</a><span class="related-count">500,121 reports</span></li>
-    <li><a href="/drugs/bayer-aspirin-regimen-chewable-low-dose-aspirin-orange">Bayer Aspirin Regimen Chewable Low Dose Aspirin Orange</a><span class="related-count">499,967 reports</span></li>
-    <li><a href="/drugs/bayer-aspirin-regimen-enteric-coated">Bayer Aspirin Regimen Enteric Coated</a><span class="related-count">499,960 reports</span></li>
-    <li><a href="/drugs/bayer-genuine-aspirin">Bayer Genuine Aspirin</a><span class="related-count">500,767 reports</span></li>
-    <li><a href="/drugs/bayer-low-dose">Bayer Low Dose</a><span class="related-count">504,758 reports</span></li>
+    <li><a href="/drugs/bayer">Bayer</a><span class="related-count">500,117 reports</span></li>
+    <li><a href="/drugs/bayer-aspirin-regimen-chewable-low-dose-aspirin-orange">Bayer Aspirin Regimen Chewable Low Dose Aspirin Orange</a><span class="related-count">499,963 reports</span></li>
+    <li><a href="/drugs/bayer-aspirin-regimen-enteric-coated">Bayer Aspirin Regimen Enteric Coated</a><span class="related-count">499,956 reports</span></li>
+    <li><a href="/drugs/bayer-genuine-aspirin">Bayer Genuine Aspirin</a><span class="related-count">500,763 reports</span></li>
+    <li><a href="/drugs/bayer-low-dose">Bayer Low Dose</a><span class="related-count">504,754 reports</span></li>
   </ul>
 </section>
 

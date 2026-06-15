@@ -34,7 +34,7 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <!-- JSON-LD structured data (Dataset schema) -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"BOTOX COSMETIC () — FDA Adverse Event Reports","description":"Botox Cosmetic (): 38,867 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/botox-cosmetic","dateModified":"2026-06-08","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"BOTOX COSMETIC () — FDA Adverse Event Reports","description":"Botox Cosmetic (): 38,867 adverse event reports submitted to the FDA.","url":"https://pillsignal.com/drugs/botox-cosmetic","dateModified":"2026-06-15","creator":{"@type":"Organization","name":"PillSignal","url":"https://pillsignal.com"},"sourceOrganization":{"@type":"Organization","name":"U.S. Food and Drug Administration","url":"https://www.fda.gov"},"license":"https://open.fda.gov/license/"}</script>
 
   <style>
     /* ─── Light theme (default) ──────────────────────────────────────────────── */
@@ -366,6 +366,23 @@
       margin-left: 1rem;
     }
 
+    /* ─── Co-reported medications list ────────────────────────────────────────── */
+    .co-reported-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .co-reported-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .co-reported-list li:last-child { border-bottom: none; }
+    .co-reported-list a { font-weight: 500; }
+    .co-reported-count {
+      font-size: 0.8rem;
+      color: var(--c-text-muted);
+    }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -540,16 +557,19 @@
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 
+    <!-- ─── Co-reported medications (injected by generate-pages.js, '' if under 3) ─ -->
+    
+
     <!-- ─── Related Drugs (injected by generate-pages.js, empty string if none) ── -->
     <section class="card" aria-labelledby="related-heading">
   <h2 id="related-heading">Related Drugs</h2>
   <p class="section-note">Other medications with similar adverse event profiles in FDA FAERS reports.</p>
   <ul class="related-list">
     <li><a href="/drugs/emgality">Emgality</a><span class="related-count">30,356 reports</span></li>
-    <li><a href="/drugs/copaxone">Copaxone</a><span class="related-count">53,192 reports</span></li>
+    <li><a href="/drugs/copaxone">Copaxone</a><span class="related-count">53,194 reports</span></li>
     <li><a href="/drugs/dupixent">Dupixent</a><span class="related-count">438,499 reports</span></li>
     <li><a href="/drugs/effaclar">Effaclar</a><span class="related-count">5,028 reports</span></li>
-    <li><a href="/drugs/latisse">Latisse</a><span class="related-count">11,097 reports</span></li>
+    <li><a href="/drugs/latisse">Latisse</a><span class="related-count">11,096 reports</span></li>
   </ul>
 </section>
 
@@ -596,7 +616,7 @@
     var DRUG_NAME      = "Botox Cosmetic";
     var ADVERSE_EVENTS = [{"label":"DRUG INEFFECTIVE","value":20319},{"label":"OFF LABEL USE","value":5780},{"label":"THERAPEUTIC RESPONSE DECREASED","value":3691},{"label":"PRODUCT PREPARATION ERROR","value":3261},{"label":"MULTIPLE USE OF SINGLE-USE PRODUCT","value":2610},{"label":"INJECTION SITE PAIN","value":2043},{"label":"EYELID PTOSIS","value":1905},{"label":"WRONG TECHNIQUE IN DRUG USAGE PROCESS","value":1462},{"label":"HEADACHE","value":1455},{"label":"WRONG TECHNIQUE IN PRODUCT USAGE PROCESS","value":1265},{"label":"INJECTION SITE SWELLING","value":728},{"label":"SWELLING FACE","value":641},{"label":"FACIAL PARESIS","value":635},{"label":"VISION BLURRED","value":622},{"label":"DIZZINESS","value":580}];
     var SEX_DATA       = {"labels":["Female","Male","Unknown"],"values":[30004,2258,128]};
-    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[318,1598,6273,4692,903,191]};
+    var AGE_DATA       = {"labels":["0-17","18-34","35-49","50-64","65-74","75+"],"values":[318,1598,6274,4691,903,191]};
     var OUTCOMES_DATA  = {"labels":["Non-Serious","Other Serious","Hospitalization","Disability","Death","Life-Threatening"],"values":[37686,938,296,68,29,24]};
     var TRENDS_DATA    = {"labels":["Q1 2004","Q2 2004","Q3 2004","Q4 2004","Q1 2005","Q2 2005","Q3 2005","Q4 2005","Q1 2006","Q2 2006","Q3 2006","Q4 2006","Q1 2007","Q2 2007","Q3 2007","Q4 2007","Q1 2008","Q2 2008","Q3 2008","Q4 2008","Q1 2009","Q3 2009","Q4 2009","Q1 2010","Q2 2010","Q3 2010","Q4 2010","Q1 2011","Q2 2011","Q3 2011","Q4 2011","Q1 2012","Q2 2012","Q3 2012","Q4 2012","Q1 2013","Q2 2013","Q3 2013","Q4 2013","Q1 2014","Q2 2014","Q3 2014","Q4 2014","Q1 2015","Q2 2015","Q3 2015","Q4 2015","Q1 2016","Q2 2016","Q3 2016","Q4 2016","Q1 2017","Q2 2017","Q3 2017","Q4 2017","Q1 2018","Q2 2018","Q3 2018","Q4 2018","Q1 2019","Q2 2019","Q3 2019","Q4 2019","Q1 2020","Q2 2020","Q3 2020","Q4 2020","Q1 2021","Q2 2021","Q3 2021","Q4 2021","Q1 2022","Q2 2022","Q3 2022","Q4 2022","Q1 2023","Q2 2023","Q3 2023","Q4 2023","Q1 2024","Q2 2024","Q3 2024","Q4 2024","Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026"],"values":[5,2,1,1,5,4,9,4,6,2,2,7,4,8,6,7,34,27,21,18,20,16,7,3029,15,3,969,1253,7,6,14,2415,18,7,8,2228,13,9,7,1893,8,10,15,2002,18,16,16,2983,33,42,24,2286,20,14,11,2296,22,22,10,2344,23,31,20,2196,5,26,18,3225,12,16,15,2570,18,20,19,1935,422,317,369,341,460,432,366,289,345,346,396,333]};
   </script>
