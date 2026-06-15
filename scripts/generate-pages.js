@@ -320,7 +320,7 @@ function renderCoReportedHtml(coReported, brandName, resolveLink) {
   const items = coReported.map(c => {
     const display = escapeHtml(toTitleCase(c.name));
     const match   = resolveLink(c.name);
-    const nameHtml = match ? `<a href="/drugs/${match.slug}">${display}</a>` : display;
+    const nameHtml = match ? `<a href="/drugs/${match.slug}/">${display}</a>` : display;
     return `    <li>${nameHtml} <span class="co-reported-count">(${c.count.toLocaleString('en-US')} reports)</span></li>`;
   }).join('\n');
 
@@ -338,7 +338,7 @@ ${items}
 function renderRelatedDrugsHtml(relatedDrugs) {
   if (!relatedDrugs || !relatedDrugs.length) return '';
   const items = relatedDrugs.map(d =>
-    `    <li><a href="/drugs/${d.slug}">${escapeHtml(displayName(d.brand_name))}</a>` +
+    `    <li><a href="/drugs/${d.slug}/">${escapeHtml(displayName(d.brand_name))}</a>` +
     `<span class="related-count">${d.total_reports.toLocaleString('en-US')} reports</span></li>`
   ).join('\n');
   return `<section class="card" aria-labelledby="related-heading">
@@ -384,7 +384,7 @@ function buildJsonLd(drug, canonicalUrl, description) {
 function renderPage(drug, adverseEvents, demographics, outcomes, trends, relatedDrugs = [], coReported = [], resolveLink = () => null) {
   const { slug, generic_name: genericName, total_reports: totalReports } = drug;
   const brandName = displayName(drug.brand_name);
-  const canonicalUrl  = `${SITE_URL}/drugs/${slug}`;
+  const canonicalUrl  = `${SITE_URL}/drugs/${slug}/`;
   const dateRange     = computeDateRange(trends) ?? 'data available';
   const generatedDate = new Date().toLocaleDateString('en-US', {
     year: 'numeric', month: 'long', day: 'numeric',

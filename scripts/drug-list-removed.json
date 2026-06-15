@@ -3473,5 +3473,19 @@
     "brand_name": "XPECT CHEWABLE ASPIRIN",
     "generic_name": "",
     "slug": "xpect-chewable-aspirin"
+  },
+  {
+    "brand_name": "HAIR GROWTH",
+    "generic_name": "",
+    "slug": "hair-growth",
+    "removed_date": "2026-06-15",
+    "reason": "junk entry, 3 reports, cosmetic category label not a real drug"
+  },
+  {
+    "brand_name": "WOMENS ROGAINE UNSCENTED",
+    "generic_name": "",
+    "slug": "womens-rogaine-unscented",
+    "removed_date": "2026-06-15",
+    "reason": "orphan directory, stale minoxidil duplicate from rogaine dedup, never in drug-list.json"
   }
 ]
