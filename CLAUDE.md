@@ -270,3 +270,7 @@ Run this checklist in order every time the dataset is refreshed. Deviating from 
 - GitHub Pages serves from the `/docs` directory
 - After deployment, purge Cloudflare cache if needed
 - Verify new/updated pages in Google Search Console
+
+## Backlog
+
+- **Title-separator em-dashes (site-wide pass).** `<title>`, `og:title`, `twitter:title`, and the homepage/guides sr-only `<h1>` still use the `PillSignal — ...` em-dash separator, and every drug-page title uses `Brand — Adverse Events | PillSignal`. These were intentionally left during the homepage/guides em-dash sweep because changing them piecemeal would be inconsistent. A future pass should decide on a consistent separator (and update `buildPageTitle()` in `generate-pages.js` plus the static title tags) site-wide in one commit.
