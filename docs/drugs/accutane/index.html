@@ -927,7 +927,8 @@
             backgroundColor:  isDark() ? 'rgba(52,209,160,0.08)' : 'rgba(0,166,126,0.08)',
             borderWidth:      2,
             pointRadius:      2,
-            pointHoverRadius: 4,
+            pointHoverRadius: 6,
+            hitRadius:        4,
             fill:             true,
             tension:          0.3,
           }]
@@ -935,6 +936,7 @@
         options: {
           responsive:          true,
           maintainAspectRatio: false,
+          interaction: { mode: 'nearest', intersect: true },
           plugins: {
             legend: { display: false },
             tooltip: {
