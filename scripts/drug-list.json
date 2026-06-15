@@ -6,17 +6,17 @@
   },
   {
     "brand_name": "ABRAXANE",
-    "generic_name": "",
+    "generic_name": "paclitaxel",
     "slug": "abraxane"
   },
   {
     "brand_name": "ABREVA",
-    "generic_name": "",
+    "generic_name": "docosanol",
     "slug": "abreva"
   },
   {
     "brand_name": "ACCUTANE",
-    "generic_name": "",
+    "generic_name": "isotretinoin",
     "slug": "accutane"
   },
   {
@@ -26,22 +26,22 @@
   },
   {
     "brand_name": "Aciphex",
-    "generic_name": "rabeprazole sodium",
+    "generic_name": "rabeprazole",
     "slug": "aciphex"
   },
   {
     "brand_name": "ACTEMRA",
-    "generic_name": "",
+    "generic_name": "tocilizumab",
     "slug": "actemra"
   },
   {
     "brand_name": "Actonel",
-    "generic_name": "risedronate sodium",
+    "generic_name": "risedronate",
     "slug": "actonel"
   },
   {
     "brand_name": "Actos",
-    "generic_name": "pioglitazone hydrochloride",
+    "generic_name": "pioglitazone",
     "slug": "actos"
   },
   {
@@ -61,7 +61,7 @@
   },
   {
     "brand_name": "ADCIRCA",
-    "generic_name": "",
+    "generic_name": "tadalafil",
     "slug": "adcirca"
   },
   {
@@ -76,7 +76,7 @@
   },
   {
     "brand_name": "ADRENALIN",
-    "generic_name": "",
+    "generic_name": "epinephrine",
     "slug": "adrenalin"
   },
   {
@@ -86,47 +86,47 @@
   },
   {
     "brand_name": "Advair Diskus",
-    "generic_name": "fluticasone propionate/salmeterol",
+    "generic_name": "fluticasone + salmeterol",
     "slug": "advair"
   },
   {
     "brand_name": "ADVAIR HFA",
-    "generic_name": "",
+    "generic_name": "fluticasone + salmeterol",
     "slug": "advair-hfa"
   },
   {
     "brand_name": "ADVIL",
-    "generic_name": "",
+    "generic_name": "ibuprofen",
     "slug": "advil"
   },
   {
     "brand_name": "ADVIL LIQUI-GELS",
-    "generic_name": "",
+    "generic_name": "ibuprofen",
     "slug": "advil-liqui-gels"
   },
   {
     "brand_name": "ADVIL MIGRAINE",
-    "generic_name": "",
+    "generic_name": "ibuprofen",
     "slug": "advil-migraine"
   },
   {
     "brand_name": "AFINITOR",
-    "generic_name": "",
+    "generic_name": "everolimus",
     "slug": "afinitor"
   },
   {
     "brand_name": "AFINITOR DISPERZ",
-    "generic_name": "",
+    "generic_name": "everolimus",
     "slug": "afinitor-disperz"
   },
   {
     "brand_name": "AG-X",
-    "generic_name": "",
+    "generic_name": "calcium",
     "slug": "ag-x"
   },
   {
     "brand_name": "AIMOVIG",
-    "generic_name": "",
+    "generic_name": "erenumab",
     "slug": "aimovig"
   },
   {
@@ -141,7 +141,7 @@
   },
   {
     "brand_name": "ALBUTEROL SULFATE HFA",
-    "generic_name": "",
+    "generic_name": "albuterol",
     "slug": "albuterol-sulfate-hfa"
   },
   {
@@ -166,52 +166,52 @@
   },
   {
     "brand_name": "ALEVE",
-    "generic_name": "",
+    "generic_name": "naproxen",
     "slug": "aleve"
   },
   {
     "brand_name": "ALEVE BACK AND MUSCLE PAIN",
-    "generic_name": "",
+    "generic_name": "naproxen",
     "slug": "aleve-back-and-muscle-pain"
   },
   {
     "brand_name": "ALEVE CAPLETS",
-    "generic_name": "",
+    "generic_name": "naproxen",
     "slug": "aleve-caplets"
   },
   {
     "brand_name": "ALEVE EASY OPEN ARTHRITIS CAP",
-    "generic_name": "",
+    "generic_name": "naproxen",
     "slug": "aleve-easy-open-arthritis-cap"
   },
   {
     "brand_name": "ALEVE GELCAPS",
-    "generic_name": "",
+    "generic_name": "naproxen",
     "slug": "aleve-gelcaps"
   },
   {
     "brand_name": "ALKA-SELTZER COOL ACTION EXTRA STRENGTH RELIEFCHEWS MINT",
-    "generic_name": "",
+    "generic_name": "calcium carbonate",
     "slug": "alka-seltzer-cool-action-extra-strength-reliefchews-mint"
   },
   {
     "brand_name": "ALKA-SELTZER HEARTBURN RELIEF PEPPERMINT",
-    "generic_name": "",
+    "generic_name": "calcium carbonate",
     "slug": "alka-seltzer-heartburn-relief-peppermint"
   },
   {
     "brand_name": "ALKA-SELTZER HEARTBURN RELIEFCHEWS",
-    "generic_name": "",
+    "generic_name": "calcium carbonate",
     "slug": "alka-seltzer-heartburn-reliefchews"
   },
   {
     "brand_name": "Allegra",
-    "generic_name": "fexofenadine hydrochloride",
+    "generic_name": "fexofenadine",
     "slug": "allegra"
   },
   {
     "brand_name": "ALLI",
-    "generic_name": "",
+    "generic_name": "orlistat",
     "slug": "alli"
   },
   {
@@ -221,7 +221,7 @@
   },
   {
     "brand_name": "ALOPRIM",
-    "generic_name": "",
+    "generic_name": "allopurinol",
     "slug": "aloprim"
   },
   {
@@ -236,7 +236,7 @@
   },
   {
     "brand_name": "ALPRAZOLAM XR",
-    "generic_name": "",
+    "generic_name": "alprazolam",
     "slug": "alprazolam-xr"
   },
   {
@@ -246,7 +246,7 @@
   },
   {
     "brand_name": "ALTACHLORE SODIUM CHLORIDE HYPERTONICITY",
-    "generic_name": "",
+    "generic_name": "sodium",
     "slug": "altachlore-sodium-chloride-hypertonicity"
   },
   {
@@ -256,12 +256,12 @@
   },
   {
     "brand_name": "Ambien",
-    "generic_name": "zolpidem tartrate",
+    "generic_name": "zolpidem",
     "slug": "ambien"
   },
   {
     "brand_name": "AMBIEN CR",
-    "generic_name": "",
+    "generic_name": "zolpidem",
     "slug": "ambien-cr"
   },
   {
@@ -276,7 +276,7 @@
   },
   {
     "brand_name": "AMNESTEEM",
-    "generic_name": "",
+    "generic_name": "isotretinoin",
     "slug": "amnesteem"
   },
   {
@@ -291,7 +291,7 @@
   },
   {
     "brand_name": "AMPYRA",
-    "generic_name": "",
+    "generic_name": "dalfampridine",
     "slug": "ampyra"
   },
   {
@@ -301,7 +301,7 @@
   },
   {
     "brand_name": "ANUSOL HC",
-    "generic_name": "",
+    "generic_name": "hydrocortisone",
     "slug": "anusol-hc"
   },
   {
@@ -311,27 +311,27 @@
   },
   {
     "brand_name": "ARANESP",
-    "generic_name": "",
+    "generic_name": "darbepoetin alfa",
     "slug": "aranesp"
   },
   {
     "brand_name": "ARAVA",
-    "generic_name": "",
+    "generic_name": "leflunomide",
     "slug": "arava"
   },
   {
     "brand_name": "Aricept",
-    "generic_name": "donepezil hydrochloride",
+    "generic_name": "donepezil",
     "slug": "aricept"
   },
   {
     "brand_name": "ARIMIDEX",
-    "generic_name": "",
+    "generic_name": "anastrozole",
     "slug": "arimidex"
   },
   {
     "brand_name": "ASCOR",
-    "generic_name": "",
+    "generic_name": "ascorbic acid",
     "slug": "ascor"
   },
   {
@@ -346,7 +346,7 @@
   },
   {
     "brand_name": "Atarax",
-    "generic_name": "hydroxyzine hydrochloride",
+    "generic_name": "hydroxyzine",
     "slug": "atarax"
   },
   {
@@ -366,27 +366,27 @@
   },
   {
     "brand_name": "ATROVENT HFA",
-    "generic_name": "",
+    "generic_name": "ipratropium",
     "slug": "atrovent-hfa"
   },
   {
     "brand_name": "AUBAGIO",
-    "generic_name": "",
+    "generic_name": "teriflunomide",
     "slug": "aubagio"
   },
   {
     "brand_name": "Augmentin",
-    "generic_name": "amoxicillin/clavulanate potassium",
+    "generic_name": "amoxicillin + clavulanate",
     "slug": "augmentin"
   },
   {
     "brand_name": "AUVI-Q",
-    "generic_name": "",
+    "generic_name": "epinephrine",
     "slug": "auvi-q"
   },
   {
     "brand_name": "AVACLYR",
-    "generic_name": "",
+    "generic_name": "acyclovir",
     "slug": "avaclyr"
   },
   {
@@ -396,32 +396,32 @@
   },
   {
     "brand_name": "AVASTIN",
-    "generic_name": "",
+    "generic_name": "bevacizumab",
     "slug": "avastin"
   },
   {
     "brand_name": "AVODART",
-    "generic_name": "",
+    "generic_name": "dutasteride",
     "slug": "avodart"
   },
   {
     "brand_name": "AVONEX",
-    "generic_name": "",
+    "generic_name": "interferon beta-1a",
     "slug": "avonex"
   },
   {
     "brand_name": "AVOPEF",
-    "generic_name": "",
+    "generic_name": "etoposide",
     "slug": "avopef"
   },
   {
     "brand_name": "AVZIVI TNJN",
-    "generic_name": "",
+    "generic_name": "bevacizumab",
     "slug": "avzivi-tnjn"
   },
   {
     "brand_name": "AZASAN",
-    "generic_name": "",
+    "generic_name": "azathioprine",
     "slug": "azasan"
   },
   {
@@ -431,12 +431,12 @@
   },
   {
     "brand_name": "AZULFIDINE",
-    "generic_name": "",
+    "generic_name": "sulfasalazine",
     "slug": "azulfidine"
   },
   {
     "brand_name": "AZULFIDINE EN-TABS",
-    "generic_name": "",
+    "generic_name": "sulfasalazine",
     "slug": "azulfidine-en-tabs"
   },
   {
@@ -451,12 +451,12 @@
   },
   {
     "brand_name": "BACTERIOSTATIC SODIUM CHLORIDE",
-    "generic_name": "",
+    "generic_name": "sodium",
     "slug": "bacteriostatic-sodium-chloride"
   },
   {
     "brand_name": "Bactrim",
-    "generic_name": "sulfamethoxazole/trimethoprim",
+    "generic_name": "sulfamethoxazole + trimethoprim",
     "slug": "bactrim"
   },
   {
@@ -466,47 +466,47 @@
   },
   {
     "brand_name": "BASAGLAR KWIKPEN",
-    "generic_name": "",
+    "generic_name": "insulin glargine",
     "slug": "basaglar-kwikpen"
   },
   {
     "brand_name": "BASAGLAR TEMPO PEN",
-    "generic_name": "",
+    "generic_name": "insulin glargine",
     "slug": "basaglar-tempo-pen"
   },
   {
     "brand_name": "BAYER",
-    "generic_name": "",
+    "generic_name": "aspirin",
     "slug": "bayer"
   },
   {
     "brand_name": "BAYER ASPIRIN REGIMEN CHEWABLE LOW DOSE ASPIRIN ORANGE",
-    "generic_name": "",
+    "generic_name": "aspirin",
     "slug": "bayer-aspirin-regimen-chewable-low-dose-aspirin-orange"
   },
   {
     "brand_name": "BAYER ASPIRIN REGIMEN ENTERIC COATED",
-    "generic_name": "",
+    "generic_name": "aspirin",
     "slug": "bayer-aspirin-regimen-enteric-coated"
   },
   {
     "brand_name": "BAYER GENUINE ASPIRIN",
-    "generic_name": "",
+    "generic_name": "aspirin",
     "slug": "bayer-genuine-aspirin"
   },
   {
     "brand_name": "BAYER LOW DOSE",
-    "generic_name": "",
+    "generic_name": "aspirin",
     "slug": "bayer-low-dose"
   },
   {
     "brand_name": "BEIZRAY",
-    "generic_name": "",
+    "generic_name": "docetaxel",
     "slug": "beizray"
   },
   {
     "brand_name": "Benadryl",
-    "generic_name": "diphenhydramine hydrochloride",
+    "generic_name": "diphenhydramine",
     "slug": "benadryl"
   },
   {
@@ -516,22 +516,22 @@
   },
   {
     "brand_name": "Bentyl",
-    "generic_name": "dicyclomine hydrochloride",
+    "generic_name": "dicyclomine",
     "slug": "bentyl"
   },
   {
     "brand_name": "BETASERON",
-    "generic_name": "",
+    "generic_name": "interferon beta-1b",
     "slug": "betaseron"
   },
   {
     "brand_name": "BIMZELX",
-    "generic_name": "",
+    "generic_name": "bimekizumab",
     "slug": "bimzelx"
   },
   {
     "brand_name": "BINOSTO",
-    "generic_name": "",
+    "generic_name": "alendronate",
     "slug": "binosto"
   },
   {
@@ -546,12 +546,12 @@
   },
   {
     "brand_name": "Boniva",
-    "generic_name": "ibandronate sodium",
+    "generic_name": "ibandronate",
     "slug": "boniva"
   },
   {
     "brand_name": "BOTOX COSMETIC",
-    "generic_name": "",
+    "generic_name": "onabotulinumtoxina",
     "slug": "botox-cosmetic"
   },
   {
@@ -561,12 +561,12 @@
   },
   {
     "brand_name": "BUFFERIN REGULAR STRENGTH PAIN RELIEF",
-    "generic_name": "",
+    "generic_name": "aspirin",
     "slug": "bufferin-regular-strength-pain-relief"
   },
   {
     "brand_name": "BUTRANS",
-    "generic_name": "",
+    "generic_name": "buprenorphine",
     "slug": "butrans"
   },
   {
@@ -576,12 +576,12 @@
   },
   {
     "brand_name": "CABOMETYX",
-    "generic_name": "",
+    "generic_name": "cabozantinib",
     "slug": "cabometyx"
   },
   {
     "brand_name": "CALCIUM CARBONATE",
-    "generic_name": "",
+    "generic_name": "antacid",
     "slug": "calcium-carbonate"
   },
   {
@@ -591,7 +591,7 @@
   },
   {
     "brand_name": "CALDOLOR",
-    "generic_name": "",
+    "generic_name": "ibuprofen",
     "slug": "caldolor"
   },
   {
@@ -601,7 +601,7 @@
   },
   {
     "brand_name": "CARBAMAZEPIN",
-    "generic_name": "",
+    "generic_name": "carbamazepine",
     "slug": "carbamazepin"
   },
   {
@@ -611,12 +611,12 @@
   },
   {
     "brand_name": "CARBAMAZEPINE ER",
-    "generic_name": "",
+    "generic_name": "carbamazepine",
     "slug": "carbamazepine-er"
   },
   {
     "brand_name": "CARBATROL",
-    "generic_name": "",
+    "generic_name": "carbamazepine",
     "slug": "carbatrol"
   },
   {
@@ -626,12 +626,12 @@
   },
   {
     "brand_name": "Cardizem",
-    "generic_name": "diltiazem hydrochloride",
+    "generic_name": "diltiazem",
     "slug": "cardizem"
   },
   {
     "brand_name": "Cardura",
-    "generic_name": "doxazosin mesylate",
+    "generic_name": "doxazosin",
     "slug": "cardura"
   },
   {
@@ -641,7 +641,7 @@
   },
   {
     "brand_name": "Catapres",
-    "generic_name": "clonidine hydrochloride",
+    "generic_name": "clonidine",
     "slug": "catapres"
   },
   {
@@ -661,12 +661,12 @@
   },
   {
     "brand_name": "CELLCEPT",
-    "generic_name": "",
+    "generic_name": "mycophenolate mofetil",
     "slug": "cellcept"
   },
   {
     "brand_name": "CEQUA",
-    "generic_name": "",
+    "generic_name": "cyclosporine",
     "slug": "cequa"
   },
   {
@@ -681,27 +681,27 @@
   },
   {
     "brand_name": "CHANTIX",
-    "generic_name": "",
+    "generic_name": "varenicline",
     "slug": "chantix"
   },
   {
     "brand_name": "CHILDRENS TYLENOL",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "childrens-tylenol"
   },
   {
     "brand_name": "CIALIS",
-    "generic_name": "",
+    "generic_name": "tadalafil",
     "slug": "cialis"
   },
   {
     "brand_name": "CIMZIA",
-    "generic_name": "",
+    "generic_name": "certolizumab pegol",
     "slug": "cimzia"
   },
   {
     "brand_name": "Cipro",
-    "generic_name": "ciprofloxacin hydrochloride",
+    "generic_name": "ciprofloxacin",
     "slug": "cipro"
   },
   {
@@ -711,12 +711,12 @@
   },
   {
     "brand_name": "CIPROFLOXACIN IN DEXTROSE",
-    "generic_name": "",
+    "generic_name": "ciprofloxacin",
     "slug": "ciprofloxacin-in-dextrose"
   },
   {
     "brand_name": "CIPROFLOXACIN OTIC",
-    "generic_name": "",
+    "generic_name": "ciprofloxacin",
     "slug": "ciprofloxacin-otic"
   },
   {
@@ -731,7 +731,7 @@
   },
   {
     "brand_name": "CLARAVIS",
-    "generic_name": "",
+    "generic_name": "isotretinoin",
     "slug": "claravis"
   },
   {
@@ -741,27 +741,27 @@
   },
   {
     "brand_name": "CLARITIN ALLERGY",
-    "generic_name": "",
+    "generic_name": "loratadine",
     "slug": "claritin-allergy"
   },
   {
     "brand_name": "CLARITIN LIQUI-GELS",
-    "generic_name": "",
+    "generic_name": "loratadine",
     "slug": "claritin-liqui-gels"
   },
   {
     "brand_name": "CLARITIN REDITABS",
-    "generic_name": "",
+    "generic_name": "loratadine",
     "slug": "claritin-reditabs"
   },
   {
     "brand_name": "Cleocin",
-    "generic_name": "clindamycin hydrochloride",
+    "generic_name": "clindamycin",
     "slug": "cleocin"
   },
   {
     "brand_name": "CLIMARA",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "climara"
   },
   {
@@ -776,12 +776,12 @@
   },
   {
     "brand_name": "CLONIDINE TRANSDERMAL SYSTEM",
-    "generic_name": "",
+    "generic_name": "clonidine",
     "slug": "clonidine-transdermal-system"
   },
   {
     "brand_name": "CLOPIDOGREL",
-    "generic_name": "",
+    "generic_name": "clopidogrel bisulfate",
     "slug": "clopidogrel"
   },
   {
@@ -796,12 +796,12 @@
   },
   {
     "brand_name": "CLOZARIL",
-    "generic_name": "",
+    "generic_name": "clozapine",
     "slug": "clozaril"
   },
   {
     "brand_name": "COLACE",
-    "generic_name": "",
+    "generic_name": "docusate",
     "slug": "colace"
   },
   {
@@ -811,22 +811,22 @@
   },
   {
     "brand_name": "Concerta",
-    "generic_name": "methylphenidate hydrochloride",
+    "generic_name": "methylphenidate",
     "slug": "concerta"
   },
   {
     "brand_name": "CONZIP",
-    "generic_name": "",
+    "generic_name": "tramadol",
     "slug": "conzip"
   },
   {
     "brand_name": "COPAXONE",
-    "generic_name": "",
+    "generic_name": "glatiramer",
     "slug": "copaxone"
   },
   {
     "brand_name": "Cordarone",
-    "generic_name": "amiodarone hydrochloride",
+    "generic_name": "amiodarone",
     "slug": "cordarone"
   },
   {
@@ -836,42 +836,42 @@
   },
   {
     "brand_name": "CORTEF",
-    "generic_name": "",
+    "generic_name": "hydrocortisone",
     "slug": "cortef"
   },
   {
     "brand_name": "CORTISONE",
-    "generic_name": "",
+    "generic_name": "hydrocortisone",
     "slug": "cortisone"
   },
   {
     "brand_name": "CORTIZONE 10",
-    "generic_name": "",
+    "generic_name": "hydrocortisone",
     "slug": "cortizone-10"
   },
   {
     "brand_name": "COSENTYX",
-    "generic_name": "",
+    "generic_name": "secukinumab",
     "slug": "cosentyx"
   },
   {
     "brand_name": "Coumadin",
-    "generic_name": "warfarin sodium",
+    "generic_name": "warfarin",
     "slug": "coumadin"
   },
   {
     "brand_name": "Cozaar",
-    "generic_name": "losartan potassium",
+    "generic_name": "losartan",
     "slug": "cozaar"
   },
   {
     "brand_name": "Crestor",
-    "generic_name": "rosuvastatin calcium",
+    "generic_name": "rosuvastatin",
     "slug": "crestor"
   },
   {
     "brand_name": "CYCLOPHOSPHAMIDE",
-    "generic_name": "",
+    "generic_name": "cyclophosphamide for injection",
     "slug": "cyclophosphamide"
   },
   {
@@ -881,17 +881,17 @@
   },
   {
     "brand_name": "CYCLOSPORINE MODIFIED",
-    "generic_name": "",
+    "generic_name": "cyclosporine",
     "slug": "cyclosporine-modified"
   },
   {
     "brand_name": "CYCLOSPORINE, MODFIED",
-    "generic_name": "",
+    "generic_name": "cyclosporine",
     "slug": "cyclosporine-modfied"
   },
   {
     "brand_name": "Cymbalta",
-    "generic_name": "duloxetine hydrochloride",
+    "generic_name": "duloxetine",
     "slug": "cymbalta"
   },
   {
@@ -901,22 +901,22 @@
   },
   {
     "brand_name": "Cytomel",
-    "generic_name": "liothyronine sodium",
+    "generic_name": "liothyronine",
     "slug": "cytomel"
   },
   {
     "brand_name": "D-125",
-    "generic_name": "",
+    "generic_name": "potassium",
     "slug": "d-125"
   },
   {
     "brand_name": "D-129",
-    "generic_name": "",
+    "generic_name": "sodium",
     "slug": "d-129"
   },
   {
     "brand_name": "D-CAL",
-    "generic_name": "",
+    "generic_name": "calcium carbonate",
     "slug": "d-cal"
   },
   {
@@ -926,7 +926,7 @@
   },
   {
     "brand_name": "DAYTRANA",
-    "generic_name": "",
+    "generic_name": "methylphenidate",
     "slug": "daytrana"
   },
   {
@@ -936,42 +936,42 @@
   },
   {
     "brand_name": "Depakote",
-    "generic_name": "divalproex sodium",
+    "generic_name": "divalproex",
     "slug": "depakote"
   },
   {
     "brand_name": "DEPAKOTE ER",
-    "generic_name": "",
+    "generic_name": "divalproex",
     "slug": "depakote-er"
   },
   {
     "brand_name": "DEPAKOTE SPRINKLES",
-    "generic_name": "",
+    "generic_name": "divalproex",
     "slug": "depakote-sprinkles"
   },
   {
     "brand_name": "DEPO-PROVERA",
-    "generic_name": "",
+    "generic_name": "medroxyprogesterone",
     "slug": "depo-provera"
   },
   {
     "brand_name": "DEPO-SUBQ PROVERA",
-    "generic_name": "",
+    "generic_name": "medroxyprogesterone",
     "slug": "depo-subq-provera"
   },
   {
     "brand_name": "Desyrel",
-    "generic_name": "trazodone hydrochloride",
+    "generic_name": "trazodone",
     "slug": "desyrel"
   },
   {
     "brand_name": "Detrol",
-    "generic_name": "tolterodine tartrate",
+    "generic_name": "tolterodine",
     "slug": "detrol"
   },
   {
     "brand_name": "DETROL LA",
-    "generic_name": "",
+    "generic_name": "tolterodine",
     "slug": "detrol-la"
   },
   {
@@ -981,17 +981,17 @@
   },
   {
     "brand_name": "DEXILANT",
-    "generic_name": "",
+    "generic_name": "dexlansoprazole",
     "slug": "dexilant"
   },
   {
     "brand_name": "DEXTENZA",
-    "generic_name": "",
+    "generic_name": "dexamethasone",
     "slug": "dextenza"
   },
   {
     "brand_name": "DEXYCU",
-    "generic_name": "",
+    "generic_name": "dexamethasone",
     "slug": "dexycu"
   },
   {
@@ -1001,7 +1001,7 @@
   },
   {
     "brand_name": "DIAZEPAM",
-    "generic_name": "",
+    "generic_name": "diazepam oral",
     "slug": "diazepam"
   },
   {
@@ -1016,7 +1016,7 @@
   },
   {
     "brand_name": "DIFFERIN",
-    "generic_name": "",
+    "generic_name": "adapalene",
     "slug": "differin"
   },
   {
@@ -1031,12 +1031,12 @@
   },
   {
     "brand_name": "Dilantin",
-    "generic_name": "phenytoin sodium",
+    "generic_name": "phenytoin",
     "slug": "dilantin"
   },
   {
     "brand_name": "DILAUDID",
-    "generic_name": "",
+    "generic_name": "hydromorphone",
     "slug": "dilaudid"
   },
   {
@@ -1046,7 +1046,7 @@
   },
   {
     "brand_name": "DIOVAN HCT",
-    "generic_name": "",
+    "generic_name": "valsartan + hydrochlorothiazide",
     "slug": "diovan-hct"
   },
   {
@@ -1056,37 +1056,37 @@
   },
   {
     "brand_name": "DIPRIVAN",
-    "generic_name": "",
+    "generic_name": "propofol",
     "slug": "diprivan"
   },
   {
     "brand_name": "Ditropan",
-    "generic_name": "oxybutynin chloride",
+    "generic_name": "oxybutynin",
     "slug": "ditropan"
   },
   {
     "brand_name": "DIVIGEL",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "divigel"
   },
   {
     "brand_name": "DOCETAXEL",
-    "generic_name": "",
+    "generic_name": "docetaxel anhydrous",
     "slug": "docetaxel"
   },
   {
     "brand_name": "DOCIVYX",
-    "generic_name": "",
+    "generic_name": "docetaxel",
     "slug": "docivyx"
   },
   {
     "brand_name": "DOLO-NEUROBION",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "dolo-neurobion"
   },
   {
     "brand_name": "DOTTI",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "dotti"
   },
   {
@@ -1101,7 +1101,7 @@
   },
   {
     "brand_name": "DOXYCYCLINE HYCLATE",
-    "generic_name": "",
+    "generic_name": "doxycycline",
     "slug": "doxycycline-hyclate"
   },
   {
@@ -1111,12 +1111,12 @@
   },
   {
     "brand_name": "DULOXETINE DELAYED-RELEASE",
-    "generic_name": "",
+    "generic_name": "duloxetine",
     "slug": "duloxetine-delayed-release"
   },
   {
     "brand_name": "DUPIXENT",
-    "generic_name": "",
+    "generic_name": "dupilumab",
     "slug": "dupixent"
   },
   {
@@ -1126,32 +1126,32 @@
   },
   {
     "brand_name": "DURAMORPH",
-    "generic_name": "",
+    "generic_name": "morphine",
     "slug": "duramorph"
   },
   {
     "brand_name": "ECOTRIN",
-    "generic_name": "",
+    "generic_name": "aspirin",
     "slug": "ecotrin"
   },
   {
     "brand_name": "ECOTRIN REGULAR STRENGTH",
-    "generic_name": "",
+    "generic_name": "aspirin",
     "slug": "ecotrin-regular-strength"
   },
   {
     "brand_name": "EFFACLAR",
-    "generic_name": "",
+    "generic_name": "adapalene",
     "slug": "effaclar"
   },
   {
     "brand_name": "Effexor",
-    "generic_name": "venlafaxine hydrochloride",
+    "generic_name": "venlafaxine",
     "slug": "effexor"
   },
   {
     "brand_name": "EFFEXOR XR",
-    "generic_name": "",
+    "generic_name": "venlafaxine",
     "slug": "effexor-xr"
   },
   {
@@ -1161,17 +1161,17 @@
   },
   {
     "brand_name": "EFUDEX",
-    "generic_name": "",
+    "generic_name": "fluorouracil",
     "slug": "efudex"
   },
   {
     "brand_name": "ELESTRIN",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "elestrin"
   },
   {
     "brand_name": "ELIGARD",
-    "generic_name": "",
+    "generic_name": "leuprolide",
     "slug": "eligard"
   },
   {
@@ -1181,12 +1181,12 @@
   },
   {
     "brand_name": "ELYXYB - CELECOXIB",
-    "generic_name": "",
+    "generic_name": "celecoxib",
     "slug": "elyxyb-celecoxib"
   },
   {
     "brand_name": "EMGALITY",
-    "generic_name": "",
+    "generic_name": "galcanezumab",
     "slug": "emgality"
   },
   {
@@ -1206,37 +1206,37 @@
   },
   {
     "brand_name": "ENDOCET",
-    "generic_name": "",
+    "generic_name": "oxycodone + acetaminophen",
     "slug": "endocet"
   },
   {
     "brand_name": "Entresto",
-    "generic_name": "sacubitril/valsartan",
+    "generic_name": "sacubitril + valsartan",
     "slug": "entresto"
   },
   {
     "brand_name": "ENTYVIO",
-    "generic_name": "",
+    "generic_name": "vedolizumab",
     "slug": "entyvio"
   },
   {
     "brand_name": "ENTYVIO PEN",
-    "generic_name": "",
+    "generic_name": "vedolizumab",
     "slug": "entyvio-pen"
   },
   {
     "brand_name": "ENVARSUS XR",
-    "generic_name": "",
+    "generic_name": "tacrolimus",
     "slug": "envarsus-xr"
   },
   {
     "brand_name": "EPANED",
-    "generic_name": "",
+    "generic_name": "enalapril",
     "slug": "epaned"
   },
   {
     "brand_name": "EPINEPHRINE",
-    "generic_name": "",
+    "generic_name": "adrenalinum",
     "slug": "epinephrine"
   },
   {
@@ -1246,47 +1246,47 @@
   },
   {
     "brand_name": "EPIPEN",
-    "generic_name": "",
+    "generic_name": "epinephrine",
     "slug": "epipen"
   },
   {
     "brand_name": "EPIPEN JR",
-    "generic_name": "",
+    "generic_name": "epinephrine",
     "slug": "epipen-jr"
   },
   {
     "brand_name": "EPITOL",
-    "generic_name": "",
+    "generic_name": "carbamazepine",
     "slug": "epitol"
   },
   {
     "brand_name": "EPIVIR",
-    "generic_name": "",
+    "generic_name": "lamivudine",
     "slug": "epivir"
   },
   {
     "brand_name": "EQUATE FAMOTIDINE",
-    "generic_name": "",
+    "generic_name": "famotidine",
     "slug": "equate-famotidine"
   },
   {
     "brand_name": "EQUETRO",
-    "generic_name": "",
+    "generic_name": "carbamazepine",
     "slug": "equetro"
   },
   {
     "brand_name": "ERBITUX",
-    "generic_name": "",
+    "generic_name": "cetuximab",
     "slug": "erbitux"
   },
   {
     "brand_name": "ERMEZA",
-    "generic_name": "",
+    "generic_name": "levothyroxine",
     "slug": "ermeza"
   },
   {
     "brand_name": "ESBRIET",
-    "generic_name": "",
+    "generic_name": "pirfenidone",
     "slug": "esbriet"
   },
   {
@@ -1311,7 +1311,7 @@
   },
   {
     "brand_name": "ESTRADIOL",
-    "generic_name": "",
+    "generic_name": "estradiol transdermal",
     "slug": "estradiol"
   },
   {
@@ -1321,7 +1321,7 @@
   },
   {
     "brand_name": "ESTRADIOL TRANSDERMAL SYSTEM",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "estradiol-transdermal-system"
   },
   {
@@ -1331,27 +1331,27 @@
   },
   {
     "brand_name": "ESTRADIOL VAGINAL INSERTS",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "estradiol-vaginal-inserts"
   },
   {
     "brand_name": "ESTRING",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "estring"
   },
   {
     "brand_name": "ESTROGEL",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "estrogel"
   },
   {
     "brand_name": "ESTROGEN 4X",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "estrogen-4x"
   },
   {
     "brand_name": "ESTROGEN PHENOLIC",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "estrogen-phenolic"
   },
   {
@@ -1361,37 +1361,37 @@
   },
   {
     "brand_name": "EUTHYROX",
-    "generic_name": "",
+    "generic_name": "levothyroxine",
     "slug": "euthyrox"
   },
   {
     "brand_name": "EVAMIST",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "evamist"
   },
   {
     "brand_name": "Evista",
-    "generic_name": "raloxifene hydrochloride",
+    "generic_name": "raloxifene",
     "slug": "evista"
   },
   {
     "brand_name": "EXCEDRIN MIGRAINE",
-    "generic_name": "",
+    "generic_name": "acetaminophen + aspirin + caffeine",
     "slug": "excedrin-migraine"
   },
   {
     "brand_name": "EXCEDRIN RAPID RELIEF",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "excedrin-rapid-relief"
   },
   {
     "brand_name": "EXJADE",
-    "generic_name": "",
+    "generic_name": "deferasirox",
     "slug": "exjade"
   },
   {
     "brand_name": "EXTRANEAL",
-    "generic_name": "",
+    "generic_name": "icodextrin",
     "slug": "extraneal"
   },
   {
@@ -1416,12 +1416,12 @@
   },
   {
     "brand_name": "FAVLYXA",
-    "generic_name": "",
+    "generic_name": "fluorouracil",
     "slug": "favlyxa"
   },
   {
     "brand_name": "FEMARA",
-    "generic_name": "",
+    "generic_name": "letrozole",
     "slug": "femara"
   },
   {
@@ -1436,27 +1436,27 @@
   },
   {
     "brand_name": "FERRUM METALLICUM",
-    "generic_name": "",
+    "generic_name": "iron",
     "slug": "ferrum-metallicum"
   },
   {
     "brand_name": "FEVERALL",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "feverall"
   },
   {
     "brand_name": "FEVERALL CHILDRENS",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "feverall-childrens"
   },
   {
     "brand_name": "FEVERALL INFANTS",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "feverall-infants"
   },
   {
     "brand_name": "FEVERALL JR. STRENGTH",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "feverall-jr-strength"
   },
   {
@@ -1471,27 +1471,27 @@
   },
   {
     "brand_name": "FLEQSUVY",
-    "generic_name": "",
+    "generic_name": "baclofen",
     "slug": "fleqsuvy"
   },
   {
     "brand_name": "Flexeril",
-    "generic_name": "cyclobenzaprine hydrochloride",
+    "generic_name": "cyclobenzaprine",
     "slug": "flexeril"
   },
   {
     "brand_name": "Flomax",
-    "generic_name": "tamsulosin hydrochloride",
+    "generic_name": "tamsulosin",
     "slug": "flomax"
   },
   {
     "brand_name": "Flonase",
-    "generic_name": "fluticasone propionate",
+    "generic_name": "fluticasone",
     "slug": "flonase"
   },
   {
     "brand_name": "Flovent",
-    "generic_name": "fluticasone propionate",
+    "generic_name": "fluticasone",
     "slug": "flovent"
   },
   {
@@ -1521,12 +1521,12 @@
   },
   {
     "brand_name": "Fosamax",
-    "generic_name": "alendronate sodium",
+    "generic_name": "alendronate",
     "slug": "fosamax"
   },
   {
     "brand_name": "FRINDOVYX",
-    "generic_name": "",
+    "generic_name": "cyclophosphamide",
     "slug": "frindovyx"
   },
   {
@@ -1541,32 +1541,32 @@
   },
   {
     "brand_name": "GABARONE",
-    "generic_name": "",
+    "generic_name": "gabapentin",
     "slug": "gabarone"
   },
   {
     "brand_name": "GENGRAF",
-    "generic_name": "",
+    "generic_name": "cyclosporine",
     "slug": "gengraf"
   },
   {
     "brand_name": "GENOTROPIN",
-    "generic_name": "",
+    "generic_name": "somatropin",
     "slug": "genotropin"
   },
   {
     "brand_name": "GEODON",
-    "generic_name": "",
+    "generic_name": "ziprasidone",
     "slug": "geodon"
   },
   {
     "brand_name": "GILENYA",
-    "generic_name": "",
+    "generic_name": "fingolimod",
     "slug": "gilenya"
   },
   {
     "brand_name": "GLEEVEC",
-    "generic_name": "",
+    "generic_name": "imatinib",
     "slug": "gleevec"
   },
   {
@@ -1576,12 +1576,12 @@
   },
   {
     "brand_name": "GLONOINUM",
-    "generic_name": "",
+    "generic_name": "nitroglycerin",
     "slug": "glonoinum"
   },
   {
     "brand_name": "Glucophage",
-    "generic_name": "metformin hydrochloride",
+    "generic_name": "metformin",
     "slug": "glucophage"
   },
   {
@@ -1591,12 +1591,12 @@
   },
   {
     "brand_name": "GLUCOTROL XL",
-    "generic_name": "",
+    "generic_name": "glipizide",
     "slug": "glucotrol-xl"
   },
   {
     "brand_name": "GLUMETZA",
-    "generic_name": "",
+    "generic_name": "metformin",
     "slug": "glumetza"
   },
   {
@@ -1606,17 +1606,17 @@
   },
   {
     "brand_name": "GOOD SENSE ESOMEPRAZOLE MAGNESIUM",
-    "generic_name": "",
+    "generic_name": "esomeprazole",
     "slug": "good-sense-esomeprazole-magnesium"
   },
   {
     "brand_name": "GRALISE",
-    "generic_name": "",
+    "generic_name": "gabapentin",
     "slug": "gralise"
   },
   {
     "brand_name": "HAIR REGROWTH TREATMENT",
-    "generic_name": "",
+    "generic_name": "minoxidil",
     "slug": "hair-regrowth-treatment"
   },
   {
@@ -1626,12 +1626,12 @@
   },
   {
     "brand_name": "HARVONI",
-    "generic_name": "",
+    "generic_name": "ledipasvir + sofosbuvir",
     "slug": "harvoni"
   },
   {
     "brand_name": "HEMADY",
-    "generic_name": "",
+    "generic_name": "dexamethasone",
     "slug": "hemady"
   },
   {
@@ -1641,22 +1641,22 @@
   },
   {
     "brand_name": "HEPARIN SODIUM AND DEXTROSE",
-    "generic_name": "",
+    "generic_name": "heparin",
     "slug": "heparin-sodium-and-dextrose"
   },
   {
     "brand_name": "HERCEPTIN",
-    "generic_name": "",
+    "generic_name": "trastuzumab",
     "slug": "herceptin"
   },
   {
     "brand_name": "HERS HAIR REGROWTH TREATMENT",
-    "generic_name": "",
+    "generic_name": "minoxidil",
     "slug": "hers-hair-regrowth-treatment"
   },
   {
     "brand_name": "HISTAPRIN",
-    "generic_name": "",
+    "generic_name": "diphenhydramine",
     "slug": "histaprin"
   },
   {
@@ -1666,32 +1666,32 @@
   },
   {
     "brand_name": "HUMALOG JUNIOR KWIKPEN",
-    "generic_name": "",
+    "generic_name": "insulin lispro",
     "slug": "humalog-junior-kwikpen"
   },
   {
     "brand_name": "HUMALOG KWIKPEN",
-    "generic_name": "",
+    "generic_name": "insulin lispro",
     "slug": "humalog-kwikpen"
   },
   {
     "brand_name": "HUMALOG MIX50/50 KWIKPEN",
-    "generic_name": "",
+    "generic_name": "insulin lispro",
     "slug": "humalog-mix5050-kwikpen"
   },
   {
     "brand_name": "HUMALOG MIX75/25",
-    "generic_name": "",
+    "generic_name": "insulin lispro",
     "slug": "humalog-mix7525"
   },
   {
     "brand_name": "HUMALOG MIX75/25 KWIKPEN",
-    "generic_name": "",
+    "generic_name": "insulin lispro",
     "slug": "humalog-mix7525-kwikpen"
   },
   {
     "brand_name": "HUMALOG TEMPO PEN",
-    "generic_name": "",
+    "generic_name": "insulin lispro",
     "slug": "humalog-tempo-pen"
   },
   {
@@ -1701,7 +1701,7 @@
   },
   {
     "brand_name": "HUMULIN 70/30",
-    "generic_name": "",
+    "generic_name": "insulin human",
     "slug": "humulin-7030"
   },
   {
@@ -1736,17 +1736,17 @@
   },
   {
     "brand_name": "HYSINGLA ER",
-    "generic_name": "",
+    "generic_name": "hydrocodone bitartrate",
     "slug": "hysingla-er"
   },
   {
     "brand_name": "Hyzaar",
-    "generic_name": "losartan potassium/hydrochlorothiazide",
+    "generic_name": "losartan + hydrochlorothiazide",
     "slug": "hyzaar"
   },
   {
     "brand_name": "IBRANCE",
-    "generic_name": "",
+    "generic_name": "palbociclib",
     "slug": "ibrance"
   },
   {
@@ -1756,7 +1756,7 @@
   },
   {
     "brand_name": "IMBRUVICA",
-    "generic_name": "",
+    "generic_name": "ibrutinib",
     "slug": "imbruvica"
   },
   {
@@ -1766,32 +1766,32 @@
   },
   {
     "brand_name": "Imitrex",
-    "generic_name": "sumatriptan succinate",
+    "generic_name": "sumatriptan",
     "slug": "imitrex"
   },
   {
     "brand_name": "IMODIUM A-D",
-    "generic_name": "",
+    "generic_name": "loperamide",
     "slug": "imodium-a-d"
   },
   {
     "brand_name": "IMODIUM MULTI-SYMPTOM RELIEF",
-    "generic_name": "",
+    "generic_name": "loperamide + dimethicone",
     "slug": "imodium-multi-symptom-relief"
   },
   {
     "brand_name": "IMURAN",
-    "generic_name": "",
+    "generic_name": "azathioprine",
     "slug": "imuran"
   },
   {
     "brand_name": "IMVEXXY",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "imvexxy"
   },
   {
     "brand_name": "INFANTS TYLENOL",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "infants-tylenol"
   },
   {
@@ -1801,17 +1801,17 @@
   },
   {
     "brand_name": "INFUMORPH 200",
-    "generic_name": "",
+    "generic_name": "morphine",
     "slug": "infumorph-200"
   },
   {
     "brand_name": "INFUMORPH 500",
-    "generic_name": "",
+    "generic_name": "morphine",
     "slug": "infumorph-500"
   },
   {
     "brand_name": "INGREZZA",
-    "generic_name": "",
+    "generic_name": "valbenazine",
     "slug": "ingrezza"
   },
   {
@@ -1831,32 +1831,32 @@
   },
   {
     "brand_name": "INZIRQO",
-    "generic_name": "",
+    "generic_name": "hydrochlorothiazide",
     "slug": "inzirqo"
   },
   {
     "brand_name": "IRESSA",
-    "generic_name": "",
+    "generic_name": "gefitinib",
     "slug": "iressa"
   },
   {
     "brand_name": "JAKAFI",
-    "generic_name": "",
+    "generic_name": "ruxolitinib",
     "slug": "jakafi"
   },
   {
     "brand_name": "JANTOVEN",
-    "generic_name": "",
+    "generic_name": "warfarin",
     "slug": "jantoven"
   },
   {
     "brand_name": "Janumet",
-    "generic_name": "sitagliptin phosphate/metformin hydrochloride",
+    "generic_name": "sitagliptin + metformin",
     "slug": "janumet"
   },
   {
     "brand_name": "Januvia",
-    "generic_name": "sitagliptin phosphate",
+    "generic_name": "sitagliptin",
     "slug": "januvia"
   },
   {
@@ -1866,22 +1866,22 @@
   },
   {
     "brand_name": "JYLAMVO",
-    "generic_name": "",
+    "generic_name": "methotrexate",
     "slug": "jylamvo"
   },
   {
     "brand_name": "KALETRA",
-    "generic_name": "",
+    "generic_name": "lopinavir + ritonavir",
     "slug": "kaletra"
   },
   {
     "brand_name": "KAPSPARGO",
-    "generic_name": "",
+    "generic_name": "metoprolol",
     "slug": "kapspargo"
   },
   {
     "brand_name": "KATERZIA",
-    "generic_name": "",
+    "generic_name": "amlodipine",
     "slug": "katerzia"
   },
   {
@@ -1901,17 +1901,17 @@
   },
   {
     "brand_name": "KEPPRA XR",
-    "generic_name": "",
+    "generic_name": "levetiracetam",
     "slug": "keppra-xr"
   },
   {
     "brand_name": "KESIMPTA",
-    "generic_name": "",
+    "generic_name": "ofatumumab",
     "slug": "kesimpta"
   },
   {
     "brand_name": "KEYTRUDA",
-    "generic_name": "",
+    "generic_name": "pembrolizumab",
     "slug": "keytruda"
   },
   {
@@ -1921,17 +1921,17 @@
   },
   {
     "brand_name": "KLOR-CON",
-    "generic_name": "",
+    "generic_name": "potassium",
     "slug": "klor-con"
   },
   {
     "brand_name": "KLOR-CON M",
-    "generic_name": "",
+    "generic_name": "potassium",
     "slug": "klor-con-m"
   },
   {
     "brand_name": "KYXATA",
-    "generic_name": "",
+    "generic_name": "carboplatin",
     "slug": "kyxata"
   },
   {
@@ -1941,17 +1941,17 @@
   },
   {
     "brand_name": "LAMICTAL ODT",
-    "generic_name": "",
+    "generic_name": "lamotrigine",
     "slug": "lamictal-odt"
   },
   {
     "brand_name": "LAMICTAL XR",
-    "generic_name": "",
+    "generic_name": "lamotrigine",
     "slug": "lamictal-xr"
   },
   {
     "brand_name": "Lamisil",
-    "generic_name": "terbinafine hydrochloride",
+    "generic_name": "terbinafine",
     "slug": "lamisil"
   },
   {
@@ -1961,22 +1961,22 @@
   },
   {
     "brand_name": "LAMOTRIGINE",
-    "generic_name": "",
+    "generic_name": "lamotrigine chewable dispersible",
     "slug": "lamotrigine"
   },
   {
     "brand_name": "LAMOTRIGINE EXTENDED-RELEASE",
-    "generic_name": "",
+    "generic_name": "lamotrigine",
     "slug": "lamotrigine-extended-release"
   },
   {
     "brand_name": "LAMOTRIGINE KIT",
-    "generic_name": "",
+    "generic_name": "lamotirigine",
     "slug": "lamotrigine-kit"
   },
   {
     "brand_name": "LANOXIN",
-    "generic_name": "",
+    "generic_name": "digoxin",
     "slug": "lanoxin"
   },
   {
@@ -1991,7 +1991,7 @@
   },
   {
     "brand_name": "LANTUS SOLOSTAR",
-    "generic_name": "",
+    "generic_name": "insulin glargine",
     "slug": "lantus-solostar"
   },
   {
@@ -2001,7 +2001,7 @@
   },
   {
     "brand_name": "LASIX ONYU",
-    "generic_name": "",
+    "generic_name": "furosemide",
     "slug": "lasix-onyu"
   },
   {
@@ -2011,12 +2011,12 @@
   },
   {
     "brand_name": "LATISSE",
-    "generic_name": "",
+    "generic_name": "bimatoprost",
     "slug": "latisse"
   },
   {
     "brand_name": "Latuda",
-    "generic_name": "lurasidone hydrochloride",
+    "generic_name": "lurasidone",
     "slug": "latuda"
   },
   {
@@ -2031,7 +2031,7 @@
   },
   {
     "brand_name": "LETAIRIS",
-    "generic_name": "",
+    "generic_name": "ambrisentan",
     "slug": "letairis"
   },
   {
@@ -2051,27 +2051,27 @@
   },
   {
     "brand_name": "LEVETIRACETAM",
-    "generic_name": "",
+    "generic_name": "levetiracetam injection",
     "slug": "levetiracetam"
   },
   {
     "brand_name": "LEVETIRACETAM ER",
-    "generic_name": "",
+    "generic_name": "levetiracetam",
     "slug": "levetiracetam-er"
   },
   {
     "brand_name": "LEVETIRACETAM EXTENDED-RELEASE",
-    "generic_name": "",
+    "generic_name": "levetiracetam",
     "slug": "levetiracetam-extended-release"
   },
   {
     "brand_name": "LEVETIRACETAM IN SODIUM CHLORIDE",
-    "generic_name": "",
+    "generic_name": "levetiracetam",
     "slug": "levetiracetam-in-sodium-chloride"
   },
   {
     "brand_name": "LEVO-T",
-    "generic_name": "",
+    "generic_name": "levothyroxine",
     "slug": "levo-t"
   },
   {
@@ -2081,17 +2081,17 @@
   },
   {
     "brand_name": "LEVOTHYROXINE SODIUM",
-    "generic_name": "",
+    "generic_name": "levothyroxine sodium anhydrous",
     "slug": "levothyroxine-sodium"
   },
   {
     "brand_name": "LEVOXYL",
-    "generic_name": "",
+    "generic_name": "levothyroxine",
     "slug": "levoxyl"
   },
   {
     "brand_name": "Lexapro",
-    "generic_name": "escitalopram oxalate",
+    "generic_name": "escitalopram",
     "slug": "lexapro"
   },
   {
@@ -2106,12 +2106,12 @@
   },
   {
     "brand_name": "LIORESAL (BACLOFEN)",
-    "generic_name": "",
+    "generic_name": "baclofen",
     "slug": "lioresal-baclofen"
   },
   {
     "brand_name": "Lipitor",
-    "generic_name": "atorvastatin calcium",
+    "generic_name": "atorvastatin",
     "slug": "lipitor"
   },
   {
@@ -2126,17 +2126,17 @@
   },
   {
     "brand_name": "LITHIUM CARBONATE ER",
-    "generic_name": "",
+    "generic_name": "lithium carbonate",
     "slug": "lithium-carbonate-er"
   },
   {
     "brand_name": "LITHIUM CARBONATE LITHIUM CARBONATE",
-    "generic_name": "",
+    "generic_name": "lithium carbonate",
     "slug": "lithium-carbonate-lithium-carbonate"
   },
   {
     "brand_name": "LITHIUM CARBONICUM",
-    "generic_name": "",
+    "generic_name": "lithium carbonate",
     "slug": "lithium-carbonicum"
   },
   {
@@ -2151,7 +2151,7 @@
   },
   {
     "brand_name": "Lopressor",
-    "generic_name": "metoprolol tartrate",
+    "generic_name": "metoprolol",
     "slug": "lopressor"
   },
   {
@@ -2161,7 +2161,7 @@
   },
   {
     "brand_name": "LOREEV XR",
-    "generic_name": "",
+    "generic_name": "lorazepam",
     "slug": "loreev-xr"
   },
   {
@@ -2171,7 +2171,7 @@
   },
   {
     "brand_name": "Lotrel",
-    "generic_name": "amlodipine/benazepril hydrochloride",
+    "generic_name": "amlodipine + benazepril",
     "slug": "lotrel"
   },
   {
@@ -2181,17 +2181,17 @@
   },
   {
     "brand_name": "LOVAZA",
-    "generic_name": "",
+    "generic_name": "omega- -acid ethyl esters",
     "slug": "lovaza"
   },
   {
     "brand_name": "LOVENOX",
-    "generic_name": "",
+    "generic_name": "enoxaparin",
     "slug": "lovenox"
   },
   {
     "brand_name": "LUCENTIS",
-    "generic_name": "",
+    "generic_name": "ranibizumab",
     "slug": "lucentis"
   },
   {
@@ -2206,12 +2206,12 @@
   },
   {
     "brand_name": "LUPRON DEPOT",
-    "generic_name": "",
+    "generic_name": "leuprolide",
     "slug": "lupron-depot"
   },
   {
     "brand_name": "LYLLANA",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "lyllana"
   },
   {
@@ -2221,22 +2221,22 @@
   },
   {
     "brand_name": "LYRICA CR",
-    "generic_name": "",
+    "generic_name": "pregabalin",
     "slug": "lyrica-cr"
   },
   {
     "brand_name": "LYVISPAH",
-    "generic_name": "",
+    "generic_name": "baclofen",
     "slug": "lyvispah"
   },
   {
     "brand_name": "M-PAP",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "m-pap"
   },
   {
     "brand_name": "Macrobid",
-    "generic_name": "nitrofurantoin monohydrate/macrocrystals",
+    "generic_name": "nitrofurantoin monohydrate + macrocrystals",
     "slug": "macrobid"
   },
   {
@@ -2246,22 +2246,22 @@
   },
   {
     "brand_name": "MAXIDEX",
-    "generic_name": "",
+    "generic_name": "dexamethasone",
     "slug": "maxidex"
   },
   {
     "brand_name": "MEDICAL AIR",
-    "generic_name": "",
+    "generic_name": "oxygen",
     "slug": "medical-air"
   },
   {
     "brand_name": "MEDLINE",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "medline"
   },
   {
     "brand_name": "MEDPRIDE",
-    "generic_name": "",
+    "generic_name": "hydrocortisone",
     "slug": "medpride"
   },
   {
@@ -2281,12 +2281,12 @@
   },
   {
     "brand_name": "MENOSTAR",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "menostar"
   },
   {
     "brand_name": "METFORMIN",
-    "generic_name": "",
+    "generic_name": "metformin er",
     "slug": "metformin"
   },
   {
@@ -2331,7 +2331,7 @@
   },
   {
     "brand_name": "METOPROLOL SUCCINATE",
-    "generic_name": "",
+    "generic_name": "metoprolol succinate er tablets",
     "slug": "metoprolol-succinate"
   },
   {
@@ -2351,12 +2351,12 @@
   },
   {
     "brand_name": "MIDOL LONG LASTING RELIEF",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "midol-long-lasting-relief"
   },
   {
     "brand_name": "MINIVELLE",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "minivelle"
   },
   {
@@ -2381,12 +2381,12 @@
   },
   {
     "brand_name": "MIRALAX",
-    "generic_name": "",
+    "generic_name": "polyethylene glycol",
     "slug": "miralax"
   },
   {
     "brand_name": "MIRENA",
-    "generic_name": "",
+    "generic_name": "levonorgestrel",
     "slug": "mirena"
   },
   {
@@ -2396,7 +2396,7 @@
   },
   {
     "brand_name": "MITIGO",
-    "generic_name": "",
+    "generic_name": "morphine",
     "slug": "mitigo"
   },
   {
@@ -2426,32 +2426,32 @@
   },
   {
     "brand_name": "MOTRIN IB",
-    "generic_name": "",
+    "generic_name": "ibuprofen",
     "slug": "motrin-ib"
   },
   {
     "brand_name": "MOTRIN IB MIGRAINE",
-    "generic_name": "",
+    "generic_name": "ibuprofen",
     "slug": "motrin-ib-migraine"
   },
   {
     "brand_name": "MOTRIN INFANTS",
-    "generic_name": "",
+    "generic_name": "ibuprofen",
     "slug": "motrin-infants"
   },
   {
     "brand_name": "MOUNJARO",
-    "generic_name": "",
+    "generic_name": "tirzepatide",
     "slug": "mounjaro"
   },
   {
     "brand_name": "MOUNJARO KWIKPEN",
-    "generic_name": "",
+    "generic_name": "tirzepatide",
     "slug": "mounjaro-kwikpen"
   },
   {
     "brand_name": "MS CONTIN",
-    "generic_name": "",
+    "generic_name": "morphine",
     "slug": "ms-contin"
   },
   {
@@ -2461,7 +2461,7 @@
   },
   {
     "brand_name": "MURO 128",
-    "generic_name": "",
+    "generic_name": "sodium",
     "slug": "muro-128"
   },
   {
@@ -2471,12 +2471,12 @@
   },
   {
     "brand_name": "MYHIBBIN",
-    "generic_name": "",
+    "generic_name": "mycophenolate mofetil",
     "slug": "myhibbin"
   },
   {
     "brand_name": "Namenda",
-    "generic_name": "memantine hydrochloride",
+    "generic_name": "memantine",
     "slug": "namenda"
   },
   {
@@ -2491,27 +2491,27 @@
   },
   {
     "brand_name": "Nasonex",
-    "generic_name": "mometasone furoate",
+    "generic_name": "mometasone",
     "slug": "nasonex"
   },
   {
     "brand_name": "NEFFY",
-    "generic_name": "",
+    "generic_name": "epinephrine",
     "slug": "neffy"
   },
   {
     "brand_name": "NEMLUVIO",
-    "generic_name": "",
+    "generic_name": "nemolizumab",
     "slug": "nemluvio"
   },
   {
     "brand_name": "NEORAL",
-    "generic_name": "",
+    "generic_name": "cyclosporine",
     "slug": "neoral"
   },
   {
     "brand_name": "NEULASTA",
-    "generic_name": "",
+    "generic_name": "pegfilgrastim",
     "slug": "neulasta"
   },
   {
@@ -2521,72 +2521,72 @@
   },
   {
     "brand_name": "NEXAVAR",
-    "generic_name": "",
+    "generic_name": "sorafenib",
     "slug": "nexavar"
   },
   {
     "brand_name": "NEXICLON XR",
-    "generic_name": "",
+    "generic_name": "clonidine",
     "slug": "nexiclon-xr"
   },
   {
     "brand_name": "Nexium",
-    "generic_name": "esomeprazole magnesium",
+    "generic_name": "esomeprazole",
     "slug": "nexium"
   },
   {
     "brand_name": "NEXIUM 24HR",
-    "generic_name": "",
+    "generic_name": "esomeprazole",
     "slug": "nexium-24hr"
   },
   {
     "brand_name": "NEXPLANON",
-    "generic_name": "",
+    "generic_name": "etonogestrel",
     "slug": "nexplanon"
   },
   {
     "brand_name": "NICODERM CQ",
-    "generic_name": "",
+    "generic_name": "nicotine",
     "slug": "nicoderm-cq"
   },
   {
     "brand_name": "NICORETTE",
-    "generic_name": "",
+    "generic_name": "nicotine polacrilex",
     "slug": "nicorette"
   },
   {
     "brand_name": "NICORETTE CINNAMON SURGE",
-    "generic_name": "",
+    "generic_name": "nicotine polacrilex",
     "slug": "nicorette-cinnamon-surge"
   },
   {
     "brand_name": "NICORETTE FRUIT CHILL",
-    "generic_name": "",
+    "generic_name": "nicotine polacrilex",
     "slug": "nicorette-fruit-chill"
   },
   {
     "brand_name": "NICORETTE MINT",
-    "generic_name": "",
+    "generic_name": "nicotine polacrilex",
     "slug": "nicorette-mint"
   },
   {
     "brand_name": "NICORETTE ORIGINAL",
-    "generic_name": "",
+    "generic_name": "nicotine polacrilex",
     "slug": "nicorette-original"
   },
   {
     "brand_name": "NICORETTE PEPPERMINT",
-    "generic_name": "",
+    "generic_name": "nicotine polacrilex",
     "slug": "nicorette-peppermint"
   },
   {
     "brand_name": "NICORETTE SPEARMINT BURST",
-    "generic_name": "",
+    "generic_name": "nicotine polacrilex",
     "slug": "nicorette-spearmint-burst"
   },
   {
     "brand_name": "NICORETTE WHITE ICE MINT",
-    "generic_name": "",
+    "generic_name": "nicotine polacrilex",
     "slug": "nicorette-white-ice-mint"
   },
   {
@@ -2596,17 +2596,17 @@
   },
   {
     "brand_name": "NITRO-BID",
-    "generic_name": "",
+    "generic_name": "nitroglycerin",
     "slug": "nitro-bid"
   },
   {
     "brand_name": "NITRO-DUR",
-    "generic_name": "",
+    "generic_name": "nitroglycerin",
     "slug": "nitro-dur"
   },
   {
     "brand_name": "NITRO-TIME",
-    "generic_name": "",
+    "generic_name": "nitroglycerin",
     "slug": "nitro-time"
   },
   {
@@ -2616,22 +2616,22 @@
   },
   {
     "brand_name": "NITROGLYCERIN IN DEXTROSE",
-    "generic_name": "",
+    "generic_name": "nitroglycerin",
     "slug": "nitroglycerin-in-dextrose"
   },
   {
     "brand_name": "NITROGLYCERIN LINGUAL",
-    "generic_name": "",
+    "generic_name": "nitroglycerin",
     "slug": "nitroglycerin-lingual"
   },
   {
     "brand_name": "NITROGLYCERIN TRANSDERMAL INFUSION SYSTEM",
-    "generic_name": "",
+    "generic_name": "nitroglycerin",
     "slug": "nitroglycerin-transdermal-infusion-system"
   },
   {
     "brand_name": "NITROLINGUAL",
-    "generic_name": "",
+    "generic_name": "nitroglycerin",
     "slug": "nitrolingual"
   },
   {
@@ -2641,72 +2641,72 @@
   },
   {
     "brand_name": "Nolvadex",
-    "generic_name": "tamoxifen citrate",
+    "generic_name": "tamoxifen",
     "slug": "nolvadex"
   },
   {
     "brand_name": "NORLIQVA",
-    "generic_name": "",
+    "generic_name": "amlodipine",
     "slug": "norliqva"
   },
   {
     "brand_name": "NORTHERA",
-    "generic_name": "",
+    "generic_name": "droxidopa",
     "slug": "northera"
   },
   {
     "brand_name": "Norvasc",
-    "generic_name": "amlodipine besylate",
+    "generic_name": "amlodipine",
     "slug": "norvasc"
   },
   {
     "brand_name": "NORVIR",
-    "generic_name": "",
+    "generic_name": "ritonavir",
     "slug": "norvir"
   },
   {
     "brand_name": "NOVOLOG",
-    "generic_name": "",
+    "generic_name": "insulin aspart",
     "slug": "novolog"
   },
   {
     "brand_name": "NPLATE",
-    "generic_name": "",
+    "generic_name": "romiplostim",
     "slug": "nplate"
   },
   {
     "brand_name": "NUCALA",
-    "generic_name": "",
+    "generic_name": "mepolizumab",
     "slug": "nucala"
   },
   {
     "brand_name": "NUCYNTA",
-    "generic_name": "",
+    "generic_name": "tapentadol",
     "slug": "nucynta"
   },
   {
     "brand_name": "NUCYNTA ER",
-    "generic_name": "",
+    "generic_name": "tapentadol",
     "slug": "nucynta-er"
   },
   {
     "brand_name": "NUPLAZID",
-    "generic_name": "",
+    "generic_name": "pimavanserin",
     "slug": "nuplazid"
   },
   {
     "brand_name": "Nuvaring",
-    "generic_name": "etonogestrel/ethinyl estradiol",
+    "generic_name": "etonogestrel + ethinyl estradiol",
     "slug": "nuvaring"
   },
   {
     "brand_name": "NUVIGIL",
-    "generic_name": "",
+    "generic_name": "armodafinil",
     "slug": "nuvigil"
   },
   {
     "brand_name": "OCREVUS",
-    "generic_name": "",
+    "generic_name": "ocrelizumab",
     "slug": "ocrevus"
   },
   {
@@ -2716,12 +2716,12 @@
   },
   {
     "brand_name": "OLANZAPINE INTRAMUSCULAR",
-    "generic_name": "",
+    "generic_name": "olanzapine",
     "slug": "olanzapine-intramuscular"
   },
   {
     "brand_name": "OMEGAVEN",
-    "generic_name": "",
+    "generic_name": "fish oil",
     "slug": "omegaven"
   },
   {
@@ -2736,37 +2736,37 @@
   },
   {
     "brand_name": "OPIUM",
-    "generic_name": "",
+    "generic_name": "morphine",
     "slug": "opium"
   },
   {
     "brand_name": "OPIUM TINCTURE DEODORIZED",
-    "generic_name": "",
+    "generic_name": "morphine",
     "slug": "opium-tincture-deodorized"
   },
   {
     "brand_name": "OPSUMIT",
-    "generic_name": "",
+    "generic_name": "macitentan",
     "slug": "opsumit"
   },
   {
     "brand_name": "ORENCIA",
-    "generic_name": "",
+    "generic_name": "abatacept",
     "slug": "orencia"
   },
   {
     "brand_name": "ORGOVYX",
-    "generic_name": "",
+    "generic_name": "relugolix",
     "slug": "orgovyx"
   },
   {
     "brand_name": "OTEZLA",
-    "generic_name": "",
+    "generic_name": "apremilast",
     "slug": "otezla"
   },
   {
     "brand_name": "OTREXUP",
-    "generic_name": "",
+    "generic_name": "methotrexate",
     "slug": "otrexup"
   },
   {
@@ -2776,12 +2776,12 @@
   },
   {
     "brand_name": "OXAYDO",
-    "generic_name": "",
+    "generic_name": "oxycodone",
     "slug": "oxaydo"
   },
   {
     "brand_name": "OXBRYTA",
-    "generic_name": "",
+    "generic_name": "voxelotor",
     "slug": "oxbryta"
   },
   {
@@ -2791,12 +2791,12 @@
   },
   {
     "brand_name": "OxyContin",
-    "generic_name": "oxycodone hydrochloride",
+    "generic_name": "oxycodone",
     "slug": "oxycontin"
   },
   {
     "brand_name": "OXYGEN",
-    "generic_name": "",
+    "generic_name": "0xygen",
     "slug": "oxygen"
   },
   {
@@ -2806,7 +2806,7 @@
   },
   {
     "brand_name": "OXYTROL FOR WOMEN",
-    "generic_name": "",
+    "generic_name": "oxybutynin",
     "slug": "oxytrol-for-women"
   },
   {
@@ -2816,12 +2816,12 @@
   },
   {
     "brand_name": "OZOBAX DS",
-    "generic_name": "",
+    "generic_name": "baclofen",
     "slug": "ozobax-ds"
   },
   {
     "brand_name": "OZURDEX",
-    "generic_name": "",
+    "generic_name": "dexamethasone",
     "slug": "ozurdex"
   },
   {
@@ -2831,22 +2831,22 @@
   },
   {
     "brand_name": "PACLITAXEL PACLITAXEL",
-    "generic_name": "",
+    "generic_name": "paclitaxel",
     "slug": "paclitaxel-paclitaxel"
   },
   {
     "brand_name": "PANADOL",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "panadol"
   },
   {
     "brand_name": "PANADOL EXTRA STRENGTH",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "panadol-extra-strength"
   },
   {
     "brand_name": "PANOXYL",
-    "generic_name": "",
+    "generic_name": "adapalene",
     "slug": "panoxyl"
   },
   {
@@ -2861,27 +2861,27 @@
   },
   {
     "brand_name": "PARAGARD T 380A",
-    "generic_name": "",
+    "generic_name": "copper",
     "slug": "paragard-t-380a"
   },
   {
     "brand_name": "Paxil",
-    "generic_name": "paroxetine hydrochloride",
+    "generic_name": "paroxetine",
     "slug": "paxil"
   },
   {
     "brand_name": "PAXIL CR",
-    "generic_name": "",
+    "generic_name": "paroxetine",
     "slug": "paxil-cr"
   },
   {
     "brand_name": "PAXLOVID",
-    "generic_name": "",
+    "generic_name": "nirmatrelvir + ritonavir",
     "slug": "paxlovid"
   },
   {
     "brand_name": "PEGASYS",
-    "generic_name": "",
+    "generic_name": "peginterferon alfa-2a",
     "slug": "pegasys"
   },
   {
@@ -2891,47 +2891,47 @@
   },
   {
     "brand_name": "PEPCID AC",
-    "generic_name": "",
+    "generic_name": "famotidine",
     "slug": "pepcid-ac"
   },
   {
     "brand_name": "PEPCID AC MAXIMUM STRENGTH",
-    "generic_name": "",
+    "generic_name": "famotidine",
     "slug": "pepcid-ac-maximum-strength"
   },
   {
     "brand_name": "PEPCID AC ORIGINAL STRENGTH",
-    "generic_name": "",
+    "generic_name": "famotidine",
     "slug": "pepcid-ac-original-strength"
   },
   {
     "brand_name": "PEPTO KIDS",
-    "generic_name": "",
+    "generic_name": "calcium carbonate",
     "slug": "pepto-kids"
   },
   {
     "brand_name": "Percocet",
-    "generic_name": "oxycodone hydrochloride/acetaminophen",
+    "generic_name": "oxycodone + acetaminophen",
     "slug": "percocet"
   },
   {
     "brand_name": "PERSERIS",
-    "generic_name": "",
+    "generic_name": "risperidone",
     "slug": "perseris"
   },
   {
     "brand_name": "PHARBETOL",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "pharbetol"
   },
   {
     "brand_name": "PLAN B ONE-STEP",
-    "generic_name": "",
+    "generic_name": "levonorgestrel",
     "slug": "plan-b-one-step"
   },
   {
     "brand_name": "Plaquenil",
-    "generic_name": "hydroxychloroquine sulfate",
+    "generic_name": "hydroxychloroquine",
     "slug": "plaquenil"
   },
   {
@@ -2941,7 +2941,7 @@
   },
   {
     "brand_name": "POMALYST",
-    "generic_name": "",
+    "generic_name": "pomalidomide",
     "slug": "pomalyst"
   },
   {
@@ -2961,7 +2961,7 @@
   },
   {
     "brand_name": "Pravachol",
-    "generic_name": "pravastatin sodium",
+    "generic_name": "pravastatin",
     "slug": "pravachol"
   },
   {
@@ -2996,12 +2996,12 @@
   },
   {
     "brand_name": "PREMARIN VAGINAL",
-    "generic_name": "",
+    "generic_name": "conjugated estrogens",
     "slug": "premarin-vaginal"
   },
   {
     "brand_name": "PREMPRO",
-    "generic_name": "",
+    "generic_name": "conjugated estrogens + medroxyprogesterone",
     "slug": "prempro"
   },
   {
@@ -3011,12 +3011,12 @@
   },
   {
     "brand_name": "PREVACID 24 HR",
-    "generic_name": "",
+    "generic_name": "lansoprazole",
     "slug": "prevacid-24-hr"
   },
   {
     "brand_name": "PREVACID SOLUTAB",
-    "generic_name": "",
+    "generic_name": "lansoprazole",
     "slug": "prevacid-solutab"
   },
   {
@@ -3026,7 +3026,7 @@
   },
   {
     "brand_name": "PRILOSEC OTC",
-    "generic_name": "",
+    "generic_name": "omeprazole",
     "slug": "prilosec-otc"
   },
   {
@@ -3036,37 +3036,37 @@
   },
   {
     "brand_name": "Pristiq",
-    "generic_name": "desvenlafaxine succinate",
+    "generic_name": "desvenlafaxine",
     "slug": "pristiq"
   },
   {
     "brand_name": "PRISTIQ EXTENDED-RELEASE",
-    "generic_name": "",
+    "generic_name": "desvenlafaxine",
     "slug": "pristiq-extended-release"
   },
   {
     "brand_name": "PROACTIV DEEP CLEANSING WASH",
-    "generic_name": "",
+    "generic_name": "salicylic acid",
     "slug": "proactiv-deep-cleansing-wash"
   },
   {
     "brand_name": "PROACTIV MD ADAPALENE ACNE TREATMENT",
-    "generic_name": "",
+    "generic_name": "adapalene",
     "slug": "proactiv-md-adapalene-acne-treatment"
   },
   {
     "brand_name": "PROAIR DIGIHALER",
-    "generic_name": "",
+    "generic_name": "albuterol",
     "slug": "proair-digihaler"
   },
   {
     "brand_name": "ProAir HFA",
-    "generic_name": "albuterol sulfate",
+    "generic_name": "albuterol",
     "slug": "proair"
   },
   {
     "brand_name": "PROAIR RESPICLICK",
-    "generic_name": "",
+    "generic_name": "albuterol",
     "slug": "proair-respiclick"
   },
   {
@@ -3076,27 +3076,27 @@
   },
   {
     "brand_name": "PROCARDIA XL",
-    "generic_name": "",
+    "generic_name": "nifedipine",
     "slug": "procardia-xl"
   },
   {
     "brand_name": "PROCRIT",
-    "generic_name": "",
+    "generic_name": "erythropoietin",
     "slug": "procrit"
   },
   {
     "brand_name": "PROCTOCORT",
-    "generic_name": "",
+    "generic_name": "hydrocortisone",
     "slug": "proctocort"
   },
   {
     "brand_name": "PROGRAF",
-    "generic_name": "",
+    "generic_name": "tacrolimus",
     "slug": "prograf"
   },
   {
     "brand_name": "PROLIA",
-    "generic_name": "",
+    "generic_name": "denosumab",
     "slug": "prolia"
   },
   {
@@ -3106,32 +3106,32 @@
   },
   {
     "brand_name": "PROSCAR",
-    "generic_name": "",
+    "generic_name": "finasteride",
     "slug": "proscar"
   },
   {
     "brand_name": "Protonix",
-    "generic_name": "pantoprazole sodium",
+    "generic_name": "pantoprazole",
     "slug": "protonix"
   },
   {
     "brand_name": "PROTONIX DELAYED-RELEASE",
-    "generic_name": "",
+    "generic_name": "pantoprazole",
     "slug": "protonix-delayed-release"
   },
   {
     "brand_name": "Provera",
-    "generic_name": "medroxyprogesterone acetate",
+    "generic_name": "medroxyprogesterone",
     "slug": "provera"
   },
   {
     "brand_name": "PROVIGIL",
-    "generic_name": "",
+    "generic_name": "modafinil",
     "slug": "provigil"
   },
   {
     "brand_name": "Prozac",
-    "generic_name": "fluoxetine hydrochloride",
+    "generic_name": "fluoxetine",
     "slug": "prozac"
   },
   {
@@ -3141,17 +3141,17 @@
   },
   {
     "brand_name": "PULMICORT FLEXHALER",
-    "generic_name": "",
+    "generic_name": "budesonide",
     "slug": "pulmicort-flexhaler"
   },
   {
     "brand_name": "QBRELIS",
-    "generic_name": "",
+    "generic_name": "lisinopril",
     "slug": "qbrelis"
   },
   {
     "brand_name": "QUALITY CHOICE",
-    "generic_name": "",
+    "generic_name": "hydrocortisone",
     "slug": "quality-choice"
   },
   {
@@ -3191,7 +3191,7 @@
   },
   {
     "brand_name": "RANITIDINE COOL MINT",
-    "generic_name": "",
+    "generic_name": "ranitidine",
     "slug": "ranitidine-cool-mint"
   },
   {
@@ -3201,32 +3201,32 @@
   },
   {
     "brand_name": "RAPIDOL",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "rapidol"
   },
   {
     "brand_name": "RASUVO",
-    "generic_name": "",
+    "generic_name": "methotrexate",
     "slug": "rasuvo"
   },
   {
     "brand_name": "REBIF",
-    "generic_name": "",
+    "generic_name": "interferon beta-1a",
     "slug": "rebif"
   },
   {
     "brand_name": "RECLAST",
-    "generic_name": "",
+    "generic_name": "zoledronic acid",
     "slug": "reclast"
   },
   {
     "brand_name": "RECTIV",
-    "generic_name": "",
+    "generic_name": "nitroglycerin",
     "slug": "rectiv"
   },
   {
     "brand_name": "REGLAN",
-    "generic_name": "",
+    "generic_name": "metoclopramide",
     "slug": "reglan"
   },
   {
@@ -3236,32 +3236,32 @@
   },
   {
     "brand_name": "REMERONSOLTAB",
-    "generic_name": "",
+    "generic_name": "mirtazapine",
     "slug": "remeronsoltab"
   },
   {
     "brand_name": "REMICADE",
-    "generic_name": "",
+    "generic_name": "infliximab",
     "slug": "remicade"
   },
   {
     "brand_name": "REMODULIN",
-    "generic_name": "",
+    "generic_name": "treprostinil",
     "slug": "remodulin"
   },
   {
     "brand_name": "RENFLEXIS",
-    "generic_name": "",
+    "generic_name": "infliximab",
     "slug": "renflexis"
   },
   {
     "brand_name": "RENVELA",
-    "generic_name": "",
+    "generic_name": "sevelamer carbonate",
     "slug": "renvela"
   },
   {
     "brand_name": "REPATHA",
-    "generic_name": "",
+    "generic_name": "evolocumab",
     "slug": "repatha"
   },
   {
@@ -3271,12 +3271,12 @@
   },
   {
     "brand_name": "RESTASIS MULTIDOSE",
-    "generic_name": "",
+    "generic_name": "cyclosporine",
     "slug": "restasis-multidose"
   },
   {
     "brand_name": "RESTORIL",
-    "generic_name": "",
+    "generic_name": "temazepam",
     "slug": "restoril"
   },
   {
@@ -3286,17 +3286,17 @@
   },
   {
     "brand_name": "RETROVIR",
-    "generic_name": "",
+    "generic_name": "zidovudine",
     "slug": "retrovir"
   },
   {
     "brand_name": "REVATIO",
-    "generic_name": "",
+    "generic_name": "sildenafil",
     "slug": "revatio"
   },
   {
     "brand_name": "REVLIMID",
-    "generic_name": "",
+    "generic_name": "lenalidomide",
     "slug": "revlimid"
   },
   {
@@ -3311,12 +3311,12 @@
   },
   {
     "brand_name": "RINVOQ",
-    "generic_name": "",
+    "generic_name": "upadacitinib",
     "slug": "rinvoq"
   },
   {
     "brand_name": "RIOPAN",
-    "generic_name": "",
+    "generic_name": "esomeprazole",
     "slug": "riopan"
   },
   {
@@ -3326,12 +3326,12 @@
   },
   {
     "brand_name": "RISPERDAL CONSTA",
-    "generic_name": "",
+    "generic_name": "risperidone",
     "slug": "risperdal-consta"
   },
   {
     "brand_name": "RISPERDAL M-TAB",
-    "generic_name": "",
+    "generic_name": "risperidone",
     "slug": "risperdal-m-tab"
   },
   {
@@ -3341,12 +3341,12 @@
   },
   {
     "brand_name": "RITUXAN",
-    "generic_name": "",
+    "generic_name": "rituximab",
     "slug": "rituxan"
   },
   {
     "brand_name": "ROLAIDS POWER CHEWS 1000",
-    "generic_name": "",
+    "generic_name": "calcium carbonate",
     "slug": "rolaids-power-chews-1000"
   },
   {
@@ -3356,22 +3356,22 @@
   },
   {
     "brand_name": "ROWEEPRA",
-    "generic_name": "",
+    "generic_name": "levetiracetam",
     "slug": "roweepra"
   },
   {
     "brand_name": "ROXICODONE",
-    "generic_name": "",
+    "generic_name": "oxycodone",
     "slug": "roxicodone"
   },
   {
     "brand_name": "ROXYBOND",
-    "generic_name": "",
+    "generic_name": "oxycodone",
     "slug": "roxybond"
   },
   {
     "brand_name": "ROZEREM",
-    "generic_name": "",
+    "generic_name": "ramelteon",
     "slug": "rozerem"
   },
   {
@@ -3381,17 +3381,17 @@
   },
   {
     "brand_name": "RYKINDO EXTENDED-RELEASE MICROSPHERES",
-    "generic_name": "",
+    "generic_name": "risperidone",
     "slug": "rykindo-extended-release-microspheres"
   },
   {
     "brand_name": "SANDIMMUNE",
-    "generic_name": "",
+    "generic_name": "cyclosporine",
     "slug": "sandimmune"
   },
   {
     "brand_name": "SAPHRIS",
-    "generic_name": "",
+    "generic_name": "asenapine",
     "slug": "saphris"
   },
   {
@@ -3401,27 +3401,27 @@
   },
   {
     "brand_name": "SDAMLO",
-    "generic_name": "",
+    "generic_name": "amlodipine",
     "slug": "sdamlo"
   },
   {
     "brand_name": "SENSIPAR",
-    "generic_name": "",
+    "generic_name": "cinacalcet",
     "slug": "sensipar"
   },
   {
     "brand_name": "SEREVENT DISKUS",
-    "generic_name": "",
+    "generic_name": "salmeterol",
     "slug": "serevent-diskus"
   },
   {
     "brand_name": "Seroquel",
-    "generic_name": "quetiapine fumarate",
+    "generic_name": "quetiapine",
     "slug": "seroquel"
   },
   {
     "brand_name": "SEROQUEL XR",
-    "generic_name": "",
+    "generic_name": "quetiapine",
     "slug": "seroquel-xr"
   },
   {
@@ -3441,7 +3441,7 @@
   },
   {
     "brand_name": "SIMPONI",
-    "generic_name": "",
+    "generic_name": "golimumab",
     "slug": "simponi"
   },
   {
@@ -3451,32 +3451,32 @@
   },
   {
     "brand_name": "Singulair",
-    "generic_name": "montelukast sodium",
+    "generic_name": "montelukast",
     "slug": "singulair"
   },
   {
     "brand_name": "SKIN RENEWING SERUM",
-    "generic_name": "",
+    "generic_name": "ascorbic acid",
     "slug": "skin-renewing-serum"
   },
   {
     "brand_name": "SKYRIZI",
-    "generic_name": "",
+    "generic_name": "risankizumab",
     "slug": "skyrizi"
   },
   {
     "brand_name": "SODIUM CHLORIDE HYPERTONICITY",
-    "generic_name": "",
+    "generic_name": "sodium",
     "slug": "sodium-chloride-hypertonicity"
   },
   {
     "brand_name": "SODIUM CHLORIDE NORMAL SALT",
-    "generic_name": "",
+    "generic_name": "sodium",
     "slug": "sodium-chloride-normal-salt"
   },
   {
     "brand_name": "SOLIRIS",
-    "generic_name": "",
+    "generic_name": "eculizumab",
     "slug": "soliris"
   },
   {
@@ -3486,22 +3486,22 @@
   },
   {
     "brand_name": "SOVALDI",
-    "generic_name": "",
+    "generic_name": "sofosbuvir",
     "slug": "sovaldi"
   },
   {
     "brand_name": "SOVUNA",
-    "generic_name": "",
+    "generic_name": "hydroxychloroquine",
     "slug": "sovuna"
   },
   {
     "brand_name": "Spiriva",
-    "generic_name": "tiotropium bromide",
+    "generic_name": "tiotropium",
     "slug": "spiriva"
   },
   {
     "brand_name": "SPIRIVA HANDIHALER",
-    "generic_name": "",
+    "generic_name": "tiotropium",
     "slug": "spiriva-handihaler"
   },
   {
@@ -3511,32 +3511,32 @@
   },
   {
     "brand_name": "SPRITAM",
-    "generic_name": "",
+    "generic_name": "levetiracetam",
     "slug": "spritam"
   },
   {
     "brand_name": "SPRYCEL",
-    "generic_name": "",
+    "generic_name": "dasatinib",
     "slug": "sprycel"
   },
   {
     "brand_name": "STELARA",
-    "generic_name": "",
+    "generic_name": "ustekinumab",
     "slug": "stelara"
   },
   {
     "brand_name": "Strattera",
-    "generic_name": "atomoxetine hydrochloride",
+    "generic_name": "atomoxetine",
     "slug": "strattera"
   },
   {
     "brand_name": "Suboxone",
-    "generic_name": "buprenorphine/naloxone",
+    "generic_name": "buprenorphine + naloxone",
     "slug": "suboxone"
   },
   {
     "brand_name": "SUBVENITE",
-    "generic_name": "",
+    "generic_name": "lamotrigine",
     "slug": "subvenite"
   },
   {
@@ -3546,37 +3546,37 @@
   },
   {
     "brand_name": "SUTENT",
-    "generic_name": "",
+    "generic_name": "sunitinib malate",
     "slug": "sutent"
   },
   {
     "brand_name": "Symbicort",
-    "generic_name": "budesonide/formoterol fumarate dihydrate",
+    "generic_name": "budesonide + formoterol fumarate dihydrate",
     "slug": "symbicort"
   },
   {
     "brand_name": "Synthroid",
-    "generic_name": "levothyroxine sodium",
+    "generic_name": "levothyroxine",
     "slug": "synthroid"
   },
   {
     "brand_name": "TACROLIMUS",
-    "generic_name": "",
+    "generic_name": "tacrolimus extended-release capsules",
     "slug": "tacrolimus"
   },
   {
     "brand_name": "Tamiflu",
-    "generic_name": "oseltamivir phosphate",
+    "generic_name": "oseltamivir",
     "slug": "tamiflu"
   },
   {
     "brand_name": "TARPEYO",
-    "generic_name": "",
+    "generic_name": "budesonide",
     "slug": "tarpeyo"
   },
   {
     "brand_name": "TECFIDERA",
-    "generic_name": "",
+    "generic_name": "dimethyl",
     "slug": "tecfidera"
   },
   {
@@ -3586,7 +3586,7 @@
   },
   {
     "brand_name": "TEGRETOL XR",
-    "generic_name": "",
+    "generic_name": "carbamazepine",
     "slug": "tegretol-xr"
   },
   {
@@ -3596,7 +3596,7 @@
   },
   {
     "brand_name": "Temovate",
-    "generic_name": "clobetasol propionate",
+    "generic_name": "clobetasol",
     "slug": "temovate"
   },
   {
@@ -3606,27 +3606,27 @@
   },
   {
     "brand_name": "THALOMID",
-    "generic_name": "",
+    "generic_name": "thalidomide",
     "slug": "thalomid"
   },
   {
     "brand_name": "THYQUIDITY",
-    "generic_name": "",
+    "generic_name": "levothyroxine",
     "slug": "thyquidity"
   },
   {
     "brand_name": "TIROSINT",
-    "generic_name": "",
+    "generic_name": "levothyroxine",
     "slug": "tirosint"
   },
   {
     "brand_name": "TIROSINT SOL",
-    "generic_name": "",
+    "generic_name": "levothyroxine",
     "slug": "tirosint-sol"
   },
   {
     "brand_name": "TOLAK",
-    "generic_name": "",
+    "generic_name": "fluorouracil",
     "slug": "tolak"
   },
   {
@@ -3636,17 +3636,17 @@
   },
   {
     "brand_name": "Toprol XL",
-    "generic_name": "metoprolol succinate",
+    "generic_name": "metoprolol",
     "slug": "toprol-xl"
   },
   {
     "brand_name": "TOUJEO",
-    "generic_name": "",
+    "generic_name": "insulin glargine",
     "slug": "toujeo"
   },
   {
     "brand_name": "TRACLEER",
-    "generic_name": "",
+    "generic_name": "bosentan",
     "slug": "tracleer"
   },
   {
@@ -3656,7 +3656,7 @@
   },
   {
     "brand_name": "TRAMADOL HYDROCHLORIDE EXTENDED-RELEASE",
-    "generic_name": "",
+    "generic_name": "tramadol",
     "slug": "tramadol-hydrochloride-extended-release"
   },
   {
@@ -3666,7 +3666,7 @@
   },
   {
     "brand_name": "TREMFYA",
-    "generic_name": "",
+    "generic_name": "guselkumab",
     "slug": "tremfya"
   },
   {
@@ -3676,7 +3676,7 @@
   },
   {
     "brand_name": "TRI-BUFFERED ASPIRIN",
-    "generic_name": "",
+    "generic_name": "aspirin",
     "slug": "tri-buffered-aspirin"
   },
   {
@@ -3696,107 +3696,107 @@
   },
   {
     "brand_name": "TRUVADA",
-    "generic_name": "",
+    "generic_name": "emtricitabine + tenofovir disoproxil",
     "slug": "truvada"
   },
   {
     "brand_name": "TUMS",
-    "generic_name": "",
+    "generic_name": "calcium carbonate",
     "slug": "tums"
   },
   {
     "brand_name": "TUMS CHEWY DELIGHTS",
-    "generic_name": "",
+    "generic_name": "calcium carbonate",
     "slug": "tums-chewy-delights"
   },
   {
     "brand_name": "TUMS EX",
-    "generic_name": "",
+    "generic_name": "calcium carbonate",
     "slug": "tums-ex"
   },
   {
     "brand_name": "TUMS EXTRA STRENGTH SUGAR-FREE",
-    "generic_name": "",
+    "generic_name": "calcium carbonate",
     "slug": "tums-extra-strength-sugar-free"
   },
   {
     "brand_name": "TUMS EXTRA STRENGTH, SMOOTHIES",
-    "generic_name": "",
+    "generic_name": "calcium carbonate",
     "slug": "tums-extra-strength-smoothies"
   },
   {
     "brand_name": "TUMS NATURALS",
-    "generic_name": "",
+    "generic_name": "calcium carbonate",
     "slug": "tums-naturals"
   },
   {
     "brand_name": "TUMS REGULAR STRENGTH",
-    "generic_name": "",
+    "generic_name": "calcium carbonate",
     "slug": "tums-regular-strength"
   },
   {
     "brand_name": "TUMS SMOOTHIES",
-    "generic_name": "",
+    "generic_name": "calcium carbonate",
     "slug": "tums-smoothies"
   },
   {
     "brand_name": "TUMS ULTRA",
-    "generic_name": "",
+    "generic_name": "calcium carbonate",
     "slug": "tums-ultra"
   },
   {
     "brand_name": "TYKERB",
-    "generic_name": "",
+    "generic_name": "lapatinib",
     "slug": "tykerb"
   },
   {
     "brand_name": "TYLENOL 8 HR ARTHRITIS PAIN",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "tylenol-8-hr-arthritis-pain"
   },
   {
     "brand_name": "TYLENOL 8HR",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "tylenol-8hr"
   },
   {
     "brand_name": "TYLENOL COLD PLUS HEAD CONGESTION SEVERE",
-    "generic_name": "",
+    "generic_name": "acetaminophen + guaifenesin + phenylephrine",
     "slug": "tylenol-cold-plus-head-congestion-severe"
   },
   {
     "brand_name": "TYLENOL EXTRA STRENGTH",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "tylenol-extra-strength"
   },
   {
     "brand_name": "TYLENOL EXTRA STRENGTH CAPLET",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "tylenol-extra-strength-caplet"
   },
   {
     "brand_name": "TYLENOL FOR CHILDREN PLUS ADULTS",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "tylenol-for-children-plus-adults"
   },
   {
     "brand_name": "TYLENOL REGULAR STRENGTH",
-    "generic_name": "",
+    "generic_name": "acetaminophen",
     "slug": "tylenol-regular-strength"
   },
   {
     "brand_name": "TYSABRI",
-    "generic_name": "",
+    "generic_name": "natalizumab",
     "slug": "tysabri"
   },
   {
     "brand_name": "TYVASO",
-    "generic_name": "",
+    "generic_name": "treprostinil",
     "slug": "tyvaso"
   },
   {
     "brand_name": "TYZAVAN",
-    "generic_name": "",
+    "generic_name": "vancomycin",
     "slug": "tyzavan"
   },
   {
@@ -3806,17 +3806,17 @@
   },
   {
     "brand_name": "UNITHROID",
-    "generic_name": "",
+    "generic_name": "levothyroxine",
     "slug": "unithroid"
   },
   {
     "brand_name": "UZEDY",
-    "generic_name": "",
+    "generic_name": "risperidone",
     "slug": "uzedy"
   },
   {
     "brand_name": "VAGIFEM",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "vagifem"
   },
   {
@@ -3836,12 +3836,12 @@
   },
   {
     "brand_name": "VALTOCO",
-    "generic_name": "",
+    "generic_name": "diazepam",
     "slug": "valtoco"
   },
   {
     "brand_name": "Valtrex",
-    "generic_name": "valacyclovir hydrochloride",
+    "generic_name": "valacyclovir",
     "slug": "valtrex"
   },
   {
@@ -3851,27 +3851,27 @@
   },
   {
     "brand_name": "Vasotec",
-    "generic_name": "enalapril maleate",
+    "generic_name": "enalapril",
     "slug": "vasotec"
   },
   {
     "brand_name": "VELCADE",
-    "generic_name": "",
+    "generic_name": "bortezomib",
     "slug": "velcade"
   },
   {
     "brand_name": "VELTASSA",
-    "generic_name": "",
+    "generic_name": "patiromer",
     "slug": "veltassa"
   },
   {
     "brand_name": "VENCLEXTA",
-    "generic_name": "",
+    "generic_name": "venetoclax",
     "slug": "venclexta"
   },
   {
     "brand_name": "VENEXA",
-    "generic_name": "",
+    "generic_name": "folic acid",
     "slug": "venexa"
   },
   {
@@ -3881,37 +3881,37 @@
   },
   {
     "brand_name": "VENTOLIN HFA",
-    "generic_name": "",
+    "generic_name": "albuterol",
     "slug": "ventolin-hfa"
   },
   {
     "brand_name": "VEPESID",
-    "generic_name": "",
+    "generic_name": "etoposide",
     "slug": "vepesid"
   },
   {
     "brand_name": "VERKAZIA",
-    "generic_name": "",
+    "generic_name": "cyclosporine",
     "slug": "verkazia"
   },
   {
     "brand_name": "VERSACLOZ",
-    "generic_name": "",
+    "generic_name": "clozapine",
     "slug": "versacloz"
   },
   {
     "brand_name": "VESIcare",
-    "generic_name": "solifenacin succinate",
+    "generic_name": "solifenacin",
     "slug": "vesicare"
   },
   {
     "brand_name": "VESICARE LS",
-    "generic_name": "",
+    "generic_name": "solifenacin",
     "slug": "vesicare-ls"
   },
   {
     "brand_name": "VIAGRA",
-    "generic_name": "",
+    "generic_name": "sildenafil",
     "slug": "viagra"
   },
   {
@@ -3931,47 +3931,47 @@
   },
   {
     "brand_name": "VIREAD",
-    "generic_name": "",
+    "generic_name": "tenofovir disoproxil",
     "slug": "viread"
   },
   {
     "brand_name": "VITAMIN C SERUM",
-    "generic_name": "",
+    "generic_name": "vitamin c",
     "slug": "vitamin-c-serum"
   },
   {
     "brand_name": "VITAMIN D",
-    "generic_name": "",
+    "generic_name": "ergocalciferol",
     "slug": "vitamin-d"
   },
   {
     "brand_name": "VITREXYL",
-    "generic_name": "",
+    "generic_name": "folic acid",
     "slug": "vitrexyl"
   },
   {
     "brand_name": "VIVELLE-DOT",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "vivelle-dot"
   },
   {
     "brand_name": "VIVITROL",
-    "generic_name": "",
+    "generic_name": "naltrexone",
     "slug": "vivitrol"
   },
   {
     "brand_name": "Voltaren",
-    "generic_name": "diclofenac sodium",
+    "generic_name": "diclofenac",
     "slug": "voltaren"
   },
   {
     "brand_name": "VOLTAREN ARTHRITIS PAIN",
-    "generic_name": "",
+    "generic_name": "diclofenac",
     "slug": "voltaren-arthritis-pain"
   },
   {
     "brand_name": "VOTRIENT",
-    "generic_name": "",
+    "generic_name": "pazopanib",
     "slug": "votrient"
   },
   {
@@ -3981,12 +3981,12 @@
   },
   {
     "brand_name": "VYKOURA",
-    "generic_name": "",
+    "generic_name": "leucovorin",
     "slug": "vykoura"
   },
   {
     "brand_name": "VYTORIN",
-    "generic_name": "",
+    "generic_name": "ezetimibe + simvastatin",
     "slug": "vytorin"
   },
   {
@@ -4006,22 +4006,22 @@
   },
   {
     "brand_name": "Wellbutrin",
-    "generic_name": "bupropion hydrochloride",
+    "generic_name": "bupropion",
     "slug": "wellbutrin"
   },
   {
     "brand_name": "WELLBUTRIN SR",
-    "generic_name": "",
+    "generic_name": "bupropion",
     "slug": "wellbutrin-sr"
   },
   {
     "brand_name": "WELLBUTRIN XL",
-    "generic_name": "",
+    "generic_name": "bupropion",
     "slug": "wellbutrin-xl"
   },
   {
     "brand_name": "XALATAN",
-    "generic_name": "",
+    "generic_name": "latanoprost",
     "slug": "xalatan"
   },
   {
@@ -4031,7 +4031,7 @@
   },
   {
     "brand_name": "XANAX XR",
-    "generic_name": "",
+    "generic_name": "alprazolam",
     "slug": "xanax-xr"
   },
   {
@@ -4041,97 +4041,97 @@
   },
   {
     "brand_name": "XATMEP",
-    "generic_name": "",
+    "generic_name": "methotrexate",
     "slug": "xatmep"
   },
   {
     "brand_name": "Xeljanz",
-    "generic_name": "tofacitinib citrate",
+    "generic_name": "tofacitinib",
     "slug": "xeljanz"
   },
   {
     "brand_name": "XELJANZ XR",
-    "generic_name": "",
+    "generic_name": "tofacitinib",
     "slug": "xeljanz-xr"
   },
   {
     "brand_name": "XELODA",
-    "generic_name": "",
+    "generic_name": "capecitabine",
     "slug": "xeloda"
   },
   {
     "brand_name": "XELPROS",
-    "generic_name": "",
+    "generic_name": "latanoprost",
     "slug": "xelpros"
   },
   {
     "brand_name": "XGEVA",
-    "generic_name": "",
+    "generic_name": "denosumab",
     "slug": "xgeva"
   },
   {
     "brand_name": "XOLAIR",
-    "generic_name": "",
+    "generic_name": "omalizumab",
     "slug": "xolair"
   },
   {
     "brand_name": "Xopenex",
-    "generic_name": "levalbuterol hydrochloride",
+    "generic_name": "levalbuterol",
     "slug": "xopenex"
   },
   {
     "brand_name": "XTAMPZA ER",
-    "generic_name": "",
+    "generic_name": "oxycodone",
     "slug": "xtampza-er"
   },
   {
     "brand_name": "XTANDI",
-    "generic_name": "",
+    "generic_name": "enzalutamide",
     "slug": "xtandi"
   },
   {
     "brand_name": "XYREM",
-    "generic_name": "",
+    "generic_name": "sodium oxybate",
     "slug": "xyrem"
   },
   {
     "brand_name": "YASMIN",
-    "generic_name": "",
+    "generic_name": "drospirenone + ethinyl estradiol",
     "slug": "yasmin"
   },
   {
     "brand_name": "Yaz",
-    "generic_name": "drospirenone/ethinyl estradiol",
+    "generic_name": "drospirenone + ethinyl estradiol",
     "slug": "yaz"
   },
   {
     "brand_name": "YUVAFEM",
-    "generic_name": "",
+    "generic_name": "estradiol",
     "slug": "yuvafem"
   },
   {
     "brand_name": "Zanaflex",
-    "generic_name": "tizanidine hydrochloride",
+    "generic_name": "tizanidine",
     "slug": "zanaflex"
   },
   {
     "brand_name": "ZANTAC 360",
-    "generic_name": "",
+    "generic_name": "famotidine",
     "slug": "zantac-360"
   },
   {
     "brand_name": "ZEMPLAR",
-    "generic_name": "",
+    "generic_name": "paricalcitol",
     "slug": "zemplar"
   },
   {
     "brand_name": "ZEPBOUND",
-    "generic_name": "",
+    "generic_name": "tirzepatide",
     "slug": "zepbound"
   },
   {
     "brand_name": "ZEPBOUND KWIKPEN",
-    "generic_name": "",
+    "generic_name": "tirzepatide",
     "slug": "zepbound-kwikpen"
   },
   {
@@ -4156,12 +4156,12 @@
   },
   {
     "brand_name": "Zofran",
-    "generic_name": "ondansetron hydrochloride",
+    "generic_name": "ondansetron",
     "slug": "zofran"
   },
   {
     "brand_name": "Zoloft",
-    "generic_name": "sertraline hydrochloride",
+    "generic_name": "sertraline",
     "slug": "zoloft"
   },
   {
@@ -4186,27 +4186,27 @@
   },
   {
     "brand_name": "ZYPREXA INTRAMUSCULAR",
-    "generic_name": "",
+    "generic_name": "olanzapine",
     "slug": "zyprexa-intramuscular"
   },
   {
     "brand_name": "ZYPREXA RELPREVV",
-    "generic_name": "",
+    "generic_name": "olanzapine",
     "slug": "zyprexa-relprevv"
   },
   {
     "brand_name": "ZYPREXA ZYDIS",
-    "generic_name": "",
+    "generic_name": "olanzapine",
     "slug": "zyprexa-zydis"
   },
   {
     "brand_name": "Zyrtec",
-    "generic_name": "cetirizine hydrochloride",
+    "generic_name": "cetirizine",
     "slug": "zyrtec"
   },
   {
     "brand_name": "LORATADINE",
-    "generic_name": "loratadine",
+    "generic_name": "",
     "slug": "loratadine"
   },
   {

@@ -297,18 +297,29 @@ function renderShareButtons(brandName, totalReports, canonicalUrl) {
 const slugifyName = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
 function buildCoReportedLinkIndex(drugs) {
-  const byName = new Map(); // UPPER brand/generic -> drug
-  const bySlug = new Map();
+  // Tie-break when several drugs share a name (common now that generic_name is
+  // populated, e.g. quetiapine / seroquel / seroquel-xr all -> "quetiapine").
+  // Priority: exact slug, then exact brand, then exact generic; within the brand
+  // and generic tiers the drug with the highest total_reports wins. Exact slug is
+  // first so a co-reported generic links to the page literally named that generic
+  // (e.g. "omeprazole" -> /drugs/omeprazole/) and never to an obscure variant
+  // (lasix-onyu, seroquel-xr, zyprexa-zydis); the highest-reports tiebreak only
+  // applies when no standalone generic-named page exists.
+  const bySlug    = new Map();
+  const byBrand   = new Map();
+  const byGeneric = new Map();
+  const better = (cur, d) => (!cur || (d.total_reports || 0) > (cur.total_reports || 0)) ? d : cur;
   for (const d of drugs) {
-    if (d.brand_name)   byName.set(d.brand_name.toUpperCase().trim(), d);
-    if (d.generic_name) byName.set(d.generic_name.toUpperCase().trim(), d);
     bySlug.set(d.slug, d);
+    if (d.brand_name)   { const k = d.brand_name.toUpperCase().trim();   byBrand.set(k,   better(byBrand.get(k), d)); }
+    if (d.generic_name) { const k = d.generic_name.toUpperCase().trim(); byGeneric.set(k, better(byGeneric.get(k), d)); }
   }
   return name => {
-    const u = String(name).toUpperCase().trim();
-    if (byName.has(u)) return byName.get(u);
-    const sl = slugifyName(name);
-    if (bySlug.has(sl)) return bySlug.get(sl);
+    const key  = String(name).toUpperCase().trim();
+    const slug = slugifyName(name);
+    if (bySlug.has(slug))    return bySlug.get(slug);     // 1: exact slug
+    if (byBrand.has(key))    return byBrand.get(key);     // 2: exact brand (highest reports)
+    if (byGeneric.has(key))  return byGeneric.get(key);   // 3: exact generic, 4: highest reports
     return null;
   };
 }
