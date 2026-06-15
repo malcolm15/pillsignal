@@ -138,6 +138,46 @@ function toTitleCase(str) {
   return str.replace(/\S+/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
 }
 
+// ─── Drug display names ─────────────────────────────────────────────────────────
+// displayName() is the SINGLE SOURCE OF TRUTH for how a drug's brand name is shown
+// anywhere on the site (search index, browse, drug-page H1/title, related drugs).
+// Plain toTitleCase mangles dosage-form suffixes (XR -> Xr) and intentional internal
+// capitals (NuvaRing -> Nuvaring), so this layers two allowlists on top of it. When a
+// new drug needs special casing, extend the allowlists HERE, not at any call site.
+//
+// Rules, in order:
+//   1. Whole-name override wins (e.g. "PARAGARD T 380A" -> "ParaGard T 380A").
+//   2. A token matching an internal-cap override is replaced (NuvaRing, ProAir, ...),
+//      regardless of how the source happens to be cased.
+//   3. Names that already contain lowercase letters are trusted as intentionally cased.
+//   4. Otherwise (all-caps source) each token is title-cased, except suffix tokens
+//      which stay uppercase (XR, ER, HCL, ODT, ...).
+const DISPLAY_SUFFIX_TOKENS = new Set([
+  'XR', 'ER', 'SR', 'CR', 'DR', 'IR', 'XL', 'XT', 'MR', 'LA', 'CD',
+  'HCL', 'HCT', 'ODT', 'DS', 'EC', 'PM', 'HFA', 'DPI', 'MDI', 'SL',
+]);
+const DISPLAY_TOKEN_OVERRIDES = {
+  NUVARING: 'NuvaRing', PARAGARD: 'ParaGard', ANDROGEL: 'AndroGel',
+  OXYCONTIN: 'OxyContin', DIABETA: 'DiaBeta', PROAIR: 'ProAir',
+};
+const DISPLAY_FULLNAME_OVERRIDES = {
+  'PARAGARD T 380A': 'ParaGard T 380A',
+};
+
+function displayName(raw) {
+  if (DISPLAY_FULLNAME_OVERRIDES[raw.toUpperCase()]) {
+    return DISPLAY_FULLNAME_OVERRIDES[raw.toUpperCase()];
+  }
+  const isAllCaps = raw === raw.toUpperCase();
+  return raw.split(/\s+/).map(tok => {
+    const u = tok.toUpperCase();
+    if (DISPLAY_TOKEN_OVERRIDES[u]) return DISPLAY_TOKEN_OVERRIDES[u];
+    if (!isAllCaps) return tok;                       // trust already-cased names
+    if (DISPLAY_SUFFIX_TOKENS.has(u)) return u;       // keep XR/ER/HCL/ODT uppercase
+    return tok.charAt(0).toUpperCase() + tok.slice(1).toLowerCase();
+  }).join(' ');
+}
+
 const AGE_ORDER = ['0-17', '18-34', '35-49', '50-64', '65-74', '75+'];
 
 function sortAgeGroups(rows) {
@@ -298,7 +338,7 @@ ${items}
 function renderRelatedDrugsHtml(relatedDrugs) {
   if (!relatedDrugs || !relatedDrugs.length) return '';
   const items = relatedDrugs.map(d =>
-    `    <li><a href="/drugs/${d.slug}">${escapeHtml(toTitleCase(d.brand_name))}</a>` +
+    `    <li><a href="/drugs/${d.slug}">${escapeHtml(displayName(d.brand_name))}</a>` +
     `<span class="related-count">${d.total_reports.toLocaleString('en-US')} reports</span></li>`
   ).join('\n');
   return `<section class="card" aria-labelledby="related-heading">
@@ -343,7 +383,7 @@ function buildJsonLd(drug, canonicalUrl, description) {
 
 function renderPage(drug, adverseEvents, demographics, outcomes, trends, relatedDrugs = [], coReported = [], resolveLink = () => null) {
   const { slug, generic_name: genericName, total_reports: totalReports } = drug;
-  const brandName = toTitleCase(drug.brand_name);
+  const brandName = displayName(drug.brand_name);
   const canonicalUrl  = `${SITE_URL}/drugs/${slug}`;
   const dateRange     = computeDateRange(trends) ?? 'data available';
   const generatedDate = new Date().toLocaleDateString('en-US', {
@@ -464,7 +504,7 @@ function writeBrowsePage(drugs) {
 
   const sections = usedKeys.map(letter => {
     const items = groups[letter].map(d => {
-      const displayName = toTitleCase(d.brand_name);
+      const brandDisplay = displayName(d.brand_name);
       const generic = d.generic_name
         ? `<span class="browse-generic">${escapeHtml(d.generic_name)}</span>`
         : '';
@@ -472,7 +512,7 @@ function writeBrowsePage(drugs) {
         ? `<span class="browse-count">${d.total_reports.toLocaleString('en-US')} reports</span>`
         : '';
       return `        <li class="browse-item">` +
-        `<span class="browse-name-wrap"><a href="/drugs/${d.slug}/" class="browse-brand">${escapeHtml(displayName)}</a>${generic}</span>` +
+        `<span class="browse-name-wrap"><a href="/drugs/${d.slug}/" class="browse-brand">${escapeHtml(brandDisplay)}</a>${generic}</span>` +
         count + `</li>`;
     }).join('\n');
 
@@ -787,7 +827,7 @@ function writeRobotsTxt() {
 function writeDrugIndex(drugs) {
   mkdirSync(join(DOCS_DIR, 'js'), { recursive: true });
   const index = drugs.map(d => ({
-    brand_name:   d.brand_name,
+    brand_name:   displayName(d.brand_name),
     generic_name: d.generic_name,
     slug:         d.slug,
   }));

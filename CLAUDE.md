@@ -220,6 +220,16 @@ The site header (banner + nav + dark-mode toggle) and footer (AEMS data source, 
 - `'browse'` — ← Search only (browse listing page)
 - `'home'` or any static/guide page — Browse all only
 
+## Drug Name Display
+
+`displayName()` in `scripts/generate-pages.js` is the **single source of truth** for how a drug's brand name is displayed anywhere on the site: the homepage search index (`drug-index.json`), the browse page, the drug-page H1 and `<title>`, and the related-drugs and co-reported lists. Do not title-case brand names at any individual call site; always route through `displayName()` so search, browse, and drug pages render an identical name for the same drug.
+
+Plain title-casing mangles two things, so `displayName()` layers allowlists on top of it:
+- **Suffix tokens** kept uppercase (`XR`, `ER`, `SR`, `CR`, `DR`, `IR`, `XL`, `XT`, `MR`, `LA`, `CD`, `HCL`, `HCT`, `ODT`, `DS`, `EC`, `PM`, `HFA`, `DPI`, `MDI`, `SL`) so `ADDERALL XR` renders `Adderall XR`, not `Adderall Xr`.
+- **Internal-capital brand overrides** (`NuvaRing`, `ParaGard`, `AndroGel`, `OxyContin`, `DiaBeta`, `ProAir`), plus whole-name overrides (e.g. `PARAGARD T 380A` to `ParaGard T 380A`) so intentional capitals survive.
+
+Both allowlists live in `displayName()`. **When a new drug needs special casing (a new dosage suffix, an internal-capital brand, or a model-code name), extend the allowlists there**, not at the call sites. Names that already contain lowercase letters are trusted as intentionally cased and left alone.
+
 ## Co-Reported Medications
 
 Each drug page can show a "Medications commonly reported with [Drug]" section: the medications most frequently named in the same FAERS/AEMS reports as the drug, by normalized openfda generic name.
