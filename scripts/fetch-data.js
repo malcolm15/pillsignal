@@ -191,9 +191,34 @@ const CO_FLOOR_PCT      = 0.01; // noise floor: >=1% of the drug's total reports
 const CO_FLOOR_MIN      = 25;   // ...but never below an absolute 25 reports
 const CO_MAX            = 5;    // store at most this many per drug
 
+// Fuzzy self-match: catch misspellings of the drug's OWN name (e.g. Lexapro's
+// "ESCITSLOPRAM", distance 1 from "ESCITALOPRAM"). Count-independent, so it never
+// touches the count thresholds above and cannot drop a legitimate co-reported drug
+// by frequency. Guards keep it from dropping similarly named but DIFFERENT drugs.
+const CO_FUZZY_MAX_DIST = 2;    // max Levenshtein distance to a self-alias token
+const CO_FUZZY_LEN_TOL  = 0.2;  // candidate length must be within 20% of the alias token
+const CO_FUZZY_MIN_LEN  = 5;    // only fuzzy-match alias tokens this long (precision guard)
+
+// Levenshtein edit distance with an early exit once it exceeds CO_FUZZY_MAX_DIST.
+function levenshtein(a, b) {
+  const m = a.length, n = b.length;
+  if (Math.abs(m - n) > CO_FUZZY_MAX_DIST) return CO_FUZZY_MAX_DIST + 1;
+  const prev = Array.from({ length: n + 1 }, (_, j) => j);
+  for (let i = 1; i <= m; i++) {
+    let diag = prev[0];
+    prev[0] = i;
+    for (let j = 1; j <= n; j++) {
+      const tmp = prev[j];
+      prev[j] = Math.min(prev[j] + 1, prev[j - 1] + 1, diag + (a[i - 1] === b[j - 1] ? 0 : 1));
+      diag = tmp;
+    }
+  }
+  return prev[n];
+}
+
 // Dose/form/salt vocabulary stripped during canonicalization.
 const CO_FORM_WORDS = /\b(TABLETS?|CAPSULES?|CAPLETS?|ORAL|FILM[- ]?COATED|EXTENDED[- ]?RELEASE|DELAYED[- ]?RELEASE|PROLONGED[- ]?RELEASE|MODIFIED[- ]?RELEASE|SUSTAINED[- ]?RELEASE|USP|INJECTION|INJECTABLE|SOLUTION|SUSPENSION|CREAM|GEL|OINTMENT|PATCH|CHEWABLE|COATED|EFFERVESCENT|LOZENGE|SPRAY|INHALER|DROPS?|SYRUP|POWDER|SOLUBLE)\b/g;
-const CO_SALT_WORDS = /\b(SODIUM|POTASSIUM|MAGNESIUM|CALCIUM|ZINC|SULFATE|SULPHATE|HYDROCHLORIDE|HCL|HYDROBROMIDE|HBR|BESYLATE|MESYLATE|MALEATE|TARTRATE|BITARTRATE|CITRATE|FUMARATE|SUCCINATE|ACETATE|PHOSPHATE|NITRATE|BROMIDE|CHLORIDE|DIHYDRATE|MONOHYDRATE|HEMIHYDRATE|ANHYDROUS|PROPIONATE|DIPROPIONATE|VALERATE|FUROATE|ENANTHATE|DECANOATE|PALMITATE|PAMOATE|EMBONATE|XINAFOATE|TROMETHAMINE|MICRONIZED)\b/g;
+const CO_SALT_WORDS = /\b(SODIUM|POTASSIUM|MAGNESIUM|CALCIUM|ZINC|SULFATE|SULPHATE|HYDROCHLORIDE|HCL|HYDROBROMIDE|HBR|BESYLATE|MESYLATE|MALEATE|TARTRATE|BITARTRATE|CITRATE|FUMARATE|SUCCINATE|ACETATE|PHOSPHATE|NITRATE|BROMIDE|CHLORIDE|OXALATE|DIHYDRATE|MONOHYDRATE|HEMIHYDRATE|ANHYDROUS|PROPIONATE|DIPROPIONATE|VALERATE|FUROATE|ENANTHATE|DECANOATE|PALMITATE|PAMOATE|EMBONATE|XINAFOATE|TROMETHAMINE|MICRONIZED)\b/g;
 
 // Non-drug descriptors and junk that should never appear as a co-reported "drug".
 const CO_STOP_TOKENS  = new Set(['VITAMIN', 'MULTIVITAMIN', 'SUPPLEMENT', 'SUPPLEMENTS', 'HERBAL', 'UNKNOWN']);
@@ -228,24 +253,52 @@ async function fetchCoReported(searchField, searchTerm, totalReports, drug) {
   );
   if (!data?.results || !totalReports) return [];
 
-  // Self-exclusion. Capture the drug's own generic aliases robustly: seed from the
-  // brand and list generic, then add any generic appearing in >=50% of the drug's
-  // own reports (that IS the drug, e.g. Mirena -> LEVONORGESTREL). The >=90% rule is
-  // kept as a secondary fallback guard at filter time.
-  const selfCanon = new Set();
-  const addSelf = n => { const c = canonicalizeMed(n); if (c) selfCanon.add(c); };
-  addSelf(drug.brand_name);
-  if (drug.generic_name) addSelf(drug.generic_name);
+  // Self-exclusion. Build the drug's own name aliases as exact canonical names AND as
+  // individual tokens for fuzzy matching. Seed from the brand and list generic
+  // (canonicalize strips salt/ester suffixes, so "escitalopram oxalate" contributes
+  // the token "ESCITALOPRAM"), plus any generic appearing in >=50% of the drug's own
+  // reports (that IS the drug, e.g. Mirena -> LEVONORGESTREL). The >=90% rule remains
+  // a secondary fallback guard at filter time.
+  // Fuzzy matching is seeded ONLY from the brand and generic, the authoritative names
+  // for THIS drug. The >=50% count-capture can grab a different drug that merely
+  // co-occurs in most reports (e.g. another PPI in Nexium reports), so those terms go
+  // to exact self-exclusion only, never to the fuzzy token set, or they would fuzzily
+  // drop legitimate neighbors (e.g. lansoprazole capture dropping pantoprazole).
+  const selfCanon   = new Set();   // exact canonical self names
+  const aliasTokens = new Set();   // self tokens for fuzzy matching: brand + generic only
+  const addExact = raw => { const c = canonicalizeMed(raw); if (c) selfCanon.add(c); };
+  const addAlias = raw => {
+    const c = canonicalizeMed(raw);
+    if (!c) return;
+    selfCanon.add(c);
+    for (const t of c.split(' ')) if (t) aliasTokens.add(t);
+  };
+  addAlias(drug.brand_name);
+  if (drug.generic_name) addAlias(drug.generic_name);
   for (const r of data.results) {
-    if (r.count >= CO_SELF_CAPTURE * totalReports) addSelf(canonicalizeMed(r.term));
+    if (r.count >= CO_SELF_CAPTURE * totalReports) addExact(r.term);
   }
+
+  // A candidate is the drug itself if it matches a self name exactly, or is within a
+  // small edit distance of a self-alias token. The length guard and minimum token
+  // length keep this from dropping similarly named but DIFFERENT drugs (e.g.
+  // hydralazine vs hydroxyzine).
+  const isSelf = c => {
+    if (selfCanon.has(c)) return true;
+    for (const t of aliasTokens) {
+      if (t.length < CO_FUZZY_MIN_LEN) continue;
+      if (Math.abs(c.length - t.length) > CO_FUZZY_LEN_TOL * t.length) continue;
+      if (levenshtein(c, t) <= CO_FUZZY_MAX_DIST) return true;
+    }
+    return false;
+  };
 
   // Canonicalize + dedupe variants, keeping the highest count as the representative.
   const groups = new Map();
   for (const r of data.results) {
     if (r.count >= CO_SELF_HEURISTIC * totalReports) continue; // fallback self guard
     const c = canonicalizeMed(r.term);
-    if (isStopName(c) || selfCanon.has(c)) continue;
+    if (isStopName(c) || isSelf(c)) continue;
     if (!groups.has(c) || groups.get(c).count < r.count) groups.set(c, { name: c, count: r.count });
   }
 
