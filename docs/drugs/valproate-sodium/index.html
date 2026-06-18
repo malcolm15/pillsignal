@@ -383,6 +383,27 @@
       color: var(--c-text-muted);
     }
 
+    /* ─── Accessible adverse events list (crawlable + tap-to-define) ───────────── */
+    .ae-glossary-note { font-size: 0.85rem; color: var(--c-text-muted); margin: 0.25rem 0 0.75rem; }
+    .ae-list { list-style: none; margin: 0.25rem 0 0; padding: 0; }
+    .ae-item { border-bottom: 1px solid var(--c-border); }
+    .ae-item:last-child { border-bottom: none; }
+    .ae-item--plain { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; padding: 0.55rem 0; }
+    .ae-name { font-weight: 600; font-size: 0.95rem; }
+    .ae-count { font-size: 0.8rem; color: var(--c-text-muted); white-space: nowrap; flex-shrink: 0; }
+    .ae-term { }
+    .ae-term > summary {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem;
+      padding: 0.55rem 0; cursor: pointer; list-style: none;
+    }
+    .ae-term > summary::-webkit-details-marker { display: none; }
+    .ae-term > summary .ae-name::after { content: " \25B8"; color: var(--c-primary); font-weight: 600; }
+    .ae-term[open] > summary .ae-name::after { content: " \25BE"; }
+    .ae-term > summary:hover .ae-name { color: var(--c-primary); }
+    .ae-def { padding: 0 0 0.75rem; font-size: 0.92rem; color: var(--c-text); }
+    .ae-def p { margin: 0 0 0.4rem; }
+    .ae-def a { font-size: 0.85rem; font-weight: 500; }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -502,6 +523,24 @@
       <div class="chart-wrap" id="ae-wrap">
         <canvas id="chart-ae" role="img" aria-label="Horizontal bar chart showing top reported adverse events for Valproate Sodium"></canvas>
       </div>
+      <p class="ae-glossary-note">Tap a term for a plain-language definition. <a href="/glossary/">Browse the full glossary →</a></p>
+      <ul class="ae-list" aria-label="Top reported adverse events for Valproate Sodium">
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Drug Ineffective</span> <span class="ae-count">1,427 reports</span></summary><div class="ae-def"><p>A report that the medication did not work as expected for the person taking it. This is a reporting category, not a sign the drug is defective. It simply means someone felt it was not helping their condition.</p><a href="/glossary/#drug-ineffective">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Drug Interaction</span> <span class="ae-count">1,230 reports</span></summary><div class="ae-def"><p>A report that two or more medications may have affected each other when taken together.</p><a href="/glossary/#drug-interaction">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Off Label Use</span> <span class="ae-count">1,125 reports</span></summary><div class="ae-def"><p>Using a medication for a condition or in a way that the FDA has not officially approved. This is common and often legal, and a report of it does not mean something went wrong. Doctors sometimes prescribe drugs off label based on their judgment.</p><a href="/glossary/#off-label-use">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Foetal Exposure During Pregnancy</span> <span class="ae-count">1,043 reports</span></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Somnolence</span> <span class="ae-count">977 reports</span></summary><div class="ae-def"><p>Drowsiness or strong sleepiness.</p><a href="/glossary/#somnolence">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Epilepsy</span> <span class="ae-count">832 reports</span></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Seizure</span> <span class="ae-count">777 reports</span></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Toxicity to Various Agents</span> <span class="ae-count">770 reports</span></summary><div class="ae-def"><p>A broad reporting category used when the body has a harmful response, sometimes involving more than one substance.</p><a href="/glossary/#toxicity-to-various-agents">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Pyrexia</span> <span class="ae-count">750 reports</span></summary><div class="ae-def"><p>The medical term for fever, meaning a raised body temperature.</p><a href="/glossary/#pyrexia">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Vomiting</span> <span class="ae-count">617 reports</span></summary><div class="ae-def"><p>Throwing up the contents of the stomach.</p><a href="/glossary/#vomiting">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Convulsion</span> <span class="ae-count">612 reports</span></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Neutropenia</span> <span class="ae-count">536 reports</span></summary><div class="ae-def"><p>A low level of neutrophils, a type of white blood cell that fights infection.</p><a href="/glossary/#neutropenia">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Diarrhoea</span> <span class="ae-count">524 reports</span></summary><div class="ae-def"><p>Loose or watery bowel movements, often frequent. Also spelled diarrhea in American English.</p><a href="/glossary/#diarrhoea">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Condition Aggravated</span> <span class="ae-count">517 reports</span></summary><div class="ae-def"><p>A report that the person's existing health condition got worse. This describes a worsening of something the person already had, not necessarily a new problem caused by the drug.</p><a href="/glossary/#condition-aggravated">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Weight Increased</span> <span class="ae-count">510 reports</span></summary><div class="ae-def"><p>Gaining body weight.</p><a href="/glossary/#weight-increased">Full definition in the glossary →</a></div></details></li>
+      </ul>
       <p class="chart-caption">Ranked by frequency of reports, not severity. The most-reported event is not necessarily the most dangerous or the most common in patients taking this drug.</p>
     </section>
 

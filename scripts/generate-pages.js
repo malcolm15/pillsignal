@@ -42,6 +42,12 @@ const HOMEPAGE_TEMPLATE = readFileSync(join(ROOT, 'templates', 'homepage.html'),
 // scripts/glossary.json (authored) powers the /glossary/ page, docs/js/glossary.json
 // (the client copy used for inline drug-page definitions), and term matching.
 const GLOSSARY = JSON.parse(readFileSync(join(__dirname, 'glossary.json'), 'utf8'));
+// MedDRA key (ALL-CAPS) -> { key, display, definition } for matching adverse_events
+// terms to their plain-language definitions at generate time. (Slug is computed at
+// render time via slugifyName, which is defined later in this module.)
+const GLOSSARY_BY_KEY = new Map(
+  GLOSSARY.terms.map(t => [t.key.toUpperCase(), t])
+);
 
 // ─── Shared page chrome ───────────────────────────────────────────────────────
 // Single source of truth for banner, site-header, and site-footer HTML.
@@ -351,6 +357,30 @@ ${items}
 </section>`;
 }
 
+// Accessible, crawlable list of a drug's top adverse events. Terms with a glossary
+// entry expand inline (native <details>, no hover, works on touch) and link to their
+// full glossary entry; terms with no entry render as plain text. Mirrors the top 15
+// shown in the chart so the same data is available without executing JavaScript.
+function renderAeListHtml(adverseEvents, brandName) {
+  const top = adverseEvents.slice(0, 15);
+  if (!top.length) return '';
+  const items = top.map(e => {
+    const count = `<span class="ae-count">${Number(e.count).toLocaleString('en-US')} reports</span>`;
+    const g = GLOSSARY_BY_KEY.get(String(e.event_name).toUpperCase().trim());
+    if (g) {
+      const slug = slugifyName(g.display);
+      return `        <li class="ae-item"><details class="ae-term">` +
+        `<summary><span class="ae-name">${escapeHtml(g.display)}</span> ${count}</summary>` +
+        `<div class="ae-def"><p>${escapeHtml(g.definition)}</p>` +
+        `<a href="/glossary/#${slug}">Full definition in the glossary →</a></div>` +
+        `</details></li>`;
+    }
+    return `        <li class="ae-item ae-item--plain">` +
+      `<span class="ae-name">${escapeHtml(toTitleCase(e.event_name))}</span> ${count}</li>`;
+  }).join('\n');
+  return `<ul class="ae-list" aria-label="Top reported adverse events for ${escapeHtml(brandName)}">\n${items}\n      </ul>`;
+}
+
 // Renders the "Related Drugs" card HTML, or empty string if no related drugs.
 function renderRelatedDrugsHtml(relatedDrugs) {
   if (!relatedDrugs || !relatedDrugs.length) return '';
@@ -446,6 +476,7 @@ function renderPage(drug, adverseEvents, demographics, outcomes, trends, related
     .replaceAll('{{OPENFDA_URL}}',          buildOpenFdaUrl(drug))
     .replaceAll('{{GENERATED_DATE}}',       generatedDate)
     .replaceAll('{{ADVERSE_EVENTS_JSON}}',  safeJson(aeData))
+    .replaceAll('{{AE_LIST_HTML}}',         renderAeListHtml(adverseEvents, brandName))
     .replaceAll('{{SEX_DATA_JSON}}',        safeJson(sexData))
     .replaceAll('{{AGE_DATA_JSON}}',        safeJson(ageData))
     .replaceAll('{{OUTCOMES_JSON}}',        safeJson(outcomesData))

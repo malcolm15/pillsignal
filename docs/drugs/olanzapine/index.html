@@ -383,6 +383,27 @@
       color: var(--c-text-muted);
     }
 
+    /* ─── Accessible adverse events list (crawlable + tap-to-define) ───────────── */
+    .ae-glossary-note { font-size: 0.85rem; color: var(--c-text-muted); margin: 0.25rem 0 0.75rem; }
+    .ae-list { list-style: none; margin: 0.25rem 0 0; padding: 0; }
+    .ae-item { border-bottom: 1px solid var(--c-border); }
+    .ae-item:last-child { border-bottom: none; }
+    .ae-item--plain { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; padding: 0.55rem 0; }
+    .ae-name { font-weight: 600; font-size: 0.95rem; }
+    .ae-count { font-size: 0.8rem; color: var(--c-text-muted); white-space: nowrap; flex-shrink: 0; }
+    .ae-term { }
+    .ae-term > summary {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem;
+      padding: 0.55rem 0; cursor: pointer; list-style: none;
+    }
+    .ae-term > summary::-webkit-details-marker { display: none; }
+    .ae-term > summary .ae-name::after { content: " \25B8"; color: var(--c-primary); font-weight: 600; }
+    .ae-term[open] > summary .ae-name::after { content: " \25BE"; }
+    .ae-term > summary:hover .ae-name { color: var(--c-primary); }
+    .ae-def { padding: 0 0 0.75rem; font-size: 0.92rem; color: var(--c-text); }
+    .ae-def p { margin: 0 0 0.4rem; }
+    .ae-def a { font-size: 0.85rem; font-weight: 500; }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -502,6 +523,24 @@
       <div class="chart-wrap" id="ae-wrap">
         <canvas id="chart-ae" role="img" aria-label="Horizontal bar chart showing top reported adverse events for Olanzapine"></canvas>
       </div>
+      <p class="ae-glossary-note">Tap a term for a plain-language definition. <a href="/glossary/">Browse the full glossary →</a></p>
+      <ul class="ae-list" aria-label="Top reported adverse events for Olanzapine">
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Drug Ineffective</span> <span class="ae-count">5,720 reports</span></summary><div class="ae-def"><p>A report that the medication did not work as expected for the person taking it. This is a reporting category, not a sign the drug is defective. It simply means someone felt it was not helping their condition.</p><a href="/glossary/#drug-ineffective">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Off Label Use</span> <span class="ae-count">4,103 reports</span></summary><div class="ae-def"><p>Using a medication for a condition or in a way that the FDA has not officially approved. This is common and often legal, and a report of it does not mean something went wrong. Doctors sometimes prescribe drugs off label based on their judgment.</p><a href="/glossary/#off-label-use">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Toxicity to Various Agents</span> <span class="ae-count">3,762 reports</span></summary><div class="ae-def"><p>A broad reporting category used when the body has a harmful response, sometimes involving more than one substance.</p><a href="/glossary/#toxicity-to-various-agents">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Drug Interaction</span> <span class="ae-count">3,264 reports</span></summary><div class="ae-def"><p>A report that two or more medications may have affected each other when taken together.</p><a href="/glossary/#drug-interaction">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Weight Increased</span> <span class="ae-count">2,740 reports</span></summary><div class="ae-def"><p>Gaining body weight.</p><a href="/glossary/#weight-increased">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Somnolence</span> <span class="ae-count">2,641 reports</span></summary><div class="ae-def"><p>Drowsiness or strong sleepiness.</p><a href="/glossary/#somnolence">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Nausea</span> <span class="ae-count">2,637 reports</span></summary><div class="ae-def"><p>The feeling of sickness in your stomach that often comes before vomiting.</p><a href="/glossary/#nausea">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Condition Aggravated</span> <span class="ae-count">2,287 reports</span></summary><div class="ae-def"><p>A report that the person's existing health condition got worse. This describes a worsening of something the person already had, not necessarily a new problem caused by the drug.</p><a href="/glossary/#condition-aggravated">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Vomiting</span> <span class="ae-count">2,268 reports</span></summary><div class="ae-def"><p>Throwing up the contents of the stomach.</p><a href="/glossary/#vomiting">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Suicide Attempt</span> <span class="ae-count">2,252 reports</span></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Fatigue</span> <span class="ae-count">2,225 reports</span></summary><div class="ae-def"><p>Extreme tiredness or lack of energy that does not improve with rest.</p><a href="/glossary/#fatigue">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Overdose</span> <span class="ae-count">2,100 reports</span></summary><div class="ae-def"><p>Taking more of a medication than intended or recommended. This can be accidental.</p><a href="/glossary/#overdose">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Neuroleptic Malignant Syndrome</span> <span class="ae-count">2,046 reports</span></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Confusional State</span> <span class="ae-count">2,007 reports</span></summary><div class="ae-def"><p>A state of being confused, disoriented, or unable to think clearly.</p><a href="/glossary/#confusional-state">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Drug Abuse</span> <span class="ae-count">1,986 reports</span></li>
+      </ul>
       <p class="chart-caption">Ranked by frequency of reports, not severity. The most-reported event is not necessarily the most dangerous or the most common in patients taking this drug.</p>
     </section>
 

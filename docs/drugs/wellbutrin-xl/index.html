@@ -383,6 +383,27 @@
       color: var(--c-text-muted);
     }
 
+    /* ─── Accessible adverse events list (crawlable + tap-to-define) ───────────── */
+    .ae-glossary-note { font-size: 0.85rem; color: var(--c-text-muted); margin: 0.25rem 0 0.75rem; }
+    .ae-list { list-style: none; margin: 0.25rem 0 0; padding: 0; }
+    .ae-item { border-bottom: 1px solid var(--c-border); }
+    .ae-item:last-child { border-bottom: none; }
+    .ae-item--plain { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; padding: 0.55rem 0; }
+    .ae-name { font-weight: 600; font-size: 0.95rem; }
+    .ae-count { font-size: 0.8rem; color: var(--c-text-muted); white-space: nowrap; flex-shrink: 0; }
+    .ae-term { }
+    .ae-term > summary {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem;
+      padding: 0.55rem 0; cursor: pointer; list-style: none;
+    }
+    .ae-term > summary::-webkit-details-marker { display: none; }
+    .ae-term > summary .ae-name::after { content: " \25B8"; color: var(--c-primary); font-weight: 600; }
+    .ae-term[open] > summary .ae-name::after { content: " \25BE"; }
+    .ae-term > summary:hover .ae-name { color: var(--c-primary); }
+    .ae-def { padding: 0 0 0.75rem; font-size: 0.92rem; color: var(--c-text); }
+    .ae-def p { margin: 0 0 0.4rem; }
+    .ae-def a { font-size: 0.85rem; font-weight: 500; }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -502,6 +523,24 @@
       <div class="chart-wrap" id="ae-wrap">
         <canvas id="chart-ae" role="img" aria-label="Horizontal bar chart showing top reported adverse events for Wellbutrin XL"></canvas>
       </div>
+      <p class="ae-glossary-note">Tap a term for a plain-language definition. <a href="/glossary/">Browse the full glossary →</a></p>
+      <ul class="ae-list" aria-label="Top reported adverse events for Wellbutrin XL">
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Drug Ineffective</span> <span class="ae-count">8,458 reports</span></summary><div class="ae-def"><p>A report that the medication did not work as expected for the person taking it. This is a reporting category, not a sign the drug is defective. It simply means someone felt it was not helping their condition.</p><a href="/glossary/#drug-ineffective">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Nausea</span> <span class="ae-count">7,019 reports</span></summary><div class="ae-def"><p>The feeling of sickness in your stomach that often comes before vomiting.</p><a href="/glossary/#nausea">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Fatigue</span> <span class="ae-count">6,485 reports</span></summary><div class="ae-def"><p>Extreme tiredness or lack of energy that does not improve with rest.</p><a href="/glossary/#fatigue">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Headache</span> <span class="ae-count">6,304 reports</span></summary><div class="ae-def"><p>Pain in the head or upper neck.</p><a href="/glossary/#headache">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Depression</span> <span class="ae-count">5,721 reports</span></summary><div class="ae-def"><p>A persistent low mood, loss of interest, or feelings of sadness. If you are struggling, the 988 Suicide and Crisis Lifeline (call or text 988 in the US) is available 24 hours a day.</p><a href="/glossary/#depression">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Anxiety</span> <span class="ae-count">5,090 reports</span></summary><div class="ae-def"><p>A feeling of worry, nervousness, or unease.</p><a href="/glossary/#anxiety">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Pain</span> <span class="ae-count">4,859 reports</span></summary><div class="ae-def"><p>A general report of physical discomfort, used when no more specific location is given.</p><a href="/glossary/#pain">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Dizziness</span> <span class="ae-count">4,561 reports</span></summary><div class="ae-def"><p>A feeling of being lightheaded, unsteady, or like the room is spinning.</p><a href="/glossary/#dizziness">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Off Label Use</span> <span class="ae-count">4,194 reports</span></summary><div class="ae-def"><p>Using a medication for a condition or in a way that the FDA has not officially approved. This is common and often legal, and a report of it does not mean something went wrong. Doctors sometimes prescribe drugs off label based on their judgment.</p><a href="/glossary/#off-label-use">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Insomnia</span> <span class="ae-count">4,060 reports</span></summary><div class="ae-def"><p>Difficulty falling asleep or staying asleep.</p><a href="/glossary/#insomnia">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Diarrhoea</span> <span class="ae-count">3,246 reports</span></summary><div class="ae-def"><p>Loose or watery bowel movements, often frequent. Also spelled diarrhea in American English.</p><a href="/glossary/#diarrhoea">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Vomiting</span> <span class="ae-count">3,121 reports</span></summary><div class="ae-def"><p>Throwing up the contents of the stomach.</p><a href="/glossary/#vomiting">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Rash</span> <span class="ae-count">3,105 reports</span></summary><div class="ae-def"><p>An area of irritated, red, or bumpy skin.</p><a href="/glossary/#rash">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Dyspnoea</span> <span class="ae-count">2,904 reports</span></summary><div class="ae-def"><p>Shortness of breath or difficulty breathing. Also spelled dyspnea in American English.</p><a href="/glossary/#dyspnoea">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Feeling Abnormal</span> <span class="ae-count">2,873 reports</span></summary><div class="ae-def"><p>A general report that the person did not feel like themselves, without a more specific description.</p><a href="/glossary/#feeling-abnormal">Full definition in the glossary →</a></div></details></li>
+      </ul>
       <p class="chart-caption">Ranked by frequency of reports, not severity. The most-reported event is not necessarily the most dangerous or the most common in patients taking this drug.</p>
     </section>
 

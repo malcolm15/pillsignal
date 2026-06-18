@@ -383,6 +383,27 @@
       color: var(--c-text-muted);
     }
 
+    /* ─── Accessible adverse events list (crawlable + tap-to-define) ───────────── */
+    .ae-glossary-note { font-size: 0.85rem; color: var(--c-text-muted); margin: 0.25rem 0 0.75rem; }
+    .ae-list { list-style: none; margin: 0.25rem 0 0; padding: 0; }
+    .ae-item { border-bottom: 1px solid var(--c-border); }
+    .ae-item:last-child { border-bottom: none; }
+    .ae-item--plain { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; padding: 0.55rem 0; }
+    .ae-name { font-weight: 600; font-size: 0.95rem; }
+    .ae-count { font-size: 0.8rem; color: var(--c-text-muted); white-space: nowrap; flex-shrink: 0; }
+    .ae-term { }
+    .ae-term > summary {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem;
+      padding: 0.55rem 0; cursor: pointer; list-style: none;
+    }
+    .ae-term > summary::-webkit-details-marker { display: none; }
+    .ae-term > summary .ae-name::after { content: " \25B8"; color: var(--c-primary); font-weight: 600; }
+    .ae-term[open] > summary .ae-name::after { content: " \25BE"; }
+    .ae-term > summary:hover .ae-name { color: var(--c-primary); }
+    .ae-def { padding: 0 0 0.75rem; font-size: 0.92rem; color: var(--c-text); }
+    .ae-def p { margin: 0 0 0.4rem; }
+    .ae-def a { font-size: 0.85rem; font-weight: 500; }
+
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
       border-top: 1px solid var(--c-border);
@@ -502,6 +523,24 @@
       <div class="chart-wrap" id="ae-wrap">
         <canvas id="chart-ae" role="img" aria-label="Horizontal bar chart showing top reported adverse events for Invega"></canvas>
       </div>
+      <p class="ae-glossary-note">Tap a term for a plain-language definition. <a href="/glossary/">Browse the full glossary →</a></p>
+      <ul class="ae-list" aria-label="Top reported adverse events for Invega">
+        <li class="ae-item ae-item--plain"><span class="ae-name">Injury</span> <span class="ae-count">4,329 reports</span></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Gynaecomastia</span> <span class="ae-count">3,665 reports</span></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Drug Ineffective</span> <span class="ae-count">1,749 reports</span></summary><div class="ae-def"><p>A report that the medication did not work as expected for the person taking it. This is a reporting category, not a sign the drug is defective. It simply means someone felt it was not helping their condition.</p><a href="/glossary/#drug-ineffective">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Abnormal Weight Gain</span> <span class="ae-count">1,660 reports</span></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Off Label Use</span> <span class="ae-count">1,528 reports</span></summary><div class="ae-def"><p>Using a medication for a condition or in a way that the FDA has not officially approved. This is common and often legal, and a report of it does not mean something went wrong. Doctors sometimes prescribe drugs off label based on their judgment.</p><a href="/glossary/#off-label-use">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Weight Increased</span> <span class="ae-count">1,370 reports</span></summary><div class="ae-def"><p>Gaining body weight.</p><a href="/glossary/#weight-increased">Full definition in the glossary →</a></div></details></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Hyperprolactinaemia</span> <span class="ae-count">1,259 reports</span></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Galactorrhoea</span> <span class="ae-count">1,051 reports</span></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Sedation</span> <span class="ae-count">742 reports</span></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Dystonia</span> <span class="ae-count">709 reports</span></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Dyskinesia</span> <span class="ae-count">701 reports</span></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Suicide Attempt</span> <span class="ae-count">666 reports</span></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Treatment Noncompliance</span> <span class="ae-count">661 reports</span></li>
+        <li class="ae-item ae-item--plain"><span class="ae-name">Schizophrenia</span> <span class="ae-count">655 reports</span></li>
+        <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Product Use in Unapproved Indication</span> <span class="ae-count">622 reports</span></summary><div class="ae-def"><p>Using a medication for a condition it is not officially approved to treat. Like off label use, this is a reporting category and does not by itself mean harm occurred.</p><a href="/glossary/#product-use-in-unapproved-indication">Full definition in the glossary →</a></div></details></li>
+      </ul>
       <p class="chart-caption">Ranked by frequency of reports, not severity. The most-reported event is not necessarily the most dangerous or the most common in patients taking this drug.</p>
     </section>
 

@@ -253,6 +253,26 @@ Each drug page can show a "Medications commonly reported with [Drug]" section: t
 
 **Internal links:** resolved at **generate time** (not stored in the DB) against the in-memory drug list, matching on `slug`, `brand_name`, and `generic_name`. A co-reported medication links to its page when we have one and renders as plain text when we do not. The list uses a dedicated `.co-reported-list` class (not `.related-list`) so it does not fire the `related_item_click` GA event.
 
+## Adverse Event Glossary
+
+Plain-language definitions for adverse event (MedDRA) terms, powering a standalone `/glossary/` page and inline tap-to-define definitions on drug pages.
+
+**Single source of truth:** `scripts/glossary.json` is the authored, canonical data file. Shape: `{ caveat, terms: [{ key, display, definition }] }`.
+- `key` is the **exact MedDRA Preferred Term, ALL-CAPS, British spelling preserved** (`DIARRHOEA`, `DYSPNOEA`, `OEDEMA PERIPHERAL`). It is matched against `adverse_events.event_name` (also ALL-CAPS) at generate time. Do not Americanize keys or the match breaks.
+- `display` is the recased name shown to users (`Diarrhoea`, `Off Label Use`). `definition` is plain-language, no em-dashes.
+- `caveat` is the standard notice rendered once at the top of the glossary page.
+
+`generate-pages.js` reads `scripts/glossary.json` once into `GLOSSARY` and a `GLOSSARY_BY_KEY` map, then:
+- writes `docs/js/glossary.json` (client copy) via `writeGlossaryData()`,
+- generates the `/glossary/` page via `writeGlossaryPage()` (alphabetical, A-Z nav, per-term anchor id = `slugifyName(display)` for deep-linking, caveat once, shared chrome, trailing-slash canonical/og:url; in the sitemap and footer),
+- renders the inline drug-page definitions via `renderAeListHtml()`.
+
+**Tier system.** Tier 1 = the 82 terms that appear on 100+ drug pages; these are the only terms with definitions today. Every other term renders as plain text. Expand later by adding entries to `scripts/glossary.json` (tier 2 = 50+ drugs, etc.); no code change needed, the match is automatic.
+
+**Inline definitions (drug pages).** The `Top Reported Adverse Events` card shows the Chart.js bar chart (the visual) **and** an accessible HTML list (`renderAeListHtml`, injected via `{{AE_LIST_HTML}}`) of the same top 15 terms. The list is crawlable and screen-reader friendly, which the canvas alone is not. A term with a glossary entry renders as a native `<details>` element (tap or click to expand the definition inline, no hover dependency, works on touch) that links to its full entry at `/glossary/#slug` (trailing slash). A term with no entry renders as plain title-cased text. A contextual link to `/glossary/` sits above the list.
+
+**To add or edit definitions:** edit `scripts/glossary.json`, then run `node scripts/generate-pages.js`. That one file updates the glossary page, the client copy, and every inline definition site-wide.
+
 ## Data Refresh Procedure
 
 Run this checklist in order every time the dataset is refreshed. Deviating from the order can create drift between the list, the database, and the live pages.
