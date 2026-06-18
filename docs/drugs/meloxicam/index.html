@@ -403,6 +403,14 @@
     .ae-def { padding: 0 0 0.75rem; font-size: 0.92rem; color: var(--c-text); }
     .ae-def p { margin: 0 0 0.4rem; }
     .ae-def a { font-size: 0.85rem; font-weight: 500; }
+    /* Outer collapse: keeps the full list in the DOM (crawlable) but out of the way. */
+    .ae-list-toggle { margin: 0.25rem 0 0; }
+    .ae-list-toggle > summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; font-size: 0.9rem; font-weight: 600; color: var(--c-primary); padding: 0.35rem 0; }
+    .ae-list-toggle > summary::-webkit-details-marker { display: none; }
+    .ae-list-toggle > summary::after { content: " \25B8"; margin-left: 0.35rem; }
+    .ae-list-toggle[open] > summary::after { content: " \25BE"; }
+    .ae-list-toggle > summary:hover { text-decoration: underline; }
+    .ae-list-toggle .ae-list { margin-top: 0.5rem; }
 
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
@@ -524,6 +532,8 @@
         <canvas id="chart-ae" role="img" aria-label="Horizontal bar chart showing top reported adverse events for Meloxicam"></canvas>
       </div>
       <p class="ae-glossary-note">Tap a term for a plain-language definition. <a href="/glossary/">Browse the full glossary →</a></p>
+      <details class="ae-list-toggle">
+      <summary class="ae-list-summary">Show these terms with plain-language definitions</summary>
       <ul class="ae-list" aria-label="Top reported adverse events for Meloxicam">
         <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Drug Ineffective</span> <span class="ae-count">5,989 reports</span></summary><div class="ae-def"><p>A report that the medication did not work as expected for the person taking it. This is a reporting category, not a sign the drug is defective. It simply means someone felt it was not helping their condition.</p><a href="/glossary/#drug-ineffective">Full definition in the glossary →</a></div></details></li>
         <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Pain</span> <span class="ae-count">4,742 reports</span></summary><div class="ae-def"><p>A general report of physical discomfort, used when no more specific location is given.</p><a href="/glossary/#pain">Full definition in the glossary →</a></div></details></li>
@@ -541,6 +551,7 @@
         <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Rheumatoid Arthritis</span> <span class="ae-count">2,282 reports</span></summary><div class="ae-def"><p>An autoimmune condition where the immune system attacks the joints, causing pain and swelling. It often appears in reports because it is a condition being treated, not always a reaction.</p><a href="/glossary/#rheumatoid-arthritis">Full definition in the glossary →</a></div></details></li>
         <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Vomiting</span> <span class="ae-count">2,281 reports</span></summary><div class="ae-def"><p>Throwing up the contents of the stomach.</p><a href="/glossary/#vomiting">Full definition in the glossary →</a></div></details></li>
       </ul>
+      </details>
       <p class="chart-caption">Ranked by frequency of reports, not severity. The most-reported event is not necessarily the most dangerous or the most common in patients taking this drug.</p>
     </section>
 

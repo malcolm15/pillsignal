@@ -410,7 +410,14 @@ function renderAeListHtml(adverseEvents, brandName) {
     return `        <li class="ae-item ae-item--plain">` +
       `<span class="ae-name">${escapeHtml(toTitleCase(e.event_name))}</span> ${count}</li>`;
   }).join('\n');
-  return `<ul class="ae-list" aria-label="Top reported adverse events for ${escapeHtml(brandName)}">\n${items}\n      </ul>`;
+  // The whole list is wrapped in one collapsed <details> so it does not dominate
+  // the page below the chart. It stays in the DOM when collapsed (not lazy-loaded),
+  // so crawlers and screen readers still reach the terms. The per-term <details>
+  // tap-to-define entries nest inside (valid: details within details).
+  return `<details class="ae-list-toggle">\n` +
+    `      <summary class="ae-list-summary">Show these terms with plain-language definitions</summary>\n` +
+    `      <ul class="ae-list" aria-label="Top reported adverse events for ${escapeHtml(brandName)}">\n${items}\n      </ul>\n` +
+    `      </details>`;
 }
 
 // Renders the "Related Drugs" card HTML, or empty string if no related drugs.
