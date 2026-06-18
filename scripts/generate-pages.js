@@ -220,13 +220,45 @@ function buildPageTitle(brandName) {
   return brandName.slice(0, TITLE_MAX - suffix.length) + suffix;
 }
 
-// Keep <meta description> under 160 chars.
-function buildMetaDesc(brandName, genericName, totalReports) {
+// Builds a unique, descriptive <meta description> targeting the 140-160 char
+// sweet spot from each drug's own data: brand, generic (omitted cleanly when
+// empty, no empty parens), total report count, and the single most frequently
+// reported event. The top event is framed as co-occurrence ("most frequently
+// reported"), never causation, and never ranked by danger. Hard cap 160: when
+// brand plus generic runs long, the event clause is dropped first, then the
+// generic, to stay in range. No em-dashes.
+// Sensitive top events are omitted from the snippet (they read as alarming in
+// search results and brush against the no-danger-framing guardrails). These drugs
+// fall back to the clean no-event description.
+const META_SENSITIVE_EVENTS = new Set([
+  'DEATH', 'COMPLETED SUICIDE', 'SUICIDAL IDEATION', 'SUICIDE ATTEMPT', 'INTENTIONAL OVERDOSE',
+]);
+
+function buildMetaDesc(brandName, genericName, totalReports, topEvent) {
   const reports = totalReports.toLocaleString('en-US');
-  const full  = `${brandName} (${genericName}): ${reports} adverse event reports submitted to the FDA.`;
-  if (full.length <= 160) return full;
-  const short = `${brandName}: ${reports} adverse event reports submitted to the FDA.`;
-  return short.length <= 160 ? short : short.slice(0, 157) + '...';
+  const gen     = genericName ? ` (${genericName})` : '';
+  const useEvent = topEvent && !META_SENSITIVE_EVENTS.has(String(topEvent).toUpperCase().trim());
+  const evClause = useEvent
+    ? ` The most frequently reported was ${String(topEvent).toLowerCase().trim()}.`
+    : '';
+  const CLAUSE = ' for demographics, outcomes, and trends';
+  const base = (g, clause, ev) =>
+    `${brandName}${g}: explore ${reports} FDA adverse event reports${clause ? CLAUSE : ''}.${ev}`;
+
+  // Richest first; drop the descriptive clause, then the event, then the generic
+  // to stay within 160. The first candidate that fits is the longest that fits.
+  const candidates = [
+    base(gen, true,  evClause),   // generic + clause + event (target 140-160)
+    base(gen, false, evClause),   // drop clause, keep generic + event
+    base(gen, true,  ''),         // drop event, keep generic + clause
+    base(gen, false, ''),         // generic only
+    base('',  true,  evClause),   // drop generic, keep clause + event
+    base('',  false, evClause),   // brand + event
+    base('',  true,  ''),         // brand + clause
+    base('',  false, ''),         // brand only
+  ];
+  const fit = candidates.find(c => c.length <= 160);
+  return fit || (`${brandName}: ${reports} adverse event reports submitted to the FDA.`).slice(0, 160);
 }
 
 // For each drug, find the 5 others whose top adverse events overlap most.
@@ -438,7 +470,8 @@ function renderPage(drug, adverseEvents, demographics, outcomes, trends, related
   });
 
   const pageTitle = buildPageTitle(brandName);
-  const metaDesc  = buildMetaDesc(brandName, genericName, totalReports);
+  const topEvent  = adverseEvents[0] && adverseEvents[0].event_name;
+  const metaDesc  = buildMetaDesc(brandName, genericName, totalReports, topEvent);
 
   // Build chart-ready data objects
   const aeData = adverseEvents

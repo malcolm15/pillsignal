@@ -236,7 +236,7 @@
   },
   {
     "brand_name": "ALPRAZOLAM XR",
-    "generic_name": "alprazolam",
+    "generic_name": "",
     "slug": "alprazolam-xr"
   },
   {
@@ -611,7 +611,7 @@
   },
   {
     "brand_name": "CARBAMAZEPINE ER",
-    "generic_name": "carbamazepine",
+    "generic_name": "",
     "slug": "carbamazepine-er"
   },
   {
@@ -656,7 +656,7 @@
   },
   {
     "brand_name": "Celexa",
-    "generic_name": "citalopram hydrobromide",
+    "generic_name": "citalopram",
     "slug": "celexa"
   },
   {
@@ -781,7 +781,7 @@
   },
   {
     "brand_name": "CLOPIDOGREL",
-    "generic_name": "clopidogrel bisulfate",
+    "generic_name": "",
     "slug": "clopidogrel"
   },
   {
@@ -871,7 +871,7 @@
   },
   {
     "brand_name": "CYCLOPHOSPHAMIDE",
-    "generic_name": "cyclophosphamide for injection",
+    "generic_name": "",
     "slug": "cyclophosphamide"
   },
   {
@@ -881,7 +881,7 @@
   },
   {
     "brand_name": "CYCLOSPORINE MODIFIED",
-    "generic_name": "cyclosporine",
+    "generic_name": "",
     "slug": "cyclosporine-modified"
   },
   {
@@ -1001,7 +1001,7 @@
   },
   {
     "brand_name": "DIAZEPAM",
-    "generic_name": "diazepam oral",
+    "generic_name": "",
     "slug": "diazepam"
   },
   {
@@ -1071,7 +1071,7 @@
   },
   {
     "brand_name": "DOCETAXEL",
-    "generic_name": "docetaxel anhydrous",
+    "generic_name": "",
     "slug": "docetaxel"
   },
   {
@@ -1101,7 +1101,7 @@
   },
   {
     "brand_name": "DOXYCYCLINE HYCLATE",
-    "generic_name": "doxycycline",
+    "generic_name": "",
     "slug": "doxycycline-hyclate"
   },
   {
@@ -1111,7 +1111,7 @@
   },
   {
     "brand_name": "DULOXETINE DELAYED-RELEASE",
-    "generic_name": "duloxetine",
+    "generic_name": "",
     "slug": "duloxetine-delayed-release"
   },
   {
@@ -1191,7 +1191,7 @@
   },
   {
     "brand_name": "Enablex",
-    "generic_name": "darifenacin hydrobromide",
+    "generic_name": "darifenacin",
     "slug": "enablex"
   },
   {
@@ -1311,7 +1311,7 @@
   },
   {
     "brand_name": "ESTRADIOL",
-    "generic_name": "estradiol transdermal",
+    "generic_name": "",
     "slug": "estradiol"
   },
   {
@@ -1736,7 +1736,7 @@
   },
   {
     "brand_name": "HYSINGLA ER",
-    "generic_name": "hydrocodone bitartrate",
+    "generic_name": "hydrocodone",
     "slug": "hysingla-er"
   },
   {
@@ -1961,12 +1961,12 @@
   },
   {
     "brand_name": "LAMOTRIGINE",
-    "generic_name": "lamotrigine chewable dispersible",
+    "generic_name": "",
     "slug": "lamotrigine"
   },
   {
     "brand_name": "LAMOTRIGINE EXTENDED-RELEASE",
-    "generic_name": "lamotrigine",
+    "generic_name": "",
     "slug": "lamotrigine-extended-release"
   },
   {
@@ -2051,17 +2051,17 @@
   },
   {
     "brand_name": "LEVETIRACETAM",
-    "generic_name": "levetiracetam injection",
+    "generic_name": "",
     "slug": "levetiracetam"
   },
   {
     "brand_name": "LEVETIRACETAM ER",
-    "generic_name": "levetiracetam",
+    "generic_name": "",
     "slug": "levetiracetam-er"
   },
   {
     "brand_name": "LEVETIRACETAM EXTENDED-RELEASE",
-    "generic_name": "levetiracetam",
+    "generic_name": "",
     "slug": "levetiracetam-extended-release"
   },
   {
@@ -2081,7 +2081,7 @@
   },
   {
     "brand_name": "LEVOTHYROXINE SODIUM",
-    "generic_name": "levothyroxine sodium anhydrous",
+    "generic_name": "",
     "slug": "levothyroxine-sodium"
   },
   {
@@ -2126,7 +2126,7 @@
   },
   {
     "brand_name": "LITHIUM CARBONATE ER",
-    "generic_name": "lithium carbonate",
+    "generic_name": "",
     "slug": "lithium-carbonate-er"
   },
   {
@@ -2236,12 +2236,12 @@
   },
   {
     "brand_name": "Macrobid",
-    "generic_name": "nitrofurantoin monohydrate + macrocrystals",
+    "generic_name": "nitrofurantoin + macrocrystals",
     "slug": "macrobid"
   },
   {
     "brand_name": "Maxalt",
-    "generic_name": "rizatriptan benzoate",
+    "generic_name": "rizatriptan",
     "slug": "maxalt"
   },
   {
@@ -2286,7 +2286,7 @@
   },
   {
     "brand_name": "METFORMIN",
-    "generic_name": "metformin er",
+    "generic_name": "",
     "slug": "metformin"
   },
   {
@@ -2331,7 +2331,7 @@
   },
   {
     "brand_name": "METOPROLOL SUCCINATE",
-    "generic_name": "metoprolol succinate er tablets",
+    "generic_name": "",
     "slug": "metoprolol-succinate"
   },
   {
@@ -2936,7 +2936,7 @@
   },
   {
     "brand_name": "Plavix",
-    "generic_name": "clopidogrel bisulfate",
+    "generic_name": "clopidogrel",
     "slug": "plavix"
   },
   {
@@ -3171,7 +3171,7 @@
   },
   {
     "brand_name": "Qvar",
-    "generic_name": "beclomethasone dipropionate",
+    "generic_name": "beclomethasone",
     "slug": "qvar"
   },
   {
@@ -3546,12 +3546,12 @@
   },
   {
     "brand_name": "SUTENT",
-    "generic_name": "sunitinib malate",
+    "generic_name": "sunitinib",
     "slug": "sutent"
   },
   {
     "brand_name": "Symbicort",
-    "generic_name": "budesonide + formoterol fumarate dihydrate",
+    "generic_name": "budesonide + formoterol",
     "slug": "symbicort"
   },
   {
@@ -3561,7 +3561,7 @@
   },
   {
     "brand_name": "TACROLIMUS",
-    "generic_name": "tacrolimus extended-release capsules",
+    "generic_name": "",
     "slug": "tacrolimus"
   },
   {
@@ -3591,7 +3591,7 @@
   },
   {
     "brand_name": "Tekturna",
-    "generic_name": "aliskiren hemifumarate",
+    "generic_name": "aliskiren",
     "slug": "tekturna"
   },
   {
@@ -3656,7 +3656,7 @@
   },
   {
     "brand_name": "TRAMADOL HYDROCHLORIDE EXTENDED-RELEASE",
-    "generic_name": "tramadol",
+    "generic_name": "",
     "slug": "tramadol-hydrochloride-extended-release"
   },
   {
@@ -3916,7 +3916,7 @@
   },
   {
     "brand_name": "Vibramycin",
-    "generic_name": "doxycycline hyclate",
+    "generic_name": "doxycycline",
     "slug": "vibramycin"
   },
   {
@@ -3991,7 +3991,7 @@
   },
   {
     "brand_name": "Vyvanse",
-    "generic_name": "lisdexamfetamine dimesylate",
+    "generic_name": "lisdexamfetamine",
     "slug": "vyvanse"
   },
   {
