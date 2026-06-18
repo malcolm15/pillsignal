@@ -410,6 +410,256 @@
       "key": "MYALGIA",
       "display": "Myalgia",
       "definition": "Muscle pain or aches."
+    },
+    {
+      "key": "INJECTION SITE PAIN",
+      "display": "Injection Site Pain",
+      "definition": "Pain at the spot on the body where a medication was injected."
+    },
+    {
+      "key": "MATERNAL EXPOSURE DURING PREGNANCY",
+      "display": "Maternal Exposure During Pregnancy",
+      "definition": "A report noting that a pregnant person was exposed to a medication. This is a tracking category for monitoring use during pregnancy, not a description of harm by itself."
+    },
+    {
+      "key": "WRONG TECHNIQUE IN PRODUCT USAGE PROCESS",
+      "display": "Wrong Technique in Product Usage Process",
+      "definition": "A report that the medication was used or administered with the wrong technique, such as an incorrect injection or inhaler method. This is a usage category, not a sign of a problem with the drug itself."
+    },
+    {
+      "key": "ERYTHEMA",
+      "display": "Erythema",
+      "definition": "Redness of the skin."
+    },
+    {
+      "key": "SUICIDAL IDEATION",
+      "display": "Suicidal Ideation",
+      "definition": "Thoughts of suicide. This term records that such thoughts were reported, and its presence does not establish that a medication was the cause. If you or someone you know is struggling, the 988 Suicide and Crisis Lifeline (call or text 988 in the US) is available 24 hours a day."
+    },
+    {
+      "key": "INAPPROPRIATE SCHEDULE OF PRODUCT ADMINISTRATION",
+      "display": "Inappropriate Schedule of Product Administration",
+      "definition": "A report that the medication was taken on the wrong schedule, such as too often, not often enough, or at the wrong time. This is a usage category, not a sign of a problem with the drug."
+    },
+    {
+      "key": "PARAESTHESIA",
+      "display": "Paraesthesia",
+      "definition": "An abnormal skin sensation such as tingling, prickling, or a pins and needles feeling. Also spelled paresthesia in American English."
+    },
+    {
+      "key": "BLOOD GLUCOSE INCREASED",
+      "display": "Blood Glucose Increased",
+      "definition": "A blood test result showing a higher than normal blood sugar level."
+    },
+    {
+      "key": "PLATELET COUNT DECREASED",
+      "display": "Platelet Count Decreased",
+      "definition": "A blood test result showing a low level of platelets, the cells that help blood clot. This is the lab-measurement version of thrombocytopenia."
+    },
+    {
+      "key": "ARTHROPATHY",
+      "display": "Arthropathy",
+      "definition": "Any disease or disorder of a joint."
+    },
+    {
+      "key": "SYSTEMIC LUPUS ERYTHEMATOSUS",
+      "display": "Systemic Lupus Erythematosus",
+      "definition": "An autoimmune condition, often called lupus, where the immune system attacks the body's own tissues, affecting joints, skin, and organs. It often appears in reports because it is a condition being treated, not always a reaction."
+    },
+    {
+      "key": "ATRIAL FIBRILLATION",
+      "display": "Atrial Fibrillation",
+      "definition": "An irregular, often rapid heart rhythm."
+    },
+    {
+      "key": "HYPERHIDROSIS",
+      "display": "Hyperhidrosis",
+      "definition": "Excessive sweating."
+    },
+    {
+      "key": "DRUG ABUSE",
+      "display": "Drug Abuse",
+      "definition": "A report that a medication was used in a way other than prescribed, or for non-medical reasons. The term describes a pattern of use, not a judgment about the person."
+    },
+    {
+      "key": "AGITATION",
+      "display": "Agitation",
+      "definition": "A state of restlessness, irritability, or feeling unable to settle."
+    },
+    {
+      "key": "FEBRILE NEUTROPENIA",
+      "display": "Febrile Neutropenia",
+      "definition": "A fever occurring together with a low level of neutrophils, a type of infection-fighting white blood cell. It is taken seriously because infection is harder to fight when these cells are low."
+    },
+    {
+      "key": "WHITE BLOOD CELL COUNT DECREASED",
+      "display": "White Blood Cell Count Decreased",
+      "definition": "A blood test result showing a low level of white blood cells, which help fight infection."
+    },
+    {
+      "key": "INTENTIONAL PRODUCT USE ISSUE",
+      "display": "Intentional Product Use Issue",
+      "definition": "A report that the medication was deliberately used in a way other than directed. This is a usage category describing what happened, not a judgment."
+    },
+    {
+      "key": "CARDIAC FAILURE CONGESTIVE",
+      "display": "Cardiac Failure Congestive",
+      "definition": "A form of heart failure, often called congestive heart failure, where the heart cannot pump blood as well as it should, leading to fluid buildup."
+    },
+    {
+      "key": "SYNOVITIS",
+      "display": "Synovitis",
+      "definition": "Inflammation of the lining of a joint, causing swelling and pain."
+    },
+    {
+      "key": "DISEASE PROGRESSION",
+      "display": "Disease Progression",
+      "definition": "A report that the underlying condition being treated got worse over time. This describes the course of the illness, not necessarily an effect of the drug."
+    },
+    {
+      "key": "SUICIDE ATTEMPT",
+      "display": "Suicide Attempt",
+      "definition": "A report that a person attempted suicide. Its presence in reports does not establish that a medication was the cause. If you or someone you know is struggling, the 988 Suicide and Crisis Lifeline (call or text 988 in the US) is available 24 hours a day."
+    },
+    {
+      "key": "GASTROOESOPHAGEAL REFLUX DISEASE",
+      "display": "Gastrooesophageal Reflux Disease",
+      "definition": "A condition, often called acid reflux or GERD, where stomach acid flows back into the food pipe, causing heartburn. Also spelled gastroesophageal in American English."
+    },
+    {
+      "key": "TREATMENT FAILURE",
+      "display": "Treatment Failure",
+      "definition": "A report that the treatment did not produce the expected result. Similar to drug ineffective, it reflects that someone felt the treatment was not working."
+    },
+    {
+      "key": "MUSCULOSKELETAL STIFFNESS",
+      "display": "Musculoskeletal Stiffness",
+      "definition": "Stiffness in the muscles, joints, or related tissues."
+    },
+    {
+      "key": "INCORRECT DOSE ADMINISTERED",
+      "display": "Incorrect Dose Administered",
+      "definition": "A report that the wrong dose was given or taken. This is a usage category, not a sign of a problem with the drug itself."
+    },
+    {
+      "key": "GLOSSODYNIA",
+      "display": "Glossodynia",
+      "definition": "Pain or a burning sensation in the tongue."
+    },
+    {
+      "key": "NEUROPATHY PERIPHERAL",
+      "display": "Neuropathy Peripheral",
+      "definition": "Damage to the nerves outside the brain and spinal cord, often causing numbness, tingling, or pain in the hands and feet."
+    },
+    {
+      "key": "DRUG DOSE OMISSION",
+      "display": "Drug Dose Omission",
+      "definition": "A report that a dose of medication was missed or skipped."
+    },
+    {
+      "key": "WHEEZING",
+      "display": "Wheezing",
+      "definition": "A whistling sound when breathing, usually a sign the airways are narrowed."
+    },
+    {
+      "key": "PALPITATIONS",
+      "display": "Palpitations",
+      "definition": "The feeling of a fast, pounding, or fluttering heartbeat."
+    },
+    {
+      "key": "PSORIATIC ARTHROPATHY",
+      "display": "Psoriatic Arthropathy",
+      "definition": "A form of joint disease linked to psoriasis, often called psoriatic arthritis, causing joint pain and swelling. It often appears in reports as a condition being treated."
+    },
+    {
+      "key": "PRODUCT QUALITY ISSUE",
+      "display": "Product Quality Issue",
+      "definition": "A report of a possible problem with the medication's quality, such as appearance, packaging, or condition. This is a quality-tracking category."
+    },
+    {
+      "key": "RENAL IMPAIRMENT",
+      "display": "Renal Impairment",
+      "definition": "Reduced kidney function. Renal means related to the kidneys. This is a broad term for kidneys not working as well as normal."
+    },
+    {
+      "key": "HAEMOGLOBIN DECREASED",
+      "display": "Haemoglobin Decreased",
+      "definition": "A blood test result showing a low level of haemoglobin, the protein in red blood cells that carries oxygen. This is closely related to anaemia. Also spelled hemoglobin in American English."
+    },
+    {
+      "key": "FOETAL EXPOSURE DURING PREGNANCY",
+      "display": "Foetal Exposure During Pregnancy",
+      "definition": "A report noting that a developing baby was exposed to a medication during pregnancy. This is a tracking category for monitoring, not a description of harm by itself. Also spelled fetal in American English."
+    },
+    {
+      "key": "MALIGNANT NEOPLASM PROGRESSION",
+      "display": "Malignant Neoplasm Progression",
+      "definition": "A report that a cancer grew or spread. This describes the course of the illness, not necessarily an effect of the drug. Malignant neoplasm is the medical term for a cancerous growth."
+    },
+    {
+      "key": "THERAPEUTIC PRODUCT EFFECT INCOMPLETE",
+      "display": "Therapeutic Product Effect Incomplete",
+      "definition": "A report that the medication only partly worked. Similar to drug ineffective, it reflects that someone felt the treatment did not fully help."
+    },
+    {
+      "key": "MOBILITY DECREASED",
+      "display": "Mobility Decreased",
+      "definition": "A reduced ability to move around."
+    },
+    {
+      "key": "AGGRESSION",
+      "display": "Aggression",
+      "definition": "A report of hostile or aggressive behavior. The term records what was reported and does not establish that a medication was the cause."
+    },
+    {
+      "key": "MIGRAINE",
+      "display": "Migraine",
+      "definition": "A severe, often throbbing headache, sometimes with nausea or sensitivity to light and sound."
+    },
+    {
+      "key": "DRUG DEPENDENCE",
+      "display": "Drug Dependence",
+      "definition": "A report that the body or mind has come to rely on a medication, so that stopping it causes difficulty. The term describes a physical or psychological state, not a judgment about the person."
+    },
+    {
+      "key": "EMOTIONAL DISTRESS",
+      "display": "Emotional Distress",
+      "definition": "A report of emotional suffering such as upset, worry, or anguish. If you are struggling, the 988 Suicide and Crisis Lifeline (call or text 988 in the US) is available 24 hours a day."
+    },
+    {
+      "key": "MUSCULAR WEAKNESS",
+      "display": "Muscular Weakness",
+      "definition": "A loss of muscle strength. Similar to asthenia, which is a more general sense of weakness."
+    },
+    {
+      "key": "BALANCE DISORDER",
+      "display": "Balance Disorder",
+      "definition": "Difficulty staying steady, often with a feeling of unsteadiness or near-falling."
+    },
+    {
+      "key": "WOUND",
+      "display": "Wound",
+      "definition": "A report of an injury that breaks the skin."
+    },
+    {
+      "key": "CHEST DISCOMFORT",
+      "display": "Chest Discomfort",
+      "definition": "A feeling of unease, tightness, or mild pain in the chest. Related to chest pain, and like chest pain it is worth discussing with a doctor."
+    },
+    {
+      "key": "PULMONARY EMBOLISM",
+      "display": "Pulmonary Embolism",
+      "definition": "A blockage in one of the arteries of the lungs, usually caused by a blood clot. This is a serious condition that needs urgent medical care."
+    },
+    {
+      "key": "STOMATITIS",
+      "display": "Stomatitis",
+      "definition": "Inflammation or soreness inside the mouth, including the gums, tongue, and inner cheeks."
+    },
+    {
+      "key": "DYSPEPSIA",
+      "display": "Dyspepsia",
+      "definition": "The medical term for indigestion, meaning discomfort or pain in the upper belly, often after eating."
     }
   ]
 }
