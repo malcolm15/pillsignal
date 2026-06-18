@@ -38,6 +38,11 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 const TEMPLATE          = readFileSync(join(ROOT, 'templates', 'drug-page.html'), 'utf8');
 const HOMEPAGE_TEMPLATE = readFileSync(join(ROOT, 'templates', 'homepage.html'),  'utf8');
 
+// Glossary is the single source of truth for adverse event term definitions:
+// scripts/glossary.json (authored) powers the /glossary/ page, docs/js/glossary.json
+// (the client copy used for inline drug-page definitions), and term matching.
+const GLOSSARY = JSON.parse(readFileSync(join(__dirname, 'glossary.json'), 'utf8'));
+
 // ─── Shared page chrome ───────────────────────────────────────────────────────
 // Single source of truth for banner, site-header, and site-footer HTML.
 // Injected via {{SITE_HEADER}} / {{SITE_FOOTER}} placeholders in every template
@@ -91,11 +96,12 @@ function renderFooter() {
     <p>Data sourced from the <a href="https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems" target="_blank" rel="noopener noreferrer">FDA's Adverse Event Monitoring System (AEMS)</a>, formerly FAERS, via OpenFDA. PillSignal is not affiliated with the FDA.</p>
     <nav class="footer-nav" aria-label="Site links">
       <a href="/guides/">Guides</a>
-      <a href="/about">About</a>
-      <a href="/faq">FAQ</a>
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/terms">Terms of Service</a>
-      <a href="/contact">Contact</a>
+      <a href="/glossary/">Glossary</a>
+      <a href="/about/">About</a>
+      <a href="/faq/">FAQ</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/contact/">Contact</a>
     </nav>
     <a href="https://x.com/PillSignal" class="footer-x-link" target="_blank" rel="noopener noreferrer" aria-label="PillSignal on X">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -467,6 +473,7 @@ function writeSitemap(drugs) {
     { loc: `${SITE_URL}/`,         changefreq: 'weekly',  priority: '1.0' },
     { loc: `${SITE_URL}/drugs/`,   changefreq: 'weekly',  priority: '0.9' },
     { loc: `${SITE_URL}/guides/`,  changefreq: 'monthly', priority: '0.7' },
+    { loc: `${SITE_URL}/glossary/`, changefreq: 'monthly', priority: '0.6' },
     { loc: `${SITE_URL}/guides/how-to-read-fda-adverse-event-reports/`, changefreq: 'monthly', priority: '0.7' },
     { loc: `${SITE_URL}/guides/what-fda-drug-reports-show/`,            changefreq: 'monthly', priority: '0.7' },
     { loc: `${SITE_URL}/guides/how-to-report-drug-side-effect-fda/`,   changefreq: 'monthly', priority: '0.7' },
@@ -490,7 +497,7 @@ function writeSitemap(drugs) {
     staticUrls + '\n' + drugUrls + `\n</urlset>`;
 
   writeFileSync(join(DOCS_DIR, 'sitemap.xml'), xml, 'utf8');
-  console.log(`  sitemap.xml  — ${drugs.length} drug URLs + 12 static pages`);
+  console.log(`  sitemap.xml  — ${drugs.length} drug URLs + 13 static pages`);
 }
 
 function writeBrowsePage(drugs) {
@@ -809,6 +816,250 @@ const STATIC_PAGES = [
   { template: 'guides/what-is-aems.html',                         output: 'guides/what-is-aems/index.html'                         },
 ];
 
+// Writes the client-side copy of the glossary used for inline drug-page definitions.
+function writeGlossaryData() {
+  mkdirSync(join(DOCS_DIR, 'js'), { recursive: true });
+  writeFileSync(join(DOCS_DIR, 'js', 'glossary.json'), JSON.stringify(GLOSSARY), 'utf8');
+  console.log(`  glossary.json — ${GLOSSARY.terms.length} terms`);
+}
+
+// Standalone /glossary/ page, generated from GLOSSARY (single source of truth).
+function writeGlossaryPage() {
+  const terms = [...GLOSSARY.terms].sort((a, b) =>
+    a.display.toLowerCase().localeCompare(b.display.toLowerCase()));
+
+  // Group alphabetically by first letter of the display name.
+  const groups = {};
+  for (const t of terms) {
+    const first = t.display[0].toUpperCase();
+    const bucket = /[A-Z]/.test(first) ? first : '#';
+    (groups[bucket] ||= []).push(t);
+  }
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const usedKeys = Object.keys(groups).sort();
+
+  const letterNav = alphabet.map(l =>
+    groups[l]
+      ? `<a href="#letter-${l}" class="lnav-item lnav-item--on">${l}</a>`
+      : `<span class="lnav-item lnav-item--off">${l}</span>`
+  ).join('');
+
+  const sections = usedKeys.map(letter => {
+    const items = groups[letter].map(t => {
+      const id = slugifyName(t.display);
+      return `      <dt id="${id}" class="gloss-term">${escapeHtml(t.display)}</dt>\n` +
+             `      <dd class="gloss-def">${escapeHtml(t.definition)}</dd>`;
+    }).join('\n');
+    return `    <section class="gloss-section">` +
+      `<h2 id="letter-${letter}" class="gloss-letter">${letter === '#' ? 'Other' : letter}</h2>` +
+      `<dl class="gloss-list">\n${items}\n      </dl></section>`;
+  }).join('\n\n');
+
+  const pageTitle = 'Adverse Event Glossary: Plain-Language Definitions | PillSignal';
+  const metaDesc  = `Plain-language definitions of ${terms.length} common terms used in FDA adverse event reports, from nausea and fatigue to medical terms like dyspnoea and pyrexia.`;
+  const canonical = `${SITE_URL}/glossary/`;
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <title>${pageTitle}</title>
+  <meta name="description" content="${escapeHtml(metaDesc)}">
+  <link rel="canonical" href="${canonical}">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#00A67E">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="${escapeHtml(pageTitle)}">
+  <meta property="og:description" content="${escapeHtml(metaDesc)}">
+  <meta property="og:url"         content="${canonical}">
+  <meta property="og:site_name"   content="PillSignal">
+  <meta property="og:image"       content="${SITE_URL}/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="${escapeHtml(pageTitle)}">
+  <meta name="twitter:description" content="${escapeHtml(metaDesc)}">
+  <meta name="twitter:image"       content="${SITE_URL}/og-image.png">
+
+  <style>
+    :root, [data-theme="light"] {
+      --c-bg: #ffffff; --c-surface: #f9fafb; --c-border: #e5e7eb;
+      --c-text: #1a1a2e; --c-text-muted: #5a5a6e;
+      --c-primary: #00A67E; --c-primary-hover: #008F6B; --c-primary-light: #E6F9F1;
+      --c-banner-bg: #FFF9F0; --c-banner-text: #6B4E30;
+      --c-banner-border: rgba(107,78,48,0.3); --c-banner-btn-hover: rgba(0,0,0,0.05);
+      --font: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-heading: "Fraunces", Georgia, serif;
+    }
+    [data-theme="dark"] {
+      --c-bg: #0f172a; --c-surface: #1e293b; --c-border: #334155;
+      --c-text: #f1f5f9; --c-text-muted: #94a3b8;
+      --c-primary: #34D1A0; --c-primary-hover: #2BBD8E; --c-primary-light: #0D3D2E;
+      --c-banner-bg: #1C1508; --c-banner-text: #D4B896;
+      --c-banner-border: rgba(212,184,150,0.25); --c-banner-btn-hover: rgba(255,255,255,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); font-size: 1rem; line-height: 1.6; color: var(--c-text); background: var(--c-bg); transition: background 0.2s, color 0.2s; }
+    a { color: var(--c-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--c-primary-hover); }
+    h1, h2, h3 { font-family: var(--font-heading); }
+    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--c-surface); } ::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 4px; }
+
+    /* Banner */
+    #disclaimer-banner { background: var(--c-banner-bg); color: var(--c-banner-text); font-size: 0.875rem; line-height: 1.5; }
+    .banner-seen #disclaimer-banner { display: none; }
+    .banner-inner { max-width: 900px; margin: 0 auto; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .banner-inner p { flex: 1; min-width: 200px; }
+    #banner-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--c-banner-border); color: var(--c-banner-text); padding: 0.3rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-family: var(--font); white-space: nowrap; transition: background 0.15s; }
+    #banner-btn:hover { background: var(--c-banner-btn-hover); }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
+    .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.25rem; font-weight: 600; font-family: var(--font-heading); color: var(--c-primary); letter-spacing: 0; }
+    .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
+    .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .header-link { font-size: 0.875rem; color: var(--c-text-muted); }
+    .theme-toggle { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: none; border: 1px solid var(--c-border); border-radius: 6px; cursor: pointer; color: var(--c-text-muted); padding: 0; flex-shrink: 0; transition: color 0.15s, border-color 0.15s, background 0.15s; }
+    .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="dark"]  .icon-moon { display: none; }
+
+    /* Page header */
+    .page-header { padding: 2rem 1rem 1rem; max-width: 760px; margin: 0 auto; }
+    .page-header h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 600; letter-spacing: 0; margin-bottom: 0.3rem; }
+    .page-header p { color: var(--c-text-muted); font-size: 0.95rem; }
+
+    /* Caveat */
+    .gloss-caveat { max-width: 760px; margin: 0 auto 0.5rem; padding: 0 1rem; }
+    .gloss-caveat .card { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: 10px; padding: 1rem 1.25rem; font-size: 0.9rem; color: var(--c-text-muted); }
+
+    /* Letter nav */
+    .lnav { position: sticky; top: 3.75rem; z-index: 90; background: var(--c-bg); border-bottom: 1px solid var(--c-border); padding: 0.5rem 1rem; }
+    .lnav-inner { max-width: 760px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2px; width: 100%; }
+    .lnav-item { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; font-size: 0.8rem; font-weight: 600; border-radius: 4px; }
+    .lnav-item--on { color: var(--c-primary); } .lnav-item--on:hover { background: var(--c-primary-light); text-decoration: none; }
+    .lnav-item--off { color: var(--c-border); cursor: default; }
+
+    /* Glossary list */
+    main { max-width: 760px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+    .gloss-section { margin-bottom: 2rem; }
+    .gloss-letter { font-size: 1.5rem; font-weight: 600; color: var(--c-primary); letter-spacing: 0; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-primary-light); scroll-margin-top: 5rem; }
+    .gloss-list { margin: 0; }
+    .gloss-term { font-weight: 600; font-size: 1.05rem; margin-top: 1rem; scroll-margin-top: 5rem; }
+    .gloss-term:target { color: var(--c-primary); }
+    .gloss-def { color: var(--c-text); margin: 0.15rem 0 0; padding-bottom: 0.75rem; border-bottom: 1px solid var(--c-border); }
+
+    /* Footer */
+    .site-footer { border-top: 1px solid var(--c-border); padding: 1.5rem 1rem; text-align: center; font-size: 0.8rem; color: var(--c-text-muted); background: var(--c-bg); }
+    .site-footer a { color: var(--c-text-muted); }
+    .site-footer a:hover { color: var(--c-primary); text-decoration: none; }
+    @media (min-width: 640px) { .site-footer { font-size: 0.875rem; } }
+    .footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+    .footer-x-link { display: inline-flex; align-items: center; justify-content: center; margin-top: 0.6rem; color: var(--c-text-muted); transition: color 0.15s; }
+    .footer-x-link:hover { color: var(--c-primary); }
+
+    /* Back to top */
+    #back-to-top { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--c-border); background: rgba(255,255,255,0.75); color: var(--c-text-muted); font-size: 1.1rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s, background 0.15s, color 0.15s; z-index: 100; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+    [data-theme="dark"] #back-to-top { background: rgba(30,41,59,0.75); }
+    #back-to-top.visible { opacity: 1; pointer-events: auto; }
+    #back-to-top:hover { background: var(--c-primary-light); color: var(--c-primary); border-color: var(--c-primary); }
+  </style>
+
+  <script>
+    (function () {
+      var saved = localStorage.getItem('pillsignal_theme');
+      var dark  = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+      if (localStorage.getItem('pillsignal_disclaimer_dismissed')) {
+        document.documentElement.classList.add('banner-seen');
+      }
+    }());
+  </script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZEDB8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5ZEDB8Z5P');
+  </script>
+</head>
+<body>
+
+${renderHeader('glossary')}
+
+  <div class="page-header">
+    <h1>Adverse Event Glossary</h1>
+    <p>Plain-language definitions of the most common terms in FDA adverse event reports.</p>
+  </div>
+
+  <div class="gloss-caveat"><div class="card">${escapeHtml(GLOSSARY.caveat)}</div></div>
+
+  <nav class="lnav" aria-label="Jump to letter">
+    <div class="lnav-inner">${letterNav}</div>
+  </nav>
+
+  <main>
+${sections}
+  </main>
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,10 7,4 12,10"/></svg>
+  </button>
+
+${renderFooter()}
+
+  <script>
+    document.getElementById('banner-btn').addEventListener('click', function () {
+      localStorage.setItem('pillsignal_disclaimer_dismissed', '1');
+      document.documentElement.classList.add('banner-seen');
+    });
+    (function () {
+      var btn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 500) { btn.classList.add('visible'); }
+        else { btn.classList.remove('visible'); }
+      }, { passive: true });
+      btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    }());
+    (function () {
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('pillsignal_theme', next);
+        if (typeof gtag === 'function') gtag('event', 'dark_mode_toggle', { new_theme: next });
+      });
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+          if (!localStorage.getItem('pillsignal_theme')) {
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+          }
+        });
+      }
+    }());
+  </script>
+
+</body>
+</html>`;
+
+  mkdirSync(join(DOCS_DIR, 'glossary'), { recursive: true });
+  writeFileSync(join(DOCS_DIR, 'glossary', 'index.html'), html, 'utf8');
+  console.log(`  glossary/index.html — ${terms.length} terms across ${usedKeys.length} letter sections`);
+}
+
 function writeStaticPages() {
   const staticDir = join(ROOT, 'templates', 'static');
   let count = 0;
@@ -956,6 +1207,8 @@ async function main() {
   writeDrugIndex(generatedDrugs);
   writeHomepage(generatedDrugs, minYear, maxYear);
   writeStaticPages();
+  writeGlossaryData();
+  writeGlossaryPage();
 
   console.log(`\nStage 2 complete.`);
   console.log(`  Generated : ${generated} pages`);

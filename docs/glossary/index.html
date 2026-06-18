@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <title>Adverse Event Glossary: Plain-Language Definitions | PillSignal</title>
+  <meta name="description" content="Plain-language definitions of 82 common terms used in FDA adverse event reports, from nausea and fatigue to medical terms like dyspnoea and pyrexia.">
+  <link rel="canonical" href="https://pillsignal.com/glossary/">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#00A67E">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Adverse Event Glossary: Plain-Language Definitions | PillSignal">
+  <meta property="og:description" content="Plain-language definitions of 82 common terms used in FDA adverse event reports, from nausea and fatigue to medical terms like dyspnoea and pyrexia.">
+  <meta property="og:url"         content="https://pillsignal.com/glossary/">
+  <meta property="og:site_name"   content="PillSignal">
+  <meta property="og:image"       content="https://pillsignal.com/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Adverse Event Glossary: Plain-Language Definitions | PillSignal">
+  <meta name="twitter:description" content="Plain-language definitions of 82 common terms used in FDA adverse event reports, from nausea and fatigue to medical terms like dyspnoea and pyrexia.">
+  <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
+
+  <style>
+    :root, [data-theme="light"] {
+      --c-bg: #ffffff; --c-surface: #f9fafb; --c-border: #e5e7eb;
+      --c-text: #1a1a2e; --c-text-muted: #5a5a6e;
+      --c-primary: #00A67E; --c-primary-hover: #008F6B; --c-primary-light: #E6F9F1;
+      --c-banner-bg: #FFF9F0; --c-banner-text: #6B4E30;
+      --c-banner-border: rgba(107,78,48,0.3); --c-banner-btn-hover: rgba(0,0,0,0.05);
+      --font: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-heading: "Fraunces", Georgia, serif;
+    }
+    [data-theme="dark"] {
+      --c-bg: #0f172a; --c-surface: #1e293b; --c-border: #334155;
+      --c-text: #f1f5f9; --c-text-muted: #94a3b8;
+      --c-primary: #34D1A0; --c-primary-hover: #2BBD8E; --c-primary-light: #0D3D2E;
+      --c-banner-bg: #1C1508; --c-banner-text: #D4B896;
+      --c-banner-border: rgba(212,184,150,0.25); --c-banner-btn-hover: rgba(255,255,255,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); font-size: 1rem; line-height: 1.6; color: var(--c-text); background: var(--c-bg); transition: background 0.2s, color 0.2s; }
+    a { color: var(--c-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--c-primary-hover); }
+    h1, h2, h3 { font-family: var(--font-heading); }
+    ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--c-surface); } ::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 4px; }
+
+    /* Banner */
+    #disclaimer-banner { background: var(--c-banner-bg); color: var(--c-banner-text); font-size: 0.875rem; line-height: 1.5; }
+    .banner-seen #disclaimer-banner { display: none; }
+    .banner-inner { max-width: 900px; margin: 0 auto; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .banner-inner p { flex: 1; min-width: 200px; }
+    #banner-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--c-banner-border); color: var(--c-banner-text); padding: 0.3rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-family: var(--font); white-space: nowrap; transition: background 0.15s; }
+    #banner-btn:hover { background: var(--c-banner-btn-hover); }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
+    .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.25rem; font-weight: 600; font-family: var(--font-heading); color: var(--c-primary); letter-spacing: 0; }
+    .logo:hover { text-decoration: none; color: var(--c-primary-hover); }
+    .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .header-link { font-size: 0.875rem; color: var(--c-text-muted); }
+    .theme-toggle { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: none; border: 1px solid var(--c-border); border-radius: 6px; cursor: pointer; color: var(--c-text-muted); padding: 0; flex-shrink: 0; transition: color 0.15s, border-color 0.15s, background 0.15s; }
+    .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="dark"]  .icon-moon { display: none; }
+
+    /* Page header */
+    .page-header { padding: 2rem 1rem 1rem; max-width: 760px; margin: 0 auto; }
+    .page-header h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 600; letter-spacing: 0; margin-bottom: 0.3rem; }
+    .page-header p { color: var(--c-text-muted); font-size: 0.95rem; }
+
+    /* Caveat */
+    .gloss-caveat { max-width: 760px; margin: 0 auto 0.5rem; padding: 0 1rem; }
+    .gloss-caveat .card { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: 10px; padding: 1rem 1.25rem; font-size: 0.9rem; color: var(--c-text-muted); }
+
+    /* Letter nav */
+    .lnav { position: sticky; top: 3.75rem; z-index: 90; background: var(--c-bg); border-bottom: 1px solid var(--c-border); padding: 0.5rem 1rem; }
+    .lnav-inner { max-width: 760px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2px; width: 100%; }
+    .lnav-item { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; font-size: 0.8rem; font-weight: 600; border-radius: 4px; }
+    .lnav-item--on { color: var(--c-primary); } .lnav-item--on:hover { background: var(--c-primary-light); text-decoration: none; }
+    .lnav-item--off { color: var(--c-border); cursor: default; }
+
+    /* Glossary list */
+    main { max-width: 760px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+    .gloss-section { margin-bottom: 2rem; }
+    .gloss-letter { font-size: 1.5rem; font-weight: 600; color: var(--c-primary); letter-spacing: 0; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-primary-light); scroll-margin-top: 5rem; }
+    .gloss-list { margin: 0; }
+    .gloss-term { font-weight: 600; font-size: 1.05rem; margin-top: 1rem; scroll-margin-top: 5rem; }
+    .gloss-term:target { color: var(--c-primary); }
+    .gloss-def { color: var(--c-text); margin: 0.15rem 0 0; padding-bottom: 0.75rem; border-bottom: 1px solid var(--c-border); }
+
+    /* Footer */
+    .site-footer { border-top: 1px solid var(--c-border); padding: 1.5rem 1rem; text-align: center; font-size: 0.8rem; color: var(--c-text-muted); background: var(--c-bg); }
+    .site-footer a { color: var(--c-text-muted); }
+    .site-footer a:hover { color: var(--c-primary); text-decoration: none; }
+    @media (min-width: 640px) { .site-footer { font-size: 0.875rem; } }
+    .footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
+    .footer-x-link { display: inline-flex; align-items: center; justify-content: center; margin-top: 0.6rem; color: var(--c-text-muted); transition: color 0.15s; }
+    .footer-x-link:hover { color: var(--c-primary); }
+
+    /* Back to top */
+    #back-to-top { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--c-border); background: rgba(255,255,255,0.75); color: var(--c-text-muted); font-size: 1.1rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s, background 0.15s, color 0.15s; z-index: 100; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+    [data-theme="dark"] #back-to-top { background: rgba(30,41,59,0.75); }
+    #back-to-top.visible { opacity: 1; pointer-events: auto; }
+    #back-to-top:hover { background: var(--c-primary-light); color: var(--c-primary); border-color: var(--c-primary); }
+  </style>
+
+  <script>
+    (function () {
+      var saved = localStorage.getItem('pillsignal_theme');
+      var dark  = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+      if (localStorage.getItem('pillsignal_disclaimer_dismissed')) {
+        document.documentElement.classList.add('banner-seen');
+      }
+    }());
+  </script>
+
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZEDB8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5ZEDB8Z5P');
+  </script>
+</head>
+<body>
+
+  <div id="disclaimer-banner" role="note" aria-label="Site disclaimer">
+    <div class="banner-inner">
+      <p>PillSignal presents data from the FDA's voluntary reporting system. This data does not prove that a medication caused any adverse event. Always consult your healthcare provider about your medications.</p>
+      <button id="banner-btn" type="button">I understand</button>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="inner">
+      <a href="/" class="logo">PillSignal</a>
+      <div class="header-actions">
+        <a href="/drugs/" class="header-link">Browse all</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <line x1="12" y1="2"     x2="12" y2="6"/>
+            <line x1="12" y1="18"    x2="12" y2="22"/>
+            <line x1="4.93" y1="4.93"   x2="7.76"  y2="7.76"/>
+            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+            <line x1="2"  y1="12"    x2="6"  y2="12"/>
+            <line x1="18" y1="12"    x2="22" y2="12"/>
+            <line x1="4.93" y1="19.07"  x2="7.76"  y2="16.24"/>
+            <line x1="16.24" y1="7.76"  x2="19.07" y2="4.93"/>
+          </svg>
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <h1>Adverse Event Glossary</h1>
+    <p>Plain-language definitions of the most common terms in FDA adverse event reports.</p>
+  </div>
+
+  <div class="gloss-caveat"><div class="card">These are terms that appear in FDA adverse event reports. A term appearing in reports for a drug does not mean the drug caused it. These definitions are written in plain language to help you understand what you are reading. They are not medical advice. Always talk to a doctor or pharmacist about your health.</div></div>
+
+  <nav class="lnav" aria-label="Jump to letter">
+    <div class="lnav-inner"><a href="#letter-A" class="lnav-item lnav-item--on">A</a><a href="#letter-B" class="lnav-item lnav-item--on">B</a><a href="#letter-C" class="lnav-item lnav-item--on">C</a><a href="#letter-D" class="lnav-item lnav-item--on">D</a><span class="lnav-item lnav-item--off">E</span><a href="#letter-F" class="lnav-item lnav-item--on">F</a><a href="#letter-G" class="lnav-item lnav-item--on">G</a><a href="#letter-H" class="lnav-item lnav-item--on">H</a><a href="#letter-I" class="lnav-item lnav-item--on">I</a><a href="#letter-J" class="lnav-item lnav-item--on">J</a><span class="lnav-item lnav-item--off">K</span><span class="lnav-item lnav-item--off">L</span><a href="#letter-M" class="lnav-item lnav-item--on">M</a><a href="#letter-N" class="lnav-item lnav-item--on">N</a><a href="#letter-O" class="lnav-item lnav-item--on">O</a><a href="#letter-P" class="lnav-item lnav-item--on">P</a><span class="lnav-item lnav-item--off">Q</span><a href="#letter-R" class="lnav-item lnav-item--on">R</a><a href="#letter-S" class="lnav-item lnav-item--on">S</a><a href="#letter-T" class="lnav-item lnav-item--on">T</a><a href="#letter-U" class="lnav-item lnav-item--on">U</a><a href="#letter-V" class="lnav-item lnav-item--on">V</a><a href="#letter-W" class="lnav-item lnav-item--on">W</a><span class="lnav-item lnav-item--off">X</span><span class="lnav-item lnav-item--off">Y</span><span class="lnav-item lnav-item--off">Z</span></div>
+  </nav>
+
+  <main>
+    <section class="gloss-section"><h2 id="letter-A" class="gloss-letter">A</h2><dl class="gloss-list">
+      <dt id="abdominal-discomfort" class="gloss-term">Abdominal Discomfort</dt>
+      <dd class="gloss-def">A general unease or mild pain in the belly area.</dd>
+      <dt id="abdominal-pain" class="gloss-term">Abdominal Pain</dt>
+      <dd class="gloss-def">Pain in the belly or stomach area.</dd>
+      <dt id="abdominal-pain-upper" class="gloss-term">Abdominal Pain Upper</dt>
+      <dd class="gloss-def">Pain in the upper part of the belly, above the navel.</dd>
+      <dt id="acute-kidney-injury" class="gloss-term">Acute Kidney Injury</dt>
+      <dd class="gloss-def">A sudden drop in how well the kidneys are working. It is often temporary and can have many causes.</dd>
+      <dt id="alopecia" class="gloss-term">Alopecia</dt>
+      <dd class="gloss-def">Hair loss.</dd>
+      <dt id="anaemia" class="gloss-term">Anaemia</dt>
+      <dd class="gloss-def">A condition where there are too few healthy red blood cells to carry enough oxygen, often causing tiredness and paleness. Also spelled anemia in American English.</dd>
+      <dt id="anxiety" class="gloss-term">Anxiety</dt>
+      <dd class="gloss-def">A feeling of worry, nervousness, or unease.</dd>
+      <dt id="arthralgia" class="gloss-term">Arthralgia</dt>
+      <dd class="gloss-def">Joint pain.</dd>
+      <dt id="asthenia" class="gloss-term">Asthenia</dt>
+      <dd class="gloss-def">Physical weakness or lack of strength.</dd>
+      <dt id="asthma" class="gloss-term">Asthma</dt>
+      <dd class="gloss-def">A condition where the airways narrow and swell, causing wheezing and difficulty breathing.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-B" class="gloss-letter">B</h2><dl class="gloss-list">
+      <dt id="back-pain" class="gloss-term">Back Pain</dt>
+      <dd class="gloss-def">Pain anywhere along the back.</dd>
+      <dt id="blood-pressure-increased" class="gloss-term">Blood Pressure Increased</dt>
+      <dd class="gloss-def">A reading showing higher than normal blood pressure. Similar to hypertension, which describes the ongoing condition.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-C" class="gloss-letter">C</h2><dl class="gloss-list">
+      <dt id="cerebrovascular-accident" class="gloss-term">Cerebrovascular Accident</dt>
+      <dd class="gloss-def">The medical term for a stroke, which happens when blood flow to part of the brain is interrupted.</dd>
+      <dt id="chest-pain" class="gloss-term">Chest Pain</dt>
+      <dd class="gloss-def">Pain or discomfort in the chest. Chest pain has many causes, but it is always worth taking seriously and discussing with a doctor.</dd>
+      <dt id="chronic-kidney-disease" class="gloss-term">Chronic Kidney Disease</dt>
+      <dd class="gloss-def">A long-term, gradual loss of kidney function over months or years.</dd>
+      <dt id="completed-suicide" class="gloss-term">Completed Suicide</dt>
+      <dd class="gloss-def">A report that a person died by suicide. This is recorded in adverse event data when it occurs during medication use, and its presence does not establish that the drug was the cause. If you or someone you know is struggling, the 988 Suicide and Crisis Lifeline (call or text 988 in the US) is available 24 hours a day.</dd>
+      <dt id="condition-aggravated" class="gloss-term">Condition Aggravated</dt>
+      <dd class="gloss-def">A report that the person's existing health condition got worse. This describes a worsening of something the person already had, not necessarily a new problem caused by the drug.</dd>
+      <dt id="confusional-state" class="gloss-term">Confusional State</dt>
+      <dd class="gloss-def">A state of being confused, disoriented, or unable to think clearly.</dd>
+      <dt id="constipation" class="gloss-term">Constipation</dt>
+      <dd class="gloss-def">Difficulty passing stool, or having fewer bowel movements than usual.</dd>
+      <dt id="cough" class="gloss-term">Cough</dt>
+      <dd class="gloss-def">A reflex that clears the throat or airways.</dd>
+      <dt id="covid-19" class="gloss-term">COVID-19</dt>
+      <dd class="gloss-def">The illness caused by the SARS-CoV-2 coronavirus.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-D" class="gloss-letter">D</h2><dl class="gloss-list">
+      <dt id="death" class="gloss-term">Death</dt>
+      <dd class="gloss-def">A report that the person died. A death appearing in reports for a drug does not mean the drug caused it. Reports record that a death occurred while the medication was being used, which can happen for many unrelated reasons.</dd>
+      <dt id="decreased-appetite" class="gloss-term">Decreased Appetite</dt>
+      <dd class="gloss-def">Reduced desire to eat.</dd>
+      <dt id="dehydration" class="gloss-term">Dehydration</dt>
+      <dd class="gloss-def">A condition where the body does not have enough water.</dd>
+      <dt id="depression" class="gloss-term">Depression</dt>
+      <dd class="gloss-def">A persistent low mood, loss of interest, or feelings of sadness. If you are struggling, the 988 Suicide and Crisis Lifeline (call or text 988 in the US) is available 24 hours a day.</dd>
+      <dt id="diarrhoea" class="gloss-term">Diarrhoea</dt>
+      <dd class="gloss-def">Loose or watery bowel movements, often frequent. Also spelled diarrhea in American English.</dd>
+      <dt id="dizziness" class="gloss-term">Dizziness</dt>
+      <dd class="gloss-def">A feeling of being lightheaded, unsteady, or like the room is spinning.</dd>
+      <dt id="drug-hypersensitivity" class="gloss-term">Drug Hypersensitivity</dt>
+      <dd class="gloss-def">An allergic-type reaction to a medication.</dd>
+      <dt id="drug-ineffective" class="gloss-term">Drug Ineffective</dt>
+      <dd class="gloss-def">A report that the medication did not work as expected for the person taking it. This is a reporting category, not a sign the drug is defective. It simply means someone felt it was not helping their condition.</dd>
+      <dt id="drug-interaction" class="gloss-term">Drug Interaction</dt>
+      <dd class="gloss-def">A report that two or more medications may have affected each other when taken together.</dd>
+      <dt id="drug-intolerance" class="gloss-term">Drug Intolerance</dt>
+      <dd class="gloss-def">A report that the person could not tolerate a medication, often due to uncomfortable effects.</dd>
+      <dt id="dyspnoea" class="gloss-term">Dyspnoea</dt>
+      <dd class="gloss-def">Shortness of breath or difficulty breathing. Also spelled dyspnea in American English.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-F" class="gloss-letter">F</h2><dl class="gloss-list">
+      <dt id="fall" class="gloss-term">Fall</dt>
+      <dd class="gloss-def">A report that the person fell down. Falls are tracked because they can signal issues like dizziness, weakness, or balance problems.</dd>
+      <dt id="fatigue" class="gloss-term">Fatigue</dt>
+      <dd class="gloss-def">Extreme tiredness or lack of energy that does not improve with rest.</dd>
+      <dt id="feeling-abnormal" class="gloss-term">Feeling Abnormal</dt>
+      <dd class="gloss-def">A general report that the person did not feel like themselves, without a more specific description.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-G" class="gloss-letter">G</h2><dl class="gloss-list">
+      <dt id="gait-disturbance" class="gloss-term">Gait Disturbance</dt>
+      <dd class="gloss-def">Difficulty walking normally, such as an unsteady or altered way of walking.</dd>
+      <dt id="general-physical-health-deterioration" class="gloss-term">General Physical Health Deterioration</dt>
+      <dd class="gloss-def">A report that the person's overall physical health declined.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-H" class="gloss-letter">H</h2><dl class="gloss-list">
+      <dt id="headache" class="gloss-term">Headache</dt>
+      <dd class="gloss-def">Pain in the head or upper neck.</dd>
+      <dt id="hepatic-enzyme-increased" class="gloss-term">Hepatic Enzyme Increased</dt>
+      <dd class="gloss-def">A blood test result showing higher than normal liver enzymes, which can be a sign the liver is under stress. Hepatic means related to the liver.</dd>
+      <dt id="hypersensitivity" class="gloss-term">Hypersensitivity</dt>
+      <dd class="gloss-def">An exaggerated reaction by the immune system, similar to an allergic reaction.</dd>
+      <dt id="hypertension" class="gloss-term">Hypertension</dt>
+      <dd class="gloss-def">High blood pressure.</dd>
+      <dt id="hypoaesthesia" class="gloss-term">Hypoaesthesia</dt>
+      <dd class="gloss-def">Reduced sense of touch or numbness in part of the body. Also spelled hypoesthesia in American English.</dd>
+      <dt id="hypotension" class="gloss-term">Hypotension</dt>
+      <dd class="gloss-def">Low blood pressure.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-I" class="gloss-letter">I</h2><dl class="gloss-list">
+      <dt id="infection" class="gloss-term">Infection</dt>
+      <dd class="gloss-def">A general report of an infection, used when no more specific type is given.</dd>
+      <dt id="infusion-related-reaction" class="gloss-term">Infusion Related Reaction</dt>
+      <dd class="gloss-def">A reaction that happens during or shortly after a medication is given through an IV infusion.</dd>
+      <dt id="insomnia" class="gloss-term">Insomnia</dt>
+      <dd class="gloss-def">Difficulty falling asleep or staying asleep.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-J" class="gloss-letter">J</h2><dl class="gloss-list">
+      <dt id="joint-swelling" class="gloss-term">Joint Swelling</dt>
+      <dd class="gloss-def">Swelling in or around a joint.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-M" class="gloss-letter">M</h2><dl class="gloss-list">
+      <dt id="malaise" class="gloss-term">Malaise</dt>
+      <dd class="gloss-def">A general feeling of being unwell or uncomfortable, without a specific symptom.</dd>
+      <dt id="memory-impairment" class="gloss-term">Memory Impairment</dt>
+      <dd class="gloss-def">Difficulty remembering things.</dd>
+      <dt id="muscle-spasms" class="gloss-term">Muscle Spasms</dt>
+      <dd class="gloss-def">Sudden, involuntary tightening of a muscle, often called cramps.</dd>
+      <dt id="myalgia" class="gloss-term">Myalgia</dt>
+      <dd class="gloss-def">Muscle pain or aches.</dd>
+      <dt id="myocardial-infarction" class="gloss-term">Myocardial Infarction</dt>
+      <dd class="gloss-def">The medical term for a heart attack.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-N" class="gloss-letter">N</h2><dl class="gloss-list">
+      <dt id="nasopharyngitis" class="gloss-term">Nasopharyngitis</dt>
+      <dd class="gloss-def">The medical term for the common cold, an infection of the nose and throat.</dd>
+      <dt id="nausea" class="gloss-term">Nausea</dt>
+      <dd class="gloss-def">The feeling of sickness in your stomach that often comes before vomiting.</dd>
+      <dt id="neutropenia" class="gloss-term">Neutropenia</dt>
+      <dd class="gloss-def">A low level of neutrophils, a type of white blood cell that fights infection.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-O" class="gloss-letter">O</h2><dl class="gloss-list">
+      <dt id="oedema-peripheral" class="gloss-term">Oedema Peripheral</dt>
+      <dd class="gloss-def">Swelling in the arms, legs, hands, or feet caused by fluid buildup. Oedema is also spelled edema in American English.</dd>
+      <dt id="off-label-use" class="gloss-term">Off Label Use</dt>
+      <dd class="gloss-def">Using a medication for a condition or in a way that the FDA has not officially approved. This is common and often legal, and a report of it does not mean something went wrong. Doctors sometimes prescribe drugs off label based on their judgment.</dd>
+      <dt id="overdose" class="gloss-term">Overdose</dt>
+      <dd class="gloss-def">Taking more of a medication than intended or recommended. This can be accidental.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-P" class="gloss-letter">P</h2><dl class="gloss-list">
+      <dt id="pain" class="gloss-term">Pain</dt>
+      <dd class="gloss-def">A general report of physical discomfort, used when no more specific location is given.</dd>
+      <dt id="pain-in-extremity" class="gloss-term">Pain in Extremity</dt>
+      <dd class="gloss-def">Pain in an arm or leg.</dd>
+      <dt id="peripheral-swelling" class="gloss-term">Peripheral Swelling</dt>
+      <dd class="gloss-def">Swelling in the arms, legs, hands, or feet, often from fluid buildup.</dd>
+      <dt id="pneumonia" class="gloss-term">Pneumonia</dt>
+      <dd class="gloss-def">An infection that inflames the air sacs in the lungs, which can cause cough, fever, and difficulty breathing.</dd>
+      <dt id="product-dose-omission-issue" class="gloss-term">Product Dose Omission Issue</dt>
+      <dd class="gloss-def">A report that a dose of the medication was missed or skipped.</dd>
+      <dt id="product-use-in-unapproved-indication" class="gloss-term">Product Use in Unapproved Indication</dt>
+      <dd class="gloss-def">Using a medication for a condition it is not officially approved to treat. Like off label use, this is a reporting category and does not by itself mean harm occurred.</dd>
+      <dt id="product-use-issue" class="gloss-term">Product Use Issue</dt>
+      <dd class="gloss-def">A general report that there was some problem in how the medication was used.</dd>
+      <dt id="pruritus" class="gloss-term">Pruritus</dt>
+      <dd class="gloss-def">Itching of the skin.</dd>
+      <dt id="pyrexia" class="gloss-term">Pyrexia</dt>
+      <dd class="gloss-def">The medical term for fever, meaning a raised body temperature.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-R" class="gloss-letter">R</h2><dl class="gloss-list">
+      <dt id="rash" class="gloss-term">Rash</dt>
+      <dd class="gloss-def">An area of irritated, red, or bumpy skin.</dd>
+      <dt id="renal-failure" class="gloss-term">Renal Failure</dt>
+      <dd class="gloss-def">A serious decline in kidney function, where the kidneys can no longer filter waste properly.</dd>
+      <dt id="rheumatoid-arthritis" class="gloss-term">Rheumatoid Arthritis</dt>
+      <dd class="gloss-def">An autoimmune condition where the immune system attacks the joints, causing pain and swelling. It often appears in reports because it is a condition being treated, not always a reaction.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-S" class="gloss-letter">S</h2><dl class="gloss-list">
+      <dt id="sepsis" class="gloss-term">Sepsis</dt>
+      <dd class="gloss-def">A serious, body-wide response to an infection that can become life threatening and needs urgent care.</dd>
+      <dt id="sinusitis" class="gloss-term">Sinusitis</dt>
+      <dd class="gloss-def">Inflammation of the sinuses, the air-filled spaces around the nose, often causing congestion and pressure.</dd>
+      <dt id="somnolence" class="gloss-term">Somnolence</dt>
+      <dd class="gloss-def">Drowsiness or strong sleepiness.</dd>
+      <dt id="swelling" class="gloss-term">Swelling</dt>
+      <dd class="gloss-def">A general report of a body part becoming enlarged, often from fluid or inflammation.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-T" class="gloss-letter">T</h2><dl class="gloss-list">
+      <dt id="thrombocytopenia" class="gloss-term">Thrombocytopenia</dt>
+      <dd class="gloss-def">A low level of platelets, the blood cells that help with clotting.</dd>
+      <dt id="toxicity-to-various-agents" class="gloss-term">Toxicity to Various Agents</dt>
+      <dd class="gloss-def">A broad reporting category used when the body has a harmful response, sometimes involving more than one substance.</dd>
+      <dt id="tremor" class="gloss-term">Tremor</dt>
+      <dd class="gloss-def">Involuntary shaking or trembling, often in the hands.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-U" class="gloss-letter">U</h2><dl class="gloss-list">
+      <dt id="urinary-tract-infection" class="gloss-term">Urinary Tract Infection</dt>
+      <dd class="gloss-def">An infection in the bladder, urethra, or kidneys, often called a UTI.</dd>
+      <dt id="urticaria" class="gloss-term">Urticaria</dt>
+      <dd class="gloss-def">The medical term for hives, which are raised, itchy welts on the skin.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-V" class="gloss-letter">V</h2><dl class="gloss-list">
+      <dt id="vomiting" class="gloss-term">Vomiting</dt>
+      <dd class="gloss-def">Throwing up the contents of the stomach.</dd>
+      </dl></section>
+
+    <section class="gloss-section"><h2 id="letter-W" class="gloss-letter">W</h2><dl class="gloss-list">
+      <dt id="weight-decreased" class="gloss-term">Weight Decreased</dt>
+      <dd class="gloss-def">Losing body weight.</dd>
+      <dt id="weight-increased" class="gloss-term">Weight Increased</dt>
+      <dd class="gloss-def">Gaining body weight.</dd>
+      </dl></section>
+  </main>
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,10 7,4 12,10"/></svg>
+  </button>
+
+  <footer class="site-footer">
+    <p>Data sourced from the <a href="https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems" target="_blank" rel="noopener noreferrer">FDA's Adverse Event Monitoring System (AEMS)</a>, formerly FAERS, via OpenFDA. PillSignal is not affiliated with the FDA.</p>
+    <nav class="footer-nav" aria-label="Site links">
+      <a href="/guides/">Guides</a>
+      <a href="/glossary/">Glossary</a>
+      <a href="/about/">About</a>
+      <a href="/faq/">FAQ</a>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+    <a href="https://x.com/PillSignal" class="footer-x-link" target="_blank" rel="noopener noreferrer" aria-label="PillSignal on X">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+  </footer>
+
+  <script>
+    document.getElementById('banner-btn').addEventListener('click', function () {
+      localStorage.setItem('pillsignal_disclaimer_dismissed', '1');
+      document.documentElement.classList.add('banner-seen');
+    });
+    (function () {
+      var btn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 500) { btn.classList.add('visible'); }
+        else { btn.classList.remove('visible'); }
+      }, { passive: true });
+      btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    }());
+    (function () {
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('pillsignal_theme', next);
+        if (typeof gtag === 'function') gtag('event', 'dark_mode_toggle', { new_theme: next });
+      });
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+          if (!localStorage.getItem('pillsignal_theme')) {
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+          }
+        });
+      }
+    }());
+  </script>
+
+</body>
+</html>
