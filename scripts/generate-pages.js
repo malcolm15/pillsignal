@@ -206,18 +206,20 @@ function computeDateRange(trends) {
   return min === max ? String(min) : `${min}–${max}`; // en-dash
 }
 
-const TITLE_MAX = 65;
+const TITLE_MAX = 60;
 
+// Brand-first title ladder. The brand name comes first and is NEVER truncated:
+// the suffix is dropped progressively to fit TITLE_MAX, and for very long brand
+// names we fall back to the brand alone rather than cutting the name. Pipe
+// separator, no em-dash.
 function buildPageTitle(brandName) {
-  const t1 = `${brandName} — Adverse Events | PillSignal`;
+  const t1 = `${brandName} Adverse Event Reports | PillSignal`;
   if (t1.length <= TITLE_MAX) return t1;
-  const t2 = `${brandName} — Adverse Events`;
+  const t2 = `${brandName} Reports | PillSignal`;
   if (t2.length <= TITLE_MAX) return t2;
-  const t3 = `${brandName} — FDA Reports`;
+  const t3 = `${brandName} | PillSignal`;
   if (t3.length <= TITLE_MAX) return t3;
-  // Truncate brand name to fit "… — FDA Reports" within TITLE_MAX
-  const suffix = '… — FDA Reports';
-  return brandName.slice(0, TITLE_MAX - suffix.length) + suffix;
+  return brandName;
 }
 
 // Builds a unique, descriptive <meta description> targeting the 140-160 char
@@ -622,7 +624,7 @@ function writeBrowsePage(drugs) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-  <title>Browse All Drugs — FDA Adverse Event Reports | PillSignal</title>
+  <title>Browse All Drugs: FDA Adverse Event Reports | PillSignal</title>
   <meta name="description" content="Browse all ${total.toLocaleString('en-US')} drugs tracked by PillSignal. Alphabetical directory of FDA adverse event report data for prescription medications.">
   <link rel="canonical" href="${SITE_URL}/drugs/">
 
@@ -635,7 +637,7 @@ function writeBrowsePage(drugs) {
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website">
-  <meta property="og:title"       content="Browse All Drugs — FDA Adverse Event Reports | PillSignal">
+  <meta property="og:title"       content="Browse All Drugs: FDA Adverse Event Reports | PillSignal">
   <meta property="og:description" content="Alphabetical directory of ${total.toLocaleString('en-US')} drugs tracked by PillSignal.">
   <meta property="og:url"         content="${SITE_URL}/drugs/">
   <meta property="og:site_name"   content="PillSignal">
@@ -643,7 +645,7 @@ function writeBrowsePage(drugs) {
 
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="Browse All Drugs — FDA Adverse Event Reports | PillSignal">
+  <meta name="twitter:title"       content="Browse All Drugs: FDA Adverse Event Reports | PillSignal">
   <meta name="twitter:description" content="Alphabetical directory of ${total.toLocaleString('en-US')} drugs with FDA adverse event data.">
   <meta name="twitter:image"       content="${SITE_URL}/og-image.png">
 
@@ -926,7 +928,7 @@ function writeGlossaryPage() {
       `<dl class="gloss-list">\n${items}\n      </dl></section>`;
   }).join('\n\n');
 
-  const pageTitle = 'Adverse Event Glossary: Plain-Language Definitions | PillSignal';
+  const pageTitle = 'Adverse Event Glossary | PillSignal';
   const metaDesc  = `Plain-language definitions of ${terms.length} common terms used in FDA adverse event reports, from nausea and fatigue to medical terms like dyspnoea and pyrexia.`;
   const canonical = `${SITE_URL}/glossary/`;
 
