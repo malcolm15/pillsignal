@@ -67,7 +67,11 @@ function ingredientClean(part) {
     .replace(/\b\d+(\.\d+)?\s*(MG|MCG|UG|G|ML|IU|UNITS?|MEQ)\b/g, ' ')
     .replace(/\d+(\.\d+)?\s*%/g, ' ')
     .replace(/[.,;()]/g, ' ')
-    .replace(/\b\d+(\.\d+)?\b/g, ' ')
+    // Remove only space-delimited standalone numbers (leftover dosage digits like a
+    // stray "200"). Do NOT strip digits joined to a name by a hyphen: omega-3,
+    // beta-1a, alfa-2a are part of the ingredient identity. Stripping the bare 3 from
+    // omega-3-acid is what produced "omega- -acid"; this guard prevents that.
+    .replace(/(^|\s)\d+(\.\d+)?(?=\s|$)/g, ' ')
     .replace(/\bAND\b/g, ' ')
     .replace(/\s+/g, ' ').trim();
   let t = s.split(' ').filter(Boolean);
