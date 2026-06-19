@@ -2130,11 +2130,6 @@
     "slug": "lithium-carbonate-er"
   },
   {
-    "brand_name": "LITHIUM CARBONATE LITHIUM CARBONATE",
-    "generic_name": "lithium carbonate",
-    "slug": "lithium-carbonate-lithium-carbonate"
-  },
-  {
     "brand_name": "LITHIUM CARBONICUM",
     "generic_name": "lithium carbonate",
     "slug": "lithium-carbonicum"
@@ -2828,11 +2823,6 @@
     "brand_name": "PACLITAXEL",
     "generic_name": "",
     "slug": "paclitaxel"
-  },
-  {
-    "brand_name": "PACLITAXEL PACLITAXEL",
-    "generic_name": "paclitaxel",
-    "slug": "paclitaxel-paclitaxel"
   },
   {
     "brand_name": "PANADOL",

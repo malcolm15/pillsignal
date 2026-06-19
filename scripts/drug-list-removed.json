@@ -3487,5 +3487,19 @@
     "slug": "womens-rogaine-unscented",
     "removed_date": "2026-06-15",
     "reason": "orphan directory, stale minoxidil duplicate from rogaine dedup, never in drug-list.json"
+  },
+  {
+    "brand_name": "LITHIUM CARBONATE LITHIUM CARBONATE",
+    "generic_name": "lithium carbonate",
+    "slug": "lithium-carbonate-lithium-carbonate",
+    "removed_date": "2026-06-18",
+    "reason": "duplicate of clean-slug entry, doubled brand name data artifact"
+  },
+  {
+    "brand_name": "PACLITAXEL PACLITAXEL",
+    "generic_name": "paclitaxel",
+    "slug": "paclitaxel-paclitaxel",
+    "removed_date": "2026-06-18",
+    "reason": "duplicate of clean-slug entry, doubled brand name data artifact"
   }
 ]
