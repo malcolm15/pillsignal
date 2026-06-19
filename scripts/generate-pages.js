@@ -42,6 +42,11 @@ const HOMEPAGE_TEMPLATE = readFileSync(join(ROOT, 'templates', 'homepage.html'),
 // scripts/glossary.json (authored) powers the /glossary/ page, docs/js/glossary.json
 // (the client copy used for inline drug-page definitions), and term matching.
 const GLOSSARY = JSON.parse(readFileSync(join(__dirname, 'glossary.json'), 'utf8'));
+// Manually-ported FDA label descriptions, keyed by slug. Applied in renderPage as a
+// fallback over the Supabase description so a value that the label lookup will not
+// reproduce survives a future fetch-data.js run (which would otherwise wipe it). See
+// CLAUDE.md "Description Overrides".
+const DESCRIPTION_OVERRIDES = JSON.parse(readFileSync(join(__dirname, 'description-overrides.json'), 'utf8'));
 // MedDRA key (ALL-CAPS) -> { key, display, definition } for matching adverse_events
 // terms to their plain-language definitions at generate time. (Slug is computed at
 // render time via slugifyName, which is defined later in this module.)
@@ -510,7 +515,7 @@ function renderPage(drug, adverseEvents, demographics, outcomes, trends, related
     .replaceAll('{{OG_DESCRIPTION}}',       escapeHtml(metaDesc))
     .replaceAll('{{OG_URL}}',               canonicalUrl)
     .replaceAll('{{JSON_LD}}',              safeJson(buildJsonLd(drug, canonicalUrl, metaDesc)))
-    .replaceAll('{{DRUG_DESCRIPTION}}',      renderDrugDescription(drug.description))
+    .replaceAll('{{DRUG_DESCRIPTION}}',      renderDrugDescription(DESCRIPTION_OVERRIDES[slug] || drug.description))
     .replaceAll('{{BRAND_NAME}}',           escapeHtml(brandName))
     .replaceAll('{{GENERIC_NAME}}',         escapeHtml(genericName))
     .replaceAll('{{TOTAL_REPORTS}}',        totalReports.toLocaleString('en-US'))

@@ -273,6 +273,14 @@ Plain-language definitions for adverse event (MedDRA) terms, powering a standalo
 
 **To add or edit definitions:** edit `scripts/glossary.json`, then run `node scripts/generate-pages.js`. That one file updates the glossary page, the client copy, and every inline definition site-wide.
 
+## Description Overrides
+
+`scripts/description-overrides.json` maps a drug slug to a hand-supplied FDA-label description. `generate-pages.js` applies it in `renderPage()` as a fallback (`DESCRIPTION_OVERRIDES[slug] || drug.description`), so the override wins only when present.
+
+**Why it exists:** drug descriptions live in Supabase and are re-derived from the FDA label lookup on every `fetch-data.js` run. If a drug's label lookup returns nothing (or returns a description for a different formulation), that drug shows no description, and any manually-ported description in Supabase would be wiped on the next full fetch. Because `generate-pages.js` re-applies this file on every build, an override survives re-fetches.
+
+**When to add an entry:** any time you manually port or correct a description that the label lookup will not reproduce on its own (for example, a value ported from a duplicate entry before removing it, like `lithium-carbonate`). Key by slug, value is the plain description text (no em-dashes). Run `node scripts/generate-pages.js` to apply.
+
 ## Data Refresh Procedure
 
 Run this checklist in order every time the dataset is refreshed. Deviating from the order can create drift between the list, the database, and the live pages.
