@@ -248,23 +248,32 @@ function buildMetaDesc(brandName, genericName, totalReports, topEvent) {
   const evClause = useEvent
     ? ` The most frequently reported was ${String(topEvent).toLowerCase().trim()}.`
     : '';
-  const CLAUSE = ' for demographics, outcomes, and trends';
-  const base = (g, clause, ev) =>
-    `${brandName}${g}: explore ${reports} FDA adverse event reports${clause ? CLAUSE : ''}.${ev}`;
-
-  // Richest first; drop the descriptive clause, then the event, then the generic
-  // to stay within 160. The first candidate that fits is the longest that fits.
-  const candidates = [
-    base(gen, true,  evClause),   // generic + clause + event (target 140-160)
-    base(gen, false, evClause),   // drop clause, keep generic + event
-    base(gen, true,  ''),         // drop event, keep generic + clause
-    base(gen, false, ''),         // generic only
-    base('',  true,  evClause),   // drop generic, keep clause + event
-    base('',  false, evClause),   // brand + event
-    base('',  true,  ''),         // brand + clause
-    base('',  false, ''),         // brand only
+  // Descriptive clause tiers, longest first. We insert the longest one that keeps
+  // the whole string within 160. This adaptive fill avoids the old all-or-nothing
+  // drop: a long generic plus a long event name (e.g. Mounjaro / "incorrect dose
+  // administered") no longer falls all the way to a bare, too-short description.
+  const CLAUSES = [
+    ' for demographics, outcomes, and trends',  // A
+    ' with demographics and outcomes',          // B
+    ' with demographic data',                   // C
+    '',                                          // none (last resort)
   ];
-  const fit = candidates.find(c => c.length <= 160);
+  const make = (g, clause, ev) =>
+    `${brandName}${g}: explore ${reports} FDA adverse event reports${clause}.${ev}`;
+  const bestFit = (g, ev) => {
+    for (const cl of CLAUSES) { const s = make(g, cl, ev); if (s.length <= 160) return s; }
+    return make(g, '', ev);
+  };
+
+  // Prefer generic + event (with the longest clause that fits); then drop the
+  // event, then the generic, to stay within 160.
+  const tries = [
+    bestFit(gen, evClause),   // generic + best-fit clause + event
+    bestFit(gen, ''),         // drop event, generic + best-fit clause
+    bestFit('',  evClause),   // drop generic, brand + best-fit clause + event
+    bestFit('',  ''),         // brand + best-fit clause
+  ];
+  const fit = tries.find(s => s.length <= 160);
   return fit || (`${brandName}: ${reports} adverse event reports submitted to the FDA.`).slice(0, 160);
 }
 
