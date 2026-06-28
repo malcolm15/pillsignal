@@ -1,0 +1,32 @@
+name: Supabase Keepalive
+
+# Pings the Supabase REST endpoint on a schedule so the free-tier project
+# never hits the 7-day inactivity pause. Uses the anon key from Actions
+# secrets only; no keys or URLs are committed to the repo.
+
+on:
+  schedule:
+    - cron: '0 6 */2 * *'   # every 2 days at 06:00 UTC
+  workflow_dispatch:          # manual trigger for on-demand testing
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase to reset the inactivity timer
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          code=$(curl -sS -o /dev/null -w '%{http_code}' \
+            "${SUPABASE_URL}/rest/v1/drugs?select=id&limit=1" \
+            -H "apikey: ${SUPABASE_ANON_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}")
+          echo "Supabase responded with HTTP $code"
+          # Success = the request reached the project (any non-5xx). A 200 (rows
+          # or empty) or an RLS 401 both count as activity. Fail only on a 5xx
+          # or a network/curl error, which would mean the ping did not land.
+          if [ -z "$code" ] || [ "$code" -ge 500 ]; then
+            echo "Keepalive request did not reach Supabase (HTTP '$code')."
+            exit 1
+          fi
