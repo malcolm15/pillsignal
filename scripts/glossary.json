@@ -970,6 +970,781 @@
       "key": "TREATMENT NONCOMPLIANCE",
       "display": "Treatment Noncompliance",
       "definition": "A report that a person did not take a treatment as prescribed. This is a reporting category describing what happened, not a judgment about the person."
+    },
+    {
+      "key": "DEPENDENCE",
+      "display": "Dependence",
+      "definition": "A state in which the body or mind has come to rely on a substance, so that stopping it causes difficulty. Closely related to drug dependence."
+    },
+    {
+      "key": "LOWER RESPIRATORY TRACT INFECTION",
+      "display": "Lower Respiratory Tract Infection",
+      "definition": "An infection affecting the airways and lungs, below the throat, such as bronchitis or pneumonia."
+    },
+    {
+      "key": "CHRONIC OBSTRUCTIVE PULMONARY DISEASE",
+      "display": "Chronic Obstructive Pulmonary Disease",
+      "definition": "A long-term lung condition, often called COPD, that makes breathing difficult. It often appears in reports as a condition being treated."
+    },
+    {
+      "key": "PRODUCT STORAGE ERROR",
+      "display": "Product Storage Error",
+      "definition": "A report that a medication was stored incorrectly, for example at the wrong temperature. This is a handling category, not a sign of a problem with the drug."
+    },
+    {
+      "key": "BRONCHITIS",
+      "display": "Bronchitis",
+      "definition": "Inflammation of the airways that carry air to the lungs, often causing a cough."
+    },
+    {
+      "key": "THROMBOSIS",
+      "display": "Thrombosis",
+      "definition": "The formation of a blood clot inside a blood vessel."
+    },
+    {
+      "key": "CONTUSION",
+      "display": "Contusion",
+      "definition": "The medical term for a bruise."
+    },
+    {
+      "key": "IRRITABILITY",
+      "display": "Irritability",
+      "definition": "A tendency to become annoyed or frustrated more easily than usual."
+    },
+    {
+      "key": "INAPPROPRIATE SCHEDULE OF DRUG ADMINISTRATION",
+      "display": "Inappropriate Schedule of Drug Administration",
+      "definition": "A report that a medication was taken on the wrong schedule, such as too often or at the wrong time. This is a usage category, the same idea as inappropriate schedule of product administration."
+    },
+    {
+      "key": "MULTIPLE SCLEROSIS RELAPSE",
+      "display": "Multiple Sclerosis Relapse",
+      "definition": "A return or worsening of multiple sclerosis symptoms. It often appears in reports as part of the condition being treated."
+    },
+    {
+      "key": "SKIN EXFOLIATION",
+      "display": "Skin Exfoliation",
+      "definition": "Peeling or shedding of the outer layer of skin."
+    },
+    {
+      "key": "DEVICE ADHESION ISSUE",
+      "display": "Device Adhesion Issue",
+      "definition": "A report that a device meant to stick to the skin did not adhere properly. This is a product-performance category."
+    },
+    {
+      "key": "NEUROLEPTIC MALIGNANT SYNDROME",
+      "display": "Neuroleptic Malignant Syndrome",
+      "definition": "A rare but serious reaction, usually to certain mental-health medications, involving high fever, muscle stiffness, and confusion. It needs urgent medical care."
+    },
+    {
+      "key": "DYSGEUSIA",
+      "display": "Dysgeusia",
+      "definition": "A distorted or altered sense of taste, such as a persistent metallic taste."
+    },
+    {
+      "key": "UNDERDOSE",
+      "display": "Underdose",
+      "definition": "A report that less of a medication was taken than prescribed. This is a usage category."
+    },
+    {
+      "key": "OXYGEN SATURATION DECREASED",
+      "display": "Oxygen Saturation Decreased",
+      "definition": "A reading showing a lower than normal level of oxygen in the blood."
+    },
+    {
+      "key": "DEEP VEIN THROMBOSIS",
+      "display": "Deep Vein Thrombosis",
+      "definition": "A blood clot that forms in a deep vein, usually in the leg. It can be serious if the clot travels to the lungs."
+    },
+    {
+      "key": "COMA",
+      "display": "Coma",
+      "definition": "A prolonged state of deep unconsciousness."
+    },
+    {
+      "key": "NEOPLASM PROGRESSION",
+      "display": "Neoplasm Progression",
+      "definition": "A report that a tumour grew or advanced. This describes the course of the illness, not necessarily an effect of the drug. Neoplasm is the medical term for a growth or tumour."
+    },
+    {
+      "key": "SCHIZOPHRENIA",
+      "display": "Schizophrenia",
+      "definition": "A mental health condition that affects how a person thinks, feels, and perceives reality. It often appears in reports as a condition being treated."
+    },
+    {
+      "key": "INTENTIONAL PRODUCT MISUSE",
+      "display": "Intentional Product Misuse",
+      "definition": "A report that a medication was deliberately used in a way other than directed. This is a usage category describing what happened, not a judgment."
+    },
+    {
+      "key": "AKATHISIA",
+      "display": "Akathisia",
+      "definition": "A feeling of inner restlessness and an inability to stay still, sometimes associated with certain medications."
+    },
+    {
+      "key": "CROHN^S DISEASE",
+      "display": "Crohn's Disease",
+      "definition": "A long-term condition that causes inflammation of the digestive tract. It often appears in reports as a condition being treated."
+    },
+    {
+      "key": "CYTOMEGALOVIRUS INFECTION",
+      "display": "Cytomegalovirus Infection",
+      "definition": "An infection with a common virus, often called CMV, that can be serious for people with weakened immune systems."
+    },
+    {
+      "key": "HALLUCINATION",
+      "display": "Hallucination",
+      "definition": "Seeing, hearing, or sensing things that are not actually there. The term records what was reported and does not establish that a medication was the cause."
+    },
+    {
+      "key": "HYPOKALAEMIA",
+      "display": "Hypokalaemia",
+      "definition": "A low level of potassium in the blood. Also spelled hypokalemia in American English."
+    },
+    {
+      "key": "NASAL CONGESTION",
+      "display": "Nasal Congestion",
+      "definition": "A stuffy or blocked nose."
+    },
+    {
+      "key": "INTERSTITIAL LUNG DISEASE",
+      "display": "Interstitial Lung Disease",
+      "definition": "A group of conditions that cause scarring or inflammation of the lung tissue, which can make breathing harder."
+    },
+    {
+      "key": "EXTRAPYRAMIDAL DISORDER",
+      "display": "Extrapyramidal Disorder",
+      "definition": "A group of movement problems, such as stiffness, tremor, or restlessness, that can be associated with certain medications."
+    },
+    {
+      "key": "DYSPNOEA EXERTIONAL",
+      "display": "Dyspnoea Exertional",
+      "definition": "Shortness of breath that happens during physical activity. A specific form of dyspnoea. Also spelled dyspnea in American English."
+    },
+    {
+      "key": "DIABETIC KETOACIDOSIS",
+      "display": "Diabetic Ketoacidosis",
+      "definition": "A serious complication of diabetes where the blood becomes too acidic, needing urgent medical care."
+    },
+    {
+      "key": "OROPHARYNGEAL PAIN",
+      "display": "Oropharyngeal Pain",
+      "definition": "Pain in the mouth and throat, often felt as a sore throat."
+    },
+    {
+      "key": "INJECTION SITE HAEMORRHAGE",
+      "display": "Injection Site Haemorrhage",
+      "definition": "Bleeding at the spot where a medication was injected. Also spelled hemorrhage in American English."
+    },
+    {
+      "key": "TYPE 2 DIABETES MELLITUS",
+      "display": "Type 2 Diabetes Mellitus",
+      "definition": "The most common form of diabetes, where the body does not use insulin properly. It often appears in reports as a condition being treated."
+    },
+    {
+      "key": "FLUID RETENTION",
+      "display": "Fluid Retention",
+      "definition": "A buildup of excess fluid in the body, which can cause swelling."
+    },
+    {
+      "key": "PALMAR-PLANTAR ERYTHRODYSAESTHESIA SYNDROME",
+      "display": "Palmar-Plantar Erythrodysaesthesia Syndrome",
+      "definition": "A skin reaction on the palms and soles, sometimes called hand-foot syndrome, that can occur with some cancer treatments. It causes redness, swelling, and discomfort."
+    },
+    {
+      "key": "RHABDOMYOLYSIS",
+      "display": "Rhabdomyolysis",
+      "definition": "A serious condition where muscle tissue breaks down and releases substances that can harm the kidneys."
+    },
+    {
+      "key": "PANCREATITIS",
+      "display": "Pancreatitis",
+      "definition": "Inflammation of the pancreas, which can cause severe belly pain."
+    },
+    {
+      "key": "CATARACT",
+      "display": "Cataract",
+      "definition": "A clouding of the lens of the eye that can blur vision."
+    },
+    {
+      "key": "DYSKINESIA",
+      "display": "Dyskinesia",
+      "definition": "Involuntary, uncontrolled movements of the body."
+    },
+    {
+      "key": "ABORTION SPONTANEOUS",
+      "display": "Abortion Spontaneous",
+      "definition": "The medical term for a miscarriage, the unplanned loss of a pregnancy."
+    },
+    {
+      "key": "EXPIRED PRODUCT ADMINISTERED",
+      "display": "Expired Product Administered",
+      "definition": "A report that a medication was used after its expiration date. This is a handling category, not a sign of a problem with the drug itself."
+    },
+    {
+      "key": "BREAST CANCER",
+      "display": "Breast Cancer",
+      "definition": "A cancer that forms in the tissue of the breast. It may appear in reports as a condition being treated or monitored."
+    },
+    {
+      "key": "INJECTION SITE ERYTHEMA",
+      "display": "Injection Site Erythema",
+      "definition": "Redness of the skin at the spot where a medication was injected. Erythema means skin redness."
+    },
+    {
+      "key": "MULTIPLE SCLEROSIS",
+      "display": "Multiple Sclerosis",
+      "definition": "A condition where the immune system affects the protective covering of nerves, which can disrupt movement and other functions. It often appears in reports as a condition being treated."
+    },
+    {
+      "key": "SEPTIC SHOCK",
+      "display": "Septic Shock",
+      "definition": "A life-threatening drop in blood pressure caused by a severe infection. It needs urgent medical care."
+    },
+    {
+      "key": "DIABETES MELLITUS INADEQUATE CONTROL",
+      "display": "Diabetes Mellitus Inadequate Control",
+      "definition": "A report that a person's diabetes was not well managed, meaning blood sugar stayed outside the target range."
+    },
+    {
+      "key": "RENAL INJURY",
+      "display": "Renal Injury",
+      "definition": "Damage to the kidneys. Renal means related to the kidneys. Related to acute kidney injury and renal impairment."
+    },
+    {
+      "key": "HELICOBACTER INFECTION",
+      "display": "Helicobacter Infection",
+      "definition": "An infection with Helicobacter pylori, a bacterium that can cause stomach ulcers."
+    },
+    {
+      "key": "INJECTION SITE BRUISING",
+      "display": "Injection Site Bruising",
+      "definition": "Bruising at the spot where a medication was injected."
+    },
+    {
+      "key": "IMPAIRED HEALING",
+      "display": "Impaired Healing",
+      "definition": "Wounds or injuries that heal more slowly than expected."
+    },
+    {
+      "key": "SLEEP DISORDER DUE TO A GENERAL MEDICAL CONDITION",
+      "display": "Sleep Disorder Due to a General Medical Condition",
+      "definition": "Difficulty sleeping that is linked to an underlying health condition."
+    },
+    {
+      "key": "DYSTONIA",
+      "display": "Dystonia",
+      "definition": "Involuntary muscle contractions that cause twisting movements or abnormal postures."
+    },
+    {
+      "key": "HYPERGLYCAEMIA",
+      "display": "Hyperglycaemia",
+      "definition": "A high level of sugar in the blood. Also spelled hyperglycemia in American English."
+    },
+    {
+      "key": "APPLICATION SITE ERYTHEMA",
+      "display": "Application Site Erythema",
+      "definition": "Redness of the skin where a medication was applied, such as under a patch or cream. Erythema means skin redness."
+    },
+    {
+      "key": "ADVERSE EVENT",
+      "display": "Adverse Event",
+      "definition": "A general report of an unwanted medical occurrence during medication use, used when no more specific event is named."
+    },
+    {
+      "key": "PLASMA CELL MYELOMA",
+      "display": "Plasma Cell Myeloma",
+      "definition": "A cancer of certain white blood cells in the bone marrow, also called multiple myeloma. It often appears in reports as a condition being treated."
+    },
+    {
+      "key": "ANHEDONIA",
+      "display": "Anhedonia",
+      "definition": "A reduced ability to feel pleasure or interest in activities once enjoyed."
+    },
+    {
+      "key": "COGNITIVE DISORDER",
+      "display": "Cognitive Disorder",
+      "definition": "A problem affecting thinking abilities such as memory, attention, or reasoning."
+    },
+    {
+      "key": "SEROTONIN SYNDROME",
+      "display": "Serotonin Syndrome",
+      "definition": "A potentially serious reaction caused by too much serotonin activity, often from combining certain medications. Symptoms can include agitation, rapid heartbeat, and muscle twitching."
+    },
+    {
+      "key": "THERAPY NON-RESPONDER",
+      "display": "Therapy Non-Responder",
+      "definition": "A report that a person did not respond to a treatment. Similar to drug ineffective, it reflects that the treatment did not produce the expected result."
+    },
+    {
+      "key": "CORONARY ARTERY DISEASE",
+      "display": "Coronary Artery Disease",
+      "definition": "A narrowing of the arteries that supply blood to the heart. It often appears in reports as a condition being treated."
+    },
+    {
+      "key": "BREAST CANCER METASTATIC",
+      "display": "Breast Cancer Metastatic",
+      "definition": "Breast cancer that has spread to other parts of the body. It may appear in reports as a condition being treated."
+    },
+    {
+      "key": "PLEURAL EFFUSION",
+      "display": "Pleural Effusion",
+      "definition": "A buildup of fluid around the lungs, which can make breathing difficult."
+    },
+    {
+      "key": "INCORRECT DRUG ADMINISTRATION DURATION",
+      "display": "Incorrect Drug Administration Duration",
+      "definition": "A report that a medication was taken for a longer or shorter time than directed. This is a usage category."
+    },
+    {
+      "key": "FLATULENCE",
+      "display": "Flatulence",
+      "definition": "Excess gas in the digestive system, commonly called passing gas."
+    },
+    {
+      "key": "ALANINE AMINOTRANSFERASE INCREASED",
+      "display": "Alanine Aminotransferase Increased",
+      "definition": "A blood test result showing a higher than normal level of ALT, a liver enzyme. It can be a sign the liver is under stress."
+    },
+    {
+      "key": "ACNE",
+      "display": "Acne",
+      "definition": "A skin condition causing pimples, usually on the face, chest, or back."
+    },
+    {
+      "key": "DEVICE ISSUE",
+      "display": "Device Issue",
+      "definition": "A general report of a problem with a medical device, used when no more specific issue is named."
+    },
+    {
+      "key": "ACCIDENTAL UNDERDOSE",
+      "display": "Accidental Underdose",
+      "definition": "A report that less of a medication was taken than intended, by accident. This is a usage category."
+    },
+    {
+      "key": "BLOOD GLUCOSE ABNORMAL",
+      "display": "Blood Glucose Abnormal",
+      "definition": "A blood test result showing a blood sugar level outside the normal range, either high or low."
+    },
+    {
+      "key": "ILL-DEFINED DISORDER",
+      "display": "Ill-Defined Disorder",
+      "definition": "A reported condition that could not be clearly identified or categorized. This is a record-keeping category."
+    },
+    {
+      "key": "FIBROMYALGIA",
+      "display": "Fibromyalgia",
+      "definition": "A condition causing widespread muscle pain, fatigue, and tenderness. It often appears in reports as a condition being treated."
+    },
+    {
+      "key": "ANAPHYLACTIC REACTION",
+      "display": "Anaphylactic Reaction",
+      "definition": "A severe, rapid allergic reaction that can be life-threatening and needs emergency care."
+    },
+    {
+      "key": "DEPRESSED LEVEL OF CONSCIOUSNESS",
+      "display": "Depressed Level of Consciousness",
+      "definition": "Reduced alertness or awareness, ranging from drowsiness to difficulty staying awake."
+    },
+    {
+      "key": "DRUG ADMINISTRATION ERROR",
+      "display": "Drug Administration Error",
+      "definition": "A report that a medication was given or taken incorrectly in some way. This is a usage category."
+    },
+    {
+      "key": "METASTASES TO BONE",
+      "display": "Metastases to Bone",
+      "definition": "Cancer that has spread to the bones from another part of the body. It may appear in reports as part of a condition being treated."
+    },
+    {
+      "key": "ANGINA PECTORIS",
+      "display": "Angina Pectoris",
+      "definition": "Chest pain caused by reduced blood flow to the heart, usually felt as pressure or tightness."
+    },
+    {
+      "key": "PHARMACEUTICAL PRODUCT COMPLAINT",
+      "display": "Pharmaceutical Product Complaint",
+      "definition": "A report of a possible problem with a medication's quality, packaging, or condition. This is a quality-tracking category."
+    },
+    {
+      "key": "SWELLING FACE",
+      "display": "Swelling Face",
+      "definition": "Swelling of the face, which can have many causes including allergic reactions."
+    },
+    {
+      "key": "INFLUENZA LIKE ILLNESS",
+      "display": "Influenza Like Illness",
+      "definition": "A set of symptoms resembling the flu, such as fever, aches, and tiredness, without a confirmed flu diagnosis."
+    },
+    {
+      "key": "APPLICATION SITE PRURITUS",
+      "display": "Application Site Pruritus",
+      "definition": "Itching of the skin where a medication was applied, such as under a patch or cream. Pruritus means itching."
+    },
+    {
+      "key": "DRUG WITHDRAWAL SYNDROME NEONATAL",
+      "display": "Drug Withdrawal Syndrome Neonatal",
+      "definition": "Withdrawal symptoms in a newborn whose mother took certain medications during pregnancy."
+    },
+    {
+      "key": "HYPERKALAEMIA",
+      "display": "Hyperkalaemia",
+      "definition": "A high level of potassium in the blood. Also spelled hyperkalemia in American English."
+    },
+    {
+      "key": "PAIN IN JAW",
+      "display": "Pain in Jaw",
+      "definition": "Pain felt in the jaw."
+    },
+    {
+      "key": "MULTIPLE ORGAN DYSFUNCTION SYNDROME",
+      "display": "Multiple Organ Dysfunction Syndrome",
+      "definition": "A serious condition where two or more organ systems begin to fail, often during severe illness. It needs urgent medical care."
+    },
+    {
+      "key": "DRY MOUTH",
+      "display": "Dry Mouth",
+      "definition": "A lack of saliva that makes the mouth feel dry."
+    },
+    {
+      "key": "DRUG RESISTANCE",
+      "display": "Drug Resistance",
+      "definition": "A situation where a medication becomes less effective against the condition it was meant to treat, such as an infection no longer responding to an antibiotic."
+    },
+    {
+      "key": "RENAL FAILURE ACUTE",
+      "display": "Renal Failure Acute",
+      "definition": "A sudden, serious decline in kidney function. Closely related to acute kidney injury. Renal means related to the kidneys."
+    },
+    {
+      "key": "DYSPHAGIA",
+      "display": "Dysphagia",
+      "definition": "Difficulty swallowing."
+    },
+    {
+      "key": "DRUG DOSE OMISSION BY DEVICE",
+      "display": "Drug Dose Omission by Device",
+      "definition": "A report that a dose was missed because a device, such as a pump or injector, did not deliver it. This is a usage and device category."
+    },
+    {
+      "key": "DUODENAL ULCER PERFORATION",
+      "display": "Duodenal Ulcer Perforation",
+      "definition": "A serious complication where an ulcer in the upper part of the small intestine creates a hole through the wall. It needs urgent medical care."
+    },
+    {
+      "key": "PULMONARY ARTERIAL HYPERTENSION",
+      "display": "Pulmonary Arterial Hypertension",
+      "definition": "High blood pressure in the arteries of the lungs, which makes the heart work harder. It often appears in reports as a condition being treated."
+    },
+    {
+      "key": "GENERALISED TONIC-CLONIC SEIZURE",
+      "display": "Generalised Tonic-Clonic Seizure",
+      "definition": "A type of seizure involving loss of consciousness and full-body muscle stiffening and jerking, once called a grand mal seizure. Also spelled generalized in American English."
+    },
+    {
+      "key": "STATUS EPILEPTICUS",
+      "display": "Status Epilepticus",
+      "definition": "A seizure that lasts a long time or repeated seizures without recovery in between. It is a medical emergency."
+    },
+    {
+      "key": "GRAFT VERSUS HOST DISEASE",
+      "display": "Graft Versus Host Disease",
+      "definition": "A complication that can occur after a transplant, where donated cells attack the recipient's body."
+    },
+    {
+      "key": "PULMONARY HYPERTENSION",
+      "display": "Pulmonary Hypertension",
+      "definition": "High blood pressure in the blood vessels of the lungs."
+    },
+    {
+      "key": "ELECTROCARDIOGRAM QT PROLONGED",
+      "display": "Electrocardiogram QT Prolonged",
+      "definition": "A heart test result showing a longer than normal pause in the heart's electrical cycle, which can affect heart rhythm."
+    },
+    {
+      "key": "BONE PAIN",
+      "display": "Bone Pain",
+      "definition": "Pain felt in or coming from the bones."
+    },
+    {
+      "key": "THERAPEUTIC RESPONSE DECREASED",
+      "display": "Therapeutic Response Decreased",
+      "definition": "A report that a treatment seemed to work less well than before. Similar to drug ineffective and therapeutic product effect decreased."
+    },
+    {
+      "key": "WITHDRAWAL SYNDROME",
+      "display": "Withdrawal Syndrome",
+      "definition": "The symptoms that can occur when a substance the body has gotten used to is reduced or stopped. Related to drug withdrawal syndrome."
+    },
+    {
+      "key": "ERECTILE DYSFUNCTION",
+      "display": "Erectile Dysfunction",
+      "definition": "Difficulty getting or keeping an erection."
+    },
+    {
+      "key": "METASTASES TO LIVER",
+      "display": "Metastases to Liver",
+      "definition": "Cancer that has spread to the liver from another part of the body. It may appear in reports as part of a condition being treated."
+    },
+    {
+      "key": "PRODUCT DOSE OMISSION",
+      "display": "Product Dose Omission",
+      "definition": "A report that a dose of a medication was missed or skipped. Similar to drug dose omission."
+    },
+    {
+      "key": "APPLICATION SITE PAIN",
+      "display": "Application Site Pain",
+      "definition": "Pain at the spot where a medication was applied, such as under a patch."
+    },
+    {
+      "key": "ORAL PAIN",
+      "display": "Oral Pain",
+      "definition": "Pain inside the mouth."
+    },
+    {
+      "key": "COLITIS ULCERATIVE",
+      "display": "Colitis Ulcerative",
+      "definition": "A long-term condition, usually called ulcerative colitis, that causes inflammation and sores in the lining of the large intestine. It often appears in reports as a condition being treated."
+    },
+    {
+      "key": "HAIR TEXTURE ABNORMAL",
+      "display": "Hair Texture Abnormal",
+      "definition": "A change in the feel or quality of the hair, such as becoming brittle or coarse."
+    },
+    {
+      "key": "HAIR COLOUR CHANGES",
+      "display": "Hair Colour Changes",
+      "definition": "A change in hair color. Also spelled color in American English."
+    },
+    {
+      "key": "DEVICE MALFUNCTION",
+      "display": "Device Malfunction",
+      "definition": "A report that a medical device did not work as intended."
+    },
+    {
+      "key": "BLOOD CHOLESTEROL INCREASED",
+      "display": "Blood Cholesterol Increased",
+      "definition": "A blood test result showing a higher than normal cholesterol level."
+    },
+    {
+      "key": "OEDEMA",
+      "display": "Oedema",
+      "definition": "Swelling caused by a buildup of fluid in the body's tissues. Also spelled edema in American English. Related to peripheral swelling."
+    },
+    {
+      "key": "VISUAL ACUITY REDUCED",
+      "display": "Visual Acuity Reduced",
+      "definition": "A decrease in the sharpness of vision."
+    },
+    {
+      "key": "ARTHRITIS",
+      "display": "Arthritis",
+      "definition": "Inflammation of one or more joints, causing pain and stiffness. It often appears in reports as a condition being treated."
+    },
+    {
+      "key": "DISTURBANCE IN ATTENTION",
+      "display": "Disturbance in Attention",
+      "definition": "Difficulty concentrating or staying focused."
+    },
+    {
+      "key": "ASPARTATE AMINOTRANSFERASE INCREASED",
+      "display": "Aspartate Aminotransferase Increased",
+      "definition": "A blood test result showing a higher than normal level of AST, an enzyme found in the liver and other tissues. It can be a sign the liver is under stress."
+    },
+    {
+      "key": "INJECTION SITE SWELLING",
+      "display": "Injection Site Swelling",
+      "definition": "Swelling at the spot where a medication was injected."
+    },
+    {
+      "key": "INJECTION SITE REACTION",
+      "display": "Injection Site Reaction",
+      "definition": "A general report of a reaction at the spot where a medication was injected, such as redness, swelling, or pain."
+    },
+    {
+      "key": "WRONG TECHNIQUE IN DEVICE USAGE PROCESS",
+      "display": "Wrong Technique in Device Usage Process",
+      "definition": "A report that a device was used with the wrong technique. This is a usage category, the same idea as wrong technique in product usage process."
+    },
+    {
+      "key": "EXTRA DOSE ADMINISTERED",
+      "display": "Extra Dose Administered",
+      "definition": "A report that more doses of a medication were taken than directed. This is a usage category."
+    },
+    {
+      "key": "INFUSION SITE PAIN",
+      "display": "Infusion Site Pain",
+      "definition": "Pain at the spot where a medication was given through an IV infusion."
+    },
+    {
+      "key": "BRADYCARDIA",
+      "display": "Bradycardia",
+      "definition": "A slower than normal heart rate."
+    },
+    {
+      "key": "STEVENS-JOHNSON SYNDROME",
+      "display": "Stevens-Johnson Syndrome",
+      "definition": "A rare but serious reaction, often to a medication, that causes the skin to blister and peel. It needs urgent medical care."
+    },
+    {
+      "key": "CARDIO-RESPIRATORY ARREST",
+      "display": "Cardio-Respiratory Arrest",
+      "definition": "A sudden stop in both heartbeat and breathing. It is a medical emergency."
+    },
+    {
+      "key": "BLOOD GLUCOSE FLUCTUATION",
+      "display": "Blood Glucose Fluctuation",
+      "definition": "Blood sugar levels that swing up and down rather than staying steady."
+    },
+    {
+      "key": "UPPER RESPIRATORY TRACT INFECTION",
+      "display": "Upper Respiratory Tract Infection",
+      "definition": "An infection of the nose, throat, or sinuses, such as the common cold."
+    },
+    {
+      "key": "DYSPHONIA",
+      "display": "Dysphonia",
+      "definition": "Difficulty speaking, such as hoarseness or a change in the voice."
+    },
+    {
+      "key": "NEOPLASM MALIGNANT",
+      "display": "Neoplasm Malignant",
+      "definition": "The medical term for a cancerous growth. It may appear in reports as a condition being treated or monitored."
+    },
+    {
+      "key": "APPLICATION SITE IRRITATION",
+      "display": "Application Site Irritation",
+      "definition": "Irritation of the skin where a medication was applied, such as under a patch or cream."
+    },
+    {
+      "key": "DRUG EXPOSURE DURING PREGNANCY",
+      "display": "Drug Exposure During Pregnancy",
+      "definition": "A report noting that a person was exposed to a medication during pregnancy. This is a tracking category for monitoring, not a description of harm by itself."
+    },
+    {
+      "key": "INJECTION SITE MASS",
+      "display": "Injection Site Mass",
+      "definition": "A lump that forms at the spot where a medication was injected."
+    },
+    {
+      "key": "EPSTEIN-BARR VIRUS INFECTION",
+      "display": "Epstein-Barr Virus Infection",
+      "definition": "An infection with a common virus, often called EBV, that causes mononucleosis (mono)."
+    },
+    {
+      "key": "CARDIAC DISORDER",
+      "display": "Cardiac Disorder",
+      "definition": "A general report of a problem with the heart, used when no more specific condition is named."
+    },
+    {
+      "key": "EYE PAIN",
+      "display": "Eye Pain",
+      "definition": "Pain in or around the eye."
+    },
+    {
+      "key": "ASCITES",
+      "display": "Ascites",
+      "definition": "A buildup of fluid in the belly, which can cause swelling and discomfort."
+    },
+    {
+      "key": "MACULAR DEGENERATION",
+      "display": "Macular Degeneration",
+      "definition": "An eye condition that affects central vision, more common with age. It may appear in reports as a condition being treated."
+    },
+    {
+      "key": "INTENTIONAL DRUG MISUSE",
+      "display": "Intentional Drug Misuse",
+      "definition": "A report that a medication was deliberately used in a way other than directed. This is a usage category describing what happened, not a judgment."
+    },
+    {
+      "key": "EYE IRRITATION",
+      "display": "Eye Irritation",
+      "definition": "Discomfort, redness, or itching of the eye."
+    },
+    {
+      "key": "VAGINAL HAEMORRHAGE",
+      "display": "Vaginal Haemorrhage",
+      "definition": "Vaginal bleeding, particularly heavy or unexpected bleeding. Also spelled hemorrhage in American English."
+    },
+    {
+      "key": "OSTEOPOROSIS",
+      "display": "Osteoporosis",
+      "definition": "A condition where bones become weak and more likely to break. It often appears in reports as a condition being treated."
+    },
+    {
+      "key": "DRY EYE",
+      "display": "Dry Eye",
+      "definition": "A lack of enough tears to keep the eye comfortable, causing dryness or irritation."
+    },
+    {
+      "key": "OBESITY",
+      "display": "Obesity",
+      "definition": "A condition of having excess body weight that can affect health. It may appear in reports as a condition being treated or monitored."
+    },
+    {
+      "key": "FULL BLOOD COUNT ABNORMAL",
+      "display": "Full Blood Count Abnormal",
+      "definition": "A blood test result showing one or more values outside the normal range."
+    },
+    {
+      "key": "ECONOMIC PROBLEM",
+      "display": "Economic Problem",
+      "definition": "A report noting a financial difficulty, such as trouble affording a medication. This is a non-medical category sometimes recorded in reports."
+    },
+    {
+      "key": "STRESS",
+      "display": "Stress",
+      "definition": "A feeling of mental or emotional strain."
+    },
+    {
+      "key": "ACUTE GRAFT VERSUS HOST DISEASE",
+      "display": "Acute Graft Versus Host Disease",
+      "definition": "A form of graft versus host disease that occurs soon after a transplant, where donated cells attack the recipient's body."
+    },
+    {
+      "key": "MENTAL DISORDER",
+      "display": "Mental Disorder",
+      "definition": "A general report of a mental health condition, used when no more specific condition is named. The term records what was reported and does not establish that a medication was the cause."
+    },
+    {
+      "key": "SURGERY",
+      "display": "Surgery",
+      "definition": "A report noting that a surgical procedure occurred. This may be recorded as part of a person's medical history or treatment."
+    },
+    {
+      "key": "ERUCTATION",
+      "display": "Eructation",
+      "definition": "The medical term for belching or burping."
+    },
+    {
+      "key": "ABNORMAL BEHAVIOUR",
+      "display": "Abnormal Behaviour",
+      "definition": "A report of behavior that is unusual for the person. The term records what was reported and does not establish that a medication was the cause. Also spelled behavior in American English."
+    },
+    {
+      "key": "APPLICATION SITE RASH",
+      "display": "Application Site Rash",
+      "definition": "A rash on the skin where a medication was applied, such as under a patch or cream."
+    },
+    {
+      "key": "INSURANCE ISSUE",
+      "display": "Insurance Issue",
+      "definition": "A report noting a problem related to insurance coverage, such as difficulty getting a medication covered. This is a non-medical category sometimes recorded in reports."
+    },
+    {
+      "key": "HALLUCINATION, AUDITORY",
+      "display": "Hallucination, Auditory",
+      "definition": "Hearing sounds or voices that are not actually there. The term records what was reported and does not establish that a medication was the cause."
+    },
+    {
+      "key": "THROAT IRRITATION",
+      "display": "Throat Irritation",
+      "definition": "A scratchy or uncomfortable feeling in the throat."
+    },
+    {
+      "key": "THERAPEUTIC RESPONSE UNEXPECTED",
+      "display": "Therapeutic Response Unexpected",
+      "definition": "A report that a treatment produced an unexpected response, different from what was anticipated."
     }
   ]
 }
