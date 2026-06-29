@@ -23,9 +23,12 @@ jobs:
             -H "apikey: ${SUPABASE_ANON_KEY}" \
             -H "Authorization: Bearer ${SUPABASE_ANON_KEY}")
           echo "Supabase responded with HTTP $code"
-          # Success = the request reached the project (any non-5xx). A 200 (rows
-          # or empty) or an RLS 401 both count as activity. Fail only on a 5xx
-          # or a network/curl error, which would mean the ping did not land.
+          # Expected healthy response is HTTP 200: the anon role has SELECT on the
+          # drugs table (grant + a permissive RLS policy), so the keepalive reads a
+          # real row. A 401 means that grant or policy was removed; the ping still
+          # reaches the project and counts as activity, so the step stays green.
+          # Fail only on a 5xx or a network/curl error, which means the ping did
+          # not land at all.
           if [ -z "$code" ] || [ "$code" -ge 500 ]; then
             echo "Keepalive request did not reach Supabase (HTTP '$code')."
             exit 1
