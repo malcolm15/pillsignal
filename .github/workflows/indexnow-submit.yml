@@ -74,10 +74,12 @@ jobs:
             "$BASE" "$DEPLOY_SHA" -- 'docs/**/*.html' || true)
 
           # Map docs/<path>/index.html -> clean trailing-slash URL.
+          # `|| true` so an empty diff (grep finds nothing -> exit 1) does not
+          # trip `set -e`; an empty URLS is a valid no-op, not a failure.
           URLS=$(printf '%s\n' "$CHANGED" \
             | grep -E '\.html$' \
             | sed -E "s#^docs/#${SITE}/#; s#index\.html\$##" \
-            | sort -u)
+            | sort -u || true)
 
           COUNT=$(printf '%s\n' "$URLS" | grep -c . || true)
           if [ "$COUNT" -eq 0 ]; then
