@@ -1,0 +1,107 @@
+name: IndexNow Submit
+
+# After a successful GitHub Pages deployment, submit the URLs whose pages
+# changed in this deploy to IndexNow (Bing, Yandex, and other participants).
+# The key is derived from the committed key file in docs/, so no secret and
+# no Supabase are needed in CI.
+
+on:
+  deployment_status: {}
+
+# Read-only token: contents for the diff, deployments to find the prior deploy.
+permissions:
+  contents: read
+  deployments: read
+
+# Never let two submit runs overlap; the latest deploy wins.
+concurrency:
+  group: indexnow-submit
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    # Only on a SUCCESSFUL github-pages deployment, not other states/environments.
+    if: >-
+      github.event.deployment_status.state == 'success' &&
+      github.event.deployment_status.environment == 'github-pages'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (full history, needed to diff against the prior deploy)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Submit changed page URLs to IndexNow
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEPLOY_SHA: ${{ github.event.deployment.sha }}
+        run: |
+          set -euo pipefail
+          SITE="https://pillsignal.com"
+          ENDPOINT="https://api.indexnow.org/IndexNow"
+
+          # --- 1. Derive the IndexNow key from the committed key file (no secret) ---
+          KEYFILE=$(find docs -maxdepth 1 -type f -regextype posix-extended \
+            -regex 'docs/[0-9a-f]{8,128}\.txt' | head -1 || true)
+          if [ -z "$KEYFILE" ]; then
+            echo "No IndexNow key file in docs/; nothing to do."; exit 0
+          fi
+          KEY=$(basename "$KEYFILE" .txt)
+          echo "Key file: $KEYFILE"
+
+          # --- 2. Find the previous successful github-pages deployment SHA ---
+          PREV_SHA=$(gh api \
+            "repos/${GITHUB_REPOSITORY}/deployments?environment=github-pages&per_page=100" \
+            --jq "[.[] | select(.sha != \"${DEPLOY_SHA}\")] | .[0].sha" 2>/dev/null || true)
+
+          # --- 3. Choose the diff base ---
+          if [ -z "$PREV_SHA" ] || [ "$PREV_SHA" = "null" ]; then
+            echo "No prior deployment found; diffing against parent of ${DEPLOY_SHA}."
+            BASE="${DEPLOY_SHA}^"
+          else
+            echo "Prior deployment: ${PREV_SHA}"
+            BASE="$PREV_SHA"
+          fi
+
+          # Edge case: base unavailable (first commit, or force-push rewrote history)
+          # -> submit nothing rather than guess.
+          if ! git rev-parse --verify "${BASE}^{commit}" >/dev/null 2>&1; then
+            echo "Diff base unavailable; submitting nothing."; exit 0
+          fi
+
+          # --- 4. Changed HTML pages, additions/modifications only (skip deletions) ---
+          CHANGED=$(git diff --no-renames --diff-filter=ACMRT --name-only \
+            "$BASE" "$DEPLOY_SHA" -- 'docs/**/*.html' || true)
+
+          # Map docs/<path>/index.html -> clean trailing-slash URL.
+          URLS=$(printf '%s\n' "$CHANGED" \
+            | grep -E '\.html$' \
+            | sed -E "s#^docs/#${SITE}/#; s#index\.html\$##" \
+            | sort -u)
+
+          COUNT=$(printf '%s\n' "$URLS" | grep -c . || true)
+          if [ "$COUNT" -eq 0 ]; then
+            echo "No changed pages in this deploy; nothing to submit."; exit 0
+          fi
+          echo "Submitting $COUNT changed URL(s):"
+          printf '%s\n' "$URLS"
+
+          # --- 5. Build the payload and POST once (IndexNow accepts up to 10,000) ---
+          PAYLOAD=$(jq -n \
+            --arg host "pillsignal.com" \
+            --arg key "$KEY" \
+            --arg kl "${SITE}/${KEY}.txt" \
+            --argjson urls "$(printf '%s\n' "$URLS" | jq -R . | jq -s .)" \
+            '{host: $host, key: $key, keyLocation: $kl, urlList: $urls}')
+
+          code=$(curl -sS -o /tmp/indexnow_resp -w '%{http_code}' -X POST "$ENDPOINT" \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            --data "$PAYLOAD")
+          echo "IndexNow responded HTTP $code"
+          cat /tmp/indexnow_resp 2>/dev/null || true; echo
+
+          # 200/202 = accepted. Anything else is a real failure worth surfacing.
+          if [ "$code" != "200" ] && [ "$code" != "202" ]; then
+            echo "IndexNow rejected the submission (HTTP $code)."; exit 1
+          fi
+          echo "Done."
