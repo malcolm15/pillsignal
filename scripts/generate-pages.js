@@ -432,6 +432,7 @@ function renderAeListHtml(adverseEvents, brandName) {
   // tap-to-define entries nest inside (valid: details within details).
   return `<details class="ae-list-toggle">\n` +
     `      <summary class="ae-list-summary">Show these terms with plain-language definitions</summary>\n` +
+    `      <p class="ae-tap-hint">Tap any term below for a plain-language definition.</p>\n` +
     `      <ul class="ae-list" aria-label="Top reported adverse events for ${escapeHtml(brandName)}">\n${items}\n      </ul>\n` +
     `      </details>`;
 }

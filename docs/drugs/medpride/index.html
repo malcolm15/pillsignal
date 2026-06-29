@@ -384,7 +384,9 @@
     }
 
     /* ─── Accessible adverse events list (crawlable + tap-to-define) ───────────── */
-    .ae-glossary-note { font-size: 0.85rem; color: var(--c-text-muted); margin: 0.25rem 0 0.75rem; }
+    .ae-tap-hint { font-size: 0.85rem; color: var(--c-text-muted); margin: 0.5rem 0 0.25rem; }
+    .ae-glossary-browse { font-size: 0.85rem; margin: 0.75rem 0 0; }
+    .ae-glossary-browse a { font-weight: 500; }
     .ae-list { list-style: none; margin: 0.25rem 0 0; padding: 0; }
     .ae-item { border-bottom: 1px solid var(--c-border); }
     .ae-item:last-child { border-bottom: none; }
@@ -531,9 +533,9 @@
       <div class="chart-wrap" id="ae-wrap">
         <canvas id="chart-ae" role="img" aria-label="Horizontal bar chart showing top reported adverse events for Medpride"></canvas>
       </div>
-      <p class="ae-glossary-note">Tap a term for a plain-language definition. <a href="/glossary/">Browse the full glossary →</a></p>
       <details class="ae-list-toggle">
       <summary class="ae-list-summary">Show these terms with plain-language definitions</summary>
+      <p class="ae-tap-hint">Tap any term below for a plain-language definition.</p>
       <ul class="ae-list" aria-label="Top reported adverse events for Medpride">
         <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Off Label Use</span> <span class="ae-count">9,850 reports</span></summary><div class="ae-def"><p>Using a medication for a condition or in a way that the FDA has not officially approved. This is common and often legal, and a report of it does not mean something went wrong. Doctors sometimes prescribe drugs off label based on their judgment.</p><a href="/glossary/#off-label-use">Full definition in the glossary →</a></div></details></li>
         <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Drug Ineffective</span> <span class="ae-count">8,138 reports</span></summary><div class="ae-def"><p>A report that the medication did not work as expected for the person taking it. This is a reporting category, not a sign the drug is defective. It simply means someone felt it was not helping their condition.</p><a href="/glossary/#drug-ineffective">Full definition in the glossary →</a></div></details></li>
@@ -552,6 +554,7 @@
         <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Infusion Related Reaction</span> <span class="ae-count">4,098 reports</span></summary><div class="ae-def"><p>A reaction that happens during or shortly after a medication is given through an IV infusion.</p><a href="/glossary/#infusion-related-reaction">Full definition in the glossary →</a></div></details></li>
       </ul>
       </details>
+      <p class="ae-glossary-browse"><a href="/glossary/">Browse the full glossary →</a></p>
       <p class="chart-caption">Ranked by frequency of reports, not severity. The most-reported event is not necessarily the most dangerous or the most common in patients taking this drug.</p>
     </section>
 

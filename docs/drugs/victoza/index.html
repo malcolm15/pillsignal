@@ -384,7 +384,9 @@
     }
 
     /* ─── Accessible adverse events list (crawlable + tap-to-define) ───────────── */
-    .ae-glossary-note { font-size: 0.85rem; color: var(--c-text-muted); margin: 0.25rem 0 0.75rem; }
+    .ae-tap-hint { font-size: 0.85rem; color: var(--c-text-muted); margin: 0.5rem 0 0.25rem; }
+    .ae-glossary-browse { font-size: 0.85rem; margin: 0.75rem 0 0; }
+    .ae-glossary-browse a { font-weight: 500; }
     .ae-list { list-style: none; margin: 0.25rem 0 0; padding: 0; }
     .ae-item { border-bottom: 1px solid var(--c-border); }
     .ae-item:last-child { border-bottom: none; }
@@ -531,9 +533,9 @@
       <div class="chart-wrap" id="ae-wrap">
         <canvas id="chart-ae" role="img" aria-label="Horizontal bar chart showing top reported adverse events for Victoza"></canvas>
       </div>
-      <p class="ae-glossary-note">Tap a term for a plain-language definition. <a href="/glossary/">Browse the full glossary →</a></p>
       <details class="ae-list-toggle">
       <summary class="ae-list-summary">Show these terms with plain-language definitions</summary>
+      <p class="ae-tap-hint">Tap any term below for a plain-language definition.</p>
       <ul class="ae-list" aria-label="Top reported adverse events for Victoza">
         <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Nausea</span> <span class="ae-count">5,976 reports</span></summary><div class="ae-def"><p>The feeling of sickness in your stomach that often comes before vomiting.</p><a href="/glossary/#nausea">Full definition in the glossary →</a></div></details></li>
         <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Blood Glucose Increased</span> <span class="ae-count">3,850 reports</span></summary><div class="ae-def"><p>A blood test result showing a higher than normal blood sugar level.</p><a href="/glossary/#blood-glucose-increased">Full definition in the glossary →</a></div></details></li>
@@ -552,6 +554,7 @@
         <li class="ae-item"><details class="ae-term"><summary><span class="ae-name">Malaise</span> <span class="ae-count">1,204 reports</span></summary><div class="ae-def"><p>A general feeling of being unwell or uncomfortable, without a specific symptom.</p><a href="/glossary/#malaise">Full definition in the glossary →</a></div></details></li>
       </ul>
       </details>
+      <p class="ae-glossary-browse"><a href="/glossary/">Browse the full glossary →</a></p>
       <p class="chart-caption">Ranked by frequency of reports, not severity. The most-reported event is not necessarily the most dangerous or the most common in patients taking this drug.</p>
     </section>
 
