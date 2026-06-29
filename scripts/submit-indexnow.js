@@ -5,7 +5,7 @@
  * static pages), and submits to the IndexNow API. IndexNow notifies Bing,
  * Yandex, and other participating search engines simultaneously.
  *
- * IndexNow accepts up to 10,000 URLs per batch. All ~1,829 drug pages plus
+ * IndexNow accepts up to 10,000 URLs per batch. All 841 drug pages plus
  * static pages fit in a single request.
  *
  * Usage:
