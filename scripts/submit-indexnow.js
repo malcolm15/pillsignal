@@ -41,6 +41,12 @@ const STATIC_URLS = [
   `${SITE_URL}/contact/`,
   `${SITE_URL}/privacy/`,
   `${SITE_URL}/terms/`,
+  `${SITE_URL}/glossary/`,
+  `${SITE_URL}/guides/`,
+  `${SITE_URL}/guides/how-to-read-fda-adverse-event-reports/`,
+  `${SITE_URL}/guides/how-to-report-drug-side-effect-fda/`,
+  `${SITE_URL}/guides/what-fda-drug-reports-show/`,
+  `${SITE_URL}/guides/what-is-aems/`,
 ];
 
 // ─── CLI flag ─────────────────────────────────────────────────────────────────
