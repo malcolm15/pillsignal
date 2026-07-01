@@ -413,6 +413,21 @@
     .ae-list-toggle[open] > summary::after { content: " \25BE"; }
     .ae-list-toggle > summary:hover { text-decoration: underline; }
     .ae-list-toggle .ae-list { margin-top: 0.5rem; }
+    /* Crawlable chart data tables (collapsed by default, mirror the canvas data) */
+    .chart-table-toggle { margin: 0.5rem 0 0; }
+    .chart-table-toggle > summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; font-size: 0.9rem; font-weight: 600; color: var(--c-primary); padding: 0.35rem 0; }
+    .chart-table-toggle > summary::-webkit-details-marker { display: none; }
+    .chart-table-toggle > summary::after { content: " \25B8"; margin-left: 0.35rem; }
+    .chart-table-toggle[open] > summary::after { content: " \25BE"; }
+    .chart-table-toggle > summary:hover { text-decoration: underline; }
+    .chart-table { width: 100%; border-collapse: collapse; margin: 0.5rem 0 0; font-size: 0.85rem; }
+    .chart-table caption { text-align: left; font-weight: 600; color: var(--c-text-muted); font-size: 0.8rem; padding: 0 0 0.4rem; }
+    .chart-table th, .chart-table td { padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--c-border); }
+    .chart-table thead th { text-align: left; color: var(--c-text-muted); font-size: 0.8rem; }
+    .chart-table thead th:last-child { text-align: right; }
+    .chart-table tbody th { text-align: left; font-weight: 500; }
+    .chart-table tbody td { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .chart-table tbody tr:nth-child(even) { background: rgba(127, 127, 127, 0.06); }
 
     /* ─── Footer ──────────────────────────────────────────────────────────────── */
     .site-footer {
@@ -571,12 +586,39 @@
           <div class="chart-wrap chart-wrap--donut">
             <canvas id="chart-sex" role="img" aria-label="Donut chart showing reporter sex distribution for Ms Contin"></canvas>
           </div>
+          <details class="chart-table-toggle">
+        <summary class="chart-table-summary">View reporter sex data as a table</summary>
+        <table class="chart-table">
+          <caption>Ms Contin adverse event reports by reporter sex</caption>
+          <thead><tr><th scope="col">Sex</th><th scope="col">Reports</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Female</th><td>47,408</td></tr>
+            <tr><th scope="row">Male</th><td>42,994</td></tr>
+            <tr><th scope="row">Unknown</th><td>253</td></tr>
+          </tbody>
+        </table>
+      </details>
         </div>
         <div class="demo-chart">
           <h3>By Age Group</h3>
           <div class="chart-wrap chart-wrap--bar">
             <canvas id="chart-age" role="img" aria-label="Bar chart showing reporter age groups for Ms Contin"></canvas>
           </div>
+          <details class="chart-table-toggle">
+        <summary class="chart-table-summary">View age group data as a table</summary>
+        <table class="chart-table">
+          <caption>Ms Contin adverse event reports by reporter age group</caption>
+          <thead><tr><th scope="col">Age group</th><th scope="col">Reports</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">0-17</th><td>1,353</td></tr>
+            <tr><th scope="row">18-34</th><td>3,867</td></tr>
+            <tr><th scope="row">35-49</th><td>8,202</td></tr>
+            <tr><th scope="row">50-64</th><td>14,326</td></tr>
+            <tr><th scope="row">65-74</th><td>8,532</td></tr>
+            <tr><th scope="row">75+</th><td>5,946</td></tr>
+          </tbody>
+        </table>
+      </details>
         </div>
       </div>
       <p class="chart-caption">This shows who filed reports, reflecting who takes this drug and who tends to report, not who is at greatest risk.</p>
@@ -593,6 +635,21 @@
       <div class="chart-wrap chart-wrap--donut chart-wrap--donut-lg" style="margin:0 auto;">
         <canvas id="chart-outcomes" role="img" aria-label="Donut chart showing reported outcome distribution for Ms Contin"></canvas>
       </div>
+      <details class="chart-table-toggle">
+        <summary class="chart-table-summary">View outcome data as a table</summary>
+        <table class="chart-table">
+          <caption>Ms Contin adverse event reports by reported outcome</caption>
+          <thead><tr><th scope="col">Outcome</th><th scope="col">Reports</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Other Serious</th><td>65,939</td></tr>
+            <tr><th scope="row">Death</th><td>34,624</td></tr>
+            <tr><th scope="row">Hospitalization</th><td>22,688</td></tr>
+            <tr><th scope="row">Non-Serious</th><td>17,141</td></tr>
+            <tr><th scope="row">Disability</th><td>9,093</td></tr>
+            <tr><th scope="row">Life-Threatening</th><td>3,321</td></tr>
+          </tbody>
+        </table>
+      </details>
       <p class="chart-caption">Serious outcomes are far more likely to be reported than mild ones, so this overstates how often outcomes are serious. A recorded death does not mean the drug caused it.</p>
     </section>
 
@@ -607,6 +664,40 @@
       <div class="chart-wrap chart-wrap--line">
         <canvas id="chart-trends" role="img" aria-label="Line chart showing quarterly FAERS report volume for Ms Contin"></canvas>
       </div>
+      <details class="chart-table-toggle">
+        <summary class="chart-table-summary">View report trend as a table</summary>
+        <table class="chart-table">
+          <caption>Ms Contin adverse event reports by year</caption>
+          <thead><tr><th scope="col">Year</th><th scope="col">Reports</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">1999</th><td>3</td></tr>
+            <tr><th scope="row">2003</th><td>2</td></tr>
+            <tr><th scope="row">2004</th><td>1,657</td></tr>
+            <tr><th scope="row">2005</th><td>1,526</td></tr>
+            <tr><th scope="row">2006</th><td>1,241</td></tr>
+            <tr><th scope="row">2007</th><td>791</td></tr>
+            <tr><th scope="row">2008</th><td>884</td></tr>
+            <tr><th scope="row">2009</th><td>957</td></tr>
+            <tr><th scope="row">2010</th><td>1,280</td></tr>
+            <tr><th scope="row">2011</th><td>1,570</td></tr>
+            <tr><th scope="row">2012</th><td>2,358</td></tr>
+            <tr><th scope="row">2013</th><td>1,882</td></tr>
+            <tr><th scope="row">2014</th><td>2,319</td></tr>
+            <tr><th scope="row">2015</th><td>3,026</td></tr>
+            <tr><th scope="row">2016</th><td>3,584</td></tr>
+            <tr><th scope="row">2017</th><td>4,918</td></tr>
+            <tr><th scope="row">2018</th><td>26,845</td></tr>
+            <tr><th scope="row">2019</th><td>4,810</td></tr>
+            <tr><th scope="row">2020</th><td>8,656</td></tr>
+            <tr><th scope="row">2021</th><td>20,577</td></tr>
+            <tr><th scope="row">2022</th><td>14,401</td></tr>
+            <tr><th scope="row">2023</th><td>8,462</td></tr>
+            <tr><th scope="row">2024</th><td>3,687</td></tr>
+            <tr><th scope="row">2025</th><td>3,455</td></tr>
+            <tr><th scope="row">2026 (partial)</th><td>717</td></tr>
+          </tbody>
+        </table>
+      </details>
       <p class="chart-caption">The steep increase around 2004 reflects the FDA's move to electronic submission, not a change in this drug's safety. Trends track reporting volume, not risk.</p>
     </section>
 

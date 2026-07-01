@@ -482,6 +482,33 @@ function buildJsonLd(drug, canonicalUrl, description) {
   };
 }
 
+// ─── Chart data tables (crawlable) ─────────────────────────────────────────────
+
+// Global latest trend period across all drugs (the data cutoff), set in generate()
+// before pages render. Used to label the newest year "(partial)" when it is not a
+// complete four-quarter year.
+let TREND_CUTOFF = { year: 0, quarter: 0 };
+
+// Renders a collapsed <details> data table mirroring a chart's server-side data,
+// or '' when there are no rows (so a chart with no data degrades gracefully: the
+// table is omitted, never rendered empty). Mirrors the ae-list-toggle pattern.
+function renderChartTable(summary, caption, headers, rows) {
+  if (!rows || !rows.length) return '';
+  const body = rows.map(([label, count]) =>
+    `            <tr><th scope="row">${escapeHtml(String(label))}</th>` +
+    `<td>${Number(count).toLocaleString('en-US')}</td></tr>`
+  ).join('\n');
+  return `<details class="chart-table-toggle">\n` +
+    `        <summary class="chart-table-summary">${escapeHtml(summary)}</summary>\n` +
+    `        <table class="chart-table">\n` +
+    `          <caption>${escapeHtml(caption)}</caption>\n` +
+    `          <thead><tr><th scope="col">${escapeHtml(headers[0])}</th>` +
+    `<th scope="col">${escapeHtml(headers[1])}</th></tr></thead>\n` +
+    `          <tbody>\n${body}\n          </tbody>\n` +
+    `        </table>\n` +
+    `      </details>`;
+}
+
 // ─── Page renderer ────────────────────────────────────────────────────────────
 
 function renderPage(drug, adverseEvents, demographics, outcomes, trends, relatedDrugs = [], coReported = [], resolveLink = () => null) {
@@ -517,6 +544,32 @@ function renderPage(drug, adverseEvents, demographics, outcomes, trends, related
     values: trendRows.map(t => t.count),
   };
 
+  // Crawlable data tables (server-rendered, collapsed). Trend is aggregated to
+  // yearly totals; the newest year is labeled "(partial)" when the data cutoff
+  // falls before Q4 of that year. Canvas charts still read the JS arrays above.
+  const yearMap = new Map();
+  for (const t of trendRows) yearMap.set(t.year, (yearMap.get(t.year) || 0) + t.count);
+  const trendYearRows = [...yearMap.entries()].map(([year, count]) => {
+    const partial = year === TREND_CUTOFF.year && TREND_CUTOFF.quarter < 4;
+    return [partial ? `${year} (partial)` : String(year), count];
+  });
+  const trendTable = renderChartTable(
+    'View report trend as a table',
+    `${brandName} adverse event reports by year`,
+    ['Year', 'Reports'], trendYearRows);
+  const sexTable = renderChartTable(
+    'View reporter sex data as a table',
+    `${brandName} adverse event reports by reporter sex`,
+    ['Sex', 'Reports'], sexRows.map(d => [d.value, d.count]));
+  const ageTable = renderChartTable(
+    'View age group data as a table',
+    `${brandName} adverse event reports by reporter age group`,
+    ['Age group', 'Reports'], ageRows.map(d => [d.value, d.count]));
+  const outcomesTable = renderChartTable(
+    'View outcome data as a table',
+    `${brandName} adverse event reports by reported outcome`,
+    ['Outcome', 'Reports'], outRows.map(o => [o.outcome, o.count]));
+
   return TEMPLATE
     .replaceAll('{{PAGE_TITLE}}',           escapeHtml(pageTitle))
     .replaceAll('{{META_DESCRIPTION}}',     escapeHtml(metaDesc))
@@ -534,6 +587,10 @@ function renderPage(drug, adverseEvents, demographics, outcomes, trends, related
     .replaceAll('{{GENERATED_DATE}}',       generatedDate)
     .replaceAll('{{ADVERSE_EVENTS_JSON}}',  safeJson(aeData))
     .replaceAll('{{AE_LIST_HTML}}',         renderAeListHtml(adverseEvents, brandName))
+    .replaceAll('{{TREND_TABLE}}',          trendTable)
+    .replaceAll('{{SEX_TABLE}}',            sexTable)
+    .replaceAll('{{AGE_TABLE}}',            ageTable)
+    .replaceAll('{{OUTCOMES_TABLE}}',       outcomesTable)
     .replaceAll('{{SEX_DATA_JSON}}',        safeJson(sexData))
     .replaceAll('{{AGE_DATA_JSON}}',        safeJson(ageData))
     .replaceAll('{{OUTCOMES_JSON}}',        safeJson(outcomesData))
@@ -1251,6 +1308,19 @@ async function main() {
     drugsWithData.push(drug);
   }
   console.log(`  ${drugsWithData.length} drugs with data, ${skipped} skipped\n`);
+
+  // Determine the global latest trend period (data cutoff), uniform across drugs,
+  // so the yearly trend table can label the newest year "(partial)" when it is
+  // not yet a complete four-quarter year.
+  for (const drug of drugsWithData) {
+    for (const t of detailsMap[drug.id].trends) {
+      if (t.year > TREND_CUTOFF.year ||
+          (t.year === TREND_CUTOFF.year && t.quarter > TREND_CUTOFF.quarter)) {
+        TREND_CUTOFF = { year: t.year, quarter: t.quarter };
+      }
+    }
+  }
+  console.log(`  Trend data cutoff: ${TREND_CUTOFF.year} Q${TREND_CUTOFF.quarter}\n`);
 
   // Phase 2: compute related drugs via adverse event overlap
   console.log('Phase 2: Computing related drugs...');
