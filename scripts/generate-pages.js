@@ -60,14 +60,15 @@ const GLOSSARY_BY_KEY = new Map(
 // and called directly in writeBrowsePage(). Change here → all pages update.
 
 function renderHeader(page = 'default') {
-  const navBrowse = `<a href="/drugs/" class="header-link">Browse all</a>`;
-  const navSearch = `<a href="/" class="header-link">← Search</a>`;
+  const navBrowse  = `<a href="/drugs/" class="header-link">Browse all</a>`;
+  const navSymptom = `<a href="/events/" class="header-link">By symptom</a>`;
+  const navSearch  = `<a href="/" class="header-link">← Search</a>`;
 
   const navLinks = page === 'drug'
-    ? `${navBrowse}\n        ${navSearch}`
+    ? `${navBrowse}\n        ${navSymptom}\n        ${navSearch}`
     : page === 'browse'
-    ? navSearch
-    : navBrowse;
+    ? `${navSymptom}\n        ${navSearch}`
+    : `${navBrowse}\n        ${navSymptom}`;
 
   return `  <div id="disclaimer-banner" role="note" aria-label="Site disclaimer">
     <div class="banner-inner">
@@ -108,6 +109,7 @@ function renderFooter() {
     <nav class="footer-nav" aria-label="Site links">
       <a href="/guides/">Guides</a>
       <a href="/glossary/">Glossary</a>
+      <a href="/events/">Browse by symptom</a>
       <a href="/about/">About</a>
       <a href="/faq/">FAQ</a>
       <a href="/privacy/">Privacy Policy</a>
@@ -414,13 +416,18 @@ function renderAeListHtml(adverseEvents, brandName) {
   if (!top.length) return '';
   const items = top.map(e => {
     const count = `<span class="ae-count">${Number(e.count).toLocaleString('en-US')} reports</span>`;
-    const g = GLOSSARY_BY_KEY.get(String(e.event_name).toUpperCase().trim());
+    const key = String(e.event_name).toUpperCase().trim();
+    const g = GLOSSARY_BY_KEY.get(key);
     if (g) {
       const slug = slugifyName(g.display);
+      const evDef = EVENT_BY_KEY.get(key);
+      const eventLink = evDef
+        ? ` <a href="/events/${evDef.slug}/">See all drugs reporting this event →</a>`
+        : '';
       return `        <li class="ae-item"><details class="ae-term">` +
         `<summary><span class="ae-name">${escapeHtml(g.display)}</span> ${count}</summary>` +
         `<div class="ae-def"><p>${escapeHtml(g.definition)}</p>` +
-        `<a href="/glossary/#${slug}">Full definition in the glossary →</a></div>` +
+        `<a href="/glossary/#${slug}">Full definition in the glossary →</a>${eventLink}</div>` +
         `</details></li>`;
     }
     return `        <li class="ae-item ae-item--plain">` +
@@ -617,6 +624,7 @@ function writeSitemap(drugs) {
   const staticUrls = [
     { loc: `${SITE_URL}/`,         changefreq: 'weekly',  priority: '1.0' },
     { loc: `${SITE_URL}/drugs/`,   changefreq: 'weekly',  priority: '0.9' },
+    { loc: `${SITE_URL}/events/`,  changefreq: 'weekly',  priority: '0.8' },
     { loc: `${SITE_URL}/guides/`,  changefreq: 'monthly', priority: '0.7' },
     { loc: `${SITE_URL}/glossary/`, changefreq: 'monthly', priority: '0.6' },
     { loc: `${SITE_URL}/guides/how-to-read-fda-adverse-event-reports/`, changefreq: 'monthly', priority: '0.7' },
@@ -636,13 +644,17 @@ function writeSitemap(drugs) {
     `  <url>\n    <loc>${SITE_URL}/drugs/${d.slug}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`
   ).join('\n');
 
+  const eventUrls = EVENT_DEFS.map(e =>
+    `  <url>\n    <loc>${SITE_URL}/events/${e.slug}/</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`
+  ).join('\n');
+
   const xml =
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-    staticUrls + '\n' + drugUrls + `\n</urlset>`;
+    staticUrls + '\n' + drugUrls + '\n' + eventUrls + `\n</urlset>`;
 
   writeFileSync(join(DOCS_DIR, 'sitemap.xml'), xml, 'utf8');
-  console.log(`  sitemap.xml  — ${drugs.length} drug URLs + 13 static pages`);
+  console.log(`  sitemap.xml  — ${drugs.length} drug URLs + ${EVENT_DEFS.length} event URLs + 14 static pages`);
 }
 
 function writeBrowsePage(drugs) {
@@ -1205,6 +1217,339 @@ ${renderFooter()}
   console.log(`  glossary/index.html — ${terms.length} terms across ${usedKeys.length} letter sections`);
 }
 
+// ─── Event (reverse-index) pages ────────────────────────────────────────────
+// v1 event pages: MedDRA key (matches adverse_events + glossary), consumer slug,
+// and common-name alias (null when the MedDRA display is already the lay term).
+
+const EVENT_DEFS = [
+  { key: 'NAUSEA', slug: 'nausea', common: null },
+  { key: 'VOMITING', slug: 'vomiting', common: null },
+  { key: 'DIARRHOEA', slug: 'diarrhea', common: 'Diarrhea' },
+  { key: 'ABDOMINAL PAIN', slug: 'abdominal-pain', common: null },
+  { key: 'CONSTIPATION', slug: 'constipation', common: null },
+  { key: 'GASTROOESOPHAGEAL REFLUX DISEASE', slug: 'acid-reflux', common: 'Acid Reflux' },
+  { key: 'DYSPEPSIA', slug: 'indigestion', common: 'Indigestion' },
+  { key: 'ABDOMINAL DISTENSION', slug: 'bloating', common: 'Bloating' },
+  { key: 'FATIGUE', slug: 'fatigue', common: null },
+  { key: 'PYREXIA', slug: 'fever', common: 'Fever' },
+  { key: 'WEIGHT DECREASED', slug: 'weight-loss', common: 'Weight Loss' },
+  { key: 'DECREASED APPETITE', slug: 'loss-of-appetite', common: 'Loss of Appetite' },
+  { key: 'WEIGHT INCREASED', slug: 'weight-gain', common: 'Weight Gain' },
+  { key: 'HYPERHIDROSIS', slug: 'excessive-sweating', common: 'Excessive Sweating' },
+  { key: 'HOT FLUSH', slug: 'hot-flashes', common: 'Hot Flashes' },
+  { key: 'DRY MOUTH', slug: 'dry-mouth', common: null },
+  { key: 'HEADACHE', slug: 'headache', common: null },
+  { key: 'DIZZINESS', slug: 'dizziness', common: null },
+  { key: 'ANXIETY', slug: 'anxiety', common: null },
+  { key: 'INSOMNIA', slug: 'insomnia', common: null },
+  { key: 'DEPRESSION', slug: 'depression', common: null },
+  { key: 'SOMNOLENCE', slug: 'drowsiness', common: 'Drowsiness' },
+  { key: 'TREMOR', slug: 'tremor', common: null },
+  { key: 'HYPOAESTHESIA', slug: 'numbness', common: 'Numbness' },
+  { key: 'MEMORY IMPAIRMENT', slug: 'memory-loss', common: 'Memory Loss' },
+  { key: 'PARAESTHESIA', slug: 'tingling', common: 'Tingling' },
+  { key: 'MIGRAINE', slug: 'migraine', common: null },
+  { key: 'RASH', slug: 'rash', common: null },
+  { key: 'PRURITUS', slug: 'itching', common: 'Itching' },
+  { key: 'ALOPECIA', slug: 'hair-loss', common: 'Hair Loss' },
+  { key: 'URTICARIA', slug: 'hives', common: 'Hives' },
+  { key: 'DRY SKIN', slug: 'dry-skin', common: null },
+  { key: 'ACNE', slug: 'acne', common: null },
+  { key: 'HYPERTENSION', slug: 'high-blood-pressure', common: 'High Blood Pressure' },
+  { key: 'HYPOTENSION', slug: 'low-blood-pressure', common: 'Low Blood Pressure' },
+  { key: 'CHEST PAIN', slug: 'chest-pain', common: null },
+  { key: 'PALPITATIONS', slug: 'palpitations', common: null },
+  { key: 'TACHYCARDIA', slug: 'fast-heartbeat', common: 'Fast Heartbeat' },
+  { key: 'ARTHRALGIA', slug: 'joint-pain', common: 'Joint Pain' },
+  { key: 'BACK PAIN', slug: 'back-pain', common: null },
+  { key: 'MUSCLE SPASMS', slug: 'muscle-spasms', common: null },
+  { key: 'MYALGIA', slug: 'muscle-pain', common: 'Muscle Pain' },
+  { key: 'DYSPNOEA', slug: 'shortness-of-breath', common: 'Shortness of Breath' },
+  { key: 'COUGH', slug: 'cough', common: null },
+  { key: 'EPISTAXIS', slug: 'nosebleed', common: 'Nosebleed' },
+  { key: 'ANAEMIA', slug: 'anemia', common: 'Anemia' },
+  { key: 'PERIPHERAL SWELLING', slug: 'swelling', common: 'Swelling' },
+  { key: 'URINARY TRACT INFECTION', slug: 'urinary-tract-infection', common: 'UTI' },
+  { key: 'VISION BLURRED', slug: 'blurred-vision', common: 'Blurred Vision' },
+  { key: 'ERECTILE DYSFUNCTION', slug: 'erectile-dysfunction', common: null },
+];
+const EVENT_BY_KEY = new Map(EVENT_DEFS.map(e => [e.key, e]));
+
+// Event-page-only enriched intros for terms whose glossary definition is thin.
+// These do NOT touch glossary.json; renderEventPage falls back to the glossary
+// definition when a key is absent here. Assigned onto EVENT_DEFS as `.intro`.
+const EVENT_INTROS = {
+  HYPERHIDROSIS: `Excessive sweating beyond what the body needs for temperature control. It can affect the whole body or specific areas like the palms, feet, or underarms, and can occur during the day or at night. In adverse event reports, it covers sweating that patients or clinicians considered unusual or disruptive.`,
+  ALOPECIA: `The medical term for hair loss, which can range from mild thinning to losing hair in patches or across the whole scalp. It can develop gradually or come on quickly, and it may be temporary or longer lasting. In adverse event reports, it covers any degree of reported hair loss or thinning.`,
+  ARTHRALGIA: `The medical term for joint pain, which can affect one joint or several, including the knees, hips, hands, or shoulders. It ranges from mild stiffness or aching to pain that limits daily movement. In adverse event reports, it covers joint pain of any severity, with or without visible swelling.`,
+  'WEIGHT DECREASED': `Losing body weight without deliberately trying to. It can happen gradually or quickly, and reports range from modest changes to significant unintended loss. In adverse event reports, it reflects weight loss the patient or clinician considered noteworthy.`,
+  'WEIGHT INCREASED': `Gaining body weight without intending to. Reports range from gradual changes over months to more rapid gains, and can involve fluid retention as well as body mass. In adverse event reports, it reflects weight gain the patient or clinician considered noteworthy.`,
+  'MEMORY IMPAIRMENT': `Difficulty remembering things, such as forgetting recent conversations, appointments, or where items were placed. It can be occasional and mild or frequent enough to interfere with daily life. In adverse event reports, it covers reported memory problems of any degree.`,
+  HYPERTENSION: `High blood pressure, meaning the force of blood against artery walls is consistently higher than normal. It usually has no symptoms and is often found during routine measurement. In adverse event reports, it covers both newly reported high readings and worsening of existing high blood pressure.`,
+  HYPOTENSION: `Low blood pressure, which can cause dizziness, lightheadedness, or fainting, especially when standing up quickly. Some people have naturally low readings without symptoms, while sudden drops can be more noticeable. In adverse event reports, it covers reported low readings and symptoms attributed to them.`,
+  'DECREASED APPETITE': `A reduced desire to eat, ranging from mild disinterest in food to eating substantially less than usual. Over time it can lead to weight loss or reduced energy. In adverse event reports, it covers any reported reduction in appetite.`,
+  SOMNOLENCE: `Drowsiness or strong sleepiness during waking hours, beyond ordinary tiredness. It can make it hard to stay alert during activities like working, reading, or driving. In adverse event reports, it covers reported daytime sleepiness of any degree.`,
+  PRURITUS: `The medical term for itching of the skin, with or without a visible rash. It can affect one area or the whole body, and ranges from a mild annoyance to itching intense enough to disrupt sleep. In adverse event reports, it covers reported itching of any severity.`,
+  MYALGIA: `The medical term for muscle pain or aches, which can affect one muscle group or the whole body. It ranges from mild soreness to pain that limits movement or daily activity. In adverse event reports, it covers reported muscle pain of any degree.`,
+  'BACK PAIN': `Pain anywhere along the back, from the neck down to the lower spine, with the lower back being the most common site. It can be a dull ache, sharp pain, or stiffness, and can be brief or long lasting. In adverse event reports, it covers reported back pain of any location or severity.`,
+  INSOMNIA: `Difficulty falling asleep, staying asleep, or waking too early and being unable to return to sleep. Over time it can lead to daytime tiredness, irritability, and trouble concentrating. In adverse event reports, it covers reported sleep difficulty of any pattern.`,
+  TACHYCARDIA: `A faster than normal heart rate, typically over 100 beats per minute at rest. It can feel like a racing, pounding, or fluttering heartbeat, or it may be noticed only during a medical exam. In adverse event reports, it covers reported episodes of elevated heart rate.`,
+  EPISTAXIS: `The medical term for a nosebleed. Reports range from occasional minor bleeding to frequent or heavy nosebleeds that are hard to stop. In adverse event reports, it covers nosebleeds of any frequency or severity.`,
+  'ERECTILE DYSFUNCTION': `Difficulty getting or keeping an erection firm enough for sexual activity. It can happen occasionally or become a persistent pattern, and it can affect quality of life and relationships. In adverse event reports, it covers reported erectile difficulty of any degree.`,
+  VOMITING: `Throwing up the contents of the stomach. It can be a single episode or repeated, and persistent vomiting can lead to dehydration. In adverse event reports, it covers reported vomiting of any frequency or severity.`,
+  'ABDOMINAL PAIN': `Pain in the belly or stomach area, anywhere between the chest and the pelvis. It can be cramping, aching, sharp, or dull, and constant or coming in waves. In adverse event reports, it covers reported abdominal pain of any type or location.`,
+  'ABDOMINAL DISTENSION': `A swelling or bloating of the belly, which can feel tight, full, or visibly enlarged. It can result from gas, fluid, or other factors, and can be brief or persistent. In adverse event reports, it covers reported bloating or visible abdominal swelling.`,
+  'CHEST PAIN': `Pain or discomfort anywhere in the chest, which can feel sharp, dull, tight, or like pressure. It can stem from the heart, lungs, muscles, or digestive system, and it is always worth taking seriously and discussing with a doctor. In adverse event reports, it covers reported chest pain of any type or severity.`,
+  HEADACHE: `Pain in the head or upper neck, ranging from a dull ache to sharp or throbbing pain. Headaches vary widely in how long they last and how often they occur. In adverse event reports, it covers reported headaches of any type, including tension-type and others not classified as migraine.`,
+  ANXIETY: `A feeling of worry, nervousness, or unease that can range from occasional mild worry to persistent anxiety that interferes with daily life. Physical signs can include restlessness, a racing heart, or trouble concentrating. In adverse event reports, it covers reported anxiety of any degree.`,
+  TREMOR: `Involuntary shaking or trembling, most often in the hands, but sometimes affecting the arms, head, voice, or legs. It can be subtle or pronounced, constant or occasional. In adverse event reports, it covers reported shaking or trembling of any pattern.`,
+  RASH: `An area of irritated, red, or bumpy skin, which can be flat or raised, itchy or painless, and localized or widespread. Rashes vary widely in appearance and duration. In adverse event reports, it covers reported skin eruptions not classified under a more specific term.`,
+  COUGH: `A reflex that clears the throat or airways, which can be dry or produce mucus. A cough can be brief or persist for weeks, and frequent coughing can disrupt sleep and daily activity. In adverse event reports, it covers reported coughing of any pattern or duration.`,
+};
+for (const d of EVENT_DEFS) if (EVENT_INTROS[d.key]) d.intro = EVENT_INTROS[d.key];
+
+const EVENT_MIN_COUNT = 25;  // a drug needs at least this many reports of the event
+const EVENT_CAP       = 100; // list at most this many drugs (by report count)
+
+const eventDisplay = def => (GLOSSARY_BY_KEY.get(def.key)?.display) || toTitleCase(def.key);
+const eventLabel   = def => { const d = eventDisplay(def); return def.common ? `${def.common} (${d})` : d; };
+// lay term for prose; keep all-caps abbreviations (UTI) as-is, else lowercase
+const eventTerm    = def => { const t = def.common || eventDisplay(def); return /^[A-Z]{2,}$/.test(t) ? t : t.toLowerCase(); };
+
+// event -> qualifying drug rows [{drug, count}] (count >= EVENT_MIN_COUNT), sorted desc
+function buildEventIndex(drugsWithData, detailsMap) {
+  const idx = new Map();
+  for (const key of EVENT_BY_KEY.keys()) idx.set(key, []);
+  for (const drug of drugsWithData) {
+    for (const ae of detailsMap[drug.id].adverseEvents) {
+      if (!EVENT_BY_KEY.has(ae.event_name) || ae.count < EVENT_MIN_COUNT) continue;
+      idx.get(ae.event_name).push({ drug, count: ae.count });
+    }
+  }
+  for (const list of idx.values()) list.sort((a, b) => b.count - a.count);
+  return idx;
+}
+
+// Shared page shell (head + chrome + scripts), mirroring the glossary/browse pages.
+function renderEventShell({ title, metaDesc, canonical, jsonLd, body }) {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <title>${escapeHtml(title)}</title>
+  <meta name="description" content="${escapeHtml(metaDesc)}">
+  <link rel="canonical" href="${canonical}">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#00A67E">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="${escapeHtml(title)}">
+  <meta property="og:description" content="${escapeHtml(metaDesc)}">
+  <meta property="og:url" content="${canonical}">
+  <meta property="og:site_name" content="PillSignal">
+  <meta property="og:image" content="${SITE_URL}/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(title)}">
+  <meta name="twitter:description" content="${escapeHtml(metaDesc)}">
+  <meta name="twitter:image" content="${SITE_URL}/og-image.png">
+  <script type="application/ld+json">${safeJson(jsonLd)}</script>
+  <style>
+    :root, [data-theme="light"] {
+      --c-bg:#ffffff; --c-surface:#f9fafb; --c-border:#e5e7eb; --c-text:#1a1a2e; --c-text-muted:#5a5a6e;
+      --c-primary:#00A67E; --c-primary-hover:#008F6B; --c-primary-light:#E6F9F1;
+      --c-banner-bg:#FFF9F0; --c-banner-text:#6B4E30; --c-banner-border:rgba(107,78,48,0.3); --c-banner-btn-hover:rgba(0,0,0,0.05);
+      --font:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif; --font-heading:"Fraunces",Georgia,serif;
+    }
+    [data-theme="dark"] {
+      --c-bg:#0f172a; --c-surface:#1e293b; --c-border:#334155; --c-text:#f1f5f9; --c-text-muted:#94a3b8;
+      --c-primary:#34D1A0; --c-primary-hover:#2BBD8E; --c-primary-light:#0D3D2E;
+      --c-banner-bg:#1C1508; --c-banner-text:#D4B896; --c-banner-border:rgba(212,184,150,0.25); --c-banner-btn-hover:rgba(255,255,255,0.06);
+    }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:var(--font); font-size:1rem; line-height:1.6; color:var(--c-text); background:var(--c-bg); transition:background 0.2s,color 0.2s; }
+    a { color:var(--c-primary); text-decoration:none; } a:hover { text-decoration:underline; color:var(--c-primary-hover); }
+    h1,h2,h3 { font-family:var(--font-heading); }
+    #disclaimer-banner { background:var(--c-banner-bg); color:var(--c-banner-text); font-size:0.875rem; line-height:1.5; }
+    .banner-seen #disclaimer-banner { display:none; }
+    .banner-inner { max-width:900px; margin:0 auto; padding:0.75rem 1rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+    .banner-inner p { flex:1; min-width:200px; }
+    #banner-btn { flex-shrink:0; background:transparent; border:1px solid var(--c-banner-border); color:var(--c-banner-text); padding:0.3rem 1rem; border-radius:4px; cursor:pointer; font-size:0.8rem; font-family:var(--font); white-space:nowrap; }
+    #banner-btn:hover { background:var(--c-banner-btn-hover); }
+    .site-header { position:sticky; top:0; z-index:100; border-bottom:1px solid var(--c-border); padding:0.875rem 1rem; background:var(--c-bg); box-shadow:0 2px 4px rgba(0,0,0,0.06); }
+    .site-header .inner { max-width:900px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-size:1.25rem; font-weight:600; font-family:var(--font-heading); color:var(--c-primary); }
+    .logo:hover { text-decoration:none; color:var(--c-primary-hover); }
+    .header-actions { display:flex; align-items:center; gap:0.75rem; }
+    .header-link { font-size:0.875rem; color:var(--c-text-muted); }
+    .theme-toggle { display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:none; border:1px solid var(--c-border); border-radius:6px; cursor:pointer; color:var(--c-text-muted); padding:0; flex-shrink:0; }
+    .theme-toggle:hover { color:var(--c-primary); border-color:var(--c-primary); background:var(--c-primary-light); }
+    [data-theme="light"] .icon-sun { display:none; } [data-theme="dark"] .icon-moon { display:none; }
+    .page-header { padding:2rem 1rem 1rem; max-width:820px; margin:0 auto; }
+    .page-header h1 { font-size:clamp(1.4rem,4vw,1.9rem); font-weight:600; margin-bottom:0.3rem; }
+    .page-header p { color:var(--c-text-muted); font-size:0.95rem; }
+    main { max-width:820px; margin:0 auto; padding:1rem 1rem 4rem; }
+    .event-caveat { max-width:820px; margin:0 auto 0.5rem; padding:0 1rem; }
+    .event-caveat .card { background:var(--c-surface); border:1px solid var(--c-border); border-left:3px solid var(--c-primary); border-radius:10px; padding:1rem 1.25rem; font-size:0.88rem; color:var(--c-text-muted); }
+    .event-intro { font-size:0.95rem; margin:0 0 1rem; }
+    .event-trim { font-size:0.85rem; color:var(--c-text-muted); margin:0 0 0.5rem; }
+    .event-table { width:100%; border-collapse:collapse; font-size:0.92rem; }
+    .event-table caption { text-align:left; font-weight:600; color:var(--c-text-muted); font-size:0.85rem; padding:0 0 0.5rem; }
+    .event-table th, .event-table td { padding:0.5rem 0.5rem; border-bottom:1px solid var(--c-border); }
+    .event-table thead th { text-align:left; color:var(--c-text-muted); font-size:0.8rem; font-weight:600; }
+    .event-table thead th:nth-child(2), .event-table thead th:nth-child(3) { text-align:right; }
+    .event-table tbody th { text-align:left; font-weight:600; }
+    .event-table tbody td { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+    .event-table tbody tr:nth-child(even) { background:rgba(127,127,127,0.05); }
+    .event-back { margin-top:1.25rem; font-size:0.9rem; }
+    .event-index { list-style:none; margin:0; padding:0; columns:2; column-gap:2rem; }
+    @media (max-width:560px) { .event-index { columns:1; } }
+    .event-index li { break-inside:avoid; padding:0.4rem 0; border-bottom:1px solid var(--c-border); display:flex; justify-content:space-between; gap:0.75rem; align-items:baseline; }
+    .event-idx-count { font-size:0.8rem; color:var(--c-text-muted); white-space:nowrap; flex-shrink:0; }
+    .site-footer { border-top:1px solid var(--c-border); padding:1.5rem 1rem; text-align:center; font-size:0.8rem; color:var(--c-text-muted); background:var(--c-bg); }
+    .site-footer a { color:var(--c-text-muted); } .site-footer a:hover { color:var(--c-primary); text-decoration:none; }
+    .footer-nav { display:flex; gap:1.25rem; flex-wrap:wrap; justify-content:center; margin-top:0.5rem; }
+    .footer-x-link { display:inline-flex; align-items:center; justify-content:center; margin-top:0.6rem; color:var(--c-text-muted); }
+    .footer-x-link:hover { color:var(--c-primary); }
+  </style>
+  <script>
+    (function () {
+      var saved = localStorage.getItem('pillsignal_theme');
+      var dark  = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+      if (localStorage.getItem('pillsignal_disclaimer_dismissed')) document.documentElement.classList.add('banner-seen');
+    }());
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZEDB8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5ZEDB8Z5P');
+  </script>
+</head>
+<body>
+
+${renderHeader('default')}
+${body}
+${renderFooter()}
+
+  <script>
+    document.getElementById('banner-btn').addEventListener('click', function () {
+      localStorage.setItem('pillsignal_disclaimer_dismissed', '1');
+      document.documentElement.classList.add('banner-seen');
+    });
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('pillsignal_theme', next);
+      if (typeof gtag === 'function') gtag('event', 'dark_mode_toggle', { new_theme: next });
+    });
+  </script>
+</body>
+</html>`;
+}
+
+function renderEventPage(def, list) {
+  const display   = eventDisplay(def);
+  const label     = eventLabel(def);
+  const term      = eventTerm(def);
+  const anchor    = slugifyName(display);
+  const gloss     = GLOSSARY_BY_KEY.get(def.key);
+  const canonical = `${SITE_URL}/events/${def.slug}/`;
+  const title     = `${label}: Drugs With FDA Adverse Event Reports | PillSignal`;
+  const h1        = `${label}: Drugs With FDA Adverse Event Reports`;
+  const total     = list.length;
+  const shown     = list.slice(0, EVENT_CAP);
+  const metaDesc  = `Medications with FDA adverse event reports of ${term}: report counts by drug, each shown as a share of that drug's total reports. Report counts reflect reporting volume, not medical risk.`;
+
+  const caveat = `These are medications for which ${term} appears among the most-reported events in FDA adverse event reports. A report does not mean the drug caused the event. Report counts largely reflect how widely a drug is used and how often events are reported; they cannot be used to compare or rank drugs by risk. This list shows drugs where this event is among their top reported reactions, not every drug ever associated with it. This information is not medical advice. Do not stop or change a medication based on this data; discuss any concerns with your healthcare provider.`;
+
+  const rows = shown.map(x => {
+    const pct = (x.count / x.drug.total_reports * 100).toFixed(1);
+    return `        <tr><th scope="row"><a href="/drugs/${x.drug.slug}/">${escapeHtml(displayName(x.drug.brand_name))}</a></th>` +
+      `<td>${x.count.toLocaleString('en-US')}</td><td>${pct}%</td></tr>`;
+  }).join('\n');
+
+  const trimNote = total > EVENT_CAP
+    ? `    <p class="event-trim">${total.toLocaleString('en-US')} drugs meet the threshold; showing the ${EVENT_CAP} most-reported.</p>\n`
+    : '';
+  const introText = def.intro || (gloss && gloss.definition);
+  const intro = introText
+    ? `    <p class="event-intro">${escapeHtml(introText)} <a href="/glossary/#${anchor}">Full definition in the glossary →</a></p>\n`
+    : '';
+
+  const jsonLd = {
+    '@context': 'https://schema.org', '@type': 'CollectionPage',
+    name: h1, description: metaDesc, url: canonical,
+    isPartOf: { '@type': 'WebSite', name: 'PillSignal', url: SITE_URL },
+  };
+
+  const body = `
+  <div class="page-header">
+    <h1>${escapeHtml(h1)}</h1>
+    <p>${total.toLocaleString('en-US')} medications where ${escapeHtml(term)} is among the most-reported events, ranked by number of reports.</p>
+  </div>
+
+  <div class="event-caveat"><div class="card">${escapeHtml(caveat)} Data from the <a href="https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems" target="_blank" rel="noopener noreferrer">FDA Adverse Event Monitoring System (AEMS)</a>, formerly FAERS, via OpenFDA.</div></div>
+
+  <main>
+${intro}${trimNote}    <table class="event-table">
+      <caption>Medications with FDA adverse event reports of ${escapeHtml(term)}, by report count</caption>
+      <thead><tr><th scope="col">Drug</th><th scope="col">Reports of this event</th><th scope="col">% of drug's total reports</th></tr></thead>
+      <tbody>
+${rows}
+      </tbody>
+    </table>
+    <p class="event-back"><a href="/events/">← All adverse event pages</a></p>
+  </main>`;
+
+  return renderEventShell({ title, metaDesc, canonical, jsonLd, body });
+}
+
+function writeEventsIndexPage(idx) {
+  const items = EVENT_DEFS
+    .map(def => ({ def, label: eventLabel(def), count: (idx.get(def.key) || []).length }))
+    .sort((a, b) => a.label.localeCompare(b.label))
+    .map(x => `      <li><a href="/events/${x.def.slug}/">${escapeHtml(x.label)}</a> <span class="event-idx-count">${x.count.toLocaleString('en-US')} drugs</span></li>`)
+    .join('\n');
+  const title     = 'Adverse Events A to Z: FDA Reports by Drug | PillSignal';
+  const metaDesc  = `Browse ${EVENT_DEFS.length} common adverse events, from hair loss to insomnia, and see which drugs have the most FDA adverse event reports for each. Report counts, not causation.`;
+  const canonical = `${SITE_URL}/events/`;
+  const jsonLd = { '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, description: metaDesc, url: canonical };
+  const body = `
+  <div class="page-header">
+    <h1>Adverse Events by Drug</h1>
+    <p>For each common adverse event, the medications with the most FDA adverse event reports. Report counts reflect reporting volume, not causation or risk.</p>
+  </div>
+  <main>
+    <ul class="event-index">
+${items}
+    </ul>
+  </main>`;
+  const html = renderEventShell({ title, metaDesc, canonical, jsonLd, body });
+  mkdirSync(join(DOCS_DIR, 'events'), { recursive: true });
+  writeFileSync(join(DOCS_DIR, 'events', 'index.html'), html, 'utf8');
+  console.log(`  events/index.html — ${EVENT_DEFS.length} event pages listed`);
+}
+
+function writeEventPages(idx) {
+  let n = 0;
+  for (const def of EVENT_DEFS) {
+    const html = renderEventPage(def, idx.get(def.key) || []);
+    mkdirSync(join(DOCS_DIR, 'events', def.slug), { recursive: true });
+    writeFileSync(join(DOCS_DIR, 'events', def.slug, 'index.html'), html, 'utf8');
+    n++;
+  }
+  writeEventsIndexPage(idx);
+  console.log(`  ${n} event pages written`);
+}
+
 function writeStaticPages() {
   const staticDir = join(ROOT, 'templates', 'static');
   let count = 0;
@@ -1322,6 +1667,26 @@ async function main() {
   }
   console.log(`  Trend data cutoff: ${TREND_CUTOFF.year} Q${TREND_CUTOFF.quarter}\n`);
 
+  // Build the event -> drugs reverse index (for /events/ pages) from loaded data.
+  const eventIndex = buildEventIndex(drugsWithData, detailsMap);
+
+  // STEP 1 preview: write only /events/hair-loss/ + /events/ index, print one
+  // drug page's reverse-linked AE block, then stop (no drug pages, no sitemap).
+  if (process.argv.includes('--preview-events')) {
+    console.log('PREVIEW MODE: writing /events/hair-loss/ and /events/ index only\n');
+    const def = EVENT_BY_KEY.get('ALOPECIA');
+    mkdirSync(join(DOCS_DIR, 'events', def.slug), { recursive: true });
+    writeFileSync(join(DOCS_DIR, 'events', def.slug, 'index.html'),
+      renderEventPage(def, eventIndex.get('ALOPECIA') || []), 'utf8');
+    writeEventsIndexPage(eventIndex);
+    const acc = drugsWithData.find(d => d.slug === 'accutane');
+    if (acc) {
+      console.log('\n----- accutane AE list block (with reverse links) -----');
+      console.log(renderAeListHtml(detailsMap[acc.id].adverseEvents, displayName(acc.brand_name)));
+    }
+    return;
+  }
+
   // Phase 2: compute related drugs via adverse event overlap
   console.log('Phase 2: Computing related drugs...');
   const relatedMap = computeRelatedDrugs(drugsWithData, detailsMap);
@@ -1365,6 +1730,7 @@ async function main() {
   writeDrugIndex(generatedDrugs);
   writeHomepage(generatedDrugs, minYear, maxYear);
   writeStaticPages();
+  writeEventPages(eventIndex);
   writeGlossaryData();
   writeGlossaryPage();
 
