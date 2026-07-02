@@ -487,7 +487,13 @@
 
   <header class="site-header">
     <div class="inner">
-      <a href="/" class="logo">PillSignal</a>
+      <a href="/" class="logo" aria-label="PillSignal home" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-heading);font-weight:600;font-size:1.25rem;letter-spacing:-0.01em;color:var(--c-text);text-decoration:none;">
+        <svg width="40" height="22" viewBox="0 0 44 24" aria-hidden="true" focusable="false" style="display:block;flex-shrink:0;">
+          <rect x="1.5" y="3.5" width="41" height="17" rx="8.5" style="fill:var(--c-primary);"/>
+          <path d="M6 12 H16 L18 15 L21 5 L24 15 L26 12 H38" style="fill:none;stroke:var(--c-bg);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;"/>
+        </svg>
+        <span>PillSignal</span>
+      </a>
       <div class="header-actions">
         <a href="/drugs/" class="header-link">Browse all</a>
         <a href="/events/" class="header-link">By symptom</a>
@@ -715,6 +721,7 @@
   </main>
 
   <footer class="site-footer">
+    <span style="font-family:var(--font-heading);font-weight:600;font-size:1.125rem;letter-spacing:-0.01em;color:var(--c-text);display:block;margin-bottom:0.75rem;">PillSignal</span>
     <p>Data sourced from the <a href="https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems" target="_blank" rel="noopener noreferrer">FDA's Adverse Event Monitoring System (AEMS)</a>, formerly FAERS, via OpenFDA. PillSignal is not affiliated with the FDA.</p>
     <nav class="footer-nav" aria-label="Site links">
       <a href="/guides/">Guides</a>

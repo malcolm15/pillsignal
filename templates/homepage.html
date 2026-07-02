@@ -465,8 +465,14 @@
 
   <!-- ─── Hero / search ─────────────────────────────────────────────────────── -->
   <section class="hero" aria-label="Drug search">
-    <p class="hero-wordmark" aria-hidden="true">PillSignal</p>
-    <h1 class="sr-only">PillSignal — FDA Adverse Event Reports</h1>
+    <div class="hero-wordmark" aria-hidden="true" style="display:inline-flex;align-items:center;justify-content:center;gap:0.75rem;">
+      <svg viewBox="0 0 44 24" aria-hidden="true" focusable="false" style="display:block;flex-shrink:0;height:clamp(2.5rem,7vw,3.5rem);width:auto;">
+        <rect x="1.5" y="3.5" width="41" height="17" rx="8.5" style="fill:var(--c-primary);"/>
+        <path d="M6 12 H16 L18 15 L21 5 L24 15 L26 12 H38" style="fill:none;stroke:var(--c-surface);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;"/>
+      </svg>
+      <span style="color:var(--c-text);">PillSignal</span>
+    </div>
+    <h1 class="sr-only">PillSignal: FDA Adverse Event Reports</h1>
     <p class="hero-tagline">Explore FDA adverse event reports for prescription medications</p>
     <div class="search-wrap" role="search">
       <label for="drug-search" class="sr-only">Search for a medication</label>
