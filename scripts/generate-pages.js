@@ -120,15 +120,15 @@ function renderHeader(page = 'default') {
   const navSymptom = `<a href="/events/" class="header-link"><span class="hl-full">By symptom</span><span class="hl-short">Symptoms</span></a>`;
   const navSearch  = `<a href="/" class="header-link" aria-label="Back to search"><span class="hl-full">← Search</span><span class="hl-short">←</span></a>`;
 
-  // Never link to the page you are on. Browse surfaces show the sibling browse
-  // surface + back-to-search; /drugs/ omits its own link, /events/ omits its own.
-  const navLinks = page === 'drug'
-    ? `${navBrowse}\n        ${navSymptom}\n        ${navSearch}`
-    : page === 'browse'
+  // Never link to the page you are on, and every page except the homepage shows
+  // back-to-search (the homepage IS search). Browse surfaces omit their own link.
+  const navLinks = page === 'browse'
     ? `${navSymptom}\n        ${navSearch}`
     : page === 'events'
     ? `${navBrowse}\n        ${navSearch}`
-    : `${navBrowse}\n        ${navSymptom}`;
+    : page === 'home'
+    ? `${navBrowse}\n        ${navSymptom}`
+    : `${navBrowse}\n        ${navSymptom}\n        ${navSearch}`;
 
   return `  <div id="disclaimer-banner" role="note" aria-label="Site disclaimer">
     <div class="banner-inner">
