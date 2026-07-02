@@ -119,7 +119,7 @@
       cursor: pointer; color: var(--c-text-muted); padding: 0; flex-shrink: 0;
       transition: color 0.15s, border-color 0.15s, background 0.15s;
     }
-    .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
+    .theme-toggle:hover { color: var(--c-text); border-color: var(--c-text); background: var(--c-surface); }
     [data-theme="light"] .icon-sun  { display: none; }
     [data-theme="dark"]  .icon-moon { display: none; }
 
@@ -201,15 +201,15 @@
 
     /* ─── Callout box ─────────────────────────────────────────────────────────── */
     .callout {
-      background: var(--c-primary-light);
-      border-left: 4px solid var(--c-primary);
+      background: var(--c-surface);
+      border-left: 3px solid var(--c-primary);
       border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
       padding: 0.875rem 1rem;
       margin: 1.5rem 0;
       font-size: 0.925rem;
       color: var(--c-text);
     }
-    .callout strong { color: var(--c-primary); }
+    .callout strong { color: var(--c-text); }
 
     /* ─── Notice ──────────────────────────────────────────────────────────────── */
     .notice {

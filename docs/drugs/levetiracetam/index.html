@@ -109,9 +109,9 @@
       transition: color 0.15s, border-color 0.15s, background 0.15s;
     }
     .theme-toggle:hover {
-      color: var(--c-primary);
-      border-color: var(--c-primary);
-      background: var(--c-primary-light);
+      color: var(--c-text);
+      border-color: var(--c-text);
+      background: var(--c-surface);
     }
     [data-theme="light"] .icon-sun  { display: none; }
     [data-theme="dark"]  .icon-moon { display: none; }
@@ -215,7 +215,7 @@
     .share-row { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.9rem; position: relative; flex-wrap: wrap; }
     .share-label { font-size: var(--fs-caption); color: var(--c-text-muted); font-weight: 500; margin-right: 0.1rem; text-transform: uppercase; letter-spacing: 0.04em; }
     .share-btn { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 6px; border: 1px solid var(--c-border); color: var(--c-text-muted); background: none; cursor: pointer; padding: 0; text-decoration: none; transition: color 0.15s, border-color 0.15s, background 0.15s; flex-shrink: 0; font-family: inherit; }
-    .share-btn:hover, .share-btn.share-copied { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); text-decoration: none; }
+    .share-btn:hover, .share-btn.share-copied { color: var(--c-text); border-color: var(--c-text); background: var(--c-surface); text-decoration: none; }
     .share-copy-tip { font-size: var(--fs-caption); color: var(--c-primary); font-weight: 500; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
     .share-copy-tip.visible { opacity: 1; }
 
@@ -241,7 +241,7 @@
 
     /* ─── Guide callout ───────────────────────────────────────────────────────── */
     .guide-callout {
-      background: var(--c-primary-light);
+      background: var(--c-surface);
       border-left: 3px solid var(--c-primary);
       border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
       padding: 0.625rem 0.875rem;
@@ -372,9 +372,9 @@
       padding: 0.55rem 0; cursor: pointer; list-style: none;
     }
     .ae-term > summary::-webkit-details-marker { display: none; }
-    .ae-term > summary .ae-name::after { content: " \25B8"; color: var(--c-primary); font-weight: 600; }
+    .ae-term > summary .ae-name::after { content: " \25B8"; color: var(--c-text-muted); font-weight: 600; }
     .ae-term[open] > summary .ae-name::after { content: " \25BE"; }
-    .ae-term > summary:hover .ae-name { color: var(--c-primary); }
+    .ae-term > summary:hover .ae-name { color: var(--c-text); }
     .ae-def { padding: 0 0 0.75rem; font-size: var(--fs-small); color: var(--c-text); }
     .ae-def p { margin: 0 0 0.4rem; }
     .ae-def a { font-size: var(--fs-small); font-weight: 500; }

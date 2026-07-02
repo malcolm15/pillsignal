@@ -802,7 +802,7 @@ function writeBrowsePage(drugs) {
     .header-actions { display: flex; align-items: center; gap: 0.75rem; }
     .header-link { font-size: var(--fs-small); color: var(--c-text-muted); }
     .theme-toggle { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: none; border: 1px solid var(--c-border); border-radius: 6px; cursor: pointer; color: var(--c-text-muted); padding: 0; flex-shrink: 0; transition: color 0.15s, border-color 0.15s, background 0.15s; }
-    .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
+    .theme-toggle:hover { color: var(--c-text); border-color: var(--c-text); background: var(--c-surface); }
     [data-theme="light"] .icon-sun { display: none; }
     [data-theme="dark"]  .icon-moon { display: none; }
 
@@ -821,7 +821,7 @@ function writeBrowsePage(drugs) {
     /* Browse list */
     main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
     .letter-section { margin-bottom: 2rem; }
-    .letter-heading { font-size: 1.5rem; font-weight: 600; color: var(--c-primary); letter-spacing: 0; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-primary-light); }
+    .letter-heading { font-size: 1.5rem; font-weight: 600; color: var(--c-text); letter-spacing: 0; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-border); }
     .browse-list { list-style: none; }
     .browse-item { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; padding: 0.35rem 0; border-bottom: 1px solid var(--c-border); min-width: 0; }
     .browse-item:last-child { border-bottom: none; }
@@ -847,7 +847,7 @@ function writeBrowsePage(drugs) {
     #back-to-top { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--c-border); background: rgba(255,255,255,0.75); color: var(--c-text-muted); font-size: 1.1rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s, background 0.15s, color 0.15s; z-index: 100; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
     [data-theme="dark"] #back-to-top { background: rgba(30,41,59,0.75); }
     #back-to-top.visible { opacity: 1; pointer-events: auto; }
-    #back-to-top:hover { background: var(--c-primary-light); color: var(--c-primary); border-color: var(--c-primary); }
+    #back-to-top:hover { background: var(--c-surface); color: var(--c-text); border-color: var(--c-text); }
   </style>
 
   <script>
@@ -1102,7 +1102,7 @@ function writeGlossaryPage() {
     .header-actions { display: flex; align-items: center; gap: 0.75rem; }
     .header-link { font-size: var(--fs-small); color: var(--c-text-muted); }
     .theme-toggle { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: none; border: 1px solid var(--c-border); border-radius: 6px; cursor: pointer; color: var(--c-text-muted); padding: 0; flex-shrink: 0; transition: color 0.15s, border-color 0.15s, background 0.15s; }
-    .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
+    .theme-toggle:hover { color: var(--c-text); border-color: var(--c-text); background: var(--c-surface); }
     [data-theme="light"] .icon-sun { display: none; }
     [data-theme="dark"]  .icon-moon { display: none; }
 
@@ -1125,9 +1125,9 @@ function writeGlossaryPage() {
     /* Glossary list */
     main { max-width: 760px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
     .gloss-section { margin-bottom: 2rem; }
-    .gloss-letter { font-size: 1.5rem; font-weight: 600; color: var(--c-primary); letter-spacing: 0; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-primary-light); scroll-margin-top: 5rem; }
+    .gloss-letter { font-size: 1.5rem; font-weight: 600; color: var(--c-text); letter-spacing: 0; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-border); scroll-margin-top: 5rem; }
     .gloss-list { margin: 0; }
-    .gloss-term { font-weight: 600; font-size: var(--fs-h3); margin-top: 1rem; scroll-margin-top: 5rem; color: var(--c-primary); }
+    .gloss-term { font-weight: 600; font-size: var(--fs-h3); margin-top: 1rem; scroll-margin-top: 5rem; color: var(--c-text); }
     .gloss-term:target { text-decoration: underline; }
     .gloss-def { color: var(--c-text-muted); margin: 0.15rem 0 0; padding-bottom: 0.75rem; border-bottom: 1px solid var(--c-border); }
 
@@ -1144,7 +1144,7 @@ function writeGlossaryPage() {
     #back-to-top { position: fixed; bottom: 1.5rem; right: 1.5rem; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--c-border); background: rgba(255,255,255,0.75); color: var(--c-text-muted); font-size: 1.1rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s, background 0.15s, color 0.15s; z-index: 100; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
     [data-theme="dark"] #back-to-top { background: rgba(30,41,59,0.75); }
     #back-to-top.visible { opacity: 1; pointer-events: auto; }
-    #back-to-top:hover { background: var(--c-primary-light); color: var(--c-primary); border-color: var(--c-primary); }
+    #back-to-top:hover { background: var(--c-surface); color: var(--c-text); border-color: var(--c-text); }
   </style>
 
   <script>
@@ -1389,7 +1389,7 @@ function renderEventShell({ title, metaDesc, canonical, jsonLd, body }) {
     .header-actions { display:flex; align-items:center; gap:0.75rem; }
     .header-link { font-size: var(--fs-small); color:var(--c-text-muted); }
     .theme-toggle { display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:none; border:1px solid var(--c-border); border-radius:6px; cursor:pointer; color:var(--c-text-muted); padding:0; flex-shrink:0; }
-    .theme-toggle:hover { color:var(--c-primary); border-color:var(--c-primary); background:var(--c-primary-light); }
+    .theme-toggle:hover { color: var(--c-text); border-color: var(--c-text); background: var(--c-surface); }
     [data-theme="light"] .icon-sun { display:none; } [data-theme="dark"] .icon-moon { display:none; }
     .page-header { padding:2rem 1rem 1rem; max-width:820px; margin:0 auto; }
     .page-header h1 { font-size:clamp(1.4rem,4vw,1.9rem); font-weight:600; margin-bottom:0.3rem; }
