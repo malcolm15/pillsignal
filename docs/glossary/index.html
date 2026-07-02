@@ -51,6 +51,10 @@
       --fs-body: 1rem;
       --fs-small: 0.875rem;
       --fs-caption: 0.75rem;
+      /* Radius scale */
+      --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px;
+      /* Spacing scale (4px grid) */
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.5rem; --space-6: 2rem; --space-7: 3rem;
     }
     [data-theme="dark"] {
       --c-bg: #0f172a; --c-surface: #1e293b; --c-border: #334155;
@@ -93,7 +97,7 @@
 
     /* Caveat */
     .gloss-caveat { max-width: 760px; margin: 0 auto 0.5rem; padding: 0 1rem; }
-    .gloss-caveat .card { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: 10px; padding: 1rem 1.25rem; font-size: var(--fs-small); color: var(--c-text-muted); }
+    .gloss-caveat .card { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius-md); padding: 1rem 1.25rem; font-size: var(--fs-small); color: var(--c-text-muted); }
 
     /* Letter nav */
     .lnav { position: sticky; top: 3.75rem; z-index: 90; background: var(--c-bg); border-bottom: 1px solid var(--c-border); padding: 0.5rem 1rem; }

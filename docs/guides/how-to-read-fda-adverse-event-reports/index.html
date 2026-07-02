@@ -77,6 +77,10 @@
       --fs-body: 1rem;
       --fs-small: 0.875rem;
       --fs-caption: 0.75rem;
+      /* Radius scale */
+      --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px;
+      /* Spacing scale (4px grid) */
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.5rem; --space-6: 2rem; --space-7: 3rem;
     }
     [data-theme="dark"] {
       --c-bg: #0f172a; --c-surface: #1e293b; --c-border: #334155;
@@ -191,7 +195,7 @@
     .callout {
       background: var(--c-primary-light);
       border-left: 4px solid var(--c-primary);
-      border-radius: 0 6px 6px 0;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
       padding: 0.875rem 1rem;
       margin: 1.5rem 0;
       font-size: 0.925rem;
@@ -202,8 +206,8 @@
     /* ─── Notice ──────────────────────────────────────────────────────────────── */
     .notice {
       background: var(--c-notice-bg);
-      border-left: 4px solid var(--c-notice-border);
-      border-radius: 0 6px 6px 0;
+      border-left: 3px solid var(--c-notice-border);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
       padding: 0.875rem 1rem;
       font-size: var(--fs-small);
       color: var(--c-notice-text);
