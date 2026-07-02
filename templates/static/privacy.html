@@ -33,40 +33,11 @@
   <meta name="twitter:image"       content="https://pillsignal.com/og-image.png">
 
   <style>
-    :root, [data-theme="light"] {
-      --c-bg:               #ffffff;
-      --c-surface:          #f9fafb;
-      --c-border:           #e5e7eb;
-      --c-text:             #1a1a2e;
-      --c-text-muted:       #5a5a6e;
-      --c-primary:          #00A67E;
-      --c-primary-hover:    #008F6B;
-      --c-primary-light:    #E6F9F1;
-      --c-banner-bg:        #FFF9F0;
-      --c-banner-text:      #6B4E30;
-      --c-banner-border:    rgba(107,78,48,0.3);
-      --c-banner-btn-hover: rgba(0,0,0,0.05);
-      --font: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-      --font-heading: "Fraunces", Georgia, serif;
-    }
-    [data-theme="dark"] {
-      --c-bg:               #0f172a;
-      --c-surface:          #1e293b;
-      --c-border:           #334155;
-      --c-text:             #f1f5f9;
-      --c-text-muted:       #94a3b8;
-      --c-primary:          #34D1A0;
-      --c-primary-hover:    #2BBD8E;
-      --c-primary-light:    #0D3D2E;
-      --c-banner-bg:        #1C1508;
-      --c-banner-text:      #D4B896;
-      --c-banner-border:    rgba(212,184,150,0.25);
-      --c-banner-btn-hover: rgba(255,255,255,0.06);
-    }
+    {{BASE_CSS}}
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: var(--font);
-      font-size: 1rem;
+      font-size: var(--fs-body);
       line-height: 1.6;
       color: var(--c-text);
       background: var(--c-bg);
@@ -92,30 +63,30 @@
     .theme-toggle:hover { color: var(--c-primary); border-color: var(--c-primary); background: var(--c-primary-light); }
     [data-theme="light"] .icon-sun  { display: none; }
     [data-theme="dark"]  .icon-moon { display: none; }
-    #disclaimer-banner { background: var(--c-banner-bg); color: var(--c-banner-text); font-size: 0.875rem; line-height: 1.5; }
+    #disclaimer-banner { background: var(--c-banner-bg); color: var(--c-banner-text); font-size: var(--fs-small); line-height: 1.5; }
     .banner-seen #disclaimer-banner { display: none; }
     .banner-inner { max-width: 900px; margin: 0 auto; padding: 0.75rem 1rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
     .banner-inner p { flex: 1; min-width: 200px; }
-    #banner-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--c-banner-border); color: var(--c-banner-text); padding: 0.3rem 1rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; font-family: var(--font); white-space: nowrap; transition: background 0.15s; }
+    #banner-btn { flex-shrink: 0; background: transparent; border: 1px solid var(--c-banner-border); color: var(--c-banner-text); padding: 0.3rem 1rem; border-radius: 4px; cursor: pointer; font-size: var(--fs-small); font-family: var(--font); white-space: nowrap; transition: background 0.15s; }
     #banner-btn:hover { background: var(--c-banner-btn-hover); }
     .site-header { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--c-border); padding: 0.875rem 1rem; background: var(--c-bg); box-shadow: 0 2px 4px rgba(0,0,0,0.06); }
     .site-header .inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
     .header-actions { display: flex; align-items: center; gap: 0.75rem; }
-    .header-link { font-size: 0.875rem; color: var(--c-text-muted); }
+    .header-link { font-size: var(--fs-small); color: var(--c-text-muted); }
     main { flex: 1; }
     .prose { max-width: 720px; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
-    .prose h1 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.03em; color: var(--c-text); margin-bottom: 0.5rem; }
-    .prose .lead { font-size: 1.05rem; color: var(--c-text-muted); margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--c-border); }
-    .prose h2 { font-size: 1.05rem; font-weight: 700; color: var(--c-text); margin: 2rem 0 0.5rem; }
+    .prose h1 { font-size: var(--fs-display); font-weight: 800; letter-spacing: -0.03em; color: var(--c-text); margin-bottom: 0.5rem; }
+    .prose .lead { font-size: var(--fs-h2); color: var(--c-text-muted); margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--c-border); }
+    .prose h2 { font-size: var(--fs-h2); font-weight: 700; color: var(--c-text); margin: 2rem 0 0.5rem; }
     .prose p { color: var(--c-text-muted); margin-bottom: 1rem; }
     .prose ul { color: var(--c-text-muted); margin-bottom: 1rem; padding-left: 1.5rem; }
     .prose li { margin-bottom: 0.35rem; }
     .prose strong { color: var(--c-text); font-weight: 600; }
-    .effective-date { display: inline-block; font-size: 0.8rem; color: var(--c-text-muted); margin-bottom: 1.5rem; }
-    .site-footer { border-top: 1px solid var(--c-border); padding: 1.5rem 1rem; text-align: center; font-size: 0.8rem; color: var(--c-text-muted); background: var(--c-bg); }
+    .effective-date { display: inline-block; font-size: var(--fs-small); color: var(--c-text-muted); margin-bottom: 1.5rem; }
+    .site-footer { border-top: 1px solid var(--c-border); padding: 1.5rem 1rem; text-align: center; font-size: var(--fs-small); color: var(--c-text-muted); background: var(--c-bg); }
     .site-footer a { color: var(--c-text-muted); }
     .site-footer a:hover { color: var(--c-primary); text-decoration: none; }
-    @media (min-width: 640px) { .site-footer { font-size: 0.875rem; } }
+    @media (min-width: 640px) { .site-footer { font-size: var(--fs-small); } }
     .footer-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem; }
     .footer-x-link { display: inline-flex; align-items: center; justify-content: center; margin-top: 0.6rem; color: var(--c-text-muted); transition: color 0.15s; }
     .footer-x-link:hover { color: var(--c-primary); }
