@@ -101,24 +101,24 @@
     [data-theme="dark"]  .icon-moon { display: none; }
 
     /* Page header */
-    .page-header { padding: 2rem 1rem 1rem; max-width: 760px; margin: 0 auto; }
+    .page-header { padding: var(--space-6) var(--space-4) var(--space-4); max-width: 720px; margin: 0 auto; }
     .page-header h1 { font-size: var(--fs-display); font-weight: 600; letter-spacing: 0; margin-bottom: 0.3rem; }
     .page-header p { color: var(--c-text-muted); font-size: var(--fs-small); }
 
     /* Caveat */
-    .gloss-caveat { max-width: 760px; margin: 0 auto 0.5rem; padding: 0 1rem; }
+    .gloss-caveat { max-width: 720px; margin: 0 auto var(--space-2); padding: 0 1rem; }
     .gloss-caveat .card { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius-md); padding: 1rem 1.25rem; font-size: var(--fs-small); color: var(--c-text-muted); }
 
     /* Letter nav */
     .lnav { position: sticky; top: 3.75rem; z-index: 90; background: var(--c-bg); border-bottom: 1px solid var(--c-border); padding: 0.5rem 1rem; }
-    .lnav-inner { max-width: 760px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2px; width: 100%; }
+    .lnav-inner { max-width: 720px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2px; width: 100%; }
     .lnav-item { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; font-size: var(--fs-small); font-weight: 600; border-radius: 4px; }
     .lnav-item--on { color: var(--c-primary); } .lnav-item--on:hover { background: var(--c-primary-light); text-decoration: none; }
     .lnav-item--off { color: var(--c-border); cursor: default; }
 
     /* Glossary list */
-    main { max-width: 760px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
-    .gloss-section { margin-bottom: 2rem; }
+    main { max-width: 720px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+    .gloss-section { margin-bottom: var(--space-6); }
     .gloss-letter { font-size: 1.5rem; font-weight: 600; color: var(--c-text); letter-spacing: 0; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-border); scroll-margin-top: 5rem; }
     .gloss-list { margin: 0; }
     .gloss-term { font-weight: 600; font-size: var(--fs-h3); margin-top: 1rem; scroll-margin-top: 5rem; color: var(--c-text); }

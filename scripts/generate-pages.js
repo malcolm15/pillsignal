@@ -817,7 +817,7 @@ function writeBrowsePage(drugs) {
     [data-theme="dark"]  .icon-moon { display: none; }
 
     /* Page header */
-    .page-header { padding: 2rem 1rem 1.5rem; max-width: 900px; margin: 0 auto; }
+    .page-header { padding: var(--space-6) var(--space-4) var(--space-4); max-width: 900px; margin: 0 auto; }
     .page-header h1 { font-size: var(--fs-display); font-weight: 600; letter-spacing: 0; margin-bottom: 0.3rem; }
     .page-header p { color: var(--c-text-muted); font-size: var(--fs-small); }
 
@@ -1117,24 +1117,24 @@ function writeGlossaryPage() {
     [data-theme="dark"]  .icon-moon { display: none; }
 
     /* Page header */
-    .page-header { padding: 2rem 1rem 1rem; max-width: 760px; margin: 0 auto; }
+    .page-header { padding: var(--space-6) var(--space-4) var(--space-4); max-width: 720px; margin: 0 auto; }
     .page-header h1 { font-size: var(--fs-display); font-weight: 600; letter-spacing: 0; margin-bottom: 0.3rem; }
     .page-header p { color: var(--c-text-muted); font-size: var(--fs-small); }
 
     /* Caveat */
-    .gloss-caveat { max-width: 760px; margin: 0 auto 0.5rem; padding: 0 1rem; }
+    .gloss-caveat { max-width: 720px; margin: 0 auto var(--space-2); padding: 0 1rem; }
     .gloss-caveat .card { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius-md); padding: 1rem 1.25rem; font-size: var(--fs-small); color: var(--c-text-muted); }
 
     /* Letter nav */
     .lnav { position: sticky; top: 3.75rem; z-index: 90; background: var(--c-bg); border-bottom: 1px solid var(--c-border); padding: 0.5rem 1rem; }
-    .lnav-inner { max-width: 760px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2px; width: 100%; }
+    .lnav-inner { max-width: 720px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 2px; width: 100%; }
     .lnav-item { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; font-size: var(--fs-small); font-weight: 600; border-radius: 4px; }
     .lnav-item--on { color: var(--c-primary); } .lnav-item--on:hover { background: var(--c-primary-light); text-decoration: none; }
     .lnav-item--off { color: var(--c-border); cursor: default; }
 
     /* Glossary list */
-    main { max-width: 760px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
-    .gloss-section { margin-bottom: 2rem; }
+    main { max-width: 720px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+    .gloss-section { margin-bottom: var(--space-6); }
     .gloss-letter { font-size: 1.5rem; font-weight: 600; color: var(--c-text); letter-spacing: 0; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-border); scroll-margin-top: 5rem; }
     .gloss-list { margin: 0; }
     .gloss-term { font-weight: 600; font-size: var(--fs-h3); margin-top: 1rem; scroll-margin-top: 5rem; color: var(--c-text); }
@@ -1401,13 +1401,13 @@ function renderEventShell({ title, metaDesc, canonical, jsonLd, body }) {
     .theme-toggle { display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:none; border:1px solid var(--c-border); border-radius:6px; cursor:pointer; color:var(--c-text-muted); padding:0; flex-shrink:0; }
     .theme-toggle:hover { color: var(--c-text); border-color: var(--c-text); background: var(--c-surface); }
     [data-theme="light"] .icon-sun { display:none; } [data-theme="dark"] .icon-moon { display:none; }
-    .page-header { padding:2rem 1rem 1rem; max-width:820px; margin:0 auto; }
+    .page-header { padding:var(--space-6) var(--space-4) var(--space-4); max-width:900px; margin:0 auto; }
     .page-header h1 { font-size:clamp(1.4rem,4vw,1.9rem); font-weight:600; margin-bottom:0.3rem; }
     .page-header p { color:var(--c-text-muted); font-size: var(--fs-small); }
-    main { max-width:820px; margin:0 auto; padding:1rem 1rem 4rem; }
-    .event-caveat { max-width:820px; margin:0 auto 0.5rem; padding:0 1rem; }
+    main { max-width:900px; margin:0 auto; padding:1rem 1rem 4rem; }
+    .event-caveat { max-width:900px; margin:0 auto var(--space-2); padding:0 1rem; }
     .event-caveat .card { background:var(--c-surface); border:1px solid var(--c-border); border-left:3px solid var(--c-primary); border-radius:var(--radius-md); padding:1rem 1.25rem; font-size:var(--fs-small); color:var(--c-text-muted); }
-    .event-intro { font-size: var(--fs-small); margin:0 0 1rem; }
+    .event-intro { font-size: var(--fs-small); margin:0 0 var(--space-4); }
     .event-trim { font-size: var(--fs-small); color:var(--c-text-muted); margin:0 0 0.5rem; }
     .event-table { width:100%; border-collapse:collapse; font-size: var(--fs-small); }
     .event-table caption { text-align:left; font-weight:600; color:var(--c-text-muted); font-size: var(--fs-small); padding:0 0 0.5rem; }
@@ -1417,7 +1417,7 @@ function renderEventShell({ title, metaDesc, canonical, jsonLd, body }) {
     .event-table tbody th { text-align:left; font-weight:600; }
     .event-table tbody td { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
     .event-table tbody tr:nth-child(even) { background:rgba(127,127,127,0.05); }
-    .event-back { margin-top:1.25rem; font-size: var(--fs-small); }
+    .event-back { margin-top:var(--space-4); font-size: var(--fs-small); }
     .event-index { list-style:none; margin:0; padding:0; columns:2; column-gap:2rem; }
     @media (max-width:560px) { .event-index { columns:1; } }
     .event-index li { break-inside:avoid; padding:0.4rem 0; border-bottom:1px solid var(--c-border); display:flex; justify-content:space-between; gap:0.75rem; align-items:baseline; }
