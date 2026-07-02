@@ -95,12 +95,22 @@ const BASE_CSS = `    :root, [data-theme="light"] {
       --c-banner-bg: #1C1508; --c-banner-text: #D4B896; --c-banner-border: rgba(212,184,150,0.25); --c-banner-btn-hover: rgba(255,255,255,0.06);
       --c-chart-grid: #273344; --c-chart-label: #94a3b8; --c-chart-tooltip-bg: #1e293b; --c-chart-tooltip-border: #334155; --c-chart-tooltip-title: #f1f5f9; --c-chart-tooltip-body: #cbd5e1;
       --c-input-bg: #1e293b; --c-input-border: #475569; --c-input-focus: #34D1A0; --c-result-hover: #0D2A22;
+    }
+    /* Header nav: never wrap mid-phrase; short labels + comfortable tap targets on small screens */
+    .site-header .header-link { white-space: nowrap; display: inline-flex; align-items: center; }
+    .hl-short { display: none; }
+    @media (max-width: 480px) {
+      .site-header .header-actions { gap: var(--space-2); }
+      .site-header .header-link { min-height: 44px; padding: 0 var(--space-1); }
+      .site-header .theme-toggle { width: 44px; height: 44px; }
+      .hl-full { display: none; }
+      .hl-short { display: inline; }
     }`;
 
 function renderHeader(page = 'default') {
-  const navBrowse  = `<a href="/drugs/" class="header-link">Browse all</a>`;
-  const navSymptom = `<a href="/events/" class="header-link">By symptom</a>`;
-  const navSearch  = `<a href="/" class="header-link">← Search</a>`;
+  const navBrowse  = `<a href="/drugs/" class="header-link"><span class="hl-full">Browse all</span><span class="hl-short">Drugs</span></a>`;
+  const navSymptom = `<a href="/events/" class="header-link"><span class="hl-full">By symptom</span><span class="hl-short">Symptoms</span></a>`;
+  const navSearch  = `<a href="/" class="header-link" aria-label="Back to search"><span class="hl-full">← Search</span><span class="hl-short">←</span></a>`;
 
   const navLinks = page === 'drug'
     ? `${navBrowse}\n        ${navSymptom}\n        ${navSearch}`
@@ -117,7 +127,7 @@ function renderHeader(page = 'default') {
 
   <header class="site-header">
     <div class="inner">
-      <a href="/" class="logo" aria-label="PillSignal home" style="display:inline-flex;align-items:center;gap:0.5rem;font-family:var(--font-heading);font-weight:600;font-size:1.25rem;letter-spacing:-0.01em;color:var(--c-text);text-decoration:none;">
+      <a href="/" class="logo" aria-label="PillSignal home" style="display:inline-flex;align-items:center;gap:0.5rem;flex-shrink:0;font-family:var(--font-heading);font-weight:600;font-size:1.25rem;letter-spacing:-0.01em;color:var(--c-text);text-decoration:none;">
         <svg width="40" height="22" viewBox="0 0 44 24" aria-hidden="true" focusable="false" style="display:block;flex-shrink:0;">
           <rect x="1.5" y="3.5" width="41" height="17" rx="8.5" style="fill:var(--c-primary);"/>
           <path d="M6 12 H16 L18 15 L21 5 L24 15 L26 12 H38" style="fill:none;stroke:var(--c-bg);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;"/>
