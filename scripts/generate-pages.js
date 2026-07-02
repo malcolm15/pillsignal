@@ -120,10 +120,14 @@ function renderHeader(page = 'default') {
   const navSymptom = `<a href="/events/" class="header-link"><span class="hl-full">By symptom</span><span class="hl-short">Symptoms</span></a>`;
   const navSearch  = `<a href="/" class="header-link" aria-label="Back to search"><span class="hl-full">← Search</span><span class="hl-short">←</span></a>`;
 
+  // Never link to the page you are on. Browse surfaces show the sibling browse
+  // surface + back-to-search; /drugs/ omits its own link, /events/ omits its own.
   const navLinks = page === 'drug'
     ? `${navBrowse}\n        ${navSymptom}\n        ${navSearch}`
     : page === 'browse'
     ? `${navSymptom}\n        ${navSearch}`
+    : page === 'events'
+    ? `${navBrowse}\n        ${navSearch}`
     : `${navBrowse}\n        ${navSymptom}`;
 
   return `  <div id="disclaimer-banner" role="note" aria-label="Site disclaimer">
@@ -1366,7 +1370,7 @@ function buildEventIndex(drugsWithData, detailsMap) {
 }
 
 // Shared page shell (head + chrome + scripts), mirroring the glossary/browse pages.
-function renderEventShell({ title, metaDesc, canonical, jsonLd, body }) {
+function renderEventShell({ title, metaDesc, canonical, jsonLd, body, page = 'default' }) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1458,7 +1462,7 @@ function renderEventShell({ title, metaDesc, canonical, jsonLd, body }) {
 </head>
 <body>
 
-${renderHeader('default')}
+${renderHeader(page)}
 ${body}
 ${renderFooter()}
 
@@ -1555,7 +1559,7 @@ function writeEventsIndexPage(idx) {
 ${items}
     </ul>
   </main>`;
-  const html = renderEventShell({ title, metaDesc, canonical, jsonLd, body });
+  const html = renderEventShell({ title, metaDesc, canonical, jsonLd, body, page: 'events' });
   mkdirSync(join(DOCS_DIR, 'events'), { recursive: true });
   writeFileSync(join(DOCS_DIR, 'events', 'index.html'), html, 'utf8');
   console.log(`  events/index.html — ${EVENT_DEFS.length} event pages listed`);
