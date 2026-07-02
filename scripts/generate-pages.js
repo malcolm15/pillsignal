@@ -105,7 +105,15 @@ const BASE_CSS = `    :root, [data-theme="light"] {
       .site-header .theme-toggle { width: 44px; height: 44px; }
       .hl-full { display: none; }
       .hl-short { display: inline; }
-    }`;
+    }
+    /* Share row (shared by drug pages and guides) */
+    .share-row { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.9rem; position: relative; flex-wrap: wrap; }
+    .share-label { font-size: var(--fs-caption); color: var(--c-text-muted); font-weight: 500; margin-right: 0.1rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .share-btn { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: var(--radius-sm); border: 1px solid var(--c-border); color: var(--c-text-muted); background: none; cursor: pointer; padding: 0; text-decoration: none; transition: color 0.15s, border-color 0.15s, background 0.15s; flex-shrink: 0; font-family: inherit; }
+    .share-btn:hover, .share-btn.share-copied { color: var(--c-text); border-color: var(--c-text); background: var(--c-surface); text-decoration: none; }
+    .share-copy-tip { font-size: var(--fs-caption); color: var(--c-primary); font-weight: 500; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+    .share-copy-tip.visible { opacity: 1; }
+    @media (max-width: 480px) { .share-btn { width: 44px; height: 44px; } }`;
 
 function renderHeader(page = 'default') {
   const navBrowse  = `<a href="/drugs/" class="header-link"><span class="hl-full">Browse all</span><span class="hl-short">Drugs</span></a>`;
@@ -367,17 +375,18 @@ function renderDrugDescription(description) {
   return `<p class="drug-description"><strong>According to the FDA label:</strong> ${escapeHtml(description)}</p>`;
 }
 
-function renderShareButtons(brandName, totalReports, canonicalUrl) {
-  const reportsFormatted = Number(totalReports).toLocaleString('en-US');
-  const shareText  = encodeURIComponent(`${brandName} has had ${reportsFormatted} adverse event reports submitted to the FDA. See the full breakdown on PillSignal.`);
-  const shareTitle = encodeURIComponent(`${brandName} — FDA Adverse Event Data | PillSignal`);
-  const encUrl     = encodeURIComponent(canonicalUrl);
+// Generic share row: takes the raw share text, title, and canonical URL, so any
+// page type (drug pages, guides) reuses the same component without a forked variant.
+function renderShareButtons(shareText, shareTitle, canonicalUrl) {
+  const encText  = encodeURIComponent(shareText);
+  const encTitle = encodeURIComponent(shareTitle);
+  const encUrl   = encodeURIComponent(canonicalUrl);
 
-  const twitterUrl  = `https://x.com/intent/tweet?url=${encUrl}&text=${shareText}`;
-  const redditUrl   = `https://reddit.com/submit?url=${encUrl}&title=${shareTitle}`;
+  const twitterUrl  = `https://x.com/intent/tweet?url=${encUrl}&text=${encText}`;
+  const redditUrl   = `https://reddit.com/submit?url=${encUrl}&title=${encTitle}`;
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encUrl}`;
-  const blueskyUrl  = `https://bsky.app/intent/compose?text=${encodeURIComponent(`${brandName} has had ${reportsFormatted} adverse event reports submitted to the FDA. See the full breakdown on PillSignal.\n${canonicalUrl}`)}`;
-  const emailUrl    = `mailto:?subject=${shareTitle}&body=${shareText}%0A%0A${encUrl}`;
+  const blueskyUrl  = `https://bsky.app/intent/compose?text=${encodeURIComponent(`${shareText}\n${canonicalUrl}`)}`;
+  const emailUrl    = `mailto:?subject=${encTitle}&body=${encText}%0A%0A${encUrl}`;
 
   // Safe to embed canonicalUrl directly — it's our own constructed value, no user input
   const copyScript = `(function(b){if(!navigator.clipboard)return;navigator.clipboard.writeText('${canonicalUrl}').then(function(){if(typeof gtag==='function')gtag('event','share',{method:'copy_link'});b.classList.add('share-copied');var t=document.getElementById('share-copy-tip');if(t)t.classList.add('visible');setTimeout(function(){b.classList.remove('share-copied');if(t)t.classList.remove('visible');},2000);});})(this)`;
@@ -660,7 +669,10 @@ function renderPage(drug, adverseEvents, demographics, outcomes, trends, related
     .replaceAll('{{TRENDS_JSON}}',          safeJson(trendsData))
     .replaceAll('{{CO_REPORTED_HTML}}',     renderCoReportedHtml(coReported, brandName, resolveLink))
     .replaceAll('{{RELATED_DRUGS_HTML}}',   renderRelatedDrugsHtml(relatedDrugs))
-    .replaceAll('{{SHARE_BUTTONS}}',        renderShareButtons(brandName, totalReports, canonicalUrl))
+    .replaceAll('{{SHARE_BUTTONS}}',        renderShareButtons(
+      `${brandName} has had ${Number(totalReports).toLocaleString('en-US')} adverse event reports submitted to the FDA. See the full breakdown on PillSignal.`,
+      `${brandName}: FDA Adverse Event Data | PillSignal`,
+      canonicalUrl))
     .replaceAll('{{DATA_LAST_UPDATED}}',    escapeHtml(DATA_LAST_UPDATED))
     .replaceAll('{{SITE_HEADER}}',          renderHeader('drug'))
     .replaceAll('{{SITE_FOOTER}}',          renderFooter());
@@ -1567,8 +1579,18 @@ function writeStaticPages() {
   for (const { template, output } of STATIC_PAGES) {
     const src  = readFileSync(join(staticDir, template), 'utf8');
     const page = template.startsWith('guides/') ? 'guide' : 'static';
+    // Guide pages reuse the shared share row, with the guide's own title/description
+    // and canonical URL (derived from the output path).
+    let shareHtml = '';
+    if (src.includes('{{SHARE_BUTTONS}}')) {
+      const canonical = `${SITE_URL}/${output.replace(/index\.html$/, '')}`;
+      const title = (src.match(/<title>([^<]*)<\/title>/) || [])[1] || 'PillSignal';
+      const desc  = (src.match(/<meta name="description" content="([^"]*)"/) || [])[1] || title;
+      shareHtml = renderShareButtons(desc, title, canonical);
+    }
     const html = src
       .replace('{{BASE_CSS}}', BASE_CSS)
+      .replace('{{SHARE_BUTTONS}}', shareHtml)
       .replace('{{SITE_HEADER}}', renderHeader(page))
       .replace('{{SITE_FOOTER}}', renderFooter());
     const dest = join(DOCS_DIR, output);

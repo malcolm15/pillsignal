@@ -97,6 +97,14 @@
       .hl-full { display: none; }
       .hl-short { display: inline; }
     }
+    /* Share row (shared by drug pages and guides) */
+    .share-row { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.9rem; position: relative; flex-wrap: wrap; }
+    .share-label { font-size: var(--fs-caption); color: var(--c-text-muted); font-weight: 500; margin-right: 0.1rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .share-btn { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: var(--radius-sm); border: 1px solid var(--c-border); color: var(--c-text-muted); background: none; cursor: pointer; padding: 0; text-decoration: none; transition: color 0.15s, border-color 0.15s, background 0.15s; flex-shrink: 0; font-family: inherit; }
+    .share-btn:hover, .share-btn.share-copied { color: var(--c-text); border-color: var(--c-text); background: var(--c-surface); text-decoration: none; }
+    .share-copy-tip { font-size: var(--fs-caption); color: var(--c-primary); font-weight: 500; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+    .share-copy-tip.visible { opacity: 1; }
+    @media (max-width: 480px) { .share-btn { width: 44px; height: 44px; } }
 
     /* ─── Reset ──────────────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -544,7 +552,7 @@
         <div class="stat-label">Data Coverage</div>
       </div>
       <div class="stat-item">
-        <div class="stat-value">July 1, 2026</div>
+        <div class="stat-value">July 2, 2026</div>
         <div class="stat-label">Last Updated</div>
       </div>
     </div>
