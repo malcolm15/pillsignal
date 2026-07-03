@@ -289,11 +289,13 @@ Run this checklist in order every time the dataset is refreshed. Deviating from 
 
 2. **Fetch.** `node scripts/fetch-data.js` — queries OpenFDA for every entry in `drug-list.json` and upserts results into Supabase. Watch for `⚠ GENERIC FALLBACK` warnings in the output; any drug that matches only via `generic_name` will produce a duplicate-content page and should be removed from `drug-list.json` unless it is a true canonical generic (ibuprofen, acetaminophen, etc.). Fetch writes `scripts/fetch-metadata.json` automatically with the timestamp.
 
-3. **Generate.** `node scripts/generate-pages.js` — reads Supabase and writes all static HTML to `docs/`. Reads `scripts/fetch-metadata.json` to inject "Data last updated: [Month YYYY]" into every drug page and set `dateModified` in JSON-LD. Run immediately after fetch.
+3. **Fetch database-wide stats.** `node scripts/fetch-stats.js` — queries OpenFDA aggregate endpoints (about 10 count queries, no Supabase) and writes `scripts/stats-data.json`, the source for the `/statistics/` page and the homepage headline report total. Run after the fetch and before generate so the pages pick up fresh numbers.
 
-4. **Re-pull aggregate stats for guides.** After a refresh, the figures in `docs/guides/what-fda-drug-reports-show/index.html` and the homepage stats bar will be stale. Run `node scripts/aggregate-stats.js` to get fresh totals and update the guide manually. Key figures to check: total reports, Drug Ineffective count and %, sex split, age distribution, outcome distribution, and per-year trend data.
+4. **Generate.** `node scripts/generate-pages.js` — reads Supabase and writes all static HTML to `docs/`. Reads `scripts/fetch-metadata.json` to inject "Data last updated: [Month YYYY]" into every drug page and set `dateModified` in JSON-LD. Run immediately after fetch.
 
-5. **Commit and push.** Stage and commit all changes under `docs/`, `scripts/drug-list.json`, `scripts/drug-list-removed.json`, and `scripts/fetch-metadata.json`. Never commit `.env`. Push to `main`; GitHub Pages serves automatically.
+5. **Re-pull aggregate stats for guides.** After a refresh, the figures in `docs/guides/what-fda-drug-reports-show/index.html` will be stale (the homepage headline total and the `/statistics/` page now refresh automatically from `fetch-stats.js`, so they are not manual). Run `node scripts/aggregate-stats.js` to get fresh totals and update the guide manually. Key figures to check: total reports, Drug Ineffective count and %, sex split, age distribution, outcome distribution, and per-year trend data.
+
+6. **Commit and push.** Stage and commit all changes under `docs/`, `scripts/drug-list.json`, `scripts/drug-list-removed.json`, `scripts/fetch-metadata.json`, and `scripts/stats-data.json`. Never commit `.env`. Push to `main`; GitHub Pages serves automatically.
 
 ## Deployment
 

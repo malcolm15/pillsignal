@@ -1,0 +1,335 @@
+{
+  "fetchedAt": "2026-07-03T17:00:39.402Z",
+  "dataCutoff": "2026-03-31",
+  "yearFloor": 2004,
+  "totalReports": 20328575,
+  "latestFullYear": 2025,
+  "latestFullYearReports": 1307331,
+  "prevFullYearReports": 1319103,
+  "yoyChangePct": -0.9,
+  "peakYear": {
+    "year": 2021,
+    "count": 1566148
+  },
+  "reportsByYear": [
+    {
+      "year": 2004,
+      "count": 205064,
+      "partial": false
+    },
+    {
+      "year": 2005,
+      "count": 230833,
+      "partial": false
+    },
+    {
+      "year": 2006,
+      "count": 245860,
+      "partial": false
+    },
+    {
+      "year": 2007,
+      "count": 265910,
+      "partial": false
+    },
+    {
+      "year": 2008,
+      "count": 311059,
+      "partial": false
+    },
+    {
+      "year": 2009,
+      "count": 338806,
+      "partial": false
+    },
+    {
+      "year": 2010,
+      "count": 484179,
+      "partial": false
+    },
+    {
+      "year": 2011,
+      "count": 558591,
+      "partial": false
+    },
+    {
+      "year": 2012,
+      "count": 700843,
+      "partial": false
+    },
+    {
+      "year": 2013,
+      "count": 773984,
+      "partial": false
+    },
+    {
+      "year": 2014,
+      "count": 875089,
+      "partial": false
+    },
+    {
+      "year": 2015,
+      "count": 1187780,
+      "partial": false
+    },
+    {
+      "year": 2016,
+      "count": 1186065,
+      "partial": false
+    },
+    {
+      "year": 2017,
+      "count": 1251778,
+      "partial": false
+    },
+    {
+      "year": 2018,
+      "count": 1428119,
+      "partial": false
+    },
+    {
+      "year": 2019,
+      "count": 1434195,
+      "partial": false
+    },
+    {
+      "year": 2020,
+      "count": 1455117,
+      "partial": false
+    },
+    {
+      "year": 2021,
+      "count": 1566148,
+      "partial": false
+    },
+    {
+      "year": 2022,
+      "count": 1523664,
+      "partial": false
+    },
+    {
+      "year": 2023,
+      "count": 1368572,
+      "partial": false
+    },
+    {
+      "year": 2024,
+      "count": 1319103,
+      "partial": false
+    },
+    {
+      "year": 2025,
+      "count": 1307331,
+      "partial": false
+    },
+    {
+      "year": 2026,
+      "count": 310100,
+      "partial": true
+    }
+  ],
+  "topReactions": [
+    {
+      "term": "DRUG INEFFECTIVE",
+      "count": 1279716
+    },
+    {
+      "term": "DEATH",
+      "count": 837474
+    },
+    {
+      "term": "OFF LABEL USE",
+      "count": 835576
+    },
+    {
+      "term": "NAUSEA",
+      "count": 763793
+    },
+    {
+      "term": "FATIGUE",
+      "count": 753191
+    },
+    {
+      "term": "DIARRHOEA",
+      "count": 621408
+    },
+    {
+      "term": "HEADACHE",
+      "count": 607919
+    },
+    {
+      "term": "PAIN",
+      "count": 599250
+    },
+    {
+      "term": "DYSPNOEA",
+      "count": 549493
+    },
+    {
+      "term": "DIZZINESS",
+      "count": 483165
+    },
+    {
+      "term": "VOMITING",
+      "count": 453894
+    },
+    {
+      "term": "MALAISE",
+      "count": 428247
+    },
+    {
+      "term": "RASH",
+      "count": 419096
+    },
+    {
+      "term": "ARTHRALGIA",
+      "count": 400849
+    },
+    {
+      "term": "ASTHENIA",
+      "count": 365394
+    },
+    {
+      "term": "PRURITUS",
+      "count": 361420
+    },
+    {
+      "term": "PYREXIA",
+      "count": 336940
+    },
+    {
+      "term": "FALL",
+      "count": 322933
+    },
+    {
+      "term": "PNEUMONIA",
+      "count": 313216
+    },
+    {
+      "term": "CONDITION AGGRAVATED",
+      "count": 291667
+    }
+  ],
+  "serious": {
+    "serious": 11689720,
+    "nonSerious": 8628093,
+    "seriousPct": 57.5,
+    "nonSeriousPct": 42.5
+  },
+  "outcomeFlags": {
+    "death": {
+      "count": 1859588,
+      "pctOfTotal": 9.1
+    },
+    "hospitalization": {
+      "count": 4346326,
+      "pctOfTotal": 21.4
+    },
+    "lifeThreatening": {
+      "count": 565962,
+      "pctOfTotal": 2.8
+    },
+    "disabling": {
+      "count": 379430,
+      "pctOfTotal": 1.9
+    }
+  },
+  "sex": {
+    "female": 10722518,
+    "male": 7054595,
+    "unknown": 106727,
+    "known": 17777113,
+    "knownPctOfTotal": 87.4,
+    "femalePctOfKnown": 60.3,
+    "malePctOfKnown": 39.7
+  },
+  "reporter": [
+    {
+      "type": "Consumer or non-health professional",
+      "count": 9265470,
+      "pctOfKnown": 47.3
+    },
+    {
+      "type": "Physician",
+      "count": 4482593,
+      "pctOfKnown": 22.9
+    },
+    {
+      "type": "Other health professional",
+      "count": 4014638,
+      "pctOfKnown": 20.5
+    },
+    {
+      "type": "Pharmacist",
+      "count": 1283567,
+      "pctOfKnown": 6.6
+    },
+    {
+      "type": "Lawyer",
+      "count": 535412,
+      "pctOfKnown": 2.7
+    }
+  ],
+  "topDrugs": [
+    {
+      "canonical": "ADALIMUMAB",
+      "count": 699271
+    },
+    {
+      "canonical": "ETANERCEPT",
+      "count": 592886
+    },
+    {
+      "canonical": "ASPIRIN",
+      "count": 526259
+    },
+    {
+      "canonical": "PREDNISONE",
+      "count": 491141
+    },
+    {
+      "canonical": "METHOTREXATE",
+      "count": 478279
+    },
+    {
+      "canonical": "DUPILUMAB",
+      "count": 438499
+    },
+    {
+      "canonical": "OMEPRAZOLE",
+      "count": 438454
+    },
+    {
+      "canonical": "ACETAMINOPHEN",
+      "count": 435014
+    },
+    {
+      "canonical": "LENALIDOMIDE",
+      "count": 414396
+    },
+    {
+      "canonical": "FUROSEMIDE",
+      "count": 392830
+    },
+    {
+      "canonical": "ERGOCALCIFEROL",
+      "count": 374011
+    },
+    {
+      "canonical": "GABAPENTIN",
+      "count": 357297
+    },
+    {
+      "canonical": "METFORMIN",
+      "count": 348082
+    },
+    {
+      "canonical": "LEVOTHYROXINE",
+      "count": 308662
+    },
+    {
+      "canonical": "LISINOPRIL",
+      "count": 300897
+    }
+  ]
+}

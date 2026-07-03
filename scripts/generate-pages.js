@@ -53,6 +53,22 @@ const DESCRIPTION_OVERRIDES = JSON.parse(readFileSync(join(__dirname, 'descripti
 const GLOSSARY_BY_KEY = new Map(
   GLOSSARY.terms.map(t => [t.key.toUpperCase(), t])
 );
+// Database-wide openFDA aggregate statistics, written by scripts/fetch-stats.js.
+// Powers the /statistics/ page. If the file is absent the page is skipped (a
+// missing fetch-stats run should not break the whole build).
+const STATS_PATH = join(__dirname, 'stats-data.json');
+const STATS = existsSync(STATS_PATH) ? JSON.parse(readFileSync(STATS_PATH, 'utf8')) : null;
+// Most-reported-medications list: show a brand in parentheses ONLY where the brand
+// is more recognizable than the generic. Keyed by the ALL-CAPS canonical generic
+// (matches STATS.topDrugs[].canonical). Every other medication renders as a plain
+// generic name. Extend sparingly, and only when the brand truly leads the generic.
+const STAT_DRUG_BRANDS = {
+  ADALIMUMAB:     'Humira',
+  ETANERCEPT:     'Enbrel',
+  DUPILUMAB:      'Dupixent',
+  LENALIDOMIDE:   'Revlimid',
+  ERGOCALCIFEROL: 'vitamin D2',
+};
 
 // ─── Shared page chrome ───────────────────────────────────────────────────────
 // Single source of truth for banner, site-header, and site-footer HTML.
@@ -176,6 +192,7 @@ function renderFooter() {
     <nav class="footer-nav" aria-label="Site links">
       <a href="/guides/">Guides</a>
       <a href="/glossary/">Glossary</a>
+      <a href="/statistics/">Statistics</a>
       <a href="/events/">Browse by symptom</a>
       <a href="/about/">About</a>
       <a href="/faq/">FAQ</a>
@@ -697,6 +714,7 @@ function writeSitemap(drugs) {
     { loc: `${SITE_URL}/`,         changefreq: 'weekly',  priority: '1.0' },
     { loc: `${SITE_URL}/drugs/`,   changefreq: 'weekly',  priority: '0.9' },
     { loc: `${SITE_URL}/events/`,  changefreq: 'weekly',  priority: '0.8' },
+    { loc: `${SITE_URL}/statistics/`, changefreq: 'monthly', priority: '0.8' },
     { loc: `${SITE_URL}/guides/`,  changefreq: 'monthly', priority: '0.7' },
     { loc: `${SITE_URL}/glossary/`, changefreq: 'monthly', priority: '0.6' },
     { loc: `${SITE_URL}/guides/how-to-read-fda-adverse-event-reports/`, changefreq: 'monthly', priority: '0.7' },
@@ -726,7 +744,7 @@ function writeSitemap(drugs) {
     staticUrls + '\n' + drugUrls + '\n' + eventUrls + `\n</urlset>`;
 
   writeFileSync(join(DOCS_DIR, 'sitemap.xml'), xml, 'utf8');
-  console.log(`  sitemap.xml  — ${drugs.length} drug URLs + ${EVENT_DEFS.length} event URLs + 14 static pages`);
+  console.log(`  sitemap.xml  — ${drugs.length} drug URLs + ${EVENT_DEFS.length} event URLs + 15 static pages`);
 }
 
 function writeBrowsePage(drugs) {
@@ -988,10 +1006,15 @@ async function fetchYearRange() {
 }
 
 function writeHomepage(drugs, minYear, maxYear) {
-  const totalReports = drugs.reduce((s, d) => s + (d.total_reports || 0), 0);
+  const summedMentions = drugs.reduce((s, d) => s + (d.total_reports || 0), 0);
+  // Headline report count must be the TRUE database-wide total (from fetch-stats.js),
+  // not the per-drug sum (which double-counts, since one report names many drugs). The
+  // front door cannot contradict /statistics/. If stats are missing, fall back to the
+  // sum but relabel it honestly as report mentions across tracked drugs.
   const drugCount    = drugs.length.toLocaleString('en-US');
-  const reportFmt    = formatReportTotal(totalReports);
-  const coverage     = `${minYear}–${maxYear}`;
+  const reportFmt    = STATS ? `${(STATS.totalReports / 1e6).toFixed(1)}M+` : formatReportTotal(summedMentions);
+  const reportLabel  = STATS ? 'Total FDA Reports' : 'Report Mentions Across Tracked Drugs';
+  const coverage     = `${minYear}-${maxYear}`;
   const lastUpdated  = new Date().toLocaleDateString('en-US', {
     month: 'long', day: 'numeric', year: 'numeric',
   });
@@ -1002,7 +1025,7 @@ function writeHomepage(drugs, minYear, maxYear) {
     <div class="inner">
       <div class="stat-item">
         <div class="stat-value">${reportFmt}</div>
-        <div class="stat-label">Total FAERS Reports</div>
+        <div class="stat-label">${reportLabel}</div>
       </div>
       <div class="stat-item">
         <div class="stat-value">${drugCount}</div>
@@ -1017,7 +1040,10 @@ function writeHomepage(drugs, minYear, maxYear) {
         <div class="stat-label">Last Updated</div>
       </div>
     </div>
-  </div>`;
+  </div>
+  <p style="max-width:1000px;margin:0.9rem auto 0;padding:0 1.5rem;text-align:center;font-size:0.95rem;">
+    <a href="/statistics/">See database-wide FDA adverse event statistics, more than 20 million reports &rarr;</a>
+  </p>`;
 
   const html = HOMEPAGE_TEMPLATE
     .replace('{{BASE_CSS}}',     BASE_CSS)
@@ -1280,6 +1306,442 @@ ${renderFooter()}
   mkdirSync(join(DOCS_DIR, 'glossary'), { recursive: true });
   writeFileSync(join(DOCS_DIR, 'glossary', 'index.html'), html, 'utf8');
   console.log(`  glossary/index.html — ${terms.length} terms across ${usedKeys.length} letter sections`);
+}
+
+// ─── Statistics page ────────────────────────────────────────────────────────
+// Database-wide aggregate reference page at /statistics/. Every number comes
+// from scripts/stats-data.json (openFDA aggregates via fetch-stats.js), never
+// from summing our per-drug Supabase data (which double-counts). Copy rule:
+// every headline sentence must stay honest when quoted alone by an AI answer
+// engine, so the caveat lives inside the sentence, not elsewhere on the page.
+function writeStatisticsPage(drugs) {
+  if (!STATS) {
+    console.warn('  statistics: scripts/stats-data.json not found, skipping /statistics/ (run node scripts/fetch-stats.js)');
+    return;
+  }
+
+  const fmt = n => Number(n).toLocaleString('en-US');
+  const millions = n => {
+    const m = n / 1e6;
+    return (m >= 10 ? m.toFixed(1) : m.toFixed(2)) + ' million';
+  };
+  const longDate = iso => new Date(iso + 'T00:00:00Z')
+    .toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+
+  const titleYear   = Number(STATS.dataCutoff.slice(0, 4));      // 2026 (year the data runs into)
+  const cutoffLong  = longDate(STATS.dataCutoff);                // "March 31, 2026"
+  const modifiedIso = (STATS.fetchedAt || DATA_DATE_ISO).slice(0, 10);
+  const fullYear    = STATS.latestFullYear;                      // 2025
+  const yoyAbs      = Math.abs(STATS.yoyChangePct);
+  const yoyDir      = STATS.yoyChangePct < 0 ? 'down' : STATS.yoyChangePct > 0 ? 'up' : 'flat';
+
+  // ── Internal-link resolvers ──────────────────────────────────────────────
+  // Reactions -> /events/ (richest page) if one exists, else /glossary/#slug.
+  const EVENT_BY_KEY = new Map(EVENT_DEFS.map(e => [e.key, e.slug]));
+  const reactionDisplay = key => (GLOSSARY_BY_KEY.get(key)?.display) || toTitleCase(key);
+  const reactionLink = key => {
+    const disp = reactionDisplay(key);
+    if (EVENT_BY_KEY.has(key)) return `<a href="/events/${EVENT_BY_KEY.get(key)}/">${escapeHtml(disp)}</a>`;
+    if (GLOSSARY_BY_KEY.has(key)) return `<a href="/glossary/#${slugifyName(disp)}">${escapeHtml(disp)}</a>`;
+    return escapeHtml(disp);
+  };
+
+  // Medications -> our drug page, matched on generic/brand (normalized). Best
+  // effort: unmatched names render as plain text.
+  const normDrug = s => String(s || '').toUpperCase().replace(/[^A-Z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+  const drugIndex = new Map();
+  for (const d of drugs) {
+    const brand = displayName(d.brand_name);
+    const keys = new Set();
+    for (const nm of [d.generic_name, d.brand_name]) {
+      const n = normDrug(nm);
+      if (!n) continue;
+      keys.add(n);
+      keys.add(n.split(' ')[0]);
+    }
+    for (const k of keys) if (k && !drugIndex.has(k)) drugIndex.set(k, { slug: d.slug, brand });
+  }
+  // List shows the plain generic ingredient name, with a brand appended only via
+  // the hand-curated STAT_DRUG_BRANDS map (brands that are more famous than their
+  // generic). Auto brand-matching is avoided because it resolves arbitrary, often
+  // obscure brand pages (e.g. levothyroxine -> Ermeza) that read worse than the generic.
+  const drugLinkStats = { linked: 0, plain: [] };
+  const medLabelAndLink = canonical => {
+    const generic = toTitleCase(canonical);
+    const brand = STAT_DRUG_BRANDS[canonical];
+    const label = brand ? `${escapeHtml(generic)} (${escapeHtml(brand)})` : escapeHtml(generic);
+    const n = normDrug(canonical);
+    const hit = drugIndex.get(n) || drugIndex.get(n.split(' ')[0]) || null;
+    if (hit) { drugLinkStats.linked++; return `<a href="/drugs/${hit.slug}/">${label}</a>`; }
+    drugLinkStats.plain.push(generic);
+    return label;
+  };
+
+  // ── Reusable table + section builders (tables are always visible, for crawl + citation) ──
+  const twoColTable = (caption, h0, h1, rows) =>
+    `<table class="stat-table">\n` +
+    `        <caption>${escapeHtml(caption)}</caption>\n` +
+    `        <thead><tr><th scope="col">${escapeHtml(h0)}</th><th scope="col">${escapeHtml(h1)}</th></tr></thead>\n` +
+    `        <tbody>\n${rows}\n        </tbody>\n      </table>`;
+
+  // ── Section: reports per year ─────────────────────────────────────────────
+  const years = STATS.reportsByYear;
+  const yearRows = years.map(r =>
+    `          <tr><th scope="row">${r.year}${r.partial ? ' (partial)' : ''}</th><td>${fmt(r.count)}</td></tr>`
+  ).join('\n');
+  const yearTable = twoColTable(
+    `FDA adverse event reports received per year, ${years[0].year} to ${fullYear} complete years, with ${titleYear} partial through ${cutoffLong}. Counts reflect voluntary reporting volume, not confirmed drug harms.`,
+    'Year', 'Reports', yearRows);
+
+  // ── Section: most-reported reactions ──────────────────────────────────────
+  const reactions = STATS.topReactions.slice(0, 20);
+  const reactionRows = reactions.map(r =>
+    `          <tr><th scope="row">${reactionLink(r.term)}</th><td>${fmt(r.count)}</td></tr>`
+  ).join('\n');
+  const reactionTable = twoColTable(
+    'The 20 reactions named most often in FDA adverse event reports across all medications, by number of reports. A reaction being reported does not mean a medication caused it.',
+    'Reaction', 'Reports', reactionRows);
+  // "Death" the reaction term and the death seriousness flag are different fields
+  // and must not be conflated. Render both counts from the JSON in a footnote.
+  const deathReactionCount = STATS.topReactions.find(r => r.term === 'DEATH')?.count || 0;
+  const deathFlagCount = STATS.outcomeFlags.death.count;
+
+  // ── Section: reporter type ────────────────────────────────────────────────
+  const reporterRows = STATS.reporter.map(r =>
+    `          <tr><th scope="row">${escapeHtml(r.type)}</th><td>${fmt(r.count)}</td><td>${r.pctOfKnown}%</td></tr>`
+  ).join('\n');
+
+  // ── Section: most-reported medications ────────────────────────────────────
+  const medRows = STATS.topDrugs.map(d =>
+    `          <tr><th scope="row">${medLabelAndLink(d.canonical)}</th><td>${fmt(d.count)}</td></tr>`
+  ).join('\n');
+  const medTable = twoColTable(
+    'Medications named most often in FDA adverse event reports, by number of reports. A high count reflects how widely a medication is used and how actively its reports are collected, not a measure of danger.',
+    'Medication', 'Reports', medRows);
+
+  // ── Chart data (no template interpolation below this point in the script) ──
+  const chartYears = years.map(r => ({ y: r.year, c: r.count, p: !!r.partial }));
+  const chartReactions = STATS.topReactions.slice(0, 15).map(r => ({ l: reactionDisplay(r.term), c: r.count }));
+
+  // ── JSON-LD Dataset ───────────────────────────────────────────────────────
+  const canonical = `${SITE_URL}/statistics/`;
+  const pageTitle = `FDA Adverse Event Report Statistics (${titleYear}) | PillSignal`;
+  const metaDesc  = `Database-wide statistics from the FDA Adverse Event Monitoring System (AEMS/FAERS): ${millions(STATS.totalReports)} reports since ${years[0].year}, yearly trends, the most-reported reactions, outcomes, and reporter breakdowns. Updated ${DATA_LAST_UPDATED}.`;
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: 'FDA Adverse Event Report Statistics',
+    description: 'Aggregate statistics from the FDA Adverse Event Monitoring System (AEMS/FAERS): total reports, reports by year, most-reported reactions, serious and non-serious outcomes, reports by patient sex, and reports by reporter type.',
+    url: canonical,
+    temporalCoverage: `${years[0].year}/${titleYear}`,
+    dateModified: modifiedIso,
+    isBasedOn: 'https://open.fda.gov/apis/drug/event/',
+    creator:            { '@type': 'Organization', name: 'PillSignal', url: SITE_URL },
+    sourceOrganization: { '@type': 'Organization', name: 'U.S. Food and Drug Administration', url: 'https://www.fda.gov' },
+    license: 'https://open.fda.gov/license/',
+    variableMeasured: [
+      'Total reports', 'Reports by year', 'Most-reported reactions',
+      'Serious vs non-serious outcomes', 'Reports by patient sex', 'Reports by reporter type',
+    ],
+  };
+
+  const disclaimer = "This data reflects voluntary reports submitted to the FDA's Adverse Event Monitoring System (AEMS), formerly the FDA Adverse Event Reporting System (FAERS). A report does not mean the medication caused the event. Data may be incomplete or contain errors.";
+
+  // ── Citation (copyable) ───────────────────────────────────────────────────
+  const citation = `PillSignal. FDA Adverse Event Report Statistics. Compiled from the U.S. FDA Adverse Event Monitoring System (AEMS) via openFDA. Data as of ${cutoffLong}. ${canonical} (accessed [your date]).`;
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <title>${escapeHtml(pageTitle)}</title>
+  <meta name="description" content="${escapeHtml(metaDesc)}">
+  <link rel="canonical" href="${canonical}">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#00A67E">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="${escapeHtml(pageTitle)}">
+  <meta property="og:description" content="${escapeHtml(metaDesc)}">
+  <meta property="og:url" content="${canonical}">
+  <meta property="og:site_name" content="PillSignal">
+  <meta property="og:image" content="${SITE_URL}/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
+  <meta name="twitter:description" content="${escapeHtml(metaDesc)}">
+  <meta name="twitter:image" content="${SITE_URL}/og-image.png">
+  <script type="application/ld+json">${safeJson(jsonLd)}</script>
+  <style>
+    ${BASE_CSS}
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:var(--font); font-size:var(--fs-body); line-height:1.6; color:var(--c-text); background:var(--c-bg); transition:background 0.2s,color 0.2s; }
+    a { color:var(--c-primary); text-decoration:none; } a:hover { text-decoration:underline; color:var(--c-primary-hover); }
+    h1,h2,h3 { font-family:var(--font-heading); }
+    #disclaimer-banner { background:var(--c-banner-bg); color:var(--c-banner-text); font-size:var(--fs-small); line-height:1.5; }
+    .banner-seen #disclaimer-banner { display:none; }
+    .banner-inner { max-width:900px; margin:0 auto; padding:0.75rem 1rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+    .banner-inner p { flex:1; min-width:200px; }
+    #banner-btn { flex-shrink:0; background:transparent; border:1px solid var(--c-banner-border); color:var(--c-banner-text); padding:0.3rem 1rem; border-radius:4px; cursor:pointer; font-size:var(--fs-small); font-family:var(--font); white-space:nowrap; }
+    #banner-btn:hover { background:var(--c-banner-btn-hover); }
+    .site-header { position:sticky; top:0; z-index:100; border-bottom:1px solid var(--c-border); padding:0.875rem 1rem; background:var(--c-bg); box-shadow:0 2px 4px rgba(0,0,0,0.06); }
+    .site-header .inner { max-width:900px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+    .header-actions { display:flex; align-items:center; gap:0.75rem; }
+    .header-link { font-size:var(--fs-small); color:var(--c-text-muted); }
+    .theme-toggle { display:flex; align-items:center; justify-content:center; width:32px; height:32px; background:none; border:1px solid var(--c-border); border-radius:6px; cursor:pointer; color:var(--c-text-muted); padding:0; flex-shrink:0; }
+    .theme-toggle:hover { color:var(--c-text); border-color:var(--c-text); background:var(--c-surface); }
+    [data-theme="light"] .icon-sun { display:none; } [data-theme="dark"] .icon-moon { display:none; }
+
+    .page-header { padding:var(--space-6) var(--space-4) var(--space-3); max-width:820px; margin:0 auto; }
+    .page-header h1 { font-size:var(--fs-display); font-weight:600; letter-spacing:0; margin-bottom:0.4rem; }
+    .page-header .sub { color:var(--c-text-muted); font-size:var(--fs-small); }
+    main { max-width:820px; margin:0 auto; padding:0.5rem 1rem 4rem; }
+    .scope-note { background:var(--c-surface); border:1px solid var(--c-border); border-left:3px solid var(--c-primary); border-radius:var(--radius-md); padding:1rem 1.25rem; font-size:var(--fs-small); color:var(--c-text-muted); margin-bottom:var(--space-6); }
+
+    .stat-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:var(--space-4); margin-bottom:var(--space-7); }
+    .stat-tile { background:var(--c-surface); border:1px solid var(--c-border); border-radius:var(--radius-lg); padding:1.25rem 1.25rem 1.35rem; }
+    .stat-value { font-family:var(--font-heading); font-weight:600; font-size:var(--fs-stat); color:var(--c-primary); letter-spacing:0; line-height:1.1; }
+    .stat-label { font-size:var(--fs-small); color:var(--c-text-muted); margin-top:0.5rem; }
+
+    .stat-section { margin-bottom:var(--space-7); }
+    .stat-section > h2 { font-size:var(--fs-h2); font-weight:600; letter-spacing:0; margin-bottom:0.5rem; padding-top:var(--space-4); border-top:2px solid var(--c-border); }
+    .stat-lead { font-size:var(--fs-small); color:var(--c-text-muted); margin-bottom:var(--space-4); }
+    .chart-card { background:var(--c-surface); border:1px solid var(--c-border); border-radius:var(--radius-md); padding:1rem; margin-bottom:var(--space-4); }
+    .chart-wrap { position:relative; width:100%; }
+    .chart-wrap.years { height:300px; } .chart-wrap.reactions { height:430px; }
+
+    .stat-table { width:100%; border-collapse:collapse; font-size:var(--fs-small); }
+    .stat-table caption { text-align:left; color:var(--c-text-muted); font-size:var(--fs-caption); padding:0 0 0.6rem; }
+    .stat-table th, .stat-table td { padding:0.5rem 0.5rem; border-bottom:1px solid var(--c-border); }
+    .stat-table thead th { text-align:left; color:var(--c-text-muted); font-weight:600; }
+    .stat-table thead th:nth-child(n+2) { text-align:right; }
+    .stat-table tbody th { text-align:left; font-weight:600; }
+    .stat-table tbody td { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+    .stat-table tbody tr:nth-child(even) { background:rgba(127,127,127,0.05); }
+    .stat-foot { font-size:var(--fs-caption); color:var(--c-text-muted); margin-top:0.7rem; }
+
+    .framed-list { list-style:none; margin:0; padding:0; }
+    .framed-list li { padding:0.6rem 0; border-bottom:1px solid var(--c-border); font-size:var(--fs-small); }
+    .framed-list li:last-child { border-bottom:none; }
+    .framed-list strong { color:var(--c-text); font-weight:600; }
+    .sexbar { display:flex; height:14px; border-radius:7px; overflow:hidden; margin:0.75rem 0 0.4rem; border:1px solid var(--c-border); }
+    .sexbar .f { background:var(--c-primary); } .sexbar .m { background:var(--c-border); }
+    .sexbar-key { font-size:var(--fs-caption); color:var(--c-text-muted); }
+
+    .cite-card { background:var(--c-surface); border:1px solid var(--c-border); border-radius:var(--radius-md); padding:1rem 1.25rem; }
+    .cite-quote { font-size:var(--fs-small); color:var(--c-text); background:var(--c-bg); border:1px solid var(--c-border); border-radius:var(--radius-sm); padding:0.75rem 0.9rem; line-height:1.5; }
+    .cite-note { font-size:var(--fs-caption); color:var(--c-text-muted); margin-top:0.6rem; }
+
+    .stat-caveat { background:var(--c-surface); border:1px solid var(--c-border); border-radius:var(--radius-md); padding:1rem 1.25rem; font-size:var(--fs-small); color:var(--c-text-muted); }
+    .stat-source { font-size:var(--fs-small); margin-top:var(--space-4); }
+
+    .site-footer { border-top:1px solid var(--c-border); padding:1.5rem 1rem; text-align:center; font-size:var(--fs-small); color:var(--c-text-muted); background:var(--c-bg); }
+    .site-footer a { color:var(--c-text-muted); } .site-footer a:hover { color:var(--c-primary); text-decoration:none; }
+    .footer-nav { display:flex; gap:1.25rem; flex-wrap:wrap; justify-content:center; margin-top:0.5rem; }
+    .footer-x-link { display:inline-flex; align-items:center; justify-content:center; margin-top:0.6rem; color:var(--c-text-muted); }
+    .footer-x-link:hover { color:var(--c-primary); }
+    #back-to-top { position:fixed; bottom:1.5rem; right:1.5rem; width:40px; height:40px; border-radius:50%; border:1px solid var(--c-border); background:rgba(255,255,255,0.75); color:var(--c-text-muted); font-size:1.1rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.25s; z-index:100; backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); }
+    [data-theme="dark"] #back-to-top { background:rgba(30,41,59,0.75); }
+    #back-to-top.visible { opacity:1; pointer-events:auto; }
+  </style>
+  <script>
+    (function () {
+      var saved = localStorage.getItem('pillsignal_theme');
+      var dark  = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', saved || (dark ? 'dark' : 'light'));
+      if (localStorage.getItem('pillsignal_disclaimer_dismissed')) document.documentElement.classList.add('banner-seen');
+    }());
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C5ZEDB8Z5P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C5ZEDB8Z5P');
+  </script>
+</head>
+<body>
+
+${renderHeader('default')}
+
+  <div class="page-header">
+    <h1>FDA Adverse Event Report Statistics</h1>
+    <p class="sub">Database-wide figures from the FDA Adverse Event Monitoring System (AEMS) via openFDA. Data runs through ${cutoffLong}. Last updated ${DATA_LAST_UPDATED}.</p>
+  </div>
+
+  <main>
+    <p class="scope-note">These figures cover the entire FDA adverse event database, more than ${millions(STATS.totalReports)} reports from thousands of medications, not only the ${fmt(drugs.length)} medications with pages on PillSignal. Every number here is a count of voluntary reports, which reflects how much gets reported and cannot be read as proof that a medication caused any effect.</p>
+
+    <div class="stat-grid">
+      <div class="stat-tile">
+        <div class="stat-value">${fmt(STATS.totalReports)}</div>
+        <p class="stat-label">The FDA has received more than ${millions(STATS.totalReports)} adverse event reports since ${years[0].year}, a running count of voluntary reports that reflects how much is reported, not confirmed cases of drug harm.</p>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-value">${fmt(STATS.latestFullYearReports)}</div>
+        <p class="stat-label">In ${fullYear}, the most recent complete year, the FDA received about ${millions(STATS.latestFullYearReports)} adverse event reports; ${titleYear} data is still partial, running through ${cutoffLong}.</p>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-value">${STATS.yoyChangePct > 0 ? '+' : ''}${STATS.yoyChangePct}%</div>
+        <p class="stat-label">Reported volume edged ${yoyDir} about ${yoyAbs} percent from ${fullYear - 1} to ${fullYear}, a gradual move away from the ${STATS.peakYear.year} peak of roughly ${millions(STATS.peakYear.count)} reports.</p>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-value">${STATS.serious.seriousPct}%</div>
+        <p class="stat-label">About ${STATS.serious.seriousPct} percent of all reports were categorized as serious, a classification describing how the report was filed, not a confirmed outcome caused by the medication.</p>
+      </div>
+    </div>
+
+    <section class="stat-section">
+      <h2>Reports per year</h2>
+      <p class="stat-lead">Adverse event reports submitted to the FDA rose steadily from about ${fmt(years[0].count)} in ${years[0].year} to a peak of roughly ${millions(STATS.peakYear.count)} in ${STATS.peakYear.year}, then eased to about ${millions(STATS.latestFullYearReports)} in ${fullYear}, the most recent complete year. These are counts of reports received, which reflect reporting activity and program changes, not confirmed changes in drug safety. Figures for ${titleYear} are partial, through ${cutoffLong}.</p>
+      <div class="chart-card"><div class="chart-wrap years"><canvas id="chart-years" aria-label="Line chart of FDA adverse event reports per year, ${years[0].year} to ${titleYear}" role="img"></canvas></div></div>
+      ${yearTable}
+    </section>
+
+    <section class="stat-section">
+      <h2>Most-reported reactions</h2>
+      <p class="stat-lead">Across all medications, the reactions reported most often to the FDA are broad symptoms and reporting terms like drug ineffective, nausea, and fatigue. A reaction appearing here means it was named in a report alongside a medication, not that the medication was confirmed to cause it.</p>
+      <div class="chart-card"><div class="chart-wrap reactions"><canvas id="chart-reactions" aria-label="Bar chart of the 15 most-reported reactions across all medications" role="img"></canvas></div></div>
+      ${reactionTable}
+      <p class="stat-foot">Death appears in this table as a reported outcome term (${fmt(deathReactionCount)} reports). Separately, ${fmt(deathFlagCount)} reports carry a death seriousness flag. These are recorded differently and should not be summed or treated as the same figure.</p>
+    </section>
+
+    <section class="stat-section">
+      <h2>Reported outcomes</h2>
+      <p class="stat-lead">When a report is marked serious, it can also be flagged for specific outcomes. Each flag describes what a report noted, not a confirmed effect of any medication. Reports can carry more than one flag.</p>
+      <ul class="framed-list">
+        <li>About <strong>${fmt(STATS.outcomeFlags.death.count)}</strong> reports (${STATS.outcomeFlags.death.pctOfTotal} percent of all reports) were flagged as involving a death, meaning a death was noted in the report, not that a medication was confirmed to have caused it.</li>
+        <li>About <strong>${fmt(STATS.outcomeFlags.hospitalization.count)}</strong> reports (${STATS.outcomeFlags.hospitalization.pctOfTotal} percent of all reports) were flagged as involving hospitalization.</li>
+        <li>About <strong>${fmt(STATS.outcomeFlags.lifeThreatening.count)}</strong> reports (${STATS.outcomeFlags.lifeThreatening.pctOfTotal} percent of all reports) were flagged as life-threatening.</li>
+        <li>Overall, about <strong>${STATS.serious.seriousPct} percent</strong> of reports were classified as serious and ${STATS.serious.nonSeriousPct} percent as non-serious, a classification of the report, not a confirmed outcome of the medication.</li>
+      </ul>
+    </section>
+
+    <section class="stat-section">
+      <h2>Reports by sex</h2>
+      <p class="stat-lead">Where the patient's sex was recorded (about ${STATS.sex.knownPctOfTotal} percent of all reports), women accounted for ${STATS.sex.femalePctOfKnown} percent of FDA adverse event reports and men ${STATS.sex.malePctOfKnown} percent. Sex was not specified in the remaining reports, so these shares describe reports with a recorded sex, not all reports.</p>
+      <div class="sexbar" role="img" aria-label="Women ${STATS.sex.femalePctOfKnown} percent, men ${STATS.sex.malePctOfKnown} percent of reports with a recorded sex">
+        <div class="f" style="width:${STATS.sex.femalePctOfKnown}%"></div><div class="m" style="width:${STATS.sex.malePctOfKnown}%"></div>
+      </div>
+      <p class="sexbar-key">Women ${STATS.sex.femalePctOfKnown}% (${fmt(STATS.sex.female)}) &nbsp;|&nbsp; Men ${STATS.sex.malePctOfKnown}% (${fmt(STATS.sex.male)})</p>
+    </section>
+
+    <section class="stat-section">
+      <h2>Reports by reporter type</h2>
+      <p class="stat-lead">Nearly half of FDA adverse event reports (about ${STATS.reporter[0].pctOfKnown} percent of those with a reporter type recorded) came from consumers rather than health professionals, a sign that these are voluntary reports from many sources, not verified clinical determinations.</p>
+      <table class="stat-table">
+        <caption>Who submitted FDA adverse event reports, among reports with a reporter type recorded. Shares reflect who filed the report, not the reliability of any single report.</caption>
+        <thead><tr><th scope="col">Reporter</th><th scope="col">Reports</th><th scope="col">Share</th></tr></thead>
+        <tbody>
+${reporterRows}
+        </tbody>
+      </table>
+    </section>
+
+    <section class="stat-section">
+      <h2>Most-reported medications</h2>
+      <p class="stat-lead">Report volume reflects how widely a medication is used and how actively reports are collected, not how risky it is. Adalimumab (Humira) tops this list largely because biologics manufacturers run patient-support programs that actively gather and submit reports, not because it is the most dangerous medication in America. Widely used over-the-counter products and supplements reported to the FDA, such as aspirin, acetaminophen, and vitamin D (ergocalciferol), also appear here, which further shows that this list tracks usage and reporting, not risk.</p>
+      ${medTable}
+    </section>
+
+    <section class="stat-section">
+      <h2>About this data</h2>
+      <p class="stat-lead">These statistics cover the entire FDA Adverse Event Monitoring System (AEMS), compiled by PillSignal directly from openFDA's public aggregate data. They are not limited to the medications with pages on PillSignal.</p>
+      <p class="stat-lead">All figures are counts of reports. Because reporting is voluntary and a single report can name several medications and several reactions, these numbers describe reporting activity and cannot be read as rates of harm or as confirmed effects of any medication.</p>
+      <p class="stat-lead">In the most-reported medications list, dose and formulation variants of the same medication are combined under one name, and each medication's count reflects its single most-reported variant. True molecule-level totals, adding every brand and formulation together, would be higher, so the figures shown are conservative undercounts.</p>
+      <p class="stat-lead">We do not show an age breakdown. Patient age group is recorded on only about 18 percent of reports, too few to represent the database fairly.</p>
+      <p class="stat-lead">Data is drawn from openFDA and runs through ${cutoffLong}. This page updates automatically when PillSignal refreshes its data. Last updated ${DATA_LAST_UPDATED}.</p>
+    </section>
+
+    <section class="stat-section">
+      <h2>How to cite this page</h2>
+      <div class="cite-card">
+        <p class="cite-quote">${escapeHtml(citation)}</p>
+        <p class="cite-note">The underlying figures are public FDA data. Please cite the FDA Adverse Event Monitoring System (AEMS) as the data source and PillSignal as the compiler. Replace [your date] with the date you retrieved this page. Data is released under the <a href="https://open.fda.gov/license/" target="_blank" rel="noopener noreferrer">openFDA terms</a>.</p>
+      </div>
+    </section>
+
+    <div class="stat-caveat">${escapeHtml(disclaimer)} <a href="https://www.fda.gov/safety/fda-adverse-event-monitoring-system-aems" target="_blank" rel="noopener noreferrer">Learn more about AEMS.</a></div>
+    <p class="stat-source">Source: <a href="https://open.fda.gov/apis/drug/event/" target="_blank" rel="noopener noreferrer">openFDA drug adverse event API</a>. Explore or verify these aggregates yourself through the FDA's public data.</p>
+  </main>
+
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,10 7,4 12,10"/></svg>
+  </button>
+
+${renderFooter()}
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script>
+    var STAT_YEARS = ${safeJson(chartYears)};
+    var STAT_REACTIONS = ${safeJson(chartReactions)};
+    function statIsDark(){ return document.documentElement.getAttribute('data-theme') === 'dark'; }
+    function statInk(){ return statIsDark() ? '#94a3b8' : '#64748b'; }
+    function statGrid(){ return statIsDark() ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.07)'; }
+    function statPrimary(a){ return (statIsDark() ? 'rgba(52,209,160,' : 'rgba(0,166,126,') + a + ')'; }
+    var STAT_CHARTS = {};
+    function statFmt(n){ return Number(n).toLocaleString('en-US'); }
+    function initStatCharts(){
+      if (typeof Chart === 'undefined') return;
+      Chart.defaults.font.family = "'Source Sans 3', system-ui, sans-serif";
+      if (STAT_CHARTS.years) { STAT_CHARTS.years.destroy(); }
+      STAT_CHARTS.years = new Chart(document.getElementById('chart-years'), {
+        type: 'line',
+        data: { labels: STAT_YEARS.map(function(d){ return d.y; }),
+          datasets: [{ data: STAT_YEARS.map(function(d){ return d.c; }),
+            borderColor: statPrimary('1'), backgroundColor: statPrimary('0.12'), fill: true,
+            tension: 0.25, pointRadius: 2, pointHoverRadius: 4,
+            borderDash: [], segment: { borderDash: function(ctx){ return STAT_YEARS[ctx.p1DataIndex] && STAT_YEARS[ctx.p1DataIndex].p ? [5,4] : undefined; } } }] },
+        options: { responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false },
+            tooltip: { callbacks: { label: function(c){ var d = STAT_YEARS[c.dataIndex]; return statFmt(c.parsed.y) + (d && d.p ? ' (partial)' : ''); } } } },
+          scales: { x: { grid: { display: false }, ticks: { color: statInk(), maxRotation: 0, autoSkip: true } },
+            y: { beginAtZero: true, grid: { color: statGrid() }, ticks: { color: statInk(), callback: function(v){ return (v/1e6) + 'M'; } } } } }
+      });
+      if (STAT_CHARTS.reactions) { STAT_CHARTS.reactions.destroy(); }
+      STAT_CHARTS.reactions = new Chart(document.getElementById('chart-reactions'), {
+        type: 'bar',
+        data: { labels: STAT_REACTIONS.map(function(d){ return d.l; }),
+          datasets: [{ data: STAT_REACTIONS.map(function(d){ return d.c; }), backgroundColor: statPrimary('0.8'), borderRadius: 3 }] },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(c){ return statFmt(c.parsed.x) + ' reports'; } } } },
+          scales: { x: { grid: { color: statGrid() }, ticks: { color: statInk(), callback: function(v){ return (v/1e6) + 'M'; } } },
+            y: { grid: { display: false }, ticks: { color: statInk(), autoSkip: false, font: { size: 11 } } } } }
+      });
+    }
+    document.getElementById('banner-btn').addEventListener('click', function () {
+      localStorage.setItem('pillsignal_disclaimer_dismissed', '1');
+      document.documentElement.classList.add('banner-seen');
+    });
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('pillsignal_theme', next);
+      if (typeof gtag === 'function') gtag('event', 'dark_mode_toggle', { new_theme: next });
+      initStatCharts();
+    });
+    (function () {
+      var btn = document.getElementById('back-to-top');
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 500) { btn.classList.add('visible'); } else { btn.classList.remove('visible'); }
+      }, { passive: true });
+      btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    }());
+    initStatCharts();
+  </script>
+
+</body>
+</html>`;
+
+  mkdirSync(join(DOCS_DIR, 'statistics'), { recursive: true });
+  writeFileSync(join(DOCS_DIR, 'statistics', 'index.html'), html, 'utf8');
+  console.log(`  statistics/index.html — ${STATS.topDrugs.length} drugs (${drugLinkStats.linked} linked, ${drugLinkStats.plain.length} plain), ${STATS.topReactions.length} reactions, ${years.length} years`);
+  if (drugLinkStats.plain.length) console.log(`    unlinked medications: ${drugLinkStats.plain.join(', ')}`);
 }
 
 // ─── Event (reverse-index) pages ────────────────────────────────────────────
@@ -1797,6 +2259,7 @@ async function main() {
   writeEventPages(eventIndex);
   writeGlossaryData();
   writeGlossaryPage();
+  writeStatisticsPage(generatedDrugs);
 
   console.log(`\nStage 2 complete.`);
   console.log(`  Generated : ${generated} pages`);
