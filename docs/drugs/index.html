@@ -122,7 +122,9 @@
 
     /* Browse list */
     main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
-    .letter-section { margin-bottom: 2rem; }
+    /* sticky header (~3.75rem) + letter-nav (~2.875rem) + breathing gap, for #section anchor jumps (desktop chrome ~6.625rem) */
+    :root { --anchor-offset: calc(6.75rem + var(--space-3)); }
+    .letter-section { margin-bottom: 2rem; scroll-margin-top: var(--anchor-offset); }
     .letter-heading { font-size: 1.5rem; font-weight: 600; color: var(--c-text); letter-spacing: 0; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-border); }
     .browse-list { list-style: none; }
     .browse-item { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; padding: 0.35rem 0; border-bottom: 1px solid var(--c-border); min-width: 0; }
@@ -134,6 +136,9 @@
     @media (max-width: 480px) {
       .browse-item { flex-direction: column; align-items: flex-start; gap: 0.1rem; }
       .browse-count { font-size: 0.7rem; margin-top: 0.05rem; }
+      /* mobile header is taller (~4.5rem): drop the letter-nav below it, and grow the offset so #section jumps still clear the lower chrome (mobile bottom ~7.375rem) */
+      .lnav { top: 4.5rem; }
+      :root { --anchor-offset: calc(7.5rem + var(--space-3)); }
     }
 
     /* Footer */

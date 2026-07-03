@@ -846,7 +846,9 @@ function writeBrowsePage(drugs) {
 
     /* Browse list */
     main { max-width: 900px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
-    .letter-section { margin-bottom: 2rem; }
+    /* sticky header (~3.75rem) + letter-nav (~2.875rem) + breathing gap, for #section anchor jumps (desktop chrome ~6.625rem) */
+    :root { --anchor-offset: calc(6.75rem + var(--space-3)); }
+    .letter-section { margin-bottom: 2rem; scroll-margin-top: var(--anchor-offset); }
     .letter-heading { font-size: 1.5rem; font-weight: 600; color: var(--c-text); letter-spacing: 0; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-border); }
     .browse-list { list-style: none; }
     .browse-item { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; padding: 0.35rem 0; border-bottom: 1px solid var(--c-border); min-width: 0; }
@@ -858,6 +860,9 @@ function writeBrowsePage(drugs) {
     @media (max-width: 480px) {
       .browse-item { flex-direction: column; align-items: flex-start; gap: 0.1rem; }
       .browse-count { font-size: 0.7rem; margin-top: 0.05rem; }
+      /* mobile header is taller (~4.5rem): drop the letter-nav below it, and grow the offset so #section jumps still clear the lower chrome (mobile bottom ~7.375rem) */
+      .lnav { top: 4.5rem; }
+      :root { --anchor-offset: calc(7.5rem + var(--space-3)); }
     }
 
     /* Footer */
@@ -1151,11 +1156,18 @@ function writeGlossaryPage() {
     /* Glossary list */
     main { max-width: 720px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
     .gloss-section { margin-bottom: var(--space-6); }
-    .gloss-letter { font-size: 1.5rem; font-weight: 600; color: var(--c-text); letter-spacing: 0; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-border); scroll-margin-top: 5rem; }
+    /* sticky header (~3.75rem) + letter-nav (~2.875rem) + breathing gap, for #letter/#term anchor jumps (desktop chrome ~6.625rem) */
+    :root { --anchor-offset: calc(6.75rem + var(--space-3)); }
+    .gloss-letter { font-size: 1.5rem; font-weight: 600; color: var(--c-text); letter-spacing: 0; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 2px solid var(--c-border); scroll-margin-top: var(--anchor-offset); }
     .gloss-list { margin: 0; }
-    .gloss-term { font-weight: 600; font-size: var(--fs-h3); margin-top: 1rem; scroll-margin-top: 5rem; color: var(--c-text); }
+    .gloss-term { font-weight: 600; font-size: var(--fs-h3); margin-top: 1rem; scroll-margin-top: var(--anchor-offset); color: var(--c-text); }
     .gloss-term:target { text-decoration: underline; }
     .gloss-def { color: var(--c-text-muted); margin: 0.15rem 0 0; padding-bottom: 0.75rem; border-bottom: 1px solid var(--c-border); }
+    /* mobile header is taller (~4.5rem): drop the letter-nav below it, and grow the offset so #letter/#term jumps still clear the lower chrome (mobile bottom ~7.375rem) */
+    @media (max-width: 480px) {
+      .lnav { top: 4.5rem; }
+      :root { --anchor-offset: calc(7.5rem + var(--space-3)); }
+    }
 
     /* Footer */
     .site-footer { border-top: 1px solid var(--c-border); padding: 1.5rem 1rem; text-align: center; font-size: var(--fs-small); color: var(--c-text-muted); background: var(--c-bg); }
