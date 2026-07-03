@@ -860,9 +860,16 @@ function writeBrowsePage(drugs) {
     @media (max-width: 480px) {
       .browse-item { flex-direction: column; align-items: flex-start; gap: 0.1rem; }
       .browse-count { font-size: 0.7rem; margin-top: 0.05rem; }
-      /* mobile header is taller (~4.5rem): drop the letter-nav below it, and grow the offset so #section jumps still clear the lower chrome (mobile bottom ~7.375rem) */
-      .lnav { top: 4.5rem; }
-      :root { --anchor-offset: calc(7.5rem + var(--space-3)); }
+      /* mobile: the 26-letter A-Z nav wraps to ~3 rows, making the sticky chrome unpredictably tall and
+         clipping #section anchor jumps. Collapse it to one horizontally scrollable row (overflow-x) so the
+         chrome is a single predictable row height and the offset is exact at every width. Chrome = header
+         (~4.5rem) + one-row lnav with 44px tap targets (~3.75rem) = ~8.25rem. Letters overflow the phone
+         width, so a partial letter at the right edge signals the row scrolls. */
+      .lnav { top: 4.5rem; overflow-x: auto; scrollbar-width: none; }
+      .lnav::-webkit-scrollbar { display: none; }
+      .lnav-inner { flex-wrap: nowrap; width: max-content; max-width: none; }
+      .lnav-item { flex: 0 0 auto; min-width: 44px; height: 44px; }
+      :root { --anchor-offset: calc(8.25rem + var(--space-3)); }
     }
 
     /* Footer */
@@ -1163,10 +1170,17 @@ function writeGlossaryPage() {
     .gloss-term { font-weight: 600; font-size: var(--fs-h3); margin-top: 1rem; scroll-margin-top: var(--anchor-offset); color: var(--c-text); }
     .gloss-term:target { text-decoration: underline; }
     .gloss-def { color: var(--c-text-muted); margin: 0.15rem 0 0; padding-bottom: 0.75rem; border-bottom: 1px solid var(--c-border); }
-    /* mobile header is taller (~4.5rem): drop the letter-nav below it, and grow the offset so #letter/#term jumps still clear the lower chrome (mobile bottom ~7.375rem) */
+    /* mobile: the 26-letter A-Z nav wraps to ~3 rows, making the sticky chrome unpredictably tall and
+       clipping #letter/#term anchor jumps. Collapse it to one horizontally scrollable row (overflow-x) so
+       the chrome is a single predictable row height and the offset is exact at every width. Chrome = header
+       (~4.5rem) + one-row lnav with 44px tap targets (~3.75rem) = ~8.25rem. Letters overflow the phone
+       width, so a partial letter at the right edge signals the row scrolls. */
     @media (max-width: 480px) {
-      .lnav { top: 4.5rem; }
-      :root { --anchor-offset: calc(7.5rem + var(--space-3)); }
+      .lnav { top: 4.5rem; overflow-x: auto; scrollbar-width: none; }
+      .lnav::-webkit-scrollbar { display: none; }
+      .lnav-inner { flex-wrap: nowrap; width: max-content; max-width: none; }
+      .lnav-item { flex: 0 0 auto; min-width: 44px; height: 44px; }
+      :root { --anchor-offset: calc(8.25rem + var(--space-3)); }
     }
 
     /* Footer */
