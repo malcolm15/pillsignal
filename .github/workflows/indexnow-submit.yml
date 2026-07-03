@@ -1,7 +1,11 @@
 name: IndexNow Submit
 
-# After a successful GitHub Pages deployment, submit the URLs whose pages
-# changed in this deploy to IndexNow (Bing, Yandex, and other participants).
+# After a successful GitHub Pages deployment, submit the URLs whose main
+# CONTENT changed in this deploy to IndexNow (Bing, Yandex, and other
+# participants). We diff the rendered content region, not the file bytes:
+# our CSS is inlined, so a cosmetic deploy rewrites every page's bytes
+# without changing anything indexable, and byte-diffing made us resubmit
+# the whole site repeatedly (Bing flags that as batch abuse).
 # The key is derived from the committed key file in docs/, so no secret and
 # no Supabase are needed in CI.
 
@@ -73,19 +77,59 @@ jobs:
           CHANGED=$(git diff --no-renames --diff-filter=ACMRT --name-only \
             "$BASE" "$DEPLOY_SHA" -- 'docs/**/*.html' || true)
 
+          # --- 4b. Keep only pages whose MAIN CONTENT changed, not their bytes ---
+          # Our CSS is inlined in <head>, and the header/nav/footer are siblings
+          # of the content region, so a cosmetic or chrome-only deploy rewrites
+          # every page's bytes without changing what is indexable. Hashing the
+          # rendered content region (instead of the file) makes those deploys
+          # submit nothing, which is what stops Bing seeing repeated full-site
+          # batches. Region = <main> (902 pages) with a fallback to
+          # <article class="article-body"> (the 4 guide articles); every page has
+          # exactly one. A file missing in BASE (a brand-new page) extracts empty
+          # and so differs from its non-empty deploy version -> submitted.
+          extract_main() {
+            # $1 = "<ref>:<path>"; prints the content region (empty if file/region absent)
+            git show "$1" 2>/dev/null | perl -0777 -ne '
+              if (/<main\b[^>]*>(.*?)<\/main>/s)                                                 { print $1 }
+              elsif (/<article\b[^>]*class="[^"]*\barticle-body\b[^"]*"[^>]*>(.*?)<\/article>/s) { print $1 }
+            ' || true
+          }
+          CONTENT_CHANGED=""
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            case "$f" in *.html) ;; *) continue ;; esac
+            base_hash=$(extract_main "${BASE}:${f}"       | sha256sum | cut -d' ' -f1)
+            head_hash=$(extract_main "${DEPLOY_SHA}:${f}" | sha256sum | cut -d' ' -f1)
+            if [ "$base_hash" != "$head_hash" ]; then
+              CONTENT_CHANGED="${CONTENT_CHANGED}${f}"$'\n'
+            fi
+          done <<< "$CHANGED"
+
           # Map docs/<path>/index.html -> clean trailing-slash URL.
-          # `|| true` so an empty diff (grep finds nothing -> exit 1) does not
+          # `|| true` so an empty result (grep finds nothing -> exit 1) does not
           # trip `set -e`; an empty URLS is a valid no-op, not a failure.
-          URLS=$(printf '%s\n' "$CHANGED" \
+          URLS=$(printf '%s\n' "$CONTENT_CHANGED" \
             | grep -E '\.html$' \
             | sed -E "s#^docs/#${SITE}/#; s#index\.html\$##" \
             | sort -u || true)
 
           COUNT=$(printf '%s\n' "$URLS" | grep -c . || true)
           if [ "$COUNT" -eq 0 ]; then
-            echo "No changed pages in this deploy; nothing to submit."; exit 0
+            echo "No page CONTENT changed in this deploy (CSS or chrome only); nothing to submit."; exit 0
           fi
-          echo "Submitting $COUNT changed URL(s):"
+
+          # --- 4c. Tripwire, not a block: a content-changed set this large is a
+          # real data refresh and legitimate to submit, but log it loudly so a
+          # runaway is noticed rather than silently blasted at IndexNow. ---
+          if [ "$COUNT" -gt 500 ]; then
+            echo "::warning::IndexNow content-changed set is ${COUNT} URLs (>500); expected only on a full data refresh."
+            echo "=============================================================="
+            echo "  LARGE SUBMISSION: ${COUNT} URLs changed content this deploy."
+            echo "  Legitimate on a data refresh, suspicious otherwise. Submitting."
+            echo "=============================================================="
+          fi
+
+          echo "Submitting $COUNT content-changed URL(s):"
           printf '%s\n' "$URLS"
 
           # --- 5. Build the payload and POST once (IndexNow accepts up to 10,000) ---
